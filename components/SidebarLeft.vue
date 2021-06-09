@@ -1,5 +1,5 @@
 <template>
-  <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-2" :width="240">
+  <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2" :width="240">
     <q-scroll-area class="fit">
       <q-list padding>
         <q-item v-for="link in links1" :key="link.text" v-ripple clickable>
@@ -50,14 +50,7 @@
 
         <div class="q-px-md text-grey-9">
           <div class="row items-center q-gutter-x-sm q-gutter-y-xs">
-            <a v-for="button in buttons1" :key="button.text" class="YL__drawer-footer-link" href="javascript:void(0)">
-              {{ button.text }}
-            </a>
-          </div>
-        </div>
-        <div class="q-py-md q-px-md text-grey-9">
-          <div class="row items-center q-gutter-x-sm q-gutter-y-xs">
-            <a v-for="button in buttons2" :key="button.text" class="YL__drawer-footer-link" href="javascript:void(0)">
+            <a v-for="button in footerLinks" :key="button.text" class="YL__drawer-footer-link" href="javascript:void(0)">
               {{ button.text }}
             </a>
           </div>
@@ -96,16 +89,7 @@ export default {
         { icon: 'help', text: 'Help' },
         { icon: 'feedback', text: 'Send feedback' },
       ],
-      buttons1: [
-        { text: 'About' },
-        { text: 'Press' },
-        { text: 'Copyright' },
-        { text: 'Contact us' },
-        { text: 'Creators' },
-        { text: 'Advertise' },
-        { text: 'Developers' },
-      ],
-      buttons2: [{ text: 'Terms' }, { text: 'Privacy' }, { text: 'Policy & Safety' }, { text: 'Test new features' }],
+      footerLinks: [{ text: 'Terms' }, { text: 'Privacy' }, { text: 'Policy & Safety' }],
     }
   },
   computed: {
@@ -132,11 +116,10 @@ export default {
 <style lang="sass">
 @import "../assets/sass/theme-variables"
 
-.n3rd-sidebar-left
+.uku-sidebar-left
   background-color: $white
-  .n3rd-logo
+  .uku-logo
     color: $black
-    font-family: $heading-font
 
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

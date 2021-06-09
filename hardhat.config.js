@@ -4,7 +4,6 @@ require("@nomiclabs/hardhat-waffle")
 require('./node_modules/hardhat-contract-sizer')
 require('./node_modules/solidity-coverage')
 require('./contracts/tasks/generateDiamondABI')
-
 require('dotenv').config()
 
 const { mnemonic } = require('./secrets.json')
@@ -15,9 +14,11 @@ task("Accounts", "Prints a list of Accounts", async () => {
   const accounts = await ethers.getSigners();
 
   console.log('accounts', accounts)
-  // for (const account of accounts) {
-  //   console.log(await account.getAddress())
-  // }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const account of accounts) {
+    // eslint-disable-next-line no-await-in-loop
+    console.log(await account.getAddress())
+  }
 })
 
 // https://github.com/withtally/Tutorial-Deploy-Governance/blob/main/hardhat.config.jshttps://github.com/withtally/Tutorial-Deploy-Governance/blob/main/hardhat.config.js
@@ -43,7 +44,7 @@ task("Accounts", "Prints a list of Accounts", async () => {
  * Go to https://buidler.dev/config/ to learn more
  */
 module.exports = {
-  defaultNetwork: "mainnet",
+  defaultNetwork: "testnet",
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545"

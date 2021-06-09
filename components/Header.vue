@@ -1,15 +1,16 @@
 <template>
-  <q-header elevated class="uku-header" height-hint="58">
+  <q-header class="uku-header" height-hint="60">
     <q-toolbar>
       <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
+      <q-avatar class="uku-icon q-ml-xs">
+        <img src="~/assets/images/logo.png" alt="Ukulima Africa" />
+      </q-avatar>
+      <q-toolbar-title shrink>
+        <span class="uku-logo q-mt-xs">Ukulima</span>
+      </q-toolbar-title>
 
-      <q-btn v-if="$q.screen.gt.xs" flat no-caps no-wrap class="q-ml-xs">
-        <q-toolbar-title shrink class="text-weight-bold">
-          <span class="n3rd-logo q-mt-xs">Ukulima</span>
-        </q-toolbar-title>
-      </q-btn>
       <q-space />
-      <div class="YL__toolbar-input-container row no-wrap">
+      <!-- <div class="YL__toolbar-input-container row no-wrap">
         <q-input v-model="searchText" dense square color="black" standout="bg-white" bg-color="white" class="GPL__toolbar-input" placeholder="Search">
           <template #prepend>
             <q-icon v-if="searchText === ''" name="search" />
@@ -19,12 +20,10 @@
           </template>
         </q-input>
       </div>
-      <q-space />
-
-      <div class="q-gutter-sm row items-center no-wrap"><q-icon name="money" /> {{ user.balance }}</div>
+      <q-space /> -->
 
       <div class="q-gutter-sm row items-center no-wrap">
-        <q-btn
+        <!-- <q-btn
           v-if="!profile.isAuthenticated"
           dense
           outline
@@ -33,7 +32,11 @@
           :class="!user.account ? 'arkane-button bg-primary' : 'arkane-button text-black bg-primary'"
           :icon="!user.account ? 'play_arrow' : 'gamepad'"
           @click="!user.account ? connectMetaMask() : connectArkane()"
-        />
+        /> -->
+        <q-btn v-if="!user.account" rounded color="secondary" label="Connect" icon-right="play_arrow" @click="connectMetaMask()" />
+
+        <div v-if="user.account" class="q-gutter-sm row items-center no-wrap"><q-icon name="money" /> {{ user.balance }}</div>
+
         <!-- User Account Dropdown Button -->
         <q-btn v-if="user.account" round flat>
           <q-avatar size="36px">
@@ -298,18 +301,18 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-header
-  color: $black
-  background-color: $white
+  color: $secondary
+  background-color: $primary
   /* top | right | bottom | left */
-  border-style: none none inset none
-  .arkane-button
-    font-family: $heading-font
+  // border-style: none none inset none
+  margin: 0
   .uku-logo
-    color: $primary
-    font-family: $heading-font
+    color: $secondary
+    font-size: 24px
+    line-height: 24px
+    font-weight: 500
   .GPL__toolbar-input
     color: $primary
-    font-family: $body-font
 
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

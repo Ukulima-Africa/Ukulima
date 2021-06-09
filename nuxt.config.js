@@ -8,7 +8,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ukulima',
+    title: 'Ukulima Africa',
     titleTemplate: '%s - Empowering African Farmers Through Blockchain',
     meta: [
       { charset: 'utf-8' },

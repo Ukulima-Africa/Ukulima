@@ -1,6 +1,8 @@
 const hre = require("hardhat")
 
-const {ethers} = hre
+const {
+  ethers
+} = hre
 
 // See Example of Governance contracts
 // https://github.com/withtally/Tutorial-Deploy-Governance/blob/main/scripts/Deploy.js
@@ -42,11 +44,11 @@ const {ethers} = hre
 
 async function main() {
   // We get the contract to deploy
-  const N3RD = await ethers.getContractFactory('N3RD')
-  console.log('Deploying N3RD Contract...')
-  const N3RDcontract = await N3RD.deploy()
-  await N3RDcontract.deployed()
-  console.log('N3RD deployed to:', N3RDcontract.address)
+  const UKU = await ethers.getContractFactory('UKUcontract')
+  console.log('Deploying UKU Contract...')
+  const UKUcontract = await UKU.deploy("Hello Hardhat")
+  await UKUcontract.deployed()
+  console.log('UKU Contract deployed to:', UKUcontract.address)
 }
 
 main()
