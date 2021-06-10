@@ -32,6 +32,7 @@ const pollWeb3 = async () => {
               displayBalance = 0
             } else {
               displayBalance = web3.utils.fromWei(result, 'ether')
+              console.log("displayBalance", displayBalance)
             }
           }
         )

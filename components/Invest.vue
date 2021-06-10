@@ -1,10 +1,18 @@
 <template>
-  <div class="row uku-invest">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
-      <div class="uku-invest-title">{{ title }}</div>
-      <div class="uku-invest-subtitle">{{ subtitle }}</div>
-      <div class="uku-invest-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+  <div id="invest" class="row uku-invest">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+      <div class="uku-border-box">
+        <div class="uku-invest-title">{{ title }}</div>
+        <div class="uku-invest-subtitle">{{ subtitle }}</div>
+        <div class="uku-invest-text">
+          In developing countries, as many as 270 million smallholder farmers are underinsured. Only 20% have access to agricultural insurance
+          coverage, and in sub-Saharan Africa - despite the fivefold increase in agricultural microinsurance registered between 2011 and 2014
+        </div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
+        <div class="uku-defi-text">
+          Ukulima's Blockchain Crop Insurance aims to increase smallholder farmers’ resilience to climate change through offering a more accessible
+          index insurance product at scale.
+        </div>
       </div>
     </div>
   </div>
@@ -14,8 +22,8 @@ export default {
   name: 'Invest',
   data() {
     return {
-      title: 'Ukulima Investing',
-      subtitle: 'Empowering African Farmers Through Blockchain',
+      title: 'Grants & Investing',
+      subtitle: 'Invest in African Farms',
     }
   },
 }
@@ -25,27 +33,35 @@ export default {
 
 .uku-invest
   min-height: 500px
-  .uku-invest-title
-    color: $black
-    font-size: 26px
-    line-height: 30px
-    font-weight: 400
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 15px 0
-  .uku-invest-subtitle
-    color: $black
-    font-size: 20px
-    line-height: 26px
-    font-weight: 400
-    letter-spacing 0.6px
-    margin: 0 0 15px 0
-  .uku-invest-text
-    color: $black
-    font-size: 15px
-    line-height: 24px
-    font-weight: 400
-    margin: 0 0 10px 0
+  .uku-border-box
+    border-radius: 4px
+    border: solid 1px $secondary
+    padding: 30px 20px
+    .uku-invest-title
+      width: 100%
+      color: $black
+      font-size: 32px
+      line-height: 32px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 15px 0
+      text-align: center
+    .uku-invest-subtitle
+      width: 100%
+      color: $black
+      font-size: 20px
+      line-height: 26px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 15px 0
+      text-align: center
+    .uku-invest-text
+      color: $black
+      font-size: 16px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

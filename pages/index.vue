@@ -5,37 +5,34 @@
     <q-page-container>
       <!-- First Row - Intro & Connect -->
       <div class="row items-start justify-evenly">
-        <div class="col-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
+        <div class="col-8 col-lg-7 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
           <Intro :user="user" />
         </div>
-        <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 uku-blue-bg">
+        <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12 uku-blue-bg">
           <Signin />
         </div>
       </div>
       <!-- END First Row -->
       <!-- Second Row - Intro & Connect -->
-      <div class="row items-start justify-evenly blue-green-bg-image">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <About />
-        </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <div class="row items-start justify-evenly">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 blue-green-bg-image">
           <Blockchain />
         </div>
       </div>
       <!-- END Second Row -->
       <!-- Third Row - Intro & Connect -->
-      <div class="row items-start justify-evenly">
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="row items-start justify-evenly uku-green-bg">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <Binance />
-        </div>
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <Defi />
         </div>
       </div>
       <!-- END Third Row -->
       <!-- Fourth Row - Intro & Connect -->
-      <div class="row items-start justify-evenly stripe-bg-image">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      <div class="row items-start justify-evenly">
+        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <Defi />
+        </div>
+        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <Invest />
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -46,13 +43,23 @@
       <!-- Fifth Row -->
       <div class="row items-start justify-evenly uku-blue-bg">
         <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <Banner />
+        </div>
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <About />
+        </div>
+      </div>
+      <!-- END Fifth Row -->
+      <!-- Sixth Row -->
+      <div class="row items-start justify-evenly stripe-bg-image">
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <News />
         </div>
         <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <Contact />
         </div>
       </div>
-      <!-- END Fifth Row -->
+      <!-- END Sixth Row -->
     </q-page-container>
   </q-layout>
 </template>
@@ -66,6 +73,7 @@ import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import Intro from '../components/Intro.vue'
 import Signin from '../components/Signin.vue'
+import Banner from '../components/Banner.vue'
 import About from '../components/About.vue'
 import Blockchain from '../components/Blockchain.vue'
 import Defi from '../components/Defi.vue'
@@ -74,7 +82,6 @@ import Insurance from '../components/Insurance.vue'
 import Invest from '../components/Invest.vue'
 import Contact from '../components/Contact.vue'
 import News from '../components/News.vue'
-
 /* LFG */
 export default {
   name: 'Dashboard',
@@ -83,6 +90,7 @@ export default {
     SidebarLeft,
     Intro,
     Signin,
+    Banner,
     About,
     Blockchain,
     Defi,
@@ -172,6 +180,21 @@ export default {
         this.$store.commit('SET_BALANCE', balance)
         return true
       }
+      this.$q.notify({
+        color: 'red-5',
+        textColor: 'white',
+        icon: 'warning',
+        message: 'Your account was not loaded correctly, please refresh your browser and try again!',
+        actions: [
+          {
+            label: 'Try again!',
+            color: 'white',
+            handler: () => {
+              this.loadAccount()
+            },
+          },
+        ],
+      })
       return false
     },
   },
@@ -185,22 +208,20 @@ export default {
   background-position: center center
   overflow: hidden
   padding: 0
-
-// .blue-green-bg-image
-//   background-image: url('../assets/images/blue-green-bg.png')
-//   background-size: 100%
-//   background-repeat: no-repeat
-//   background-position: top right
-//   overflow: hidden
-//   padding: 0
-
-// .stripe-bg-image
-//   background-image: url('../assets/images/stripe-bg.png')
-//   background-size: 100%
-//   background-repeat: no-repeat
-//   background-position: center center
-//   overflow: hidden
-//   padding: 0
+.blue-green-bg-image
+  background-image: url('../assets/images/blue-green-bg.png')
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: top left
+  overflow: hidden
+  padding: 0
+.stripe-bg-image
+  background-image: url('../assets/images/stripe-bg.png')
+  background-size: 100%
+  background-repeat: no-repeat
+  background-position: center right
+  overflow: hidden
+  padding: 0
 
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)

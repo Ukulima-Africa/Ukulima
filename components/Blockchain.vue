@@ -1,10 +1,25 @@
 <template>
   <div class="row uku-blockchain">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
+    <div class="col-7 col-lg-7 col-md-7 col-sm-7 col-xs-7 q-pa-xl">
       <div class="uku-blockchain-title">{{ title }}</div>
-      <div class="uku-blockchain-subtitle">{{ subtitle }}</div>
+      <div class="uku-blockchain-subtitle">
+        According to The World Bank, 1.7 billion adults around the globe<br />
+        don’t have access to a bank account or reliable insurance services
+      </div>
       <div class="uku-blockchain-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+        Blockchain has sparked a massive transformation in cross-border payments with the ability<br />to easily and safely transfer money using smart
+        contracts. The use of Blockchain technologies<br />
+        provides people the opportunity to be their own bank without needing to sign up for a bank account<br />
+        and has led us to an era of decentralised finance or Defi.
+      </div>
+      <div class="uku-intro-buttons full-width q-mt-xl" align="left">
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Read More" />
+        <q-btn rounded color="primary" class="q-mr-sm" label="Read More" />
+      </div>
+    </div>
+    <div class="col-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 q-pa-xl" align="center">
+      <div class="uku-intro-image full-width q-pt-md">
+        <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" width="360" />
       </div>
     </div>
   </div>
@@ -15,7 +30,6 @@ export default {
   data() {
     return {
       title: 'Blockchain Solutions',
-      subtitle: 'Empowering African Farmers Through Blockchain',
     }
   },
 }
@@ -24,25 +38,26 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-blockchain
-  min-height: 500px
+  min-height: 200px
+  // background-color: $primary
   .uku-blockchain-title
-    color: $black
-    font-size: 26px
-    line-height: 30px
-    font-weight: 400
+    color: $white
+    font-size: 32px
+    line-height: 32px
+    font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 0 0 15px 0
+    margin: 10px 0 30px 0
   .uku-blockchain-subtitle
-    color: $black
+    color: $white
     font-size: 20px
     line-height: 26px
-    font-weight: 400
+    font-weight: 500
     letter-spacing 0.6px
-    margin: 0 0 15px 0
+    margin: 0 0 25px 0
   .uku-blockchain-text
-    color: $black
-    font-size: 15px
+    color: $white
+    font-size: 16px
     line-height: 24px
     font-weight: 400
     margin: 0 0 10px 0

@@ -1,5 +1,5 @@
 <template>
-  <q-header class="uku-header" height-hint="60">
+  <q-header class="uku-header" height-hint="58">
     <q-toolbar>
       <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
       <q-avatar class="uku-icon q-ml-xs">
@@ -304,7 +304,7 @@ export default {
   color: $secondary
   background-color: $primary
   /* top | right | bottom | left */
-  // border-style: none none inset none
+  border-style: none none solid none
   margin: 0
   .uku-logo
     color: $secondary

@@ -1,10 +1,18 @@
 <template>
-  <div class="row uku-insurance">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
-      <div class="uku-insurance-title">{{ title }}</div>
-      <div class="uku-insurance-subtitle">{{ subtitle }}</div>
-      <div class="uku-insurance-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+  <div id="insurance" class="row uku-insurance">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+      <div class="uku-border-box">
+        <div class="uku-insurance-title">{{ title }}</div>
+        <div class="uku-insurance-subtitle">{{ subtitle }}</div>
+        <div class="uku-insurance-text">
+          Ukulima understands your farm is very important to you, regardless its nature or size. As your partner in agriculture, our goal is to make
+          crop insurance even more accessible, affordable and easy to use.
+        </div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
+        <div class="uku-defi-text">
+          When you are insured, you can enjoy peace of mind knowing that your crops and assets are fully covered by technical experts who understand
+          the demands of the agriculture industry.
+        </div>
       </div>
     </div>
   </div>
@@ -14,8 +22,8 @@ export default {
   name: 'Insurance',
   data() {
     return {
-      title: 'Ukulima Crop Insurance',
-      subtitle: 'Empowering African Farmers Through Blockchain',
+      title: 'Insurance Cover',
+      subtitle: 'Protection for your livelihood',
     }
   },
 }
@@ -25,27 +33,35 @@ export default {
 
 .uku-insurance
   min-height: 500px
-  .uku-insurance-title
-    color: $black
-    font-size: 26px
-    line-height: 30px
-    font-weight: 400
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 15px 0
-  .uku-insurance-subtitle
-    color: $black
-    font-size: 20px
-    line-height: 26px
-    font-weight: 400
-    letter-spacing 0.6px
-    margin: 0 0 15px 0
-  .uku-insurance-text
-    color: $black
-    font-size: 15px
-    line-height: 24px
-    font-weight: 400
-    margin: 0 0 10px 0
+  .uku-border-box
+    border-radius: 4px
+    border: solid 1px $secondary
+    padding: 30px 20px
+    .uku-insurance-title
+      width: 100%
+      color: $black
+      font-size: 32px
+      line-height: 32px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 15px 0
+      text-align: center
+    .uku-insurance-subtitle
+      width: 100%
+      color: $black
+      font-size: 20px
+      line-height: 26px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 15px 0
+      text-align: center
+    .uku-insurance-text
+      color: $black
+      font-size: 16px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

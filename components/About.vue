@@ -1,10 +1,22 @@
 <template>
   <div class="row uku-about">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-about-title">{{ title }}</div>
-      <div class="uku-about-subtitle">{{ subtitle }}</div>
       <div class="uku-about-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa
+        Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa and
+        abroad, creating a sustainable eco-system for all.
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food security
+        and build climate resilient economies in Africa and abroad.
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
+        out of reach of the local farmer.
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        Ukulima aims to bring financial stability to our African farmers by providing innovative insurance solution for protection against weather
+        related losses to growing crops.
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        We continue to invest in effective risk management in order to make a real difference in helping create a sustainable future in agriculture in
+        Africa.
       </div>
     </div>
   </div>
@@ -14,8 +26,7 @@ export default {
   name: 'About',
   data() {
     return {
-      title: 'About',
-      subtitle: 'About Ukulima Africa',
+      title: 'About Us',
     }
   },
 }
@@ -24,25 +35,25 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-about
-  min-height: 500px
+  min-height: 400px
   .uku-about-title
     color: $white
-    font-size: 26px
-    line-height: 30px
-    font-weight: 400
+    font-size: 32px
+    line-height: 32px
+    font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 0 0 15px 0
+    margin: 0 0 30px 0
   .uku-about-subtitle
     color: $white
     font-size: 20px
     line-height: 26px
-    font-weight: 400
+    font-weight: 500
     letter-spacing 0.6px
-    margin: 0 0 15px 0
+    margin: 0 0 25px 0
   .uku-about-text
     color: $white
-    font-size: 15px
+    font-size: 16px
     line-height: 24px
     font-weight: 400
     margin: 0 0 10px 0

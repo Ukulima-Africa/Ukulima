@@ -13,12 +13,13 @@
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="signin.email"
-                outline
+                outlined
                 type="email"
                 label="Email"
-                label-color="white"
-                placeholder="Email"
                 color="white"
+                label-color="white"
+                bg-color="secondary"
+                placeholder="Email"
                 lazy-rules
                 :rules="[(val) => (val && val.length > 0) || 'Please enter your email to continue!']"
                 tabindex="1"
@@ -26,17 +27,33 @@
             </div>
             <div class="self-center full-width no-outline">
               <q-input
+                v-model="signin.phone"
+                outlined
+                type="tel"
+                label="Phone"
+                color="white"
+                label-color="white"
+                bg-color="secondary"
+                placeholder="Phone"
+                lazy-rules
+                :rules="[(val) => (val && val.length > 0) || 'Please enter your phone number to continue!']"
+                tabindex="2"
+              />
+            </div>
+            <div class="self-center full-width no-outline">
+              <q-input
                 v-model="signin.password"
                 outlined
                 label="Password"
-                label-color="white"
                 color="white"
+                label-color="white"
+                bg-color="secondary"
                 placeholder="Password"
                 :type="isPwd ? 'password' : 'text'"
                 lazy-rules
                 :rules="[(val) => (val && val.length > 0) || 'Please enter a password to continue!']"
                 no-error-icon
-                tabindex="2"
+                tabindex="3"
               >
                 <template #append>
                   <span class="password-update" :name="isPwd ? 'visibility_off' : 'visibility'" @click="togglePasswordVisibility">
@@ -45,11 +62,11 @@
                 >
               </q-input>
             </div>
-            <div class="uku-forgot-text">
-              <nuxt-link to="/auth/reset-password">Forgot Password?</nuxt-link>
+            <div class="self-center full-width no-outline">
+              <q-btn outline rounded color="white" class="uku-signup-button" label="Sign in" type="submit" tabindex="4" />
             </div>
-            <div class="self-center full-width no-outline" tabindex="5">
-              <q-btn outline rounded color="white" class="uku-signup-button" label="Sign in" type="submit" />
+            <div class="full-width no-outline uku-forgot-text">
+              <nuxt-link to="/auth/reset-password">Forgot Password?</nuxt-link>
             </div>
           </q-form>
         </div>
@@ -69,13 +86,14 @@ export default {
   data() {
     return {
       page: 'login',
-      title: 'Signin',
-      subtitle: 'Use your email and password to continue',
+      title: 'Sign In',
+      subtitle: 'Use your email & password to continue',
       loading: false,
       showEmailNotice: false,
       signin: {
         email: '',
         password: '',
+        phone: '',
       },
       isPwd: true,
       passwordLabel: 'SHOW',
@@ -92,14 +110,13 @@ export default {
       })
       if (formValidation === true) {
         /* Sign in user using firebase auth */
-        $nuxt.$fireAuth
+        $nuxt.$fire.auth
           .signInWithEmailAndPassword(that.signin.email, that.signin.password)
           .then(async (user) => {
+            console.log('user', user)
             if (user) {
               if (user.user.emailVerified) {
-                // Our middleware will check first if the user is past onboarding
-                // and redirect them to the dashboard if required before the
-                // integrations page is created
+                /* Send user to the Dashboard page */
                 $nuxt.$nextTick(() => {
                   setTimeout(() => {
                     // We do this to give our auth action changed method time to kick in
@@ -107,9 +124,7 @@ export default {
                   }, 2000)
                 })
               } else {
-                /* Make sure we are signed out */
-                $nuxt.$fireAuth.signOut()
-                // display email verification ribbon thing with link
+                /* Display email verification ribbon with link */
                 that.showEmailNotice = true
 
                 that.$q.notify({
@@ -127,6 +142,74 @@ export default {
                     },
                   ],
                 })
+
+                /* Make sure we are signed out */
+                $nuxt.$fire.auth.signOut()
+              }
+            }
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            /* Show notification that something went wrong */
+            this.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error signing in ${errorCode}: ${errorMessage}`,
+            })
+            this.$log.error(error)
+          })
+      }
+      /* Reset form & Validation */
+      that.$refs.signInForm.resetValidation()
+      that.$refs.signInForm.reset()
+      that.loading = false
+    },
+    async createUser() {
+      const that = this
+      that.loading = true
+      that.showEmailNotice = false
+      /* Check if form is valid */
+      const formValidation = await that.$refs.signInForm.validate().then((outcome) => {
+        return outcome
+      })
+      if (formValidation === true) {
+        /* Sign in user using firebase auth */
+        $nuxt.$fire.auth
+          .createUserWithEmailAndPassword(that.signin.email, that.signin.password)
+          .then(async (user) => {
+            if (user) {
+              if (user.user.emailVerified) {
+                // Send user to the Dashboard page
+                $nuxt.$nextTick(() => {
+                  setTimeout(() => {
+                    // We do this to give our auth action changed method time to kick in
+                    $nuxt.$router.push('/dashboard')
+                  }, 2000)
+                })
+              } else {
+                /* Display email verification ribbon with link */
+                that.showEmailNotice = true
+
+                that.$q.notify({
+                  color: 'red-5',
+                  textColor: 'white',
+                  icon: 'warning',
+                  message: 'You have not verified your email yet.',
+                  actions: [
+                    {
+                      label: 'Resend Link',
+                      color: 'white',
+                      handler: () => {
+                        $nuxt.$router.push('/auth/email-verification')
+                      },
+                    },
+                  ],
+                })
+
+                /* Make sure we are signed out */
+                $nuxt.$fire.auth.signOut()
               }
             }
           })
@@ -163,61 +246,57 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-signin
+  max-height: 700px
   min-height: inherit
   margin: 0 auto
-  padding: 40px 30px
+  padding: 70px 20px
+  overflow: hidden
   .uku-signin-form
-    max-width: 560px
+    max-width: 479px
     border-radius: 4px
     border: solid 1px #ffffff
-    padding: 20px
+    padding: 30px 20px
     .uku-signin-title
       width: 100%
       color: $white
-      font-size: 26px
+      font-size: 28px
       line-height: 30px
       font-weight: 400
       letter-spacing 0.10px
       word-spacing 1px
       text-decoration: underline
-      margin: 0 auto 15px
+      margin: 0 auto 10px
     .uku-signin-subtitle
       width: 100%
       color: $white
       font-size: 16px
-      line-height: 26px
+      line-height: 20px
       font-weight: 400
-      letter-spacing 0.6px
+      letter-spacing 0.8px
       margin: 0 auto 20px
     .uku-form
-      max-width: 500px
-      // .q-field__native,
-      // select
-      //   color: rgba(0, 0, 0, 0.87) !important
-      // .q-input,
-      // .q-field
-      //   max-width: 442px !important
-      //   padding-bottom: 23.6px
-      // .q-field__label,
-      // .field-label
-      //   color: #ffffff
-      //   font-size: 14px
-      //   line-height: 1.71
-      //   font-weight: normal
-      //   font-stretch: normal
-      //   font-style: normal
-      //   letter-spacing: normal
-      //   text-align: left
-      //   margin-top: 20px
-      //   margin-bottom: 10px
-      //   span.optional-msg
-      //     color: #ffffff
-      // .q-field--labeled .q-field__native,
-      // .q-field--labeled .q-field__prefix,
-      // .q-field--labeled .q-field__suffix
-      //   line-height: 24px
-      //   padding-top: 10px !important
-      //   padding-bottom: 8px
+      max-width: 340px
+      .q-field__native, .q-field__input
+        color: #ffffff !important
+        width: 100%
+      .q-field__control
+        border-radius: 5px
+        &:hover:before
+          border-color: #ffffff !important
+      .q-field__native,
+      .q-field__input
+        &:-webkit-autofill
+          margin-top: 1px
+          margin-bottom: 1px
+      &.q-field--rounded .q-field__control
+        border-radius: 28px
+      &.q-field--highlighted
+        .q-field__control:hover:before
+          border-color: transparent
+        .q-field__control:after
+          border-color: currentColor
+          border-width: 2px
+          transform: scale3d(1, 1, 1)
       .password-update
         color: #ffffff
         font-size: 12px
@@ -230,7 +309,7 @@ export default {
         &:hover, &:focus
           color: #ffffff
       .uku-signup-button
-        width: 442px
+        width: 340px
         text-transform: capitalize
         color: #ffffff
         font-size: 18px
@@ -253,7 +332,7 @@ export default {
         font-style: normal
         letter-spacing: normal
         text-align: left
-        margin: 0 0 25px 0
+        margin: 25px 0 0 0
     .uku-welcome-text
       width: 100%
       color: #ffffff
@@ -264,7 +343,7 @@ export default {
       font-style: normal
       letter-spacing: normal
       text-align: center
-      margin: 23px auto 0
+      margin: 20px 0 0 0
       .uku-welcome-link
         color: $white
         font-weight: bold

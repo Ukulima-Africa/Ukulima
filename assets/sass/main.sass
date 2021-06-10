@@ -1,15 +1,43 @@
 @import theme-variables.sass
 
+@font-face
+  font-family: 'SF Display'
+  font-weight: 700
+  src: url('../../assets/fonts/SF-UI-Display-Bold.otf')
+
+html
+  font-size: 15px
+  word-spacing: 1px
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  box-sizing: border-box
+  color: #333333
+  scroll-behavior: smooth
+
+.q-page
+  overflow: hidden
+
+*,
+*:before,
+*:after
+  box-sizing: border-box
+  margin: 0
+
 /* Links & Buttons */
-a
+a,
+.nuxt-link
   color: #ffffff
   text-decoration: none
   cursor: pointer
 
   &:hover,
   &:active,
-  &:focus
+  &:focus,
+  .nuxt-link-exact-active
     text-decoration: underline
+    cursor: pointer
 
 .q-item.q-router-link--active,
 .q-item--active
@@ -18,9 +46,17 @@ a
   padding: 4px 8px !important
   border-radius: 4px !important
 
+
+/* Colours */
 .background-beige
   background-color: $beige
+
+.uku-green-bg
+  color: $white
+  background-color: $primary
 
 .uku-blue-bg
   color: $white
   background-color: $secondary
+
+

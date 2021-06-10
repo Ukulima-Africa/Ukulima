@@ -1,10 +1,25 @@
 <template>
   <div class="row uku-binance">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center q-pt-xl" align="center">
       <div class="uku-binance-title">{{ title }}</div>
-      <div class="uku-binance-subtitle">{{ subtitle }}</div>
+    </div>
+    <div class="col-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 q-pl-xl q-pr-xl">
+      <div class="uku-binance-subtitle">What is Binance Smart Chain?</div>
+      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
       <div class="uku-binance-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+        Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a
+        system of 21 validators with Proof of Staked Authority (PoSA) consensus that can support short block time and lower fees. The most bonded
+        validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee
+        security, stability, and chain finality.
+      </div>
+    </div>
+    <div class="col-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 q-pl-xl q-pr-xl">
+      <div class="uku-binance-subtitle">What can I do with Binance Smart Chain?</div>
+      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
+      <div class="uku-binance-text">
+        Binance Smart Chain (BSC) boasts smart contract functionality and compatibility with the Ethereum Virtual Machine (EVM). The design goal was
+        to leave the high throughput of Binance Chain intact while introducing smart contracts into its ecosystem. Because BSC is EVM-compatible, it
+        launched with support for the rich universe of Ethereum tools and DApps.
       </div>
     </div>
   </div>
@@ -15,7 +30,6 @@ export default {
   data() {
     return {
       title: 'Binance Smart Chain',
-      subtitle: 'Empowering African Farmers Through Blockchain',
     }
   },
 }
@@ -24,25 +38,27 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-binance
-  min-height: 500px
+  min-height: 400px
+  border-bottom: solid 4px $secondary
   .uku-binance-title
+    width: 100%
     color: $black
-    font-size: 26px
-    line-height: 30px
-    font-weight: 400
+    font-size: 32px
+    line-height: 32px
+    font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 0 0 15px 0
+    margin: 0
   .uku-binance-subtitle
     color: $black
     font-size: 20px
     line-height: 26px
-    font-weight: 400
+    font-weight: 500
     letter-spacing 0.6px
-    margin: 0 0 15px 0
+    margin: 0
   .uku-binance-text
     color: $black
-    font-size: 15px
+    font-size: 16px
     line-height: 24px
     font-weight: 400
     margin: 0 0 10px 0

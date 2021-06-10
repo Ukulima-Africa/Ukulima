@@ -1,20 +1,25 @@
 <template>
-  <div class="row uku-intro items-start justify-center">
+  <div class="row uku-intro items-center justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-intro-card">
         <img src="~/assets/images/logo.png" alt="Ukulima Africa" class="float-right" width="80px" />
         <div class="uku-intro-title">{{ title }}</div>
         <div class="uku-intro-subtitle">{{ subtitle }}</div>
         <div class="uku-intro-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa
+          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
+          Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
+          chain inefficiencies and agriculture associated risks.
           <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
-          Ukulima focusses on enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food
-          security and build climate resilient economies in Africa
+          Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food security
+          and build climate resilient economies.
+          <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+          Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
+          out of reach of the farmer.
         </div>
-        <div class="uku-intro-buttons q-mt-lg" align="right">
-          <q-btn rounded color="primary" label="Read More" />
-          <q-btn rounded color="secondary" label="Read More" />
-          <q-btn outline rounded color="white" label="Read More" />
+        <div class="uku-intro-buttons q-mt-xl" align="right">
+          <q-btn outline rounded type="a" href="#latest-news" color="white" class="q-ml-sm" label="Read More" />
+          <q-btn rounded type="a" href="#invest" color="primary" class="q-ml-sm" label="Investing" />
+          <q-btn rounded type="a" href="#insurance" color="secondary" class="q-ml-sm" label="Insurance" />
         </div>
       </div>
     </div>
@@ -26,7 +31,7 @@ export default {
   data() {
     return {
       title: 'Ukulima Africa',
-      subtitle: 'Empowering African Farmers Through Blockchain',
+      subtitle: 'Empowering African Farmers through Blockchain Technology',
     }
   },
 }
@@ -35,14 +40,14 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-intro
-  min-height: 600px
+  min-height: 700px
   .uku-intro-card
     background: rgba(0, 0, 0, 0.6)
-    padding: 30px
+    padding: 40px 30px
     .uku-intro-title
       color: $white
       font-size: 32px
-      line-height: 30px
+      line-height: 32px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
@@ -61,7 +66,7 @@ export default {
       font-weight: 400
       margin: 0 0 10px 0
 
-  /* CSS Media Queries */
+/* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen

@@ -53,7 +53,7 @@ module.exports = {
     'no-unused-vars': ['warn', { args: 'none' }],
     'vue/attribute-hyphenation': 0,
     'vue/prop-name-casing': ['error', 'camelCase'],
-    'no-unneeded-ternary': 0,
+    // 'no-unneeded-ternary': 0,
     // "vue/attribute-hyphenation": ["error", "never"],
     'vue/order-in-components': ['error'],
     // "vue/component-name-in-template-casing": [
