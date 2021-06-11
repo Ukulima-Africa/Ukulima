@@ -57,6 +57,7 @@ module.exports = {
     'vue/prop-name-casing': ['error', 'camelCase'],
     'no-unneeded-ternary': 0,
     'no-undefined': 0,
+    'no-v-html': 'off',
     // "vue/attribute-hyphenation": ["error", "never"],
     'vue/order-in-components': ['error'],
     // "vue/component-name-in-template-casing": [

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.969" height="12.969" viewBox="0 0 12.969 12.969">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #575d64;
+      }
+    </style>
+  </defs>
+  <path id="stocktake" class="cls-1" d="M3,13.265v2.7H5.7L13.669,8l-2.7-2.7ZM15.758,5.91a.717.717,0,0,0,0-1.016L14.073,3.208a.717.717,0,0,0-1.016,0L11.739,4.527l2.7,2.7L15.758,5.91Z" transform="translate(-3 -2.997)"/>
+</svg>

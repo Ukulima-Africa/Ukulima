@@ -45,27 +45,55 @@
             <img src="https://cdn.quasar.dev/img/chaosmonkey.png" width="36px" />
           </q-avatar>
           <q-menu anchor="top end" self="bottom left">
-            <q-list class="text-grey-8">
-              <q-item v-if="profile.firstName && profile.lastName" class="computer-font">
+            <q-list class="account-menu">
+              <q-item v-if="profile.firstName" v-ripple clickable class="black q-mr-xs">
                 <q-item-section
-                  ><strong>Account: {{ profile.firstName + ' ' + profile.lastName }}</strong></q-item-section
+                  ><strong>Welcome: {{ profile.firstName }}</strong></q-item-section
                 >
               </q-item>
-              <q-item v-if="profile.username" class="computer-font">
+              <q-item v-if="profile.username" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.username }}</q-item-section>
               </q-item>
-              <q-item v-if="profile.email" class="computer-font">
+              <q-separator />
+              <!-- <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
-              <q-item class="computer-font">
+              <q-item v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ user.account[0] }}</q-item-section>
               </q-item>
-              <q-item class="computer-font">
+              <q-item v-ripple clickable class="black q-mr-xs">
                 <q-item-section avatar>
                   <q-icon name="money" />
                 </q-item-section>
                 <q-item-section>{{ user.balance }}</q-item-section>
-              </q-item>
+              </q-item> -->
+              <nuxt-link to="/profile">
+                <q-item v-ripple clickable class="black q-mr-xs">
+                  <q-item-section>Profile Settings</q-item-section>
+                </q-item>
+              </nuxt-link>
+              <nuxt-link to="/company">
+                <q-item v-ripple clickable class="black q-mr-xs">
+                  <q-item-section>Company Settings</q-item-section>
+                </q-item>
+              </nuxt-link>
+              <nuxt-link to="/inventory">
+                <q-item v-ripple clickable class="black q-mr-xs">
+                  <q-item-section>inventory</q-item-section>
+                </q-item>
+              </nuxt-link>
+              <nuxt-link to="/marketplace">
+                <q-item v-ripple clickable class="black q-mr-xs">
+                  <q-item-section>Marketplace</q-item-section>
+                </q-item>
+              </nuxt-link>
+              <!-- END Hide for MVP -->
+              <q-separator />
+              <nuxt-link to="/logout">
+                <q-item v-ripple clickable class="black q-mr-xs">
+                  <q-item-section>Log Out</q-item-section>
+                </q-item>
+              </nuxt-link>
             </q-list>
           </q-menu>
         </q-btn>

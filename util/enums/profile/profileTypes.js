@@ -1,5 +1,7 @@
 export const profileTypes = Object.freeze({
-    PURCHASE_TO_RESELL: 'PurchaseToResell',
-    MAKE_TO_SELL: 'MakeToSell',
-    COMBINATION: 'Combination'
+  FARMER: 'Farmer',
+    BUSINESS: 'Business',
+    CO_OP: 'Co-Op',
+    RETAILER: 'Retailer',
+    MARKETPLACE: 'Marketplace',
   })

@@ -3,8 +3,10 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-contact-title">{{ title }}</div>
       <div class="uku-contact-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+        We would love to hear from you! Our team are always keen to meet new people - so please get in touch, provide feedback or request to receive
+        more information about our products.
       </div>
+      <div class="uku-social"></div>
     </div>
   </div>
 </template>

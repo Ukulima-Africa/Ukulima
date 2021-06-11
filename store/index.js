@@ -26,7 +26,7 @@ const state = () => ({
     lastName: null,
   },
   profileType: '',
-    company: null,
+  company: null,
     branch: null,
     branches: 0,
     sidebarTotals: null,
@@ -185,7 +185,7 @@ const mutations = {
   },
   /* User */
   SET_USER(state, payload) {
-    Object.assign(state.user, payload)
+    state.user = payload
   },
   SET_WEB3_INSTANCE(state, payload) {
     state.user.web3Instance = payload

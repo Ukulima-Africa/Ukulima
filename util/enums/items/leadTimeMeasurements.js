@@ -1,5 +1,5 @@
 export const leadTimeMeasurements = Object.freeze({
-  BUSINESS_DAYS: 'Calendar Days',
+  BUSINESS_DAYS: 'Business Days',
   WEEKS: 'Weeks',
   MONTHS: 'Months'
 })
