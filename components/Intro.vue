@@ -16,10 +16,10 @@
           Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
           out of reach of the farmer.
         </div>
-        <div class="uku-intro-buttons q-mt-xl" align="right">
-          <q-btn outline rounded type="a" href="#latest-news" color="white" class="q-ml-sm" label="Read More" />
-          <q-btn rounded type="a" href="#invest" color="primary" class="q-ml-sm" label="Investing" />
-          <q-btn rounded type="a" href="#insurance" color="secondary" class="q-ml-sm" label="Insurance" />
+        <div class="uku-intro-buttons full-width q-mt-xl" align="right">
+          <q-btn rounded type="a" href="#invest" color="primary" class="q-ml-sm q-mb-sm" label="Investing" />
+          <q-btn rounded type="a" href="#insurance" color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
+          <q-btn outline rounded type="a" href="#latest-news" color="white" class="q-ml-sm q-mb-sm" label="Read More" />
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-intro
-  min-height: 700px
+  min-height: 660px
   .uku-intro-card
     background: rgba(0, 0, 0, 0.6)
     padding: 40px 30px

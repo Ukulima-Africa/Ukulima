@@ -34,7 +34,7 @@ module.exports = {
     'airbnb-base',
     'plugin:prettier/recommended',
     'plugin:vue/recommended',
-    'prettier',
+    'prettier'
   ],
   plugins: ['vue', '@typescript-eslint', 'prettier', 'vue'],
   globals: {
@@ -50,10 +50,13 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-extra-boolean-cast': 0,
     'no-prototype-builtins': 0,
-    'no-unused-vars': ['warn', { args: 'none' }],
+    'no-unused-vars': ['warn', {
+      args: 'none'
+    }],
     'vue/attribute-hyphenation': 0,
     'vue/prop-name-casing': ['error', 'camelCase'],
-    // 'no-unneeded-ternary': 0,
+    'no-unneeded-ternary': 0,
+    'no-undefined': 0,
     // "vue/attribute-hyphenation": ["error", "never"],
     'vue/order-in-components': ['error'],
     // "vue/component-name-in-template-casing": [

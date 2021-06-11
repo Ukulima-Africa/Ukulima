@@ -9,11 +9,12 @@
           <div class="uku-signin-subtitle">{{ subtitle }}</div>
         </div>
         <div class="row no-wrap items-center justify-center" align="center">
-          <q-form ref="signInForm" class="q-gutter-md uku-form" @submit="signIn">
+          <q-form ref="signInForm" class="q-gutter-md uku-form" autocomplete="off" @submit="signIn">
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="signin.email"
                 outlined
+                name="email"
                 type="email"
                 label="Email"
                 color="white"
@@ -21,7 +22,9 @@
                 bg-color="secondary"
                 placeholder="Email"
                 lazy-rules
-                :rules="[(val) => (val && val.length > 0) || 'Please enter your email to continue!']"
+                :rules="[(val) => (val && val.length > 0) || 'Please enter your email address to continue!']"
+                no-error-icon
+                autocomplete="email"
                 tabindex="1"
               />
             </div>
@@ -29,6 +32,7 @@
               <q-input
                 v-model="signin.phone"
                 outlined
+                name="phone"
                 type="tel"
                 label="Phone"
                 color="white"
@@ -37,6 +41,8 @@
                 placeholder="Phone"
                 lazy-rules
                 :rules="[(val) => (val && val.length > 0) || 'Please enter your phone number to continue!']"
+                no-error-icon
+                autocomplete="tel"
                 tabindex="2"
               />
             </div>
@@ -44,6 +50,7 @@
               <q-input
                 v-model="signin.password"
                 outlined
+                name="password"
                 label="Password"
                 color="white"
                 label-color="white"
@@ -53,6 +60,7 @@
                 lazy-rules
                 :rules="[(val) => (val && val.length > 0) || 'Please enter a password to continue!']"
                 no-error-icon
+                autocomplete="current-password"
                 tabindex="3"
               >
                 <template #append>
@@ -81,6 +89,7 @@
   </div>
 </template>
 <script>
+/* LFG */
 export default {
   name: 'Signin',
   data() {
@@ -249,7 +258,7 @@ export default {
   max-height: 700px
   min-height: inherit
   margin: 0 auto
-  padding: 70px 20px
+  padding: 50px 20px
   overflow: hidden
   .uku-signin-form
     max-width: 479px

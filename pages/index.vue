@@ -4,11 +4,11 @@
     <SidebarLeft />
     <q-page-container>
       <!-- First Row - Intro & Connect -->
-      <div class="row items-start justify-evenly">
+      <div class="row items-start justify-evenly uku-blue-bg">
         <div class="col-8 col-lg-7 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
           <Intro :user="user" />
         </div>
-        <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12 uku-blue-bg">
+        <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12">
           <Signin />
         </div>
       </div>
@@ -29,33 +29,33 @@
       <!-- END Third Row -->
       <!-- Fourth Row - Intro & Connect -->
       <div class="row items-start justify-evenly">
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <Defi />
         </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <Invest />
         </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <Insurance />
         </div>
       </div>
       <!-- END Fourth Row -->
       <!-- Fifth Row -->
       <div class="row items-start justify-evenly uku-blue-bg">
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <Banner />
         </div>
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <About />
         </div>
       </div>
       <!-- END Fifth Row -->
       <!-- Sixth Row -->
       <div class="row items-start justify-evenly stripe-bg-image">
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <News />
         </div>
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <Contact />
         </div>
       </div>

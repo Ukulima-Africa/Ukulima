@@ -24,7 +24,7 @@ export default {
 .uku-contact
   min-height: 500px
   .uku-contact-title
-    color: $white
+    color: $black
     font-size: 32px
     line-height: 32px
     font-weight: 500
@@ -32,14 +32,14 @@ export default {
     word-spacing 1px
     margin: 0 0 15px 0
   .uku-contact-subtitle
-    color: $white
+    color: $black
     font-size: 20px
     line-height: 26px
     font-weight: 500
     letter-spacing 0.6px
     margin: 0 0 15px 0
   .uku-contact-text
-    color: $white
+    color: $black
     font-size: 16px
     line-height: 24px
     font-weight: 400

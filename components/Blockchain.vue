@@ -1,6 +1,6 @@
 <template>
   <div class="row uku-blockchain">
-    <div class="col-7 col-lg-7 col-md-7 col-sm-7 col-xs-7 q-pa-xl">
+    <div class="col-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-blockchain-title">{{ title }}</div>
       <div class="uku-blockchain-subtitle">
         According to The World Bank, 1.7 billion adults around the globe<br />
@@ -17,9 +17,9 @@
         <q-btn rounded color="primary" class="q-mr-sm" label="Read More" />
       </div>
     </div>
-    <div class="col-5 col-lg-5 col-md-5 col-sm-5 col-xs-5 q-pa-xl" align="center">
+    <div class="col-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 q-pa-xl" align="center">
       <div class="uku-intro-image full-width q-pt-md">
-        <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" width="360" />
+        <img src="~/assets/images/Agriculture-Supply-Chain.png" alt="Ukulima Africa" style="width: 100%" :ratio="1" />
       </div>
     </div>
   </div>
@@ -61,6 +61,8 @@ export default {
     line-height: 24px
     font-weight: 400
     margin: 0 0 10px 0
+  .uku-intro-image
+    overflow: hidden !important
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

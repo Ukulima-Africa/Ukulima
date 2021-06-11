@@ -1,12 +1,14 @@
 <template>
-  <q-header class="uku-header" height-hint="58">
+  <q-header class="uku-header" height-hint="80">
     <q-toolbar>
       <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
-      <q-avatar class="uku-icon q-ml-xs">
-        <img src="~/assets/images/logo.png" alt="Ukulima Africa" />
+      <q-avatar class="q-ml-xs">
+        <img src="~/assets/images/logo.png" alt="Ukulima Africa" width="80px" />
       </q-avatar>
       <q-toolbar-title shrink>
-        <span class="uku-logo q-mt-xs">Ukulima</span>
+        <nuxt-link to="/index" class="uku-logo-link">
+          <span class="uku-logo">Ukulima</span>
+        </nuxt-link>
       </q-toolbar-title>
 
       <q-space />
@@ -305,12 +307,18 @@ export default {
   background-color: $primary
   /* top | right | bottom | left */
   border-style: none none solid none
+  box-shadow: none !important
   margin: 0
-  .uku-logo
-    color: $secondary
-    font-size: 24px
-    line-height: 24px
-    font-weight: 500
+.uku-logo-link
+  &:hover, &:focus
+    text-decoration: none
+    cursor: pointer
+.uku-logo
+  color: $secondary
+  font-size: 26px
+  line-height: 26px
+  font-weight: 500
+  margin-bottom: -20px
   .GPL__toolbar-input
     color: $primary
 

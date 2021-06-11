@@ -1,0 +1,16 @@
+export const itemUnits = Object.freeze({
+  CENTIMETERS: 'Centimeters',
+  FEET: 'Feet',
+  GRAMS: 'Grams',
+  INCHES: 'Inches',
+  KILOGRAMS: 'Kilograms',
+  LITERS: 'Liters',
+  METERS: 'Meters',
+  MILLIGRAMS: 'Milligrams',
+  MILLILITERS: 'Milliliters',
+  MILLIMETERS: 'Millimeters',
+  OUNCES: 'Ounces',
+  TONS: 'Tons',
+  UNITS: 'Units',
+  YARDS: 'Yards',
+})

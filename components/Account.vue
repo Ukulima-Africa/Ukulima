@@ -6,7 +6,7 @@
       </div>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      <p>{{ user.account[0] }}</p>
+      <p>{{ user.account }}</p>
       <p>Balance: {{ user.balance }}</p>
     </q-card-section>
     <q-card-section class="q-pt-none">

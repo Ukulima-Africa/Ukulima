@@ -106,7 +106,7 @@ const actions = {
       /* Get data from firestore once */
       if (orgId !== '' && orgId !== undefined) {
         /* existing user and finished integration */
-        const orgRef = this.$fireStore.collection('organisations').doc(orgId)
+        const orgRef = this.$fire.firestore.collection('organisations').doc(orgId)
 
         await orgRef
           .get()
@@ -121,7 +121,7 @@ const actions = {
             console.log('error', error)
           })
 
-        const docRef = this.$fireStore.collection('organisations').doc(orgId).collection('organisations').limit(1)
+        const docRef = this.$fire.firestore.collection('organisations').doc(orgId).collection('organisations').limit(1)
         await docRef
           .get()
           .then((querySnapshot) => {
@@ -235,58 +235,61 @@ const mutations = {
   },
   SET_PROFILE_LASTNAME(state, payload) {
     state.profile.lastName = payload
+  },
+  SET_PROFILE_TYPE(state, profileType) {
+      state.profileType = profileType
     },
-    SET_PROFILE_TYPE(state, profileType) {
-        state.profileType = profileType
-      },
-      SET_SIDEBAR_TOTALS(state, sidebarTotals) {
-        state.sidebarTotals = sidebarTotals
-      },
-      SET_BRANCH_TOTALS(state, branchTotals) {
-        state.branchTotals = branchTotals
-      },
-      SET_BRANCH_TOTALS_REFRESH_REQUIRED(state, isBranchRefreshRequired) {
-        state.isBranchRefreshRequired = isBranchRefreshRequired
-      },
-      SET_ORGANISATION(state, orgid) {
-        state.user.organisationId = orgid
-      },
-      SET_ONBOARDING_STATE(state, onboardingState) {
-        state.user.onboardingState = onboardingState
-      },
-      SET_CONFETTI_STATE(state, value) {
-        state.user.hasConfettiShown = value
-      },
-      SET_DAILY_EXPIRY(state, value) {
-        state.user.dailyExpiryDate = value
-      },
-      SET_COMPANY(state, company) {
-        state.company = company
-      },
-      SET_BRANCHES(state, branches) {
-        state.branches = branches
-      },
-      SET_PROGRESS_CALCS(state, progressCalculations) {
-        state.progressCalculations = progressCalculations
-      },
-      async SET_BRANCH(state, branch) {
-          state.branch = branch
-          // we also update the users doc in the database
-          // so that it will remember the branch they last viewed
-          // if they change devices etc.
-          try {
-            const userRef = this.$fire.firestore.collection('users').doc(this.$fire.auth.authUser.uid)
+    SET_SIDEBAR_TOTALS(state, sidebarTotals) {
+      state.sidebarTotals = sidebarTotals
+    },
+    SET_BRANCH_TOTALS(state, branchTotals) {
+      state.branchTotals = branchTotals
+    },
+    SET_BRANCH_TOTALS_REFRESH_REQUIRED(state, isBranchRefreshRequired) {
+      state.isBranchRefreshRequired = isBranchRefreshRequired
+    },
+    SET_ORGANISATION(state, orgid) {
+      state.user.organisationId = orgid
+    },
+    SET_ONBOARDING_STATE(state, onboardingState) {
+      state.user.onboardingState = onboardingState
+    },
+    SET_CONFETTI_STATE(state, value) {
+      state.user.hasConfettiShown = value
+    },
+    SET_DAILY_EXPIRY(state, value) {
+      state.user.dailyExpiryDate = value
+    },
+    SET_COMPANY(state, company) {
+      state.company = company
+    },
+    SET_BRANCHES(state, branches) {
+      state.branches = branches
+    },
+    SET_PROGRESS_CALCS(state, progressCalculations) {
+      state.progressCalculations = progressCalculations
+    },
+    async SET_BRANCH(state, branch) {
+        state.branch = branch
+        // we also update the users doc in the database
+        // so that it will remember the branch they last viewed
+        // if they change devices etc.
+        try {
+      console.log("this.$fire.auth.currentUser.uid", $nuxt.$fire.auth.currentUser.uid)
+      if (this.$fire.auth.currentUser.uid) {
+        const userRef = $nuxt.$fire.firestore.collection('users').doc($nuxt.$fire.auth.currentUser.uid)
 
-            await userRef.get().then(async (doc) => {
-              if (doc.exists) {
-                await doc.ref.update({
-                  currentBranchId: branch.ExternalID,
-                })
-              }
+        await userRef.get().then(async (doc) => {
+          if (doc.exists) {
+            await doc.ref.update({
+              currentBranchId: branch.ExternalID,
             })
-          } catch (error) {
-            console.log(error)
           }
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
   },
   /* Contracts */
   SET_CONTRACT_INSTANCE(state, payload) {
@@ -314,7 +317,7 @@ const mutations = {
 const getters = {
   /* Contracts */
   getContractInstance(state) {
-      return state.contracts.contractInstance
+    return state.contracts.contractInstance
     },
     getUKUContract(state) {
       return state.contracts.N3RDContract
@@ -375,28 +378,28 @@ const getters = {
   },
   getLastName(state) {
     return state.profile.lastName
+  },
+  /* Profile Info */
+  getProfileType(state) {
+      return state.profileType
     },
-    /* Profile Info */
-    getProfileType(state) {
-        return state.profileType
-      },
-      getOnboardingState(state) {
-        return state.user.onboardingState
-      },
-      getSidebarTotals(state) {
-        return state.sidebarTotals
-      },
-      getBranchTotals(state) {
-        return state.branchTotals
-      },
-      getIsBranchRefreshRequired(state) {
-        return state.isBranchRefreshRequired
-      },
-      getOrganisationId(state) {
-        return state.user.organisationId
-      },
-      getCompany(state) {
-        return state.company
+    getOnboardingState(state) {
+      return state.user.onboardingState
+    },
+    getSidebarTotals(state) {
+      return state.sidebarTotals
+    },
+    getBranchTotals(state) {
+      return state.branchTotals
+    },
+    getIsBranchRefreshRequired(state) {
+      return state.isBranchRefreshRequired
+    },
+    getOrganisationId(state) {
+      return state.user.organisationId
+    },
+    getCompany(state) {
+      return state.company
   },
   getBranch(state) {
       return state.branch

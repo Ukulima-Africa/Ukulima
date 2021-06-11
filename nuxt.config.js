@@ -5,7 +5,6 @@ require('dotenv').config({
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   telemetry: false,
@@ -101,6 +100,9 @@ export default {
       },
     ],
   ],
+  router: {
+    middleware: ['auth']
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
   // PWA module configuration: https://go.nuxtjs.dev/pwa
