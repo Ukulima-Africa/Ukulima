@@ -9,7 +9,7 @@
           coverage, and in sub-Saharan Africa - despite the fivefold increase in agricultural microinsurance registered between 2011 and 2014
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-        <div class="uku-defi-text">
+        <div class="uku-invest-text">
           Ukulima's Blockchain Crop Insurance aims to increase smallholder farmers’ resilience to climate change through offering a more accessible
           index insurance product at scale.
         </div>
@@ -34,8 +34,10 @@ export default {
 .uku-invest
   min-height: 500px
   .uku-border-box
-    border-radius: 4px
-    border: solid 1px $secondary
+    background: $beige
+    border-radius: 5px
+    border: solid 2px $secondary
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
     padding: 30px 20px
     .uku-invest-title
       width: 100%

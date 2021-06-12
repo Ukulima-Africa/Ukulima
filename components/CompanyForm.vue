@@ -164,7 +164,7 @@ import currencies from '../assets/data/currencies'
 import timezones from '../assets/data/timezones'
 
 export default {
-  name: 'CompanySettingsForm',
+  name: 'CompanyForm',
   data() {
     return {
       company: {

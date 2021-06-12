@@ -35,15 +35,15 @@
           :icon="!user.account ? 'play_arrow' : 'gamepad'"
           @click="!user.account ? connectMetaMask() : connectArkane()"
         /> -->
-        <q-btn v-if="!user.account" rounded color="secondary" label="Connect" icon-right="play_arrow" @click="connectMetaMask()" />
+        <q-btn v-if="!account.account" rounded color="secondary" label="Connect" icon-right="play_arrow" @click="connectMetaMask()" />
 
-        <div v-if="user.account" class="q-gutter-sm row items-center no-wrap"><q-icon name="money" /> {{ user.balance }}</div>
+        <div v-if="account.balance" class="q-gutter-sm row items-center no-wrap"><q-icon name="money" /> {{ account.balance }}</div>
 
         <!-- User Account Dropdown Button -->
-        <q-btn v-if="user.account" round flat>
-          <q-avatar size="36px">
+        <q-btn flat round icon="account_circle" size="18px" class="black account-button">
+          <!-- <q-avatar size="36px">
             <img src="https://cdn.quasar.dev/img/chaosmonkey.png" width="36px" />
-          </q-avatar>
+          </q-avatar> -->
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
               <q-item v-if="profile.firstName" v-ripple clickable class="black q-mr-xs">
@@ -55,52 +55,51 @@
                 <q-item-section> {{ profile.username }}</q-item-section>
               </q-item>
               <q-separator />
-              <!-- <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">
+              <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
-              <q-item v-ripple clickable class="black q-mr-xs">
-                <q-item-section> {{ user.account[0] }}</q-item-section>
+              <q-item v-if="profile.account" v-ripple clickable class="black q-mr-xs">
+                <q-item-section> {{ account.account }}</q-item-section>
               </q-item>
-              <q-item v-ripple clickable class="black q-mr-xs">
+              <q-item v-if="profile.balance" v-ripple clickable class="black q-mr-xs">
                 <q-item-section avatar>
                   <q-icon name="money" />
                 </q-item-section>
-                <q-item-section>{{ user.balance }}</q-item-section>
-              </q-item> -->
+                <q-item-section>{{ account.balance }}</q-item-section>
+              </q-item>
+              <q-separator />
               <nuxt-link to="/profile">
-                <q-item v-ripple clickable class="black q-mr-xs">
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
                   <q-item-section>Profile Settings</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/company">
-                <q-item v-ripple clickable class="black q-mr-xs">
-                  <q-item-section>Company Settings</q-item-section>
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
+                  <q-item-section>Organisation</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/inventory">
-                <q-item v-ripple clickable class="black q-mr-xs">
-                  <q-item-section>inventory</q-item-section>
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
+                  <q-item-section>Inventory</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/marketplace">
-                <q-item v-ripple clickable class="black q-mr-xs">
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
                   <q-item-section>Marketplace</q-item-section>
                 </q-item>
               </nuxt-link>
               <!-- END Hide for MVP -->
               <q-separator />
-              <nuxt-link to="/logout">
-                <q-item v-ripple clickable class="black q-mr-xs">
-                  <q-item-section>Log Out</q-item-section>
-                </q-item>
-              </nuxt-link>
+              <q-item v-ripple clickable color="black" class="q-mr-xs" @click="signOut()">
+                <q-item-section>Sign Out</q-item-section>
+              </q-item>
             </q-list>
           </q-menu>
         </q-btn>
         <!-- END User Account Dropdown Button -->
         <!-- Network Button -->
-        <q-btn v-if="user.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon">
-          <q-tooltip :content-class="`bg-${networkColor}`">{{ user.chainName }}</q-tooltip>
+        <q-btn v-if="account.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon">
+          <q-tooltip :content-class="`bg-${networkColor}`">{{ account.chainName }}</q-tooltip>
         </q-btn>
         <!-- END Network Button -->
       </div>
@@ -125,9 +124,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'user', 'profile', 'searchText', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'searchText', 'leftDrawerOpen']),
     ...mapGetters({
       getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
       getSearchText: 'searchText',
@@ -139,6 +139,14 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
       },
     },
     user: {
@@ -174,10 +182,10 @@ export default {
       },
     },
     networkColor() {
-      return networkColor(this.$store.state.user.chainIdHEX, 'color')
+      return networkColor(this.$store.state.account.chainIdHEX, 'color')
     },
     networkIcon() {
-      return networkColor(this.$store.state.user.chainIdHEX, 'icon')
+      return networkColor(this.$store.state.account.chainIdHEX, 'icon')
     },
   },
   // async beforeCreate() {
@@ -190,6 +198,10 @@ export default {
   //   }
   // },
   methods: {
+    signOut() {
+      this.$fire.auth.signOut()
+      $nuxt.$router.push('/')
+    },
     search(value) {
       this.$store.commit('SEARCH', value)
     },
@@ -218,8 +230,8 @@ export default {
     async loadAccount() {
       /* Load Network, Account and Balance/s */
       const account = await this.$web3.connectMetaMask()
-      if (account && account !== '') {
-        this.$store.commit('SET_ACCOUNT', account)
+      if (account[0] && account[0] !== '') {
+        this.$store.commit('SET_ACCOUNT_ADDRESS', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
         const chainId = networkFilter(chainIdHEX, 'id')
@@ -341,6 +353,13 @@ export default {
   &:hover, &:focus
     text-decoration: none
     cursor: pointer
+.account-menu
+  min-width: 200px
+  a
+    color: $secondary !important
+    &:hover, &:focus
+      color: $secondary !important
+      text-decoration: none
 .uku-logo
   color: $secondary
   font-size: 26px

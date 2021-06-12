@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <ProfileForm />
+      <CompanyForm />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,25 +15,26 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import ProfileForm from '../components/ProfileForm.vue'
+import CompanyForm from '../components/CompanyForm.vue'
 /* LFG */
 export default {
-  name: 'Profile',
+  name: 'Company',
   components: {
     Header,
     SidebarLeft,
-    ProfileForm,
+    CompanyForm,
   },
   data() {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
+      getCompany: 'getCompany',
       getChainIdHEX: 'getChainIdHEX',
     }),
     web3: {
@@ -66,6 +67,14 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_PROFILE', value)
+      },
+    },
+    company: {
+      get() {
+        return this.$store.state.company
+      },
+      set(value) {
+        this.$store.commit('SET_COMPANY', value)
       },
     },
   },

@@ -114,11 +114,11 @@ export default {
         $nuxt.$fire.auth
           .signInWithEmailAndPassword(that.signin.email, that.signin.password)
           .then(async (user) => {
+            console.log('user', user)
             if (user) {
               if (user.user.emailVerified) {
                 // Our middleware will check first if the user is past onboarding
-                // and redirect them to the dashboard if required before the
-                // integrations page is created
+                // and redirect them to the dashboard
                 $nuxt.$nextTick(() => {
                   setTimeout(() => {
                     // We do this to give our auth action changed method time to kick in

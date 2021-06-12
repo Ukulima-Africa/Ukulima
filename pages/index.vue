@@ -22,13 +22,6 @@
       <!-- END Second Row -->
       <!-- Third Row - Intro & Connect -->
       <div class="row items-start justify-evenly uku-green-bg">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <Binance />
-        </div>
-      </div>
-      <!-- END Third Row -->
-      <!-- Fourth Row - Intro & Connect -->
-      <div class="row items-start justify-evenly">
         <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <Defi />
         </div>
@@ -37,6 +30,20 @@
         </div>
         <div class="col-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <Insurance />
+        </div>
+      </div>
+      <!-- END Third Row -->
+      <!-- Fourth Row - Intro & Connect -->
+      <div class="row items-start justify-evenly">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <Binance />
+        </div>
+      </div>
+      <!-- END Fourth Row -->
+      <!-- Fourth Row - Intro & Connect -->
+      <div class="row items-start justify-evenly">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <BlockchainPower />
         </div>
       </div>
       <!-- END Fourth Row -->
@@ -76,6 +83,7 @@ import Signin from '../components/Signin.vue'
 import Banner from '../components/Banner.vue'
 import About from '../components/About.vue'
 import Blockchain from '../components/Blockchain.vue'
+import BlockchainPower from '../components/BlockchainPower.vue'
 import Defi from '../components/Defi.vue'
 import Binance from '../components/Binance.vue'
 import Insurance from '../components/Insurance.vue'
@@ -93,6 +101,7 @@ export default {
     Banner,
     About,
     Blockchain,
+    BlockchainPower,
     Defi,
     Binance,
     Insurance,
@@ -114,9 +123,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'user', 'profile']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
     ...mapGetters({
       getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
       getChainIdHEX: 'getChainIdHEX',
@@ -127,6 +137,14 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
       },
     },
     user: {
@@ -169,7 +187,7 @@ export default {
       /* Load Account, Chain Info and Balance/s */
       const account = await this.$web3.getAccount()
       if (account[0] && account[0] !== '') {
-        this.$store.commit('SET_ACCOUNT', account)
+        this.$store.commit('SET_ACCOUNT_ADDRESS', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
         const chainId = networkFilter(chainIdHEX, 'id')

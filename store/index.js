@@ -5,8 +5,9 @@ const state = () => ({
   contracts: {
     contractInstance: null,
     UKUContract: null,
+    INSContract: null,
   },
-  user: {
+  account: {
     web3Instance: false,
     isMetaMask: false,
     chainIdHEX: null,
@@ -15,6 +16,15 @@ const state = () => ({
     account: null,
     balance: null,
     step: 0,
+  },
+  user: {
+    uid: null,
+    email: null,
+    emailVerified: null,
+    displayName: null,
+    phoneNumber: null,
+    photoUR: null,
+    onboardingState: 'Guest',
   },
   profile: {
     isAuthenticated: false,
@@ -27,12 +37,13 @@ const state = () => ({
   },
   profileType: '',
   company: null,
-    branch: null,
-    branches: 0,
-    sidebarTotals: null,
-    branchTotals: null,
-    isBranchRefreshRequired: false,
-    progressCalculations: 0,
+  branch: null,
+  branches: 0,
+  sidebarTotals: null,
+  branchTotals: null,
+  isBranchRefreshRequired: false,
+  progressCalculations: 0,
+  inventory: [],
   nfts: [],
   nftCats: [],
   searchText: '',
@@ -62,7 +73,6 @@ const actions = {
       const userRef = this.$fire.firestore.collection('users').doc(uid)
 
       let orgId = ''
-      // eslint-disable-next-line no-unused-vars
       let currentBranchId = ''
 
       await userRef
@@ -79,7 +89,6 @@ const actions = {
             } catch (error) {
               orgId = ''
             }
-
             try {
               if (user.currentBranchId !== undefined) {
                 currentBranchId = user.currentBranchId
@@ -87,7 +96,6 @@ const actions = {
             } catch (error) {
               currentBranchId = ''
             }
-
             state.commit('SET_USER', user)
           } else {
             state.commit('SET_USER', {
@@ -105,9 +113,8 @@ const actions = {
 
       /* Get data from firestore once */
       if (orgId !== '' && orgId !== undefined) {
-        /* existing user and finished integration */
+        /* Existing user and finished onboarding */
         const orgRef = this.$fire.firestore.collection('organisations').doc(orgId)
-
         await orgRef
           .get()
           .then((doc) => {
@@ -138,16 +145,16 @@ const actions = {
     }
   },
   pollWeb3({
-      commit
-      }, payload) {
-      commit('POLL_WEB3', payload)
+    commit
+    }, payload) {
+    commit('POLL_WEB3', payload)
   },
   setStep({
     commit
   }, payload) {
     commit('SET_STEP', payload)
   },
-  }
+}
 
 const mutations = {
   ON_AUTH_STATE_CHANGED_MUTATION: (state, {
@@ -162,12 +169,18 @@ const mutations = {
       const {
         uid,
         email,
-        emailVerified
+        emailVerified,
+        displayName,
+        phoneNumber,
+        photoURL
       } = authUser
       state.user = {
         uid,
         email,
         emailVerified,
+        displayName,
+        phoneNumber,
+        photoURL
       }
     }
   },
@@ -177,39 +190,39 @@ const mutations = {
     pollWeb3()
   },
   POLL_WEB3(state, payload) {
-    state.user.account = payload.account
-    state.user.chainId = payload.chainId
-    state.user.chainIdHEX = payload.chainIdHEX
-    state.user.chainName = payload.chainName
-    state.user.balance = payload.balance
+    state.account.account = payload.account
+    state.account.chainId = payload.chainId
+    state.account.chainIdHEX = payload.chainIdHEX
+    state.account.chainName = payload.chainName
+    state.account.balance = payload.balance
   },
-  /* User */
-  SET_USER(state, payload) {
-    state.user = payload
+  /* Metamask Account */
+  SET_ACCOUNT(state, payload) {
+      Object.assign(state.account = payload)
   },
   SET_WEB3_INSTANCE(state, payload) {
-    state.user.web3Instance = payload
+    state.account.web3Instance = payload
   },
   SET_IS_METAMASK(state, payload) {
-    state.user.isMetaMask = payload
+    state.account.isMetaMask = payload
   },
   SET_CHAIN_ID(state, payload) {
-    state.user.chainId = payload
+    state.account.chainId = payload
   },
   SET_CHAIN_ID_HEX(state, payload) {
-    state.user.chainIdHEX = payload
+    state.account.chainIdHEX = payload
   },
   SET_CHAIN_NAME(state, payload) {
-    state.user.chainName = payload
+    state.account.chainName = payload
   },
-  SET_ACCOUNT(state, payload) {
-    state.user.account = payload
+  SET_ACCOUNT_ADDRESS(state, payload) {
+      state.account.account = payload
   },
   SET_BALANCE(state, payload) {
-    state.user.balance = payload
+    state.account.balance = payload
   },
   SET_STEP(state, payload) {
-    state.user.step = payload
+    state.account.step = payload
   },
   /* Arkane Profile */
   SET_PROFILE(state, payload) {
@@ -236,67 +249,77 @@ const mutations = {
   SET_PROFILE_LASTNAME(state, payload) {
     state.profile.lastName = payload
   },
-  SET_PROFILE_TYPE(state, profileType) {
-      state.profileType = profileType
-    },
-    SET_SIDEBAR_TOTALS(state, sidebarTotals) {
-      state.sidebarTotals = sidebarTotals
-    },
-    SET_BRANCH_TOTALS(state, branchTotals) {
-      state.branchTotals = branchTotals
-    },
-    SET_BRANCH_TOTALS_REFRESH_REQUIRED(state, isBranchRefreshRequired) {
-      state.isBranchRefreshRequired = isBranchRefreshRequired
-    },
-    SET_ORGANISATION(state, orgid) {
-      state.user.organisationId = orgid
-    },
-    SET_ONBOARDING_STATE(state, onboardingState) {
-      state.user.onboardingState = onboardingState
-    },
-    SET_CONFETTI_STATE(state, value) {
-      state.user.hasConfettiShown = value
-    },
-    SET_DAILY_EXPIRY(state, value) {
-      state.user.dailyExpiryDate = value
-    },
-    SET_COMPANY(state, company) {
-      state.company = company
-    },
-    SET_BRANCHES(state, branches) {
-      state.branches = branches
-    },
-    SET_PROGRESS_CALCS(state, progressCalculations) {
-      state.progressCalculations = progressCalculations
-    },
-    async SET_BRANCH(state, branch) {
-        state.branch = branch
-        // we also update the users doc in the database
-        // so that it will remember the branch they last viewed
-        // if they change devices etc.
-        try {
-      console.log("this.$fire.auth.currentUser.uid", $nuxt.$fire.auth.currentUser.uid)
-      if (this.$fire.auth.currentUser.uid) {
-        const userRef = $nuxt.$fire.firestore.collection('users').doc($nuxt.$fire.auth.currentUser.uid)
-
-        await userRef.get().then(async (doc) => {
-          if (doc.exists) {
-            await doc.ref.update({
-              currentBranchId: branch.ExternalID,
-            })
-          }
-        })
-      }
-    } catch (error) {
-      console.log(error)
-    }
+  /* User */
+  SET_USER(state, payload) {
+    Object.assign(state.user, payload)
   },
-  /* Contracts */
+  SET_PROFILE_TYPE(state, profileType) {
+    state.profileType = profileType
+  },
+  SET_ORGANISATION(state, orgid) {
+    state.user.organisationId = orgid
+  },
+  SET_ONBOARDING_STATE(state, onboardingState) {
+    state.user.onboardingState = onboardingState
+  },
+  SET_CONFETTI_STATE(state, value) {
+  state.user.hasInvested = value
+  },
+  SET_DAILY_EXPIRY(state, value) {
+    state.user.dailyExpiryDate = value
+  },
+  /* Company, Organisation or Farm */
+  SET_COMPANY(state, company) {
+    state.company = company
+  },
+  SET_BRANCHES(state, branches) {
+    state.branches = branches
+  },
+  async SET_BRANCH(state, branch) {
+    state.branch = branch
+    // we also update the users doc in the database
+    // so that it will remember the branch they last viewed
+    // if they change devices etc.
+    // try {
+    //   const userID = this.$fire.auth.currentUser.uid
+    //   console.log("userID", userID)
+    //   if (this.$fire.auth.currentUser.uid) {
+    //     const userRef = this.$fire.firestore.collection('users').doc(userID)
+
+    //     await userRef.get().then(async (doc) => {
+    //       if (doc.exists) {
+    //         await doc.ref.update({
+    //           currentBranchId: branch.ExternalID,
+    //         })
+    //       }
+    //     })
+    //   }
+    // } catch (error) {
+    //   console.log(error)
+    // }
+  },
+  /* Other Totals */
+  SET_SIDEBAR_TOTALS(state, sidebarTotals) {
+    state.sidebarTotals = sidebarTotals
+  },
+  SET_BRANCH_TOTALS(state, branchTotals) {
+    state.branchTotals = branchTotals
+  },
+  SET_BRANCH_TOTALS_REFRESH_REQUIRED(state, isBranchRefreshRequired) {
+    state.isBranchRefreshRequired = isBranchRefreshRequired
+  },
+  SET_PROGRESS_CALCS(state, progressCalculations) {
+    state.progressCalculations = progressCalculations
+  },
+  /* Solidity Contracts */
   SET_CONTRACT_INSTANCE(state, payload) {
     state.contracts.contractInstance = payload
   },
-  SET_CONTRACT_UKUCONTRACT(state, payload) {
+  SET_CONTRACT_UKU(state, payload) {
     state.contracts.UKUContract = payload
+  },
+  SET_CONTRACT_INSURANCE(state, payload) {
+    state.contracts.INSContract = payload
   },
   /* NFTs */
   SET_NFT(state, payload) {
@@ -318,41 +341,44 @@ const getters = {
   /* Contracts */
   getContractInstance(state) {
     return state.contracts.contractInstance
-    },
-    getUKUContract(state) {
-      return state.contracts.N3RDContract
-    },
+  },
+  getContractUKU(state) {
+    return state.contracts.UKUContract
+  },
+  getContractINS(state) {
+    return state.contracts.INSContract
+  },
   /* Web3 */
   getWeb3(state) {
     return state.web3
   },
-  /* User */
-  getUser(state) {
-    return state.user
+  /* Metamask Account */
+  getAccount(state) {
+      return state.account
   },
   getWeb3Instance(state) {
-    return state.user.web3Instance
+    return state.account.web3Instance
   },
   getIsMetaMask(state) {
-    return state.user.isMetaMask
+    return state.account.isMetaMask
   },
   getChainId(state) {
-    return state.user.chainId
+    return state.account.chainId
   },
   getChainIdHEX(state) {
-    return state.user.chainIdHEX
+    return state.account.chainIdHEX
   },
   getChainName(state) {
-    return state.user.chainName
+    return state.account.chainName
   },
-  getAccount(state) {
-    return state.user.account
+  getAccountAddress(state) {
+      return state.account.account
   },
   getBalance(state) {
-    return state.user.balance
+    return state.account.balance
   },
   getStep(state) {
-    return state.user.step
+    return state.account.step
   },
   /* Profile */
   getProfile(state) {
@@ -379,33 +405,37 @@ const getters = {
   getLastName(state) {
     return state.profile.lastName
   },
+  /* User */
+  getUser(state) {
+    return state.user
+  },
   /* Profile Info */
   getProfileType(state) {
-      return state.profileType
-    },
-    getOnboardingState(state) {
-      return state.user.onboardingState
-    },
-    getSidebarTotals(state) {
-      return state.sidebarTotals
-    },
-    getBranchTotals(state) {
-      return state.branchTotals
-    },
-    getIsBranchRefreshRequired(state) {
-      return state.isBranchRefreshRequired
-    },
-    getOrganisationId(state) {
-      return state.user.organisationId
-    },
-    getCompany(state) {
-      return state.company
+    return state.profileType
+  },
+  getOnboardingState(state) {
+    return state.user.onboardingState
+  },
+  getOrganisationId(state) {
+    return state.user.organisationId
+  },
+  getCompany(state) {
+    return state.company
   },
   getBranch(state) {
-      return state.branch
+    return state.branch
   },
   getBranches(state) {
-      return state.branches
+    return state.branches
+  },
+  getSidebarTotals(state) {
+    return state.sidebarTotals
+  },
+  getBranchTotals(state) {
+    return state.branchTotals
+  },
+  getIsBranchRefreshRequired(state) {
+    return state.isBranchRefreshRequired
   },
   /* NFTs */
   getNfts(state) {

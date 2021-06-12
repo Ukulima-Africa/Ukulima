@@ -9,7 +9,7 @@
           crop insurance even more accessible, affordable and easy to use.
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-        <div class="uku-defi-text">
+        <div class="uku-insurance-text">
           When you are insured, you can enjoy peace of mind knowing that your crops and assets are fully covered by technical experts who understand
           the demands of the agriculture industry.
         </div>
@@ -34,8 +34,10 @@ export default {
 .uku-insurance
   min-height: 500px
   .uku-border-box
-    border-radius: 4px
-    border: solid 1px $secondary
+    background: $beige
+    border-radius: 5px
+    border: solid 2px $secondary
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
     padding: 30px 20px
     .uku-insurance-title
       width: 100%

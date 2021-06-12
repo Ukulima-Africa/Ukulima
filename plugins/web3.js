@@ -9,16 +9,12 @@
 import Vue from 'vue'
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
-import {
-  Arkane
-} from '@arkane-network/web3-arkane-provider/'
+import { Arkane } from '@arkane-network/web3-arkane-provider/'
 /* Contracts ABI */
 import UKU_ABI from '../contracts/abi/abi.json'
 
 /* Network Enum */
-import {
-  networks
-} from '../util/networks'
+import { networks } from '../util/networks'
 
 const network = networks.BINANCE_TEST_NET
 
@@ -171,7 +167,7 @@ web3.getBalance = async (account) => {
   return 0
 }
 /* Buy UKU Token */
-web3.buyUKUTokens = async (to, value) => {
+web3.buyTokens = async (to, value) => {
   const provider = await detectEthereumProvider()
   if (provider) {
     /* In MetaMask, using the ethereum.request method directly, sending a transaction will involve composing an options object like this: */

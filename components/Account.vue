@@ -6,18 +6,26 @@
       </div>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      <p>{{ user.account }}</p>
-      <p>Balance: {{ user.balance }}</p>
+      <p>Account: {{ account.account[0] }}</p>
+      <p>Balance: {{ account.balance }}</p>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      <p>Web3 Instance: {{ user.web3Instance }}</p>
-      <p>Is MetaMask: {{ user.isMetaMask }}</p>
-      <p>Network: {{ networkFilter(user.chainIdHEX, 'name') }}</p>
-      <p>Chain Id HEX: {{ user.chainIdHEX }}</p>
-      <p>Network ID: {{ networkFilter(user.chainIdHEX, 'id') }}</p>
+      <p>Web3 Instance: {{ account.web3Instance }}</p>
+      <p>Is MetaMask: {{ account.isMetaMask }}</p>
+      <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
+      <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
+      <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
     </q-card-section>
     <q-card-section class="q-pt-none">
       <p>Arkane userId: {{ profile.userId }}</p>
+      <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
+      <p>Arkane username: {{ profile.username }}</p>
+      <p>Arkane email: {{ profile.email }}</p>
+      <p>Arkane firstName: {{ profile.firstName }}</p>
+      <p>Arkane lastName: {{ profile.lastName }}</p>
+    </q-card-section>
+    <q-card-section class="q-pt-none">
+      <p>User userId: {{ profile.userId }}</p>
       <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
       <p>Arkane username: {{ profile.username }}</p>
       <p>Arkane email: {{ profile.email }}</p>
@@ -36,6 +44,7 @@
       <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" />
     </q-card-section>
     <q-card-section class="q-pt-none">
+      <pre>MetaMask Account: {{ account }}</pre>
       <pre>User: {{ user }}</pre>
       <pre>Profile: {{ profile }}</pre>
     </q-card-section>
@@ -57,10 +66,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'user', 'profile']),
+    ...mapState(['web3', 'account', 'user', 'profile']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getUser: 'getUser',
+      getAccount: 'getAccount',
       getProfile: 'getProfile',
     }),
     web3: {
@@ -69,6 +79,14 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
       },
     },
     user: {

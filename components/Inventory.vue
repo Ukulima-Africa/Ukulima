@@ -1,15 +1,18 @@
 <template>
-  <div class="row uku-defi">
+  <div class="row uku-inventory items-center justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
-      <div class="uku-border-box">
-        <div class="uku-defi-title">{{ title }}</div>
-        <div class="uku-defi-subtitle">{{ subtitle }}</div>
-        <div class="uku-defi-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+      <div class="uku-inventory-card">
+        <div class="uku-inventory-title">{{ title }}</div>
+        <div class="uku-inventory-subtitle">{{ subtitle }}</div>
+        <div class="uku-inventory-text">
+          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
+          Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
+          chain inefficiencies and agriculture associated risks.
         </div>
-        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-        <div class="uku-defi-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+        <div class="uku-inventory-buttons full-width q-mt-xl" align="right">
+          <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+          <!-- <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" /> -->
+          <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
         </div>
       </div>
     </div>
@@ -17,53 +20,45 @@
 </template>
 <script>
 export default {
-  name: 'Defi',
+  name: 'Inventory',
   data() {
     return {
-      title: 'Yield Farming',
-      subtitle: 'Decentralized Finance',
+      title: 'Inventory',
+      subtitle: 'Add your inventory and products',
     }
   },
 }
 </script>
 <style lang="sass" scope>
 @import "../assets/sass/theme-variables"
-
-.uku-defi
-  min-height: 500px
-  .uku-border-box
-    background: $beige
-    border-radius: 5px
-    border: solid 2px $secondary
-    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
-    padding: 30px 20px
-    .uku-defi-title
-      width: 100%
-      color: $black
+.uku-inventory
+  min-height: 660px
+  .uku-inventory-card
+    background: rgba(0, 0, 0, 0.6)
+    padding: 40px 30px
+    .uku-inventory-title
+      color: $white
       font-size: 32px
       line-height: 32px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
       margin: 0 0 20px 0
-      text-align: center
-    .uku-defi-subtitle
-      width: 100%
-      color: $black
+    .uku-inventory-subtitle
+      color: $white
       font-size: 20px
       line-height: 26px
       font-weight: 500
       letter-spacing 0.6px
       margin: 0 0 15px 0
-      text-align: center
-    .uku-defi-text
-      color: $black
+    .uku-inventory-text
+      color: $white
       font-size: 16px
       line-height: 24px
       font-weight: 400
       margin: 0 0 10px 0
 
-  /* CSS Media Queries */
+/* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen

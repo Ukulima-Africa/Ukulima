@@ -5,10 +5,10 @@ import { networkFilter } from './networkFilter'
 const pollWeb3 = async () => {
   const provider = await detectEthereumProvider()
   setInterval(async () => {
-    if (provider && $nuxt.$store.state.user) {
+    if (provider && $nuxt.$store.state.account) {
       if (
-        provider.chainId !== $nuxt.$store.state.user.chainIdHEX ||
-        provider.selectedAddress !== $nuxt.$store.state.user.account[0]
+        provider.chainId !== $nuxt.$store.state.account.chainIdHEX ||
+        provider.selectedAddress !== $nuxt.$store.state.account.account[0]
       ) {
         /* Will Check the Current Provider Chain Id Hex */
         const chainId = await provider.request({
@@ -45,7 +45,7 @@ const pollWeb3 = async () => {
         })
       }
     }
-  }, 3000)
+  }, 1000)
 }
 
 export default pollWeb3

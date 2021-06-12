@@ -1,23 +1,35 @@
 <template>
   <div class="row uku-blockchain">
-    <div class="col-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+    <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-blockchain-title">{{ title }}</div>
       <div class="uku-blockchain-subtitle">
         According to The World Bank, 1.7 billion adults around the globe<br />
         don’t have access to a bank account or reliable insurance services
       </div>
       <div class="uku-blockchain-text">
-        Blockchain has sparked a massive transformation in cross-border payments with the ability<br />to easily and safely transfer money using smart
-        contracts. The use of Blockchain technologies<br />
-        provides people the opportunity to be their own bank without needing to sign up for a bank account<br />
-        and has led us to an era of decentralised finance or Defi.
+        Blockchain has sparked a massive transformation in cross-border payments with the ability to easily and safely transfer money using smart
+        contracts. The use of Blockchain technologies provides people the opportunity to be their own bank without needing to sign up for a bank
+        account and has led us to an era of decentralised finance (Defi) and decentralised insurance products.
+      </div>
+      <div class="uku-blockchain-text">
+        With the help of Blockchain solutions and smart contracts, we are building trust and confidence in our agriculture and food supply chains
+        through a platform where everyone can have access to reliable and transparent information on the origin, journey and quality of their food.
+      </div>
+      <div class="uku-blockchain-text">
+        We can aggregate real time data into one dashboard for predictive consumer analytics, and by leveraging Blockchain Technology, ioT, AI and
+        Machine Learning we can create a world in which access to data equals transparency, security and better food for all.
       </div>
       <div class="uku-intro-buttons full-width q-mt-xl" align="left">
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Read More" />
-        <q-btn rounded color="primary" class="q-mr-sm" label="Read More" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Crops" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
+        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
+        <q-btn rounded color="primary" class="q-mr-sm" label="Infi" />
       </div>
     </div>
-    <div class="col-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 q-pa-xl" align="center">
+    <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 q-pa-xl" align="center">
       <div class="uku-intro-image full-width q-pt-md">
         <img src="~/assets/images/Agriculture-Supply-Chain.png" alt="Ukulima Africa" style="width: 100%" :ratio="1" />
       </div>
@@ -47,7 +59,7 @@ export default {
     font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 10px 0 30px 0
+    margin: 30px 0
   .uku-blockchain-subtitle
     color: $white
     font-size: 20px
@@ -60,7 +72,7 @@ export default {
     font-size: 16px
     line-height: 24px
     font-weight: 400
-    margin: 0 0 10px 0
+    margin: 0 0 20px 0
   .uku-intro-image
     overflow: hidden !important
 

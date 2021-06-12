@@ -28,9 +28,10 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'user', 'profile']),
+    ...mapState(['web3', 'account', 'user', 'profile']),
     ...mapGetters({
       getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
       getChainIdHEX: 'getChainIdHEX',
@@ -41,6 +42,14 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
       },
     },
     user: {
@@ -83,7 +92,7 @@ export default {
       /* Load Account, Chain Info and Balance/s */
       const account = await this.$web3.getAccount()
       if (account[0] && account[0] !== '') {
-        this.$store.commit('SET_ACCOUNT', account)
+        this.$store.commit('SET_ACCOUNT_ADDRESS', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
         const chainId = networkFilter(chainIdHEX, 'id')

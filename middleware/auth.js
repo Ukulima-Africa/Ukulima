@@ -14,7 +14,7 @@ export default function ({
 }) {
   // Normal checks
   if (route.path === '/logout') {
-    /* Do nothing if a user wants to sign out */
+    /* Do nothing if a user wants to Sign Out */
   } else if (
     route.path !== '/auth/signin' &&
     route.path !== '/auth/signin/' &&
@@ -32,108 +32,72 @@ export default function ({
 
     if (!app.$fire.auth.currentUser || !UserIdToken) {
       /* Take them to the login page */
-      return redirect('/auth/signin')
+      // return redirect('/auth/signin')
     }
-    // if (route.path === '/') {
-    // redirect to dashboard for now if someone lands on index
-    // return doOnboardingCheck(store, route)
-    // }
+    if (route.path === '/') {
+      // redirect to dashboard for now if someone lands on index
+      return doOnboardingCheck(store, route)
+      }
     // redirect to dashboard for now if someone lands on index
     return doOnboardingCheck(store, route)
   } else if (
     route.path === '/auth/signin' ||
-    route.path === '/auth/signup' ||
-    route.path === '/auth/reset-password' ||
-    route.path === '/auth/email-verification' ||
-    route.path === '/auth/email-confirmation' ||
     route.path === '/auth/signin/' ||
+    route.path === '/auth/signup' ||
     route.path === '/auth/signup/' ||
+    route.path === '/auth/reset-password' ||
     route.path === '/auth/reset-password/' ||
+    route.path === '/auth/email-verification' ||
     route.path === '/auth/email-verification/' ||
+    route.path === '/auth/email-confirmation' ||
     route.path === '/auth/email-confirmation/'
   ) {
+    const MetaMaskAccount = store.getters.getAccount
     const UserIdToken = store.getters.getUser
 
-    // If there is no token, we must be dealing with a GUEST
-    if (!app.$fire.auth.currentUser || !UserIdToken) {
-      // leave them on the login page
+    /* If there is no token, we must be dealing with a GUEST */
+    if (!app.$fire.auth.currentUser || !UserIdToken || !MetaMaskAccount) {
+      /* leave them on the login page */
     } else {
-      // logged in but need to be directed, do onboarding checks
+      /* Logged in but need to be directed, do onboarding checks */
       return doOnboardingCheck(store, route)
     }
   }
 
   function doOnboardingCheck(store, route) {
     if (route.path === '/' || route.path === '/') {
-      // do nothing
+      /* Do nothing */
     } else if (
       route.path === '/profile' ||
       route.path === '/profile/' ||
       route.path === '/company' ||
-      route.path === '/company/'
+      route.path === '/company/' ||
+      route.path === '/inventory' ||
+      route.path === '/inventory/'
     ) {
-      // do nothing
+      /* Do nothing */
     } else if (store.getters.getUser.onboardingState !== onboardingStates.DONE) {
       // also make sure we are not routing to a page if we are already on that page
       // this means we are not done with onboarding
 
       switch (store.getters.getUser.onboardingState) {
-        case onboardingStates.INTEGRATION: {
-          if (route.path !== '/auth/integrations') {
-            return redirect('/auth/integrations')
-          }
-          break
-        }
         case onboardingStates.PAYMENT: {
           if (route.path !== '/auth/payment') {
             return redirect('/auth/payment')
           }
           break
         }
-        case onboardingStates.BRANCHES: {
-          if (route.path !== '/branches') {
-            return redirect('/branches')
-          }
-          break
-        }
-        case onboardingStates.WELCOME: {
-          if (route.path !== '/welcome') {
-            return redirect('/welcome')
-          }
-          break
-        }
-        case onboardingStates.WAITING: {
-          if (route.path !== '/waiting') {
-            return redirect('/waiting')
-          }
-          break
-        }
         case onboardingStates.ONBOARDING: {
-          if (
-            route.path === '/inventory/load-items/resell' ||
-            route.path === '/inventory/load-items/resell/' ||
-            route.path === '/inventory/load-items/make' ||
-            route.path === '/inventory/load-items/make/' ||
-            route.path === '/inventory/load-items/materials' ||
-            route.path === '/inventory/load-items/materials/'
-          ) {
-            // don't redirect these
-          } else if (route.path !== '/onboarding') {
+          if (route.path !== '/onboarding') {
             return redirect('/onboarding')
-          }
-          break
-        }
-        case onboardingStates.CALCULATING: {
-          if (route.path !== '/calculating') {
-            return redirect('/calculating')
           }
           break
         }
         default: {
           if (store.getters.getUser.onboardingState === undefined) {
             // our first entrypoint after signing in
-            if (route.path === '/index') {
-              return redirect('/index')
+            if (route.path === '/') {
+              return redirect('/')
             }
           } else if (route.path !== '/dashboard') {
             return redirect('/dashboard')
@@ -163,8 +127,6 @@ export default function ({
         //   }
         // }
         if (
-          route.path === '/daily' ||
-          route.path === '/daily/' ||
           route.path === '/auth/signin' ||
           route.path === '/auth/signin/' ||
           route.path === '/auth/signup' ||
@@ -174,27 +136,7 @@ export default function ({
           route.path === '/auth/email-verification' ||
           route.path === '/auth/email-verification/' ||
           route.path === '/auth/email-confirmation' ||
-          route.path === '/auth/email-confirmation/' ||
-          route.path === '/auth/integrations/' ||
-          route.path === '/auth/integrations' ||
-          route.path === '/auth/payment/' ||
-          route.path === '/auth/payment' ||
-          route.path === '/inventory/load-items/resell' ||
-          route.path === '/inventory/load-items/resell/' ||
-          route.path === '/inventory/load-items/make' ||
-          route.path === '/inventory/load-items/make/' ||
-          route.path === '/inventory/load-items/materials' ||
-          route.path === '/inventory/load-items/materials/' ||
-          route.path === '/welcome/' ||
-          route.path === '/welcome' ||
-          route.path === '/branches/' ||
-          route.path === '/branches' ||
-          route.path === '/waiting/' ||
-          route.path === '/waiting' ||
-          route.path === '/onboarding/' ||
-          route.path === '/onboarding' ||
-          route.path === '/calculating/' ||
-          route.path === '/calculating'
+          route.path === '/auth/email-confirmation/'
         ) {
           redirect('/dashboard')
         }
