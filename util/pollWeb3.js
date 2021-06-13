@@ -5,11 +5,12 @@ import { networkFilter } from './networkFilter'
 const pollWeb3 = async () => {
   const provider = await detectEthereumProvider()
   setInterval(async () => {
+    if (provider && $nuxt.$store.state) {
     if (provider && $nuxt.$store.state.account) {
-      if (
-        provider.chainId !== $nuxt.$store.state.account.chainIdHEX ||
-        provider.selectedAddress !== $nuxt.$store.state.account.account[0]
-      ) {
+      // if (
+      //   provider.chainId !== $nuxt.$store.state.account.chainIdHEX ||
+      //   provider.selectedAddress !== $nuxt.$store.state.account.account[0]
+      // ) {
         /* Will Check the Current Provider Chain Id Hex */
         const chainId = await provider.request({
           method: 'eth_chainId',
@@ -23,13 +24,13 @@ const pollWeb3 = async () => {
 
         const web3 = new Web3(window.ethereum)
         let displayBalance = 0
+
         await web3.eth.getBalance(
           String(newAccount),
           'latest',
           (err, result) => {
             if (err) {
-              console.log(err)
-              displayBalance = 0
+              console.log("web3.eth.getBalance Fetch Error", err)
             } else {
               displayBalance = web3.utils.fromWei(result, 'ether')
               console.log("displayBalance", displayBalance)
@@ -45,7 +46,7 @@ const pollWeb3 = async () => {
         })
       }
     }
-  }, 1000)
+  }, 3000)
 }
 
 export default pollWeb3

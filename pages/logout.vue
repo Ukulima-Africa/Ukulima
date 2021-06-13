@@ -28,8 +28,11 @@ export default {
     HeaderLogo,
     Footer,
   },
-  async created() {
-    await this.$fire.auth.signOut()
+  created() {
+    this.$fire.auth.signOut()
+    this.$store.commit('RESET_USER')
+    this.$store.commit('RESET_PROFILE')
+    this.$store.commit('RESET_PROFILE_TYPE', 'Guest')
     $nuxt.$router.push('/')
   },
 }

@@ -14,16 +14,16 @@ const state = () => ({
     chainId: null,
     chainName: null,
     account: null,
-    balance: null,
+    balance: 0,
     step: 0,
   },
   user: {
     uid: null,
     email: null,
+    name: null,
     emailVerified: null,
-    displayName: null,
     phoneNumber: null,
-    photoUR: null,
+    photoURL: null,
     onboardingState: 'Guest',
   },
   profile: {
@@ -44,6 +44,8 @@ const state = () => ({
   isBranchRefreshRequired: false,
   progressCalculations: 0,
   inventory: [],
+  grants: [],
+  sponsors: [],
   nfts: [],
   nftCats: [],
   searchText: '',
@@ -73,6 +75,7 @@ const actions = {
       const userRef = this.$fire.firestore.collection('users').doc(uid)
 
       let orgId = ''
+      // eslint-disable-next-line no-unused-vars
       let currentBranchId = ''
 
       await userRef
@@ -228,6 +231,17 @@ const mutations = {
   SET_PROFILE(state, payload) {
     Object.assign(state.profile, payload)
   },
+  RESET_PROFILE(state) {
+    state.profile = {
+      isAuthenticated: false,
+      userId: null,
+      hasMasterPin: null,
+      username: null,
+      email: null,
+      firstName: null,
+      lastName: null,
+    }
+  },
   SET_PROFILE_ISAUTHENTICATED(state, payload) {
     state.profile.isAuthenticated = payload
   },
@@ -253,7 +267,21 @@ const mutations = {
   SET_USER(state, payload) {
     Object.assign(state.user, payload)
   },
+  RESET_USER(state) {
+    state.user = {
+      uid: null,
+      email: null,
+      emailVerified: null,
+      displayName: null,
+      phoneNumber: null,
+      photoURL: null,
+      onboardingState: 'Guest',
+    }
+  },
   SET_PROFILE_TYPE(state, profileType) {
+    state.profileType = profileType
+  },
+  RESET_PROFILE_TYPE(state, profileType) {
     state.profileType = profileType
   },
   SET_ORGANISATION(state, orgid) {
@@ -320,6 +348,14 @@ const mutations = {
   },
   SET_CONTRACT_INSURANCE(state, payload) {
     state.contracts.INSContract = payload
+  },
+  /* Grants */
+  SET_GRANTS(state, payload) {
+    state.grants.push(payload)
+  },
+  /* Sponsors */
+  SET_SPONSORS(state, payload) {
+    state.sponsors.push(payload)
   },
   /* NFTs */
   SET_NFT(state, payload) {
@@ -436,6 +472,14 @@ const getters = {
   },
   getIsBranchRefreshRequired(state) {
     return state.isBranchRefreshRequired
+  },
+  /* GRANTS */
+  getGrants(state) {
+    return state.grants
+  },
+  /* Sponsors */
+  getSponsors(state) {
+    return state.sponsors
   },
   /* NFTs */
   getNfts(state) {

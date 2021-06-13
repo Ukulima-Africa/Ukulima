@@ -72,7 +72,7 @@ const company = {
     await outletRef
       .get()
       .where('IsCentralStockLocation', '==', true)
-      .then(function (snapshot) {
+      .then((snapshot) => {
         if (snapshot.docs) {
           cslData = snapshot.docs
         }
@@ -110,7 +110,7 @@ const company = {
     let outletData = ''
     await outletRef
       .get()
-      .then(function (snapshot) {
+      .then((snapshot) => {
         if (snapshot.docs) {
           outletData = snapshot.docs
         }
@@ -145,7 +145,7 @@ const company = {
     let companyType = ''
     await companyRef
       .get()
-      .then(function (doc) {
+      .then((doc) => {
         if (doc.exists) {
           try {
             companyType = doc.data().OrganisationType
@@ -182,7 +182,7 @@ const company = {
       .update({
         OrganisationType: type
       })
-      .then(function () {})
+      .then(() => {})
       .catch(error => {
         try {
           this.$log.error(error.message ? error.message : error)

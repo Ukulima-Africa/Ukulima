@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <HeaderLogo />
-    <q-page-container class="white-bg">
+    <q-page-container class="uku-green-bg">
       <q-page>
         <div class="row uku-row uku-signup-page uku-welcome-bg-image">
           <div class="col-12 col-lg-12 col-md-12 col-sm-12 self-center" align="center">

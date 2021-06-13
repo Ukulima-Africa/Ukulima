@@ -1,5 +1,5 @@
 <template>
-  <div class="row uku-inventory items-center justify-center">
+  <div class="row uku-inventory items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-inventory-card">
         <div class="uku-inventory-title">{{ title }}</div>
@@ -10,9 +10,9 @@
           chain inefficiencies and agriculture associated risks.
         </div>
         <div class="uku-inventory-buttons full-width q-mt-xl" align="right">
-          <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
-          <!-- <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" /> -->
           <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+          <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+          <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
         </div>
       </div>
     </div>

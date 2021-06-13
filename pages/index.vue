@@ -6,7 +6,7 @@
       <!-- First Row - Intro & Connect -->
       <div class="row items-start justify-evenly uku-blue-bg">
         <div class="col-8 col-lg-7 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
-          <Intro :user="user" />
+          <Intro />
         </div>
         <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12">
           <Signin />

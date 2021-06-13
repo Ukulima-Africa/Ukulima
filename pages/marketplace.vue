@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <PrivacyPolicy />
+      <MarketplaceList />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,18 +15,18 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import PrivacyPolicy from '../components/Privacy.vue'
+import MarketplaceList from '../components/Marketplace.vue'
 /* LFG */
 export default {
-  name: 'Privacy',
+  name: 'Marketplace',
   components: {
     Header,
     SidebarLeft,
-    PrivacyPolicy,
+    MarketplaceList,
   },
   data() {
     return {
-      title: 'Privacy Policy - Ukulima Africa',
+      title: 'Marketplace - Ukulima Africa',
       description:
         'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
     }

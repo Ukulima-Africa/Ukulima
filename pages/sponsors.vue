@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <PrivacyPolicy />
+      <SponsorsList />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,18 +15,18 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import PrivacyPolicy from '../components/Privacy.vue'
+import SponsorsList from '../components/Sponsors.vue'
 /* LFG */
 export default {
-  name: 'Privacy',
+  name: 'Sponsors',
   components: {
     Header,
     SidebarLeft,
-    PrivacyPolicy,
+    SponsorsList,
   },
   data() {
     return {
-      title: 'Privacy Policy - Ukulima Africa',
+      title: 'Sponsors - Ukulima Africa',
       description:
         'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
     }

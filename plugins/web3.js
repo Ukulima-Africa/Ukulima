@@ -100,6 +100,7 @@ web3.connectMetaMask = async () => {
           console.error(error)
         }
       })
+    console.log("connectMetaMask:", accounts)
     // We currently only ever provide a single account,
     // but the array gives us some room to grow.
     const [...account] = accounts
@@ -116,6 +117,7 @@ web3.getAccount = async () => {
     const accounts = await provider.request({
       method: 'eth_accounts',
     })
+    console.log("getAccount:", accounts)
     // We currently only ever provide a single account,
     // but the array gives us some room to grow.
     const [...account] = accounts
@@ -132,6 +134,7 @@ web3.getAccounts = async () => {
     const accounts = await provider.request({
       method: 'eth_accounts',
     })
+    console.log("getAccount:", accounts)
     return accounts
   }
   return false

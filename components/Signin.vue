@@ -1,5 +1,5 @@
 <template>
-  <div class="row uku-signin">
+  <div class="row uku-signin items-center content-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm self-center" align="center">
       <div class="uku-signin-form">
         <div class="row no-wrap">
@@ -28,7 +28,7 @@
                 tabindex="1"
               />
             </div>
-            <div class="self-center full-width no-outline">
+            <!-- <div class="self-center full-width no-outline">
               <q-input
                 v-model="signin.phone"
                 outlined
@@ -45,7 +45,7 @@
                 autocomplete="tel"
                 tabindex="2"
               />
-            </div>
+            </div> -->
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="signin.password"
@@ -255,10 +255,10 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-signin
-  max-height: 700px
+  max-height: 600px
   min-height: inherit
   margin: 0 auto
-  padding: 50px 20px
+  padding: 60px 20px 30px 20px
   overflow: hidden
   .uku-signin-form
     max-width: 479px

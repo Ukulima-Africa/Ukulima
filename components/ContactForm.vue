@@ -3,15 +3,15 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 self-center">
       <div class="uku-form">
         <div class="row full-width items-center justify-center">
-          <div class="uku-form-title">Not using Xero? No problem.</div>
+          <div class="uku-form-title">Not using Ukulima? No problem.</div>
         </div>
         <div class="row full-width items-center justify-center">
-          <div class="uku-form-subtitle">We’d love to cater for more people soon</div>
+          <div class="uku-form-subtitle">We’d love to assist you in registering your farm, co-op or retail store</div>
         </div>
         <div class="row full-width items-center justify-center">
           <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="uku-form-body">
-              <div class="uku-form-name">Please tell us what accounting system you’re using</div>
+              <div class="uku-form-name">Please tell us what you require assistance with?</div>
               <QForm ref="ukuForm" class="q-gutter-md" method="POST" @submit="onSubmit" @reset="onReset">
                 <QOptionGroup v-model="formData.group" name="group" :options="formData.options" type="radio" class="no-margin no-padding" />
                 <QInput
@@ -24,12 +24,7 @@
                   color="black"
                   class="form-textarea"
                 />
-                <QCheckbox
-                  v-model="formData.accept"
-                  name="accept"
-                  color="black"
-                  label="Please notify me when uku launches more accounting partnerships"
-                />
+                <QCheckbox v-model="formData.accept" name="accept" color="black" label="Please notify me when Ukulima launches more products" />
                 <QInput
                   v-model.trim="formData.email"
                   square
@@ -63,19 +58,17 @@
 </template>
 <script>
 export default {
-  name: 'Form',
+  name: 'ContactForm',
   data() {
     return {
       formData: {
         group: null,
         options: [
-          { label: 'Quickbooks', value: 'Quickbooks', color: 'black' },
-          { label: 'Sage', value: 'Sage', color: 'black' },
-          {
-            label: 'I am swimming in spreadsheets',
-            value: 'Spreadsheets',
-            color: 'black',
-          },
+          { label: 'Farming', value: 'Farming', color: 'black' },
+          { label: 'Co-Op', value: 'Co-Op', color: 'black' },
+          { label: 'Retail Store', value: 'Retail-Store', color: 'black' },
+          { label: 'Sponsor', value: 'Sponsor', color: 'black' },
+          { label: 'Grants', value: 'Grants', color: 'black' },
           { label: 'Other', value: 'Other', color: 'black' },
         ],
         textarea: '',

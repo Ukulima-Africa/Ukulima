@@ -1,20 +1,14 @@
 <template>
-  <q-form ref="skwirrelForm" class="skwirrel-form">
+  <q-form ref="ukuForm" class="uku-form">
     <div class="row page-header-row">
       <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="skwirrel-form-box">
+        <div class="uku-form-box">
           <h2 class="profile-username" data-cy="nameSelector">
             {{ profile.name }}
           </h2>
-          <div class="row">
-            <div class="profile-active-status-dot q-mt-xs"></div>
-            <div class="profile-active-status q-ml-sm" data-cy="integrationTypeSelector">
-              {{ profile.integrationType }}
-            </div>
-          </div>
           <q-item-section>
             <div class="row items-center no-wrap profile-item">
-              Seller Status
+              Profile Settings
               <nuxt-link to="/">
                 <q-icon
                   :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
@@ -24,16 +18,8 @@
               </nuxt-link>
             </div>
           </q-item-section>
-          <h2 class="profile-item">Profile Type</h2>
-          <q-field v-model="profile.profileType" color="black" readonly outlined data-cy="profileTypeSelector">
-            <template #control>
-              <div class="self-center full-width no-outline" tabindex="1">
-                {{ profile.profileType }}
-              </div>
-            </template>
-          </q-field>
           <h2 class="profile-item">Name</h2>
-          <q-field v-model="profile.name" color="black" readonly outlined data-cy="profileNameSelector">
+          <q-field v-model="profile.name" color="black" outlined>
             <template #control>
               <div class="self-center full-width no-outline" tabindex="2">
                 {{ profile.name }}
@@ -41,15 +27,30 @@
             </template>
           </q-field>
           <h2 class="profile-item">Email</h2>
-          <q-field v-model="profile.email" color="black" readonly outlined data-cy="profileEmailSelector">
+          <q-field v-model="profile.email" color="black" outlined>
             <template #control>
               <div class="self-center full-width no-outline" tabindex="3">
                 {{ profile.email }}
               </div>
             </template>
           </q-field>
+          <q-field v-model="profile.phoneNumber" color="black" outlined>
+            <template #control>
+              <div class="self-center full-width no-outline" tabindex="3">
+                {{ profile.phoneNumber }}
+              </div>
+            </template>
+          </q-field>
+          <h2 class="profile-item">Profile Type</h2>
+          <q-field v-model="profile.profileType" color="black" outlined>
+            <template #control>
+              <div class="self-center full-width no-outline" tabindex="1">
+                {{ profile.profileType }}
+              </div>
+            </template>
+          </q-field>
           <div class="self-center full-width no-outline q-mt-lg" tabindex="4">
-            <q-btn flat class="skwirrel-signup-button" label="Reset Password" data-cy="resetPasswordSelector" @click="sendPasswordResetLink" />
+            <q-btn flat class="uku-signup-button" label="Reset Password" data-cy="resetPasswordSelector" @click="sendPasswordResetLink" />
           </div>
         </div>
       </div>
@@ -66,6 +67,7 @@ export default {
         integrationType: null,
         name: null,
         email: null,
+        phoneNumber: null,
       },
       loading: false,
     }
@@ -125,11 +127,11 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.skwirrel-form
+.uku-form
   max-width: 800px
   margin-left: 184px
   padding: 0
-  .skwirrel-form-box
+  .uku-form-box
     max-width: 400px
     .q-input
       max-width: 400px
@@ -168,41 +170,41 @@ export default {
     margin-bottom: 10px
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
-  .skwirrel-form
+  .uku-form
     max-width: 800px
     margin-left: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 800px
       .q-input
         max-width: 800px
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
-  .skwirrel-form
+  .uku-form
     max-width: 800px
     margin-left: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 800px
       .q-input
         max-width: 800px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
-  .skwirrel-form
+  .uku-form
     max-width: 100%
     margin: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 100%
       .q-input
         max-width: 100%
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
-  .skwirrel-form
+  .uku-form
     max-width: 100%
     margin: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 100%
       .q-input
         max-width: 100%

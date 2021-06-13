@@ -1,15 +1,15 @@
 <template>
-  <div class="row uku-privacy items-start justify-center">
+  <div class="row uku-inventory items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
-      <div class="uku-privacy-card">
-        <div class="uku-privacy-title">{{ title }}</div>
-        <div class="uku-privacy-subtitle">{{ subtitle }}</div>
-        <div class="uku-privacy-text">
+      <div class="uku-inventory-card">
+        <div class="uku-inventory-title">{{ title }}</div>
+        <div class="uku-inventory-subtitle">{{ subtitle }}</div>
+        <div class="uku-inventory-text">
           Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
           Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
           chain inefficiencies and agriculture associated risks.
         </div>
-        <div class="uku-privacy-buttons full-width q-mt-xl" align="right">
+        <div class="uku-inventory-buttons full-width q-mt-xl" align="right">
           <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
           <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
           <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
@@ -20,23 +20,23 @@
 </template>
 <script>
 export default {
-  name: 'PrivacyPolicy',
+  name: 'NftsList',
   data() {
     return {
-      title: 'Privacy Policy',
-      subtitle: 'Add your privacy and products',
+      title: 'Nfts',
+      subtitle: 'Add your inventory and products',
     }
   },
 }
 </script>
 <style lang="sass" scope>
 @import "../assets/sass/theme-variables"
-.uku-privacy
+.uku-inventory
   min-height: 660px
-  .uku-privacy-card
+  .uku-inventory-card
     background: rgba(0, 0, 0, 0.6)
     padding: 40px 30px
-    .uku-privacy-title
+    .uku-inventory-title
       color: $white
       font-size: 32px
       line-height: 32px
@@ -44,14 +44,14 @@ export default {
       letter-spacing 0.10px
       word-spacing 1px
       margin: 0 0 20px 0
-    .uku-privacy-subtitle
+    .uku-inventory-subtitle
       color: $white
       font-size: 20px
       line-height: 26px
       font-weight: 500
       letter-spacing 0.6px
       margin: 0 0 15px 0
-    .uku-privacy-text
+    .uku-inventory-text
       color: $white
       font-size: 16px
       line-height: 24px

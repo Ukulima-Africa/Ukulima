@@ -1,17 +1,29 @@
 <template>
   <q-header class="uku-header" height-hint="80">
     <q-toolbar>
-      <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
+      <q-btn v-if="user.uid" flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
       <q-avatar class="q-ml-xs">
-        <img src="~/assets/images/logo.png" alt="Ukulima Africa" width="80px" />
+        <img src="~/assets/images/logo.png" alt="Ukulima Africa" width="100px" />
       </q-avatar>
       <q-toolbar-title shrink>
-        <nuxt-link to="/index" class="uku-logo-link">
-          <span class="uku-logo">Ukulima</span>
+        <nuxt-link to="/" class="uku-logo-link">
+          <span class="uku-logo-text">Ukulima</span>
         </nuxt-link>
       </q-toolbar-title>
-
+      <!-- Left Menu -->
+      <div class="uku-menu uku-desktop-menu row no-wrap items-center q-ml-md">
+        <NuxtLink to="/" class="uku-menu-item">Home</NuxtLink>
+        <NuxtLink to="/grants" class="uku-menu-item">Grants</NuxtLink>
+        <NuxtLink to="/sponsors" class="uku-menu-item">Sponsors</NuxtLink>
+        <NuxtLink to="/marketplace" class="uku-menu-item">Marketplace</NuxtLink>
+        <NuxtLink to="/nfts" class="uku-menu-item">NFTs</NuxtLink>
+        <QSeparator inset vertical class="menu-item-separator self-center"></QSeparator>
+        <!-- <NuxtLink to="/auth/signup" class="uku-menu-item">Sign Up</NuxtLink> -->
+        <NuxtLink v-if="user.uid" to="/dashboard" class="uku-menu-item">Dashboard</NuxtLink>
+      </div>
+      <!-- End Menu -->
       <q-space />
+      <!-- Search -->
       <!-- <div class="YL__toolbar-input-container row no-wrap">
         <q-input v-model="searchText" dense square color="black" standout="bg-white" bg-color="white" class="GPL__toolbar-input" placeholder="Search">
           <template #prepend>
@@ -21,9 +33,18 @@
             <q-icon v-if="searchText !== ''" name="clear" class="cursor-pointer" @click="search('')" />
           </template>
         </q-input>
+      </div> -->
+      <!-- <q-space /> -->
+      <!-- END Search -->
+      <!-- Right Menu -->
+      <div class="uku-menu uku-desktop-menu row no-wrap items-center">
+        <div v-if="account.balance" class="account-balance-button"><q-icon name="money" /> {{ parseFloat(account.balance) }}</div>
+        <div v-if="account.account" class="account-address-button"><q-icon name="style" /> {{ account.account[0] }}</div>
+        <NuxtLink v-if="!user.uid" to="/auth/signin" class="signin-button">SIGN IN</NuxtLink>
+        <NuxtLink v-if="user.uid" to="/logout" class="signout-button">SIGN OUT</NuxtLink>
+        <q-btn v-if="!account.account" rounded outlined color="secondary" label="Connect" @click="connectMetaMask()" />
       </div>
-      <q-space /> -->
-
+      <!-- END Right Menu -->
       <div class="q-gutter-sm row items-center no-wrap">
         <!-- <q-btn
           v-if="!profile.isAuthenticated"
@@ -35,21 +56,17 @@
           :icon="!user.account ? 'play_arrow' : 'gamepad'"
           @click="!user.account ? connectMetaMask() : connectArkane()"
         /> -->
-        <q-btn v-if="!account.account" rounded color="secondary" label="Connect" icon-right="play_arrow" @click="connectMetaMask()" />
-
-        <div v-if="account.balance" class="q-gutter-sm row items-center no-wrap"><q-icon name="money" /> {{ account.balance }}</div>
-
         <!-- User Account Dropdown Button -->
-        <q-btn flat round icon="account_circle" size="18px" class="black account-button">
-          <!-- <q-avatar size="36px">
-            <img src="https://cdn.quasar.dev/img/chaosmonkey.png" width="36px" />
-          </q-avatar> -->
+        <q-btn v-if="user.uid" flat round icon="account_circle" size="21.5px" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
-              <q-item v-if="profile.firstName" v-ripple clickable class="black q-mr-xs">
-                <q-item-section
-                  ><strong>Welcome: {{ profile.firstName }}</strong></q-item-section
-                >
+              <q-item v-if="user.name" v-ripple clickable>
+                <q-item-section avatar>
+                  <q-avatar>
+                    <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+                  </q-avatar>
+                </q-item-section>
+                <q-item-section>{{ user.name }}</q-item-section>
               </q-item>
               <q-item v-if="profile.username" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.username }}</q-item-section>
@@ -58,19 +75,10 @@
               <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
-              <q-item v-if="profile.account" v-ripple clickable class="black q-mr-xs">
-                <q-item-section> {{ account.account }}</q-item-section>
-              </q-item>
-              <q-item v-if="profile.balance" v-ripple clickable class="black q-mr-xs">
-                <q-item-section avatar>
-                  <q-icon name="money" />
-                </q-item-section>
-                <q-item-section>{{ account.balance }}</q-item-section>
-              </q-item>
               <q-separator />
               <nuxt-link to="/profile">
                 <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Profile Settings</q-item-section>
+                  <q-item-section>Profile</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/company">
@@ -81,11 +89,6 @@
               <nuxt-link to="/inventory">
                 <q-item v-ripple clickable color="black" class="q-mr-xs">
                   <q-item-section>Inventory</q-item-section>
-                </q-item>
-              </nuxt-link>
-              <nuxt-link to="/marketplace">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Marketplace</q-item-section>
                 </q-item>
               </nuxt-link>
               <!-- END Hide for MVP -->
@@ -198,10 +201,6 @@ export default {
   //   }
   // },
   methods: {
-    signOut() {
-      this.$fire.auth.signOut()
-      $nuxt.$router.push('/')
-    },
     search(value) {
       this.$store.commit('SEARCH', value)
     },
@@ -336,6 +335,13 @@ export default {
       console.log(`%c Console.log like a Boss : ${JSON.stringify(arkaneAccount, null, 4)}`, 'background: #222; color: #bada55')
       return arkaneProfile
     },
+    signOut() {
+      this.$fire.auth.signOut()
+      this.$store.commit('RESET_USER')
+      this.$store.commit('RESET_PROFILE')
+      this.$store.commit('RESET_PROFILE_TYPE', 'Guest')
+      $nuxt.$router.push('/')
+    },
   },
 }
 </script>
@@ -349,10 +355,135 @@ export default {
   border-style: none none solid none
   box-shadow: none !important
   margin: 0
-.uku-logo-link
-  &:hover, &:focus
-    text-decoration: none
-    cursor: pointer
+  .uku-logo-link
+    &:hover, &:focus
+      text-decoration: none
+      cursor: pointer
+  .uku-logo-text
+    color: $black
+    font-size: 26px
+    line-height: 30px
+    font-weight: 500
+    margin-bottom: -20px
+  .uku-menu
+    height: 100%
+    color: $black
+    font-size: 18px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.19
+    .uku-menu-item
+      color: $black
+      margin: 0 20px
+      text-transform: capitalize
+      border: none
+      box-shadow: none
+      &:hover,
+      &:active
+        color: #343434
+        text-decoration: none
+    .menu-item-separator
+      width: 1px
+      height: 30px
+      color: #343434
+      margin: 0 10px
+      border: none
+      box-shadow: none
+    .signin-button
+      color: $white
+      background-color: $secondary
+      font-size: 14px
+      line-height: 26px
+      font-weight: bold
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: center
+      text-transform: none
+      border-radius: 28px
+      padding: 5px 20px
+      &:hover,
+      &:active
+        color: $light-grey
+        text-decoration: none !important
+    .signout-button
+      color: $white
+      background-color: $black
+      font-size: 14px
+      line-height: 26px
+      font-weight: bold
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: center
+      text-transform: none
+      border-radius: 28px
+      padding: 5px 20px
+      &:hover,
+      &:active
+        color: $light-grey
+        text-decoration: none !important
+    .signup-grey-button
+      color: #333333
+      background-color: $light-grey
+      font-size: 12px
+      line-height: 26px
+      font-weight: 300
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: center
+      border-radius: 28px
+      margin: 0 10px 0 10px
+      padding: 6px 20px
+      text-decoration: none
+      &:visited,
+      &:hover,
+      &:active
+        color: #343434
+        text-decoration: none
+    .account-address-button
+      color: #ffffff
+      background-color: $black
+      font-size: 12px
+      line-height: 26px
+      font-weight: 400
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: center
+      border-radius: 28px
+      margin: 0 10px 0 0
+      padding: 5px 20px
+      text-decoration: none
+      text-overflow: ellipsis
+      &:visited,
+      &:hover,
+      &:active
+        color: #ffffff
+        text-decoration: none
+    .account-balance-button
+      color: #ffffff
+      background-color: $black
+      font-size: 12px
+      line-height: 26px
+      font-weight: 400
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: center
+      border-radius: 28px
+      margin: 0 10px 0 0
+      padding: 5px 20px
+      text-decoration: none
+      &:visited,
+      &:hover,
+      &:active
+        color: #ffffff
+        text-decoration: none
+.account-button
+  color: $black
 .account-menu
   min-width: 200px
   a
@@ -360,12 +491,7 @@ export default {
     &:hover, &:focus
       color: $secondary !important
       text-decoration: none
-.uku-logo
-  color: $secondary
-  font-size: 26px
-  line-height: 26px
-  font-weight: 500
-  margin-bottom: -20px
+
   .GPL__toolbar-input
     color: $primary
 

@@ -40,7 +40,7 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-intro
-  min-height: 660px
+  // min-height: 560px
   .uku-intro-card
     background: rgba(0, 0, 0, 0.6)
     padding: 40px 30px

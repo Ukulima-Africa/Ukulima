@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <HeaderLogo />
-    <q-page-container class="white-bg">
+    <q-page-container class="uku-green-bg">
       <q-page>
         <div class="row uku-row uku-signup-page uku-signup-bg-image">
           <div class="col-12 col-lg-12 col-md-12 col-sm-12 self-center" align="center">
@@ -10,7 +10,7 @@
                 <div class="uku-welcome-title">Create your Account</div>
               </div>
               <div class="row items-center justify-center no-wrap" align="center">
-                <div class="uku-welcome-title-text">Create your account by filling in the details below</div>
+                <div class="uku-welcome-title-text">Sign up by filling in your account details below</div>
               </div>
               <div class="row no-wrap items-center justify-center" align="center">
                 <q-form ref="signupForm" class="q-gutter-md uku-form" autocomplete="off" @submit="signUp">
@@ -68,7 +68,15 @@
                     </q-input>
                   </div>
                   <div class="self-center full-width no-outline q-py-xs" tabindex="4">
-                    <q-checkbox v-model="accept" size="sm" color="black" :true-value="true" :false-value="false" :toggle-indeterminate="false">
+                    <q-checkbox
+                      v-model="accept"
+                      size="sm"
+                      color="black"
+                      class="uku-terms"
+                      :true-value="true"
+                      :false-value="false"
+                      :toggle-indeterminate="false"
+                    >
                       <template #default>
                         I accept Ukulima’s
                         <a href="https://ukulima.africa/terms" alt="Terms &amp; Conditions" target="_blank" class="uku-terms-link"
@@ -275,7 +283,7 @@ export default {
     text-align: center
     margin: 0 auto 15px
   .uku-welcome-title-text
-    color: #333333
+    color: #000000
     font-size: 16px
     line-height: 1.88
     font-weight: normal
@@ -357,6 +365,13 @@ export default {
     font-weight: bold
     line-height: 1.57
     margin-left: 5px
+  .uku-terms
+    color: $black !important
+    font-size: 14px
+    line-height: 1.57
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
   .uku-terms-link
     color: $primary !important
     font-size: 14px

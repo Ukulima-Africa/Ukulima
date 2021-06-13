@@ -1,8 +1,8 @@
 <template>
-  <q-form ref="skwirrelForm" class="skwirrel-form">
+  <q-form ref="ukuForm" class="uku-form">
     <div class="row page-header-row">
       <div class="col-12 col-md-12 col-sm-12 col-xs-12 self-start">
-        <div class="column skwirrel-form-box">
+        <div class="column uku-form-box">
           <h2 class="company-username">{{ company.Name }}</h2>
           <q-item-section>
             <q-item-section>
@@ -61,7 +61,7 @@
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
-                  <q-item-label v-html="scope.opt.name" />
+                  <q-item-label>{{ scope.opt.name }}</q-item-label>
                 </q-item-section>
               </q-item>
             </template>
@@ -88,7 +88,7 @@
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
-                  <q-item-label v-html="scope.opt.name" />
+                  <q-item-label>{{ scope.opt.name }}</q-item-label>
                 </q-item-section>
               </q-item>
             </template>
@@ -115,7 +115,7 @@
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
-                  <q-item-label v-html="scope.opt.name" />
+                  <q-item-label>{{ scope.opt.name }}</q-item-label>
                 </q-item-section>
               </q-item>
             </template>
@@ -127,30 +127,18 @@
           </q-select>
 
           <!-- Skwirrel Form Footer -->
-          <!-- <div class="skwirrel-form-footer row justify-end q-mt-md">
+          <div class="uku-form-footer row justify-end q-mt-md">
             <div class="col-4 col-md-4" align="left">
-              <div align="left">
-
-              </div>
+              <div align="left"></div>
             </div>
             <div class="col-8 col-md-8" align="right">
               <nuxt-link to="/">
                 <q-btn flat label="Cancel" class="black q-ml-sm" />
               </nuxt-link>
-              <q-btn
-                outline
-                label="Reset"
-                type="reset"
-                class="outline-button q-ml-sm"
-              />
-              <q-btn
-                flat
-                label="Create"
-                type="submit"
-                class="black-button q-ml-sm"
-              />
+              <q-btn outline label="Reset" type="reset" class="outline-button q-ml-sm" />
+              <q-btn flat label="Create" type="submit" class="black-button q-ml-sm" />
             </div>
-          </div> -->
+          </div>
           <!-- END Skwirrel Form Footer -->
         </div>
       </div>
@@ -158,11 +146,13 @@
   </q-form>
 </template>
 <script>
-import company from '../util/functions/company'
+/* Import Data for Form */
 import countries from '../assets/data/countries'
 import currencies from '../assets/data/currencies'
 import timezones from '../assets/data/timezones'
-
+/* Import Utils */
+import company from '../util/functions/company'
+/* LFG */
 export default {
   name: 'CompanyForm',
   data() {
@@ -187,11 +177,11 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.skwirrel-form
+.uku-form
   max-width: 800px
   margin-left: 184px
   padding: 0
-  .skwirrel-form-box
+  .uku-form-box
     max-width: 400px
   .q-input
     max-width: 800px
@@ -281,41 +271,41 @@ export default {
     opacity: 1 !important
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
-  .skwirrel-form
+  .uku-form
     max-width: 800px
     margin-left: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 400px
       .q-input
         max-width: 800px
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
-  .skwirrel-form
+  .uku-form
     max-width: 800px
     margin-left: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 400px
       .q-input
         max-width: 800px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
-  .skwirrel-form
+  .uku-form
     max-width: 100%
     margin: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 100%
       .q-input
         max-width: 100%
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
-  .skwirrel-form
+  .uku-form
     max-width: 100%
     margin: 0
     padding: 0
-    .skwirrel-form-box
+    .uku-form-box
       max-width: 100%
       .q-input
         max-width: 100%
