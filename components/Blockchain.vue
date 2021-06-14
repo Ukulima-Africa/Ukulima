@@ -20,13 +20,12 @@
         Machine Learning we can create a world in which access to data equals transparency, security and better food for all.
       </div>
       <div class="uku-intro-buttons full-width q-mt-xl" align="left">
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Crops" />
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
-        <q-btn outline rounded color="white" class="q-mr-sm" label="Defi" />
-        <q-btn rounded color="primary" class="q-mr-sm" label="Infi" />
+        <q-btn rounded color="primary" class="q-mr-sm" label="Chainlink Feeds" />
+        <q-btn outline rounded color="primary" class="q-mr-sm" label="Wind" />
+        <q-btn outline rounded color="primary" class="q-mr-sm" label="Rainfall" />
+        <q-btn outline rounded color="primary" class="q-mr-sm" label="Temperature" />
+        <q-btn outline rounded color="primary" class="q-mr-sm" label="Weather" />
+        <q-btn outline rounded color="primary" class="q-mr-sm" label="Other" />
       </div>
     </div>
     <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 q-pa-xl" align="center">

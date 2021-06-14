@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import CompanyForm from '../components/CompanyForm.vue'
+import CompanyForm from '../components/forms/CompanyForm.vue'
 /* LFG */
 export default {
   name: 'Company',

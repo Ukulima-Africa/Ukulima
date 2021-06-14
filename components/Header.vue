@@ -38,8 +38,8 @@
       <!-- END Search -->
       <!-- Right Menu -->
       <div class="uku-menu uku-desktop-menu row no-wrap items-center">
-        <div v-if="account.balance" class="account-balance-button"><q-icon name="money" /> {{ parseFloat(account.balance) }}</div>
-        <div v-if="account.account" class="account-address-button"><q-icon name="style" /> {{ account.account[0] }}</div>
+        <div v-if="account.balance" class="account-balance-button"><q-icon name="money" /> {{ parseFloat(account.balance, 4) }}</div>
+        <div v-if="account.account" class="account-address-button"><q-icon name="style" /> {{ account.account[0] | truncate(8, '...') }}</div>
         <NuxtLink v-if="!user.uid" to="/auth/signin" class="signin-button">SIGN IN</NuxtLink>
         <NuxtLink v-if="user.uid" to="/logout" class="signout-button">SIGN OUT</NuxtLink>
         <q-btn v-if="!account.account" rounded outlined color="secondary" label="Connect" @click="connectMetaMask()" />
@@ -121,6 +121,14 @@ import { networkColor } from '../util/networkColor'
 /* LFG */
 export default {
   name: 'Header',
+  filters: {
+    truncate(text, length, suffix) {
+      if (text.length > length) {
+        return text.substring(0, length) + suffix
+      }
+      return text
+    },
+  },
   data() {
     return {
       network: null,

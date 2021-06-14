@@ -3,5 +3,6 @@ export const profileTypes = Object.freeze({
   BUSINESS: 'Business',
   CO_OP: 'Co-Op',
   RETAILER: 'Retailer',
-  MARKETPLACE: 'Marketplace',
+  WHOLESALER: 'Wholesaler',
+  SPONSOR: 'Sponsor',
 })

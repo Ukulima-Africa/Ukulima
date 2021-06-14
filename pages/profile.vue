@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import ProfileForm from '../components/ProfileForm.vue'
+import ProfileForm from '../components/forms/ProfileForm.vue'
 /* LFG */
 export default {
   name: 'Profile',

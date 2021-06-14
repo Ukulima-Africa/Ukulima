@@ -2,9 +2,20 @@
   <div id="latest-news" class="row uku-news">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-news-title">{{ title }}</div>
-      <div class="uku-news-subtitle">{{ subtitle }}</div>
-      <div class="uku-news-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+      <div class="row">
+        <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="uku-intro-image">
+            <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" style="width: 120px" :ratio="1" />
+          </div>
+        </div>
+        <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 q-px-sm">
+          <div class="uku-news-subtitle">Ukulima launching AGRI Token soon ...</div>
+          <div class="uku-news-text">
+            Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque
+            and out of reach of the local farmer. Ukulima aims to empower farmers by utilising Blockchain Technology to manage finance and insure
+            small-hold farms throughout Africa and abroad
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -24,9 +35,9 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .uku-news
-  min-height: 500px
+  min-height: 200px
   .uku-news-title
-    color: $black
+    color: $white
     font-size: 32px
     line-height: 32px
     font-weight: 500
@@ -34,17 +45,17 @@ export default {
     word-spacing 1px
     margin: 0 0 15px 0
   .uku-news-subtitle
-    color: $black
+    color: $white
     font-size: 20px
     line-height: 26px
     font-weight: 500
     letter-spacing 0.6px
     margin: 0 0 5px 0
   .uku-news-text
-    color: $black
-    font-size: 16px
+    color: $white
+    font-size: 14px
     line-height: 24px
-    font-weight: 400
+    font-weight: 300
     margin: 0 0 10px 0
 
   /* CSS Media Queries */

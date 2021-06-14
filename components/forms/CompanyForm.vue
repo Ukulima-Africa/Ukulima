@@ -147,11 +147,11 @@
 </template>
 <script>
 /* Import Data for Form */
-import countries from '../assets/data/countries'
-import currencies from '../assets/data/currencies'
-import timezones from '../assets/data/timezones'
+import countries from '../../assets/data/countries'
+import currencies from '../../assets/data/currencies'
+import timezones from '../../assets/data/timezones'
 /* Import Utils */
-import company from '../util/functions/company'
+import company from '../../util/functions/company'
 /* LFG */
 export default {
   name: 'CompanyForm',

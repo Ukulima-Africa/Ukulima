@@ -3,7 +3,10 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center q-pt-xl" align="center">
       <div class="uku-power-title">{{ title }}</div>
     </div>
-    <div class="col-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+      <div class="uku-power-img full-width">
+        <img src="~/assets/images/Decentralised.png" alt="Decentralised" style="width: 100%" :ratio="1" />
+      </div>
       <div class="uku-power-subtitle">Decentralised &amp; Distributed</div>
       <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
       <div class="uku-power-text">
@@ -11,7 +14,10 @@
         all agree that the new information is valid and correct.
       </div>
     </div>
-    <div class="col-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+      <div class="uku-power-img full-width">
+        <img src="~/assets/images/Consensus.png" alt="Consensus" style="width: 100%" :ratio="1" />
+      </div>
       <div class="uku-power-subtitle">Consensus</div>
       <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
       <div class="uku-power-text">
@@ -19,7 +25,10 @@
         which validate each others’ data, ensuring that no single node can corrupt or falsify the information.
       </div>
     </div>
-    <div class="col-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+      <div class="uku-power-img full-width">
+        <img src="~/assets/images/Provenance.png" alt="Provenance" style="width: 100%" :ratio="1" />
+      </div>
       <div class="uku-power-subtitle">Provenance</div>
       <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
       <div class="uku-power-text">
@@ -27,7 +36,10 @@
         complete history of all transactions that can never be changed - right back to when transactions were first created.
       </div>
     </div>
-    <div class="col-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+      <div class="uku-power-img full-width">
+        <img src="~/assets/images/Immutability.png" alt="Immutability" style="width: 100%" :ratio="1" />
+      </div>
       <div class="uku-power-subtitle">Immutability</div>
       <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
       <div class="uku-power-text">
@@ -52,7 +64,8 @@ export default {
 
 .uku-power
   min-height: 400px
-  border-bottom: solid 4px $secondary
+  padding-bottom: 30px
+  border-bottom: solid 2px $white
   .uku-power-title
     width: 100%
     color: $black
@@ -61,19 +74,22 @@ export default {
     font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 0
+    margin: 0 0 30px 0
   .uku-power-subtitle
     color: $black
     font-size: 20px
-    line-height: 26px
+    line-height: 22px
     font-weight: 500
     letter-spacing 0.6px
     margin: 0
+    text-align: center
   .uku-power-text
     color: $black
     font-size: 16px
     line-height: 24px
     font-weight: 400
+    margin: 0 0 10px 0
+  .uku-power-img
     margin: 0 0 10px 0
 
   /* CSS Media Queries */

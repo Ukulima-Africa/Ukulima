@@ -41,7 +41,7 @@
       </div>
       <!-- END Fourth Row -->
       <!-- Fourth Row - Intro & Connect -->
-      <div class="row items-start justify-evenly">
+      <div class="row items-start justify-evenly uku-green-bg">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <BlockchainPower />
         </div>
@@ -58,7 +58,7 @@
       </div>
       <!-- END Fifth Row -->
       <!-- Sixth Row -->
-      <div class="row items-start justify-evenly stripe-bg-image">
+      <div class="row items-start justify-evenly uku-black-bg uku-green-border">
         <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <News />
         </div>
@@ -79,7 +79,7 @@ import { networkFilter } from '../util/networkFilter'
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import Intro from '../components/Intro.vue'
-import Signin from '../components/Signin.vue'
+import Signin from '../components/forms/Signin.vue'
 import Banner from '../components/Banner.vue'
 import About from '../components/About.vue'
 import Blockchain from '../components/Blockchain.vue'
