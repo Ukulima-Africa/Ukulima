@@ -71,7 +71,7 @@
               </q-input>
             </div>
             <div class="self-center full-width no-outline">
-              <q-btn outline rounded color="white" class="uku-signup-button" label="Sign in" type="submit" tabindex="4" />
+              <q-btn outline rounded class="uku-signin-button" label="Sign in" type="submit" tabindex="4" />
             </div>
             <div class="full-width no-outline uku-forgot-text">
               <nuxt-link to="/auth/reset-password">Forgot Password?</nuxt-link>
@@ -288,24 +288,16 @@ export default {
       .q-field__native, .q-field__input
         color: #ffffff !important
         width: 100%
-      .q-field__control
-        border-radius: 5px
-        &:hover:before
-          border-color: #ffffff !important
-      .q-field__native,
-      .q-field__input
-        &:-webkit-autofill
-          margin-top: 1px
-          margin-bottom: 1px
-      &.q-field--rounded .q-field__control
-        border-radius: 28px
-      &.q-field--highlighted
-        .q-field__control:hover:before
-          border-color: transparent
-        .q-field__control:after
-          border-color: currentColor
-          border-width: 2px
-          transform: scale3d(1, 1, 1)
+      .q-field--outlined
+        .q-field__control
+          &:before
+            border: 1px solid #ffffff !important
+          &:hover:before
+            border-color: #fff
+          &:after
+            height: inherit
+            border-radius: inherit
+            border: 2px solid transparent
       .password-update
         color: #ffffff
         font-size: 12px
@@ -317,7 +309,7 @@ export default {
         cursor: pointer
         &:hover, &:focus
           color: #ffffff
-      .uku-signup-button
+      .uku-signin-button
         width: 340px
         text-transform: capitalize
         color: #ffffff
@@ -329,7 +321,7 @@ export default {
         letter-spacing: normal
         text-align: center
         border-radius: 5px
-        background-color: #2e353b
+        background-color: $primary
         cursor: pointer
       .uku-forgot-text
         width: 100%

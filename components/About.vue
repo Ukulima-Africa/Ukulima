@@ -3,18 +3,19 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-about-title">{{ title }}</div>
       <div class="uku-about-text">
-        Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa and
-        abroad, creating a sustainable eco-system for all.
-        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food security
         and build climate resilient economies in Africa and abroad.
-        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+      </div>
+      <div class="uku-about-text">
         Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
         out of reach of the local farmer.
-        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+      </div>
+      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+      <div class="uku-about-text">
         Ukulima aims to bring financial stability to our African farmers by providing innovative insurance solution for protection against weather
         related losses to growing crops.
-        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+      </div>
+      <div class="uku-about-text">
         We continue to invest in effective risk management in order to make a real difference in helping create a sustainable future in agriculture in
         Africa.
       </div>
@@ -57,6 +58,7 @@ export default {
     line-height: 24px
     font-weight: 400
     margin: 0 0 10px 0
+  .uku-about-image
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

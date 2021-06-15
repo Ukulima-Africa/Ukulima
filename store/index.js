@@ -19,12 +19,19 @@ const state = () => ({
   },
   user: {
     uid: null,
-    email: null,
     name: null,
+    email: null,
     emailVerified: null,
+    phoneCode: null,
     phoneNumber: null,
     photoURL: null,
-    onboardingState: 'Guest',
+    integrationType: 'BEP-20',
+    onboardingState: null,
+    profileType: null,
+    organisationId: null,
+    role: 'user',
+    dateCreated: null,
+    lastEdit: null
   },
   profile: {
     isAuthenticated: false,

@@ -38,26 +38,26 @@
       <!-- END Search -->
       <!-- Right Menu -->
       <div class="uku-menu uku-desktop-menu row no-wrap items-center">
-        <div v-if="account.balance" class="account-balance-button"><q-icon name="money" /> {{ parseFloat(account.balance, 4) }}</div>
-        <div v-if="account.account" class="account-address-button"><q-icon name="style" /> {{ account.account[0] | truncate(8, '...') }}</div>
-        <NuxtLink v-if="!user.uid" to="/auth/signin" class="signin-button">SIGN IN</NuxtLink>
-        <NuxtLink v-if="user.uid" to="/logout" class="signout-button">SIGN OUT</NuxtLink>
-        <q-btn v-if="!account.account" rounded outlined color="secondary" label="Connect" @click="connectMetaMask()" />
+        <div v-if="account.balance" class="account-balance-button no-wrap"><q-icon name="money" /> {{ parseFloat(account.balance, 4) }}</div>
+        <div v-if="account.account" class="account-address-button no-wrap"><q-icon name="style" /> {{ account.account[0] | truncate(8, '...') }}</div>
+        <q-btn
+          v-if="!account.account"
+          rounded
+          outlined
+          no-wrap
+          icon-right="play_arrow"
+          color="secondary"
+          class="q-mr-sm"
+          label="Connect"
+          @click="connectMetaMask()"
+        />
+        <q-btn v-if="!user.uid" rounded outlined no-wrap icon-right="perm_identity" to="/auth/signin" class="signin-button q-mr-sm" label="SIGN IN" />
+        <q-btn v-if="user.uid" rounded outlined no-wrap icon-right="logout" class="signout-button q-mr-sm" label="SIGN OUT" @click="signOut()" />
       </div>
       <!-- END Right Menu -->
       <div class="q-gutter-sm row items-center no-wrap">
-        <!-- <q-btn
-          v-if="!profile.isAuthenticated"
-          dense
-          outline
-          :color="!user.account ? 'white' : 'white'"
-          :label="!user.account ? 'Connect' : 'Load Arkane'"
-          :class="!user.account ? 'arkane-button bg-primary' : 'arkane-button text-black bg-primary'"
-          :icon="!user.account ? 'play_arrow' : 'gamepad'"
-          @click="!user.account ? connectMetaMask() : connectArkane()"
-        /> -->
         <!-- User Account Dropdown Button -->
-        <q-btn v-if="user.uid" flat round icon="account_circle" size="21.5px" class="account-button">
+        <q-btn v-if="user.uid" flat round icon="account_circle" size="20px" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
               <q-item v-if="user.name" v-ripple clickable>
@@ -400,57 +400,10 @@ export default {
       box-shadow: none
     .signin-button
       color: $white
-      background-color: $secondary
-      font-size: 14px
-      line-height: 26px
-      font-weight: bold
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      text-transform: none
-      border-radius: 28px
-      padding: 5px 20px
-      &:hover,
-      &:active
-        color: $light-grey
-        text-decoration: none !important
-    .signout-button
-      color: $white
       background-color: $black
-      font-size: 14px
-      line-height: 26px
-      font-weight: bold
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      text-transform: none
-      border-radius: 28px
-      padding: 5px 20px
       &:hover,
       &:active
-        color: $light-grey
         text-decoration: none !important
-    .signup-grey-button
-      color: #333333
-      background-color: $light-grey
-      font-size: 12px
-      line-height: 26px
-      font-weight: 300
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      border-radius: 28px
-      margin: 0 10px 0 10px
-      padding: 6px 20px
-      text-decoration: none
-      &:visited,
-      &:hover,
-      &:active
-        color: #343434
-        text-decoration: none
     .account-address-button
       color: #ffffff
       background-color: $black
@@ -499,6 +452,12 @@ export default {
     &:hover, &:focus
       color: $secondary !important
       text-decoration: none
+.signout-button
+  color: $primary
+  background-color: $secondary
+  &:hover,
+  &:active
+    text-decoration: none !important
 
   .GPL__toolbar-input
     color: $primary

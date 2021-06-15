@@ -34,6 +34,7 @@
               </div>
             </template>
           </q-field>
+          <h2 class="profile-item">Phone Number</h2>
           <q-field v-model="profile.phoneNumber" color="black" outlined>
             <template #control>
               <div class="self-center full-width no-outline" tabindex="3">
@@ -42,33 +43,61 @@
             </template>
           </q-field>
           <h2 class="profile-item">Profile Type</h2>
-          <q-field v-model="profile.profileType" color="black" outlined>
-            <template #control>
-              <div class="self-center full-width no-outline" tabindex="1">
-                {{ profile.profileType }}
-              </div>
+          <q-select v-model="profile.profileType" color="black" outlined tabindex="4" :options="profileTypes">
+            <template #option="scope">
+              <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                <q-item-section>
+                  <q-item-label>{{ scope.opt }}</q-item-label>
+                </q-item-section>
+              </q-item>
             </template>
-          </q-field>
-          <div class="self-center full-width no-outline q-mt-lg" tabindex="4">
-            <q-btn flat class="uku-signup-button" label="Reset Password" data-cy="resetPasswordSelector" @click="sendPasswordResetLink" />
+            <template #no-option>
+              <q-item>
+                <q-item-section class="text-grey">Select</q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+          <!-- Form Footer -->
+          <div class="uku-form-footer row justify-end q-mt-md">
+            <div class="col-4 col-md-4" align="left">
+              <div align="left">
+                <q-btn flat class="uku-signup-button" label="Reset Password" @click="sendPasswordResetLink" />
+              </div>
+            </div>
+            <div class="col-8 col-md-8" align="right">
+              <q-btn outline label="Cancel" color="secondary" class="q-ml-sm" />
+              <q-btn outline label="Update" color="primary" type="submit" class="q-ml-sm" />
+            </div>
           </div>
+          <!-- END Form Footer -->
         </div>
       </div>
     </div>
   </q-form>
 </template>
 <script>
+/* LFG */
 export default {
   name: 'ProfileForm',
   data() {
     return {
       profile: {
-        profileType: null,
-        integrationType: null,
+        uid: null,
         name: null,
         email: null,
+        emailVerified: null,
+        phoneCode: null,
         phoneNumber: null,
+        photoURL: null,
+        integrationType: 'BEP-20',
+        onboardingState: null,
+        profileType: null,
+        organisationId: null,
+        role: 'user',
+        dateCreated: null,
+        lastEdit: null,
       },
+      profileTypes: ['Farmer', 'Business', 'Co-Op', 'Retailer', 'Wholesaler', 'Sponsor'],
       loading: false,
     }
   },
@@ -129,10 +158,10 @@ export default {
 <style lang="sass" scoped>
 .uku-form
   max-width: 800px
-  margin-left: 184px
+  margin: 0 auto
   padding: 0
   .uku-form-box
-    max-width: 400px
+    max-width: 600px
     .q-input
       max-width: 400px
     .q-field__label

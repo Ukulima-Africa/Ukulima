@@ -110,7 +110,7 @@ export default function ({
             route.path === '/profile' ||
             route.path === '/profile/'
           ) {
-            return redirect('/auth/signin')
+            // return redirect('/auth/signin')
           }
           break
         }
@@ -160,7 +160,6 @@ export default function ({
         //   }
         // }
         if (
-
           route.path === '/auth/payment/' ||
           route.path === '/auth/payment' ||
           route.path === '/auth/onboarding/' ||

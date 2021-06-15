@@ -9,11 +9,11 @@
           </div>
         </div>
         <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 q-px-sm">
-          <div class="uku-news-subtitle">Ukulima launching AGRI Token soon ...</div>
+          <div class="uku-news-subtitle">Ukulima launches AGRI Token on Binance Smart Chain (BSC)</div>
           <div class="uku-news-text">
             Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque
-            and out of reach of the local farmer. Ukulima aims to empower farmers by utilising Blockchain Technology to manage finance and insure
-            small-hold farms throughout Africa and abroad
+            and out of reach of the local farmer. Ukulima strives to empower local farmers and agriculture by utilising Blockchain Technology to
+            manage finance and insure small-hold farms throughout Africa and abroad.
           </div>
         </div>
       </div>

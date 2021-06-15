@@ -2,7 +2,7 @@
   <div class="row uku-about">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-intro-image items-center justify-center">
-        <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" width="100%" />
+        <img src="~/assets/images/Insurance-Smart-Contracts.png" alt="Ukulima Africa" width="100%" />
       </div>
     </div>
   </div>

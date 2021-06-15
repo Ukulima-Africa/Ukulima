@@ -1,4 +1,5 @@
 const company = {
+
   /* Get Company or Organisations ID */
   async getCompanyId() {
     const docRef = await $nuxt.$fire.firestore
@@ -20,6 +21,7 @@ const company = {
       })
     return organisationId
   },
+
   /* Get Company Profile Data */
   async getCompanyData() {
     const organisationId = await this.getCompanyId()
@@ -86,13 +88,13 @@ const company = {
             icon: 'warning',
             message: `Error getting company CSL branch: ${error.message ? error.message : error}`
           })
-        } catch (error) {
-          this.$log.error(error)
+        } catch (err) {
+          this.$log.error(err)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company CSL branch: ${error}`
+            message: `Error getting company CSL branch: ${err}`
           })
         }
       })
@@ -124,13 +126,13 @@ const company = {
             icon: 'warning',
             message: `Error getting company branches: ${error.message ? error.message : error}`
           })
-        } catch (error) {
-          this.$log.error(error)
+        } catch (err) {
+          this.$log.error(err)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company branches: ${error}`
+            message: `Error getting company branches: ${err}`
           })
         }
       })
@@ -161,13 +163,13 @@ const company = {
             icon: 'warning',
             message: `Error getting company type: ${error.message ? error.message : error}`
           })
-        } catch (error) {
-          this.$log.error(error)
+        } catch (err) {
+          this.$log.error(err)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company type: ${error}`
+            message: `Error getting company type: ${err}`
           })
         }
       })
@@ -192,13 +194,13 @@ const company = {
             icon: 'warning',
             message: `Error saving user company type: ${error.message ? error.message : error}`
           })
-        } catch (error) {
-          this.$log.error(error)
+        } catch (err) {
+          this.$log.error(err)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user company type: ${error}`
+            message: `Error saving user company type: ${err}`
           })
         }
       })

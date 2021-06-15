@@ -55,9 +55,7 @@
             option-value="iso2"
             option-label="name"
             map-options
-            data-cy="countryCodeSelector"
           >
-            >
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
@@ -82,9 +80,7 @@
             option-value="value"
             option-label="name"
             map-options
-            data-cy="timezoneSelector"
           >
-            >
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
@@ -109,9 +105,7 @@
             option-value="code"
             option-label="name"
             map-options
-            data-cy="baseCurrencySelector"
           >
-            >
             <template #option="scope">
               <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                 <q-item-section>
@@ -126,7 +120,7 @@
             </template>
           </q-select>
 
-          <!-- Skwirrel Form Footer -->
+          <!-- Form Footer -->
           <div class="uku-form-footer row justify-end q-mt-md">
             <div class="col-4 col-md-4" align="left">
               <div align="left"></div>
@@ -139,7 +133,7 @@
               <q-btn flat label="Create" type="submit" class="black-button q-ml-sm" />
             </div>
           </div>
-          <!-- END Skwirrel Form Footer -->
+          <!-- END Form Footer -->
         </div>
       </div>
     </div>

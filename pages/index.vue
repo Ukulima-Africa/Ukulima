@@ -58,7 +58,7 @@
       </div>
       <!-- END Fifth Row -->
       <!-- Sixth Row -->
-      <div class="row items-start justify-evenly uku-black-bg uku-green-border">
+      <div class="row items-start justify-evenly uku-black-bg uku-white-border">
         <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
           <News />
         </div>

@@ -2,9 +2,10 @@
   <div class="row uku-contact">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-contact-title">{{ title }}</div>
+      <div class="uku-contact-subtitle">We would love to hear from you...</div>
       <div class="uku-contact-text">
-        We would love to hear from you! Our team are always keen to meet new people - so please get in touch, provide feedback or request to receive
-        more information about our products.
+        Our team are always keen to meet new people - so please feel free to get in touch, provide feedback or request to receive more information
+        about our platform and products.
       </div>
       <div class="uku-social row no-wrap">
         <q-btn
@@ -80,7 +81,7 @@ export default {
     line-height: 26px
     font-weight: 500
     letter-spacing 0.6px
-    margin: 0 0 15px 0
+    margin: 0 0 5px 0
   .uku-contact-text
     color: $white
     font-size: 14px
