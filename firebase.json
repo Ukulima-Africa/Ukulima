@@ -1,4 +1,5 @@
 {
+  "target": "pwa",
   "hosting": {
     "public": "dist",
     "ignore": [
