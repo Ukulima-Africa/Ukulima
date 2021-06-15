@@ -1,3 +1,8 @@
+#Firebase cache
+.firebase
+*.cache
+
+### Node template
 # Logs
 logs
 *.log
@@ -21,6 +26,9 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 *.lcov
+
+# vscode client settings
+.vscode
 
 # nyc test coverage
 .nyc_output
@@ -119,6 +127,9 @@ dist
 # IDE files
 .idea
 
+# Service worker
+sw.*
+
 # database files and Docs
 data/
 docs/
@@ -126,6 +137,11 @@ docs/
 # cypress example tests
 test/cypress/integration/examples/
 test/cypress/screenshots
+
+# Cypress Screenshots and Videos
+cypress/downloads
+cypress/screenshots
+cypress/videos
 
 # generated references during runtime
 static/assets/ref
