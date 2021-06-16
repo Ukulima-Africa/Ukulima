@@ -1,18 +1,28 @@
 <template>
-  <div class="row uku-inventory items-start justify-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
-      <div class="uku-inventory-card">
-        <div class="uku-inventory-title">{{ title }}</div>
-        <div class="uku-inventory-subtitle">{{ subtitle }}</div>
-        <div class="uku-inventory-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-          Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-          chain inefficiencies and agriculture associated risks.
+  <div class="row uku-marketplace items-start justify-center">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="uku-marketplace-card">
+        <div class="row items-start">
+          <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="uku-marketplace-title">{{ title }}</div>
+            <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
+          </div>
+          <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="uku-marketplace-buttons full-width" align="right">
+              <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+              <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            </div>
+          </div>
         </div>
-        <div class="uku-inventory-buttons full-width q-mt-xl" align="right">
-          <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-          <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
-          <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
+        <div class="row items-start justify-center">
+          <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="uku-marketplace-text">
+              Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
+              Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
+              chain inefficiencies and agriculture associated risks.
+            </div>
+          </div>
+          <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
         </div>
       </div>
     </div>
@@ -24,19 +34,19 @@ export default {
   data() {
     return {
       title: 'Marketplace',
-      subtitle: 'Add your inventory and products',
+      subtitle: 'Add your marketplace and products',
     }
   },
 }
 </script>
 <style lang="sass" scope>
 @import "../assets/sass/theme-variables"
-.uku-inventory
-  min-height: 660px
-  .uku-inventory-card
-    background: rgba(0, 0, 0, 0.6)
-    padding: 40px 30px
-    .uku-inventory-title
+.uku-marketplace
+  min-height: 200px
+  .uku-marketplace-card
+    background: $secondary
+    padding: 30px 30px
+    .uku-marketplace-title
       color: $white
       font-size: 32px
       line-height: 32px
@@ -44,14 +54,14 @@ export default {
       letter-spacing 0.10px
       word-spacing 1px
       margin: 0 0 20px 0
-    .uku-inventory-subtitle
+    .uku-marketplace-subtitle
       color: $white
       font-size: 20px
       line-height: 26px
       font-weight: 500
       letter-spacing 0.6px
       margin: 0 0 15px 0
-    .uku-inventory-text
+    .uku-marketplace-text
       color: $white
       font-size: 16px
       line-height: 24px

@@ -1,7 +1,7 @@
 <template>
   <q-header class="uku-header" height-hint="80">
     <q-toolbar>
-      <q-btn v-if="user.uid" flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
+      <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
       <q-avatar class="q-ml-xs">
         <img src="~/assets/images/logo.png" alt="Ukulima Africa" width="100px" />
       </q-avatar>
@@ -10,18 +10,6 @@
           <span class="uku-logo-text">Ukulima</span>
         </nuxt-link>
       </q-toolbar-title>
-      <!-- Left Menu -->
-      <div class="uku-menu uku-desktop-menu row no-wrap items-center q-ml-md">
-        <NuxtLink to="/" class="uku-menu-item">Home</NuxtLink>
-        <NuxtLink to="/grants" class="uku-menu-item">Grants</NuxtLink>
-        <NuxtLink to="/sponsors" class="uku-menu-item">Sponsors</NuxtLink>
-        <NuxtLink to="/marketplace" class="uku-menu-item">Marketplace</NuxtLink>
-        <NuxtLink to="/nfts" class="uku-menu-item">NFTs</NuxtLink>
-        <QSeparator inset vertical class="menu-item-separator self-center"></QSeparator>
-        <!-- <NuxtLink to="/auth/signup" class="uku-menu-item">Sign Up</NuxtLink> -->
-        <NuxtLink v-if="user.uid" to="/dashboard" class="uku-menu-item">Dashboard</NuxtLink>
-      </div>
-      <!-- End Menu -->
       <q-space />
       <!-- Search -->
       <!-- <div class="YL__toolbar-input-container row no-wrap">
@@ -37,9 +25,19 @@
       <!-- <q-space /> -->
       <!-- END Search -->
       <!-- Right Menu -->
-      <div class="uku-menu uku-desktop-menu row no-wrap items-center">
-        <div v-if="account.balance" class="account-balance-button no-wrap"><q-icon name="money" /> {{ parseFloat(account.balance, 4) }}</div>
-        <div v-if="account.account" class="account-address-button no-wrap"><q-icon name="style" /> {{ account.account[0] | truncate(8, '...') }}</div>
+      <div class="uku-menu row no-wrap items-center">
+        <q-btn v-if="account.balance" color="black" class="q-mr-sm account-balance-button" push>
+          <div class="row items-center no-wrap">
+            <q-icon left size="1em" name="money" />
+            <div class="text-center">{{ parseFloat(account.balance).toFixed(4) }}</div>
+          </div>
+        </q-btn>
+        <q-btn v-if="account.account" color="black" class="q-mr-sm account-address-button" push>
+          <div class="row items-center no-wrap">
+            <q-icon left size="1em" name="style" />
+            <div class="text-center">{{ account.account[0] | truncate(6, '...') }}</div>
+          </div>
+        </q-btn>
         <q-btn
           v-if="!account.account"
           rounded
@@ -51,19 +49,37 @@
           label="Connect"
           @click="connectMetaMask()"
         />
-        <q-btn v-if="!user.uid" rounded outlined no-wrap icon-right="perm_identity" to="/auth/signin" class="signin-button q-mr-sm" label="SIGN IN" />
-        <q-btn v-if="user.uid" rounded outlined no-wrap icon-right="logout" class="signout-button q-mr-sm" label="SIGN OUT" @click="signOut()" />
+        <q-btn
+          v-if="!user.uid"
+          rounded
+          outlined
+          no-wrap
+          icon-right="perm_identity"
+          to="/auth/signin"
+          class="signin-button uku-desktop-menu q-mr-sm"
+          label="SIGN IN"
+        />
+        <q-btn
+          v-if="user.uid"
+          rounded
+          outlined
+          no-wrap
+          icon-right="logout"
+          class="signout-button uku-desktop-menu"
+          label="SIGN OUT"
+          @click="signOut()"
+        />
       </div>
       <!-- END Right Menu -->
       <div class="q-gutter-sm row items-center no-wrap">
         <!-- User Account Dropdown Button -->
-        <q-btn v-if="user.uid" flat round icon="account_circle" size="20px" class="account-button">
+        <q-btn v-if="user.uid" flat round icon="account_circle" size="18px" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
               <q-item v-if="user.name" v-ripple clickable>
                 <q-item-section avatar>
                   <q-avatar>
-                    <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+                    <img :src="user.photoUrl ? user.photoUrl : 'https://cdn.quasar.dev/img/boy-avatar.png'" />
                   </q-avatar>
                 </q-item-section>
                 <q-item-section>{{ user.name }}</q-item-section>
@@ -405,44 +421,43 @@ export default {
       &:active
         text-decoration: none !important
     .account-address-button
-      color: #ffffff
-      background-color: $black
-      font-size: 12px
+      background-color: $black !important
+      font-size: 13px
       line-height: 26px
       font-weight: 400
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      border-radius: 28px
-      margin: 0 10px 0 0
-      padding: 5px 20px
-      text-decoration: none
-      text-overflow: ellipsis
-      &:visited,
-      &:hover,
-      &:active
-        color: #ffffff
-        text-decoration: none
     .account-balance-button
-      color: #ffffff
-      background-color: $black
-      font-size: 12px
+      background-color: $black !important
+      font-size: 13px
       line-height: 26px
       font-weight: 400
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      border-radius: 28px
-      margin: 0 10px 0 0
-      padding: 5px 20px
+.uku-mobile-menu
+  height: 100%
+  color: $black
+  font-size: 16px
+  line-height: 1.19
+  font-weight: 500
+  font-stretch: normal
+  font-style: normal
+  .mobile-menu-item
+    min-width: 200px
+    color: $black !important
+    margin: 0 20px
+    text-transform: capitalize
+    border: none
+    box-shadow: none
+    margin: 0 20px
+    &:hover,
+    &:active
+      color: #343434
       text-decoration: none
-      &:visited,
-      &:hover,
-      &:active
-        color: #ffffff
-        text-decoration: none
+    .menu-item-separator
+      width: 1px
+      height: 30px
+      color: #343434
+      margin: 0 10px
+      border: none
+      box-shadow: none
+
 .account-button
   color: $black
 .account-menu
@@ -453,8 +468,8 @@ export default {
       color: $secondary !important
       text-decoration: none
 .signout-button
-  color: $primary
-  background-color: $secondary
+  color: $white
+  background-color: $black
   &:hover,
   &:active
     text-decoration: none !important
@@ -463,38 +478,55 @@ export default {
     color: $primary
 
 /* CSS Media Queries */
+@media only screen and (max-width: 5000px)
+  .uku-mobile-menu
+    display: none
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
+  .uku-mobile-menu
+    display: none
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
+  .uku-mobile-menu
+    display: none
   .hide-on-tablet
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
+  .uku-mobile-menu
+    display: none
   .hide-on-tablet
     display: none
-
 /* $breakpoint-md: 959px */
 @media only screen and (max-width: 959px)
+  .uku-mobile-menu
+    display: none
   .hide-on-mobile
     display: none
-
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
+  .uku-desktop-menu
+    display: none
+  .uku-mobile-menu
+    display: inline-block
   .hide-on-mobile
     display: none
-
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
+  .uku-desktop-menu
+    display: none
+  .uku-mobile-menu
+    display: inline-block
   .hide-on-mobile
     display: none
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
+  .uku-desktop-menu
+    display: none
+  .uku-mobile-menu
+    display: inline-block
   .hide-on-mobile
     display: none
 </style>

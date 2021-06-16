@@ -1,18 +1,28 @@
 <template>
   <div class="row uku-sponsors items-start justify-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="uku-sponsors-card">
-        <div class="uku-sponsors-title">{{ title }}</div>
-        <div class="uku-sponsors-subtitle">{{ subtitle }}</div>
-        <div class="uku-sponsors-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-          Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-          chain inefficiencies and agriculture associated risks.
+        <div class="row items-start">
+          <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="uku-sponsors-title">{{ title }}</div>
+            <div class="uku-sponsors-subtitle">{{ subtitle }}</div>
+          </div>
+          <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="uku-sponsors-buttons full-width" align="right">
+              <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+              <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            </div>
+          </div>
         </div>
-        <div class="uku-sponsors-buttons full-width q-mt-xl" align="right">
-          <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-          <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
-          <q-btn rounded color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
+        <div class="row items-start justify-center">
+          <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="uku-sponsors-text">
+              Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
+              Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
+              chain inefficiencies and agriculture associated risks.
+            </div>
+          </div>
+          <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
         </div>
       </div>
     </div>
@@ -23,8 +33,8 @@ export default {
   name: 'SponsorList',
   data() {
     return {
-      title: 'Sponsors',
-      subtitle: 'Add your sponsors and products',
+      title: 'Sponsors & Funding',
+      subtitle: 'Team up with our community to take on exciting projects',
     }
   },
 }
@@ -32,10 +42,10 @@ export default {
 <style lang="sass" scope>
 @import "../assets/sass/theme-variables"
 .uku-sponsors
-  min-height: 660px
+  min-height: 200px
   .uku-sponsors-card
-    background: rgba(0, 0, 0, 0.6)
-    padding: 40px 30px
+    background: $secondary
+    padding: 30px 30px
     .uku-sponsors-title
       color: $white
       font-size: 32px

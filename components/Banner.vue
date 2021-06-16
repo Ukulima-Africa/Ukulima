@@ -1,6 +1,6 @@
 <template>
   <div class="row uku-about">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pl-xl q-pt-xl q-pr-xl">
       <div class="uku-intro-image items-center justify-center">
         <img src="~/assets/images/Insurance-Smart-Contracts.png" alt="Ukulima Africa" width="100%" />
       </div>

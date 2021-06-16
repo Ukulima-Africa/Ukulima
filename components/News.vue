@@ -3,17 +3,17 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-news-title">{{ title }}</div>
       <div class="row">
-        <div class="col-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          <div class="uku-intro-image">
-            <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" style="width: 120px" :ratio="1" />
-          </div>
-        </div>
-        <div class="col-10 col-lg-10 col-md-10 col-sm-10 col-xs-10 q-px-sm">
-          <div class="uku-news-subtitle">Ukulima launches AGRI Token on Binance Smart Chain (BSC)</div>
+        <div class="col-10 col-lg-10 col-md-9 col-sm-12 col-xs-12 q-pr-md">
+          <div class="uku-news-subtitle">Ukulima launches AGRI Token on Binance Smart Chain</div>
           <div class="uku-news-text">
             Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque
-            and out of reach of the local farmer. Ukulima strives to empower local farmers and agriculture by utilising Blockchain Technology to
-            manage finance and insure small-hold farms throughout Africa and abroad.
+            and out of reach of our local farmers. Ukulima Africa strives to empower local farmers and our agriculture industry by utilising
+            Blockchain Technology to manage, finance and insure smallhold farms throughout Africa and abroad.
+          </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-3 col-sm-12 col-xs-12 no-margin no-padding">
+          <div class="uku-news-image">
+            <img src="~/assets/images/Crop-Insurance.jpeg" alt="Ukulima Africa" style="width: 100%" :ratio="1" />
           </div>
         </div>
       </div>
