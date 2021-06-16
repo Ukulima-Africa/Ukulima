@@ -1,50 +1,58 @@
 <template>
-  <div class="row uku-power">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center q-pt-xl" align="center">
+  <div class="row uku-power q-py-xl">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center" align="center">
       <div class="uku-power-title">{{ title }}</div>
     </div>
     <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
-      <div class="uku-power-img full-width">
-        <img src="~/assets/images/Decentralised.png" alt="Decentralised" style="width: 100%" :ratio="1" />
-      </div>
-      <div class="uku-power-subtitle">Decentralised &amp; Distributed</div>
-      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-      <div class="uku-power-text">
-        Blockchain ensures that no one person can "hack" or change the data. Information is only added to the spreadsheet if the network of computers
-        all agree that the new information is valid and correct.
-      </div>
-    </div>
-    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
-      <div class="uku-power-img full-width">
-        <img src="~/assets/images/Consensus.png" alt="Consensus" style="width: 100%" :ratio="1" />
-      </div>
-      <div class="uku-power-subtitle">Consensus</div>
-      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-      <div class="uku-power-text">
-        Consensus means everyone agrees that each transaction is valid. The blockchain system is a distributed network of computers, called “nodes”,
-        which validate each others’ data, ensuring that no single node can corrupt or falsify the information.
+      <div class="uku-power-box">
+        <div class="uku-power-img full-width" align="center">
+          <img src="~/assets/images/Decentralised.png" alt="Decentralised" style="width: 70%" :ratio="1" />
+        </div>
+        <div class="uku-power-subtitle">Decentralised &amp; Distributed</div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        <div class="uku-power-text">
+          Blockchain ensures that no one person can "hack" or change the data. Information is only added to the spreadsheet if the network of
+          computers all agree that the new information is valid and correct.
+        </div>
       </div>
     </div>
     <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
-      <div class="uku-power-img full-width">
-        <img src="~/assets/images/Provenance.png" alt="Provenance" style="width: 100%" :ratio="1" />
-      </div>
-      <div class="uku-power-subtitle">Provenance</div>
-      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-      <div class="uku-power-text">
-        Provenance means everyone knows where each asset came from, who owned it and at what time. This is because the blockchain system holds a
-        complete history of all transactions that can never be changed - right back to when transactions were first created.
+      <div class="uku-power-box">
+        <div class="uku-power-img full-width" align="center">
+          <img src="~/assets/images/Consensus.png" alt="Consensus" style="width: 70%" :ratio="1" />
+        </div>
+        <div class="uku-power-subtitle">Consensus</div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        <div class="uku-power-text">
+          Consensus means everyone agrees that each transaction is valid. The blockchain system is a distributed network of computers, called “nodes”,
+          which validate each others’ data, ensuring that no single node can corrupt or falsify the information.
+        </div>
       </div>
     </div>
     <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
-      <div class="uku-power-img full-width">
-        <img src="~/assets/images/Immutability.png" alt="Immutability" style="width: 100%" :ratio="1" />
+      <div class="uku-power-box">
+        <div class="uku-power-img full-width" align="center">
+          <img src="~/assets/images/Provenance.png" alt="Provenance" style="width: 70%" :ratio="1" />
+        </div>
+        <div class="uku-power-subtitle">Provenance</div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        <div class="uku-power-text">
+          Provenance means everyone knows where each asset came from, who owned it and at what time. This is because the blockchain system holds a
+          complete history of all transactions that can never be changed - right back to when transactions were first created.
+        </div>
       </div>
-      <div class="uku-power-subtitle">Immutability</div>
-      <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-      <div class="uku-power-text">
-        Immutability means no one can tamper with the data - absolutely never! No transaction can be erased or changed once stored on the blockchain
-        system.
+    </div>
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+      <div class="uku-power-box">
+        <div class="uku-power-img full-width" align="center">
+          <img src="~/assets/images/Immutability.png" alt="Immutability" style="width: 70%" :ratio="1" />
+        </div>
+        <div class="uku-power-subtitle">Immutability</div>
+        <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
+        <div class="uku-power-text">
+          Immutability means no one can tamper with the data - absolutely never! No transaction can be erased or changed once stored on the blockchain
+          system.
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +72,6 @@ export default {
 
 .uku-power
   min-height: 400px
-  padding-bottom: 30px
   border-bottom: solid 2px $white
   .uku-power-title
     width: 100%
@@ -75,22 +82,28 @@ export default {
     letter-spacing 0.10px
     word-spacing 1px
     margin: 0 0 30px 0
-  .uku-power-subtitle
-    color: $black
-    font-size: 20px
-    line-height: 22px
-    font-weight: 500
-    letter-spacing 0.6px
-    margin: 0
-    text-align: center
-  .uku-power-text
-    color: $black
-    font-size: 16px
-    line-height: 24px
-    font-weight: 400
-    margin: 0 0 10px 0
-  .uku-power-img
-    margin: 0 0 10px 0
+  .uku-power-box
+    background: $secondary
+    border-radius: 5px
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
+    padding: 30px 20px
+    margin: 0 0 30px 0
+    .uku-power-subtitle
+      color: $white
+      font-size: 20px
+      line-height: 22px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0
+      text-align: center
+    .uku-power-text
+      color: $white
+      font-size: 16px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
+    .uku-power-img
+      margin: 0 0 10px 0
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

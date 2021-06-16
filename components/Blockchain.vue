@@ -3,7 +3,7 @@
     <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-blockchain-title">{{ title }}</div>
       <div class="uku-blockchain-subtitle">
-        According to The World Bank, 1.7 billion adults around the globe<br />
+        According to The World Bank, 1.7 billion adults around the globe<br class="hide-on-mobile" />
         don’t have access to a bank account or reliable insurance services
       </div>
       <div class="uku-blockchain-text">
@@ -20,12 +20,12 @@
         Machine Learning we can create a world in which access to data equals transparency, security and better food for all.
       </div>
       <div class="uku-intro-buttons full-width q-mt-xl" align="left">
-        <q-btn rounded color="primary" class="q-mr-sm" label="Chainlink Feeds" />
-        <q-btn outline rounded color="primary" class="q-mr-sm" label="Wind" />
-        <q-btn outline rounded color="primary" class="q-mr-sm" label="Rainfall" />
-        <q-btn outline rounded color="primary" class="q-mr-sm" label="Temperature" />
-        <q-btn outline rounded color="primary" class="q-mr-sm" label="Weather" />
-        <q-btn outline rounded color="primary" class="q-mr-sm" label="Other" />
+        <q-btn rounded color="primary" text-color="secondary" class="q-mr-sm q-mb-sm" label="Data Feeds" />
+        <q-btn outline rounded color="primary" class="q-mr-sm q-mb-sm" label="Wind" />
+        <q-btn outline rounded color="primary" class="q-mr-sm q-mb-sm" label="Rainfall" />
+        <q-btn outline rounded color="primary" class="q-mr-sm q-mb-sm" label="Temperature" />
+        <q-btn outline rounded color="primary" class="q-mr-sm q-mb-sm" label="Weather" />
+        <q-btn outline rounded color="primary" class="q-mr-sm q-mb-sm" label="Other" />
       </div>
     </div>
     <div class="col-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 q-pa-xl" align="center">

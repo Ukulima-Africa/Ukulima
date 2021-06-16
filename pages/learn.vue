@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <CompanyForm />
+      <Learn />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,17 +15,27 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import CompanyForm from '../components/forms/CompanyForm.vue'
+import Learn from '../components/Learn.vue'
 /* LFG */
 export default {
-  name: 'Company',
+  name: 'Learn',
   components: {
     Header,
     SidebarLeft,
-    CompanyForm,
+    Learn,
   },
   data() {
-    return {}
+    return {
+      title: 'Learn & Grow - Ukulima Africa',
+      description:
+        'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [{ hid: 'description', name: 'description', content: this.description }],
+    }
   },
   computed: {
     ...mapState(['web3', 'account', 'user', 'profile', 'company']),

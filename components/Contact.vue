@@ -4,16 +4,16 @@
       <div class="uku-contact-title">{{ title }}</div>
       <div class="uku-contact-subtitle">We would love to hear from you...</div>
       <div class="uku-contact-text">
-        Our team are always keen to meet new people - so please feel free to get in touch, provide feedback or request to receive more information
-        about our platform and products.
+        Our team are always keen to meet new people, so please feel free to get in touch with us!<br />
+        We value your feedback or request to receive more information about our services.
       </div>
-      <div class="uku-social row no-wrap">
+      <div class="uku-social">
         <q-btn
           dense
           type="a"
           href="http://www.ukulima.africa/"
           target="_blank"
-          class="q-mr-md float-left"
+          class="q-mr-md q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Web3dotjs.svg') ? require('@/assets/icons/Web3dotjs.svg') : ''}`"
           size="14px"
           label="Website"
@@ -23,7 +23,7 @@
           type="a"
           href="https://github.com/Ukulima-Africa"
           target="_blank"
-          class="q-mr-md float-left"
+          class="q-mr-md q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Github.svg') ? require('@/assets/icons/Github.svg') : ''}`"
           size="14px"
           label="Github"
@@ -33,7 +33,7 @@
           type="a"
           href="https://web.facebook.com/UkulimaAfrica"
           target="_blank"
-          class="q-mr-md float-left"
+          class="q-mr-md q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Facebook.svg') ? require('@/assets/icons/Facebook.svg') : ''}`"
           size="14px"
           label="Facebook"
@@ -43,7 +43,7 @@
           type="a"
           href="https://twitter.com/UkulimaAfrica"
           target="_blank"
-          class="q-mr-md float-left"
+          class="q-mr-md q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Twitter.svg') ? require('@/assets/icons/Twitter.svg') : ''}`"
           size="14px"
           label="Twitter"
@@ -87,7 +87,7 @@ export default {
     font-size: 14px
     line-height: 24px
     font-weight: 300
-    margin: 0 0 10px 0
+    margin: 0 0 15px 0
   .uku-social
     .q-btn__wrapper:before
         content: ''
@@ -103,8 +103,8 @@ export default {
     .nuxt-link,
     .uku-logo-link
       box-shadow: none
-      background-color: $black
-      color: $white !important
+      color: $black !important
+      background-color: $primary
       text-decoration: none
       cursor: pointer
       &:hover,

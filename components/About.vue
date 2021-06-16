@@ -3,17 +3,17 @@
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-about-title">{{ title }}</div>
       <div class="uku-about-text">
-        Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food security
-        and build climate resilient economies in Africa and abroad.
+        Ukulima Africa's core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve
+        food security and build climate resilient economies in Africa.
       </div>
       <div class="uku-about-text">
         Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
-        out of reach of the local farmer.
+        out of reach of our local farmers.
       </div>
       <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
       <div class="uku-about-text">
-        Ukulima aims to bring financial stability to our African farmers by providing innovative insurance solution for protection against weather
-        related losses to growing crops.
+        We aim to bring financial stability to our African farmers by providing innovative insurance solution for protection against weather related
+        losses to growing crops and other extremes which farms may face.
       </div>
       <div class="uku-about-text">
         We continue to invest in effective risk management in order to make a real difference in helping create a sustainable future in agriculture in

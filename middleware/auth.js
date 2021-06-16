@@ -133,7 +133,7 @@ export default function ({
               return redirect('/')
             }
           } else if (route.path !== '/dashboard') {
-            return redirect('/dashboard')
+            // return redirect('/dashboard')
           }
           break
         }

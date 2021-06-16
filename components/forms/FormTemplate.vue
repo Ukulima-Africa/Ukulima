@@ -1,6 +1,6 @@
 <template>
   <q-form ref="skwirrelForm" class="skwirrel-form" @submit="onSubmit" @reset="resetForm">
-    <div class="row page-header-row">
+    <div class="row">
       <div class="col-8 col-md-8 col-sm-12 col-xs-12 self-start">
         <div class="column" style="max-width: 400px">
           <!-- Example 1 -->
