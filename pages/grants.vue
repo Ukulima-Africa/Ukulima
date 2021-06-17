@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import GrantsList from '../components/Grants.vue'
+import GrantsList from '../components/GrantsList.vue'
 /* LFG */
 export default {
   name: 'Grants',

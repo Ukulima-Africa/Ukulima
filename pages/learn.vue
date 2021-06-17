@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <Learn />
+      <LearnGrow />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,14 +15,14 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import Learn from '../components/Learn.vue'
+import LearnGrow from '../components/LearnGrow.vue'
 /* LFG */
 export default {
   name: 'Learn',
   components: {
     Header,
     SidebarLeft,
-    Learn,
+    LearnGrow,
   },
   data() {
     return {

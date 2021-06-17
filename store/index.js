@@ -178,6 +178,11 @@ const actions = {
   }, payload) {
     commit('SET_STEP', payload)
   },
+  setAccount({
+    commit
+  }, payload) {
+    commit('SET_ACCOUNT', payload)
+  },
 }
 
 const mutations = {
@@ -222,7 +227,7 @@ const mutations = {
   },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
-      Object.assign(state.account = payload)
+    Object.assign(state.account = payload)
   },
   SET_WEB3_INSTANCE(state, payload) {
     state.account.web3Instance = payload

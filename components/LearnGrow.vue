@@ -30,7 +30,7 @@
 </template>
 <script>
 export default {
-  name: 'Learn',
+  name: 'LearnGrow',
   data() {
     return {
       title: 'Learn & Grow',

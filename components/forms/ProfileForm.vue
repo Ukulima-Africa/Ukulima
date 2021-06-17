@@ -191,8 +191,9 @@ export default {
 
             /* Saving to Firesatore */
             try {
-              const success = profile.saveProfile()
-              console.log('Sucess', success)
+              console.log('this.profile', this.profile)
+              const success = profile.saveProfile(this.profile)
+              console.log('success', success)
 
               this.$q.notify({
                 color: 'grey-13',

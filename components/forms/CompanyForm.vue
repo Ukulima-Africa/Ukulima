@@ -214,7 +214,7 @@ export default {
 
             /* Saving to Firesatore */
             try {
-              const success = company.saveCompany()
+              const success = company.saveCompany(this.company)
               console.log('Sucess', success)
 
               this.$q.notify({
