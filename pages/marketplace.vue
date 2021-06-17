@@ -40,13 +40,12 @@ export default {
   computed: {
     ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
-      getUser: 'getUser',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
-      getChainIdHEX: 'getChainIdHEX',
-      getLeftDrawerState: 'getLeftDrawerState',
+      getWeb3: 'web3',
+      getAccount: 'account',
+      getUser: 'user',
+      getProfile: 'profile',
+      getCompany: 'company',
+      getLeftDrawerState: 'leftDrawerOpen',
     }),
     web3: {
       get() {

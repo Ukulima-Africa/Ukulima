@@ -1,13 +1,13 @@
 <template>
-  <div class="row uku-marketplace items-start justify-center">
+  <div class="row uku-hero items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="row items-start uku-marketplace-card">
+      <div class="row items-start uku-hero-card">
         <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <div class="uku-marketplace-title">{{ title }}</div>
-          <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
+          <div class="uku-hero-title">{{ title }}</div>
+          <div class="uku-hero-subtitle">{{ subtitle }}</div>
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="uku-marketplace-buttons full-width" align="right">
+          <div class="uku-hero-buttons full-width" align="right">
             <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
             <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
           </div>
@@ -184,16 +184,15 @@ export default {
     }
   },
   async mounted() {
-    const userId = $nuxt.$fire.auth.currentUser.uid
+    const userId = await $nuxt.$fire.auth.currentUser.uid
     if (userId) {
       this.profile.uid = userId
     }
     const profileData = await profile.getProfile()
     Object.assign(this.profile, profileData)
-    console.log('Profile Data:', this.profile)
   },
   methods: {
-    async onSubmit(evt) {
+    onSubmit(evt) {
       this.$refs.profileForm
         .validate()
         .then((success) => {
@@ -243,7 +242,7 @@ export default {
       this.loading = true
       if (this.profile.email != null) {
         /* Send a password reset link request via the firebase SDK */
-        $nuxt.$fireAuth
+        $nuxt.$fire.auth
           .sendPasswordResetEmail(this.profile.email)
           .then(() => {
             this.$q.notify({
@@ -280,7 +279,7 @@ export default {
 </script>
 <style lang="sass" scoped>
 .uku-form
-  max-width: 1000px
+  max-width: 1100px
   background: $white
   border-radius: 5px
   border: solid 1px $secondary

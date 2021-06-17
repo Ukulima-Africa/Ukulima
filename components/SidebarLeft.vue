@@ -2,15 +2,15 @@
   <q-drawer v-model="leftDrawerOpen" content-class="uku-sidebar-left" :width="240">
     <q-scroll-area class="fit">
       <q-list dark padding>
-        <q-item v-if="user.uid" v-ripple clickable>
+        <!-- <q-item v-if="user.uid" v-ripple clickable>
           <q-item-section avatar>
             <q-avatar>
               <img :src="user.photoUrl ? user.photoUrl : 'https://cdn.quasar.dev/img/boy-avatar.png'" />
             </q-avatar>
           </q-item-section>
           <q-item-section>{{ user.name }}</q-item-section>
-        </q-item>
-        <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Profile Details </q-item-label>
+        </q-item> -->
+        <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Account Details </q-item-label>
         <q-item v-if="user.uid" v-ripple to="/dashboard" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="dashboard" />
@@ -116,7 +116,7 @@ export default {
   computed: {
     ...mapState(['user', 'leftDrawerOpen']),
     ...mapGetters({
-      getUser: 'getUser',
+      getUser: 'user',
       getLeftDrawerState: 'leftDrawerOpen',
     }),
     user: {
@@ -132,7 +132,7 @@ export default {
         return this.$store.state.leftDrawerOpen
       },
       set(value) {
-        this.$store.commit('TOGGLE_LEFTDRAWER', value)
+        this.$store.commit('SET_LEFTDRAWER', value)
       },
     },
   },

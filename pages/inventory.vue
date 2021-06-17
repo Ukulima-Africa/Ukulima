@@ -30,62 +30,13 @@ export default {
   computed: {
     ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
-      getUser: 'getUser',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
-      getChainIdHEX: 'getChainIdHEX',
-      getLeftDrawerState: 'getLeftDrawerState',
+      getWeb3: 'web3',
+      getAccount: 'account',
+      getUser: 'user',
+      getProfile: 'profile',
+      getCompany: 'company',
+      getLeftDrawerState: 'leftDrawerOpen',
     }),
-    web3: {
-      get() {
-        return this.$store.state.web3
-      },
-      set(value) {
-        this.$store.commit('SET_WEB3', value)
-      },
-    },
-    account: {
-      get() {
-        return this.$store.state.account
-      },
-      set(value) {
-        this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
-    leftDrawerOpen: {
-      get() {
-        return this.$store.state.leftDrawerOpen
-      },
-      set(value) {
-        this.$store.commit('SET_LEFTDRAWER', value)
-      },
-    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */

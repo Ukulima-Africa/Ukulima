@@ -178,16 +178,6 @@ const actions = {
   }, payload) {
     commit('SET_STEP', payload)
   },
-  setAccount({
-    commit
-  }, payload) {
-    commit('SET_ACCOUNT', payload)
-  },
-  toggleSidebar({
-    commit
-  }, payload) {
-    commit('TOGGLE_LEFTDRAWER', payload)
-  },
 }
 
 const mutations = {
