@@ -6,7 +6,7 @@ const pollWeb3 = async () => {
   const provider = await detectEthereumProvider()
   setInterval(async () => {
     if (provider && $nuxt.$store.state) {
-      if (provider && $nuxt.$store.state.account) {
+      if ($nuxt.$store.state.account) {
       // if (
       //   provider.chainId !== $nuxt.$store.state.account.chainIdHEX ||
       //   provider.selectedAddress !== $nuxt.$store.state.account.account[0]
@@ -37,7 +37,7 @@ const pollWeb3 = async () => {
             }
           }
         )
-        $nuxt.$store.dispatch('setAccount', {
+        $nuxt.$store.dispatch('pollWeb3', {
           account: newAccount,
           chainId: networkFilter(chainId, 'id'),
           chainIdHEX: String(chainId),

@@ -15,19 +15,19 @@
       </div>
       <div class="row items-start justify-center q-pa-lg">
         <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-          <q-form ref="companyForm" class="uku-form" @submit="onSubmit">
+          <q-form ref="userForm" class="uku-form" @submit="onSubmit">
             <!-- Row -->
             <div class="row">
               <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
                 <div class="row items-center no-wrap">
-                  <h2 class="company-username">
-                    {{ company.name }}
+                  <h2 class="profile-username">
+                    {{ profile.name }}
                   </h2>
                 </div>
               </div>
               <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
                 <div class="row items-center justify-end no-wrap">
-                  Organisation Details
+                  Profile Details
                   <q-icon
                     :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
                     size="xs"
@@ -39,115 +39,63 @@
             <!-- Row -->
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-                <h2 class="company-item">Organisation Name</h2>
-                <q-input v-model="company.name" color="black" outlined>
+                <h2 class="profile-item">Full Name</h2>
+                <q-input v-model="profile.name" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="1">
-                      {{ company.name }}
+                      {{ profile.name }}
                     </div>
                   </template>
                 </q-input>
-
-                <h2 class="company-item">Trading Company</h2>
-                <q-input v-model="company.legalName" color="black" outlined>
+                <h2 class="profile-item">Email</h2>
+                <q-input v-model="profile.email" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="2">
-                      {{ company.legalName }}
+                      {{ profile.email }}
                     </div>
                   </template>
                 </q-input>
-
-                <h2 class="company-item">Tax Number</h2>
-                <q-input v-model="company.taxNumber" color="black" outlined>
+                <h2 class="profile-item">Phone Number</h2>
+                <q-input v-model="profile.phoneNumber" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="3">
-                      {{ company.taxNumber }}
+                      {{ profile.phoneNumber }}
                     </div>
                   </template>
                 </q-input>
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-                <h2 class="company-item">Country</h2>
-                <q-select
-                  v-model="company.countryCode"
-                  color="black"
-                  outlined
-                  tabindex="4"
-                  :options="countryList"
-                  option-value="iso2"
-                  option-label="name"
-                  map-options
-                >
-                  <template #option="scope">
-                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                      <q-item-section>
-                        <q-item-label>{{ scope.opt.name }}</q-item-label>
-                      </q-item-section>
-                    </q-item>
+                <h2 class="profile-item">Binance Account ID</h2>
+                <q-input v-model="profile.binanceId" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="4">
+                      {{ profile.binanceId }}
+                    </div>
                   </template>
-                  <template #no-option>
-                    <q-item>
-                      <q-item-section class="text-grey">Select</q-item-section>
-                    </q-item>
+                </q-input>
+                <h2 class="profile-item">Binance Wallet Address</h2>
+                <q-input v-model="profile.binanceAccount" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="5">
+                      {{ profile.binanceAccount }}
+                    </div>
                   </template>
-                </q-select>
-
-                <h2 class="company-item">Timezone</h2>
-                <q-select
-                  v-model="company.timezone"
-                  color="black"
-                  outlined
-                  tabindex="5"
-                  :options="timezoneList"
-                  option-value="value"
-                  option-label="name"
-                  map-options
-                >
-                  <template #option="scope">
-                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                      <q-item-section>
-                        <q-item-label>{{ scope.opt.name }}</q-item-label>
-                      </q-item-section>
-                    </q-item>
+                </q-input>
+                <h2 class="profile-item">MetaMask Wallet Address</h2>
+                <q-input v-model="profile.metaMaskAccount" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="6">
+                      {{ profile.metaMaskAccount }}
+                    </div>
                   </template>
-                  <template #no-option>
-                    <q-item>
-                      <q-item-section class="text-grey">Select</q-item-section>
-                    </q-item>
-                  </template>
-                </q-select>
-
-                <h2 class="company-item">Currency</h2>
-                <q-select
-                  v-model="company.baseCurrency"
-                  color="black"
-                  outlined
-                  tabindex="6"
-                  :options="currencyList"
-                  option-value="code"
-                  option-label="name"
-                  map-options
-                >
-                  <template #option="scope">
-                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                      <q-item-section>
-                        <q-item-label>{{ scope.opt.name }}</q-item-label>
-                      </q-item-section>
-                    </q-item>
-                  </template>
-                  <template #no-option>
-                    <q-item>
-                      <q-item-section class="text-grey">Select</q-item-section>
-                    </q-item>
-                  </template>
-                </q-select>
+                </q-input>
               </div>
             </div>
             <!-- Row -->
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-                <h2 class="company-item">Organisation Type</h2>
-                <q-select v-model="company.companyType" color="black" outlined tabindex="7" :options="companyTypes">
+                <h2 class="profile-item">Profile Type</h2>
+                <q-select v-model="profile.profileType" color="black" outlined tabindex="7" :options="profileTypes">
                   <template #option="scope">
                     <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                       <q-item-section>
@@ -162,21 +110,35 @@
                   </template>
                 </q-select>
               </div>
-              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start"></div>
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
+                <h2 class="profile-item">Integration Type</h2>
+                <q-select v-model="profile.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
             </div>
             <!-- Form Footer -->
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
-                <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                <div align="left">
+                  <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                  <q-btn outline color="secondary" label="Reset Password" @click="sendPasswordResetLink" />
+                </div>
               </div>
               <div class="col-8 col-md-8" align="right">
-                <q-btn
-                  unelevated
-                  :label="!user.organisationId ? 'Create' : 'Update'"
-                  :color="!user.organisationId ? 'secondary' : 'primary'"
-                  type="submit"
-                  class="q-ml-sm"
-                />
+                <!-- DEV NOTE: We only need to update the Users Profile -->
+                <q-btn unelevated label="Update" color="primary" type="submit" class="q-ml-sm" />
               </div>
             </div>
             <!-- END Form Footer -->
@@ -188,49 +150,50 @@
 </template>
 <script>
 /* Import Utils */
-import company from '../../util/functions/company'
-/* Import Data for Form */
-import countries from '../../assets/data/countries'
-import currencies from '../../assets/data/currencies'
-import timezones from '../../assets/data/timezones'
+import profile from '../../util/functions/profile'
 /* LFG */
 export default {
-  name: 'CompanyForm',
-  props: {
-    user: {
-      type: Object,
-      required: true,
-      default: () => {},
-    },
-  },
+  name: 'UserForm',
   data() {
     return {
-      title: 'Organisation Details',
-      subtitle: 'Update your Organisation details and contact information',
+      title: 'Organisation User Details',
+      subtitle: 'Update your Organisation User details and information',
       isValid: false,
-      company: {
+      profile: {
+        uid: null,
+        organisationId: null,
+        role: null,
         name: null,
-        legalName: null,
-        taxNumber: null,
-        companyType: null,
-        countryCode: null,
-        timezone: null,
-        baseCurrency: null,
+        email: null,
+        emailVerified: null,
+        phoneCode: null,
+        phoneNumber: null,
+        photoURL: null,
+        profileType: null,
+        integrationType: null,
+        binanceId: null,
+        binanceAccount: null,
+        metaMaskAccount: null,
+        onboardingState: null,
+        dateCreated: null,
+        lastEdit: null,
       },
-      companyTypes: ['Farmer', 'Business', 'Co-Op', 'Retailer', 'Wholesaler', 'Sponsor', 'Investor', 'Other'],
-      countryList: countries,
-      timezoneList: timezones,
-      currencyList: currencies,
+      profileTypes: ['Farmer', 'Business', 'Co-Op', 'Retailer', 'Wholesaler', 'Sponsor', 'Investor', 'Other'],
+      integrationTypes: ['ERC-20', 'BEP-2', 'BEP-20'],
       loading: false,
     }
   },
   async mounted() {
-    const companyData = await company.getCompany()
-    Object.assign(this.company, companyData)
+    const userId = await $nuxt.$fire.auth.currentUser.uid
+    if (userId) {
+      this.profile.uid = userId
+    }
+    const profileData = await profile.getProfile()
+    Object.assign(this.profile, profileData)
   },
   methods: {
-    async onSubmit(evt) {
-      this.$refs.companyForm
+    onSubmit(evt) {
+      this.$refs.userForm
         .validate()
         .then((success) => {
           if (success) {
@@ -244,16 +207,12 @@ export default {
             })
             /* Saving to Firesatore */
             try {
-              if (this.user.organisationId && this.company) {
-                company.saveCompany(this.company)
-              } else {
-                company.createCompany(this.company)
-              }
+              profile.saveProfile(this.profile)
               this.$q.notify({
                 color: 'grey',
                 textColor: 'white',
                 icon: 'cloud_done',
-                message: 'Congratulations, your company details have been updated successfully!',
+                message: 'Congratulations, your Profile details have been updated successfully!',
               })
               return true
             } catch (error) {
@@ -261,7 +220,7 @@ export default {
                 color: 'red-6',
                 textColor: 'white',
                 icon: 'warning',
-                message: `Error saving Company details : ${error}`,
+                message: `Error saving user Profile details : ${error}`,
               })
               return false
             }
@@ -275,9 +234,45 @@ export default {
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company details: ${error}`,
+            message: `Error saving user Profile details : ${error}`,
           })
         })
+    },
+    sendPasswordResetLink() {
+      this.loading = true
+      if (this.profile.email != null) {
+        /* Send a password reset link request via the firebase SDK */
+        $nuxt.$fire.auth
+          .sendPasswordResetEmail(this.profile.email)
+          .then(() => {
+            this.$q.notify({
+              color: 'green-4',
+              textColor: 'white',
+              icon: 'cloud_done',
+              message: `An email with your password reset link has been sent to ${this.profile.email}`,
+            })
+            $nuxt.$router.push(`/logout`)
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            this.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error Reseting Password: ${errorCode}: ${errorMessage}`,
+            })
+            this.$log.error(error)
+          })
+      } else {
+        this.$q.notify({
+          color: 'red-6',
+          textColor: 'white',
+          icon: 'warning',
+          message: `Please enter a valid email address to continue`,
+        })
+      }
+      this.loading = false
     },
   },
 }
@@ -293,36 +288,36 @@ export default {
   margin: 40px auto
   .q-input
     max-width: 600px
-    .q-field__label
+  .q-field__label
     font-size: 14px
     line-height: 20px
     font-weight: 400
     letter-spacing: .00937em
-  .company-username
+  .profile-username
     font-size: 20px
     font-weight: bold
     line-height: 1.2
     color: #2e3133
     margin-bottom: 12px
-  .company-active-status-dot
+  .profile-active-status-dot
     height: 8px
     width: 8px
     background-color: #45d597
     border-radius: 50%
     display: inline-block
-  .company-active-status
+  .profile-active-status
     font-size: 14px
     font-weight: bold
     font-style: normal
     line-height: 1.14
     color: #45d597
     margin-bottom: 30px
-  .company-item
+  .profile-item
     font-size: 14px
     font-weight: 500
     line-height: 1
     text-align: left
-    color: #000000
+    color: black
     margin-top: 24px
     margin-bottom: 10px
   .select-menu-item

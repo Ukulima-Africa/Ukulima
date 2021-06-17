@@ -1,17 +1,17 @@
 <template>
-  <div id="invest" class="row uku-invest">
+  <div id="insurance" class="row uku-insurance">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
       <div class="uku-border-box">
-        <div class="uku-invest-title">{{ title }}</div>
-        <div class="uku-invest-subtitle">{{ subtitle }}</div>
-        <div class="uku-invest-text">
-          In developing countries, as many as 270 million smallholder farmers are underinsured. Only 20% have access to agricultural insurance
-          coverage, and in sub-Saharan Africa - despite the fivefold increase in agricultural microinsurance registered between 2011 and 2014
+        <div class="uku-insurance-title">{{ title }}</div>
+        <div class="uku-insurance-subtitle">{{ subtitle }}</div>
+        <div class="uku-insurance-text">
+          Ukulima understands your farm is very important to you, regardless its nature or size. As your partner in agriculture, our goal is to make
+          crop insurance even more accessible, affordable and easy to use.
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
-        <div class="uku-invest-text">
-          Ukulima's Blockchain Crop Insurance aims to increase smallholder farmers’ resilience to climate change through offering a more accessible
-          index insurance product at scale.
+        <div class="uku-insurance-text">
+          When you are insured, you can enjoy peace of mind knowing that your crops and assets are fully covered by technical experts who understand
+          the demands of the agriculture industry.
         </div>
       </div>
     </div>
@@ -19,19 +19,19 @@
 </template>
 <script>
 export default {
-  name: 'Invest',
+  name: 'Insurance',
   data() {
     return {
-      title: 'Grants & Investing',
-      subtitle: 'Invest in African Farms',
+      title: 'Insurance Cover',
+      subtitle: 'Protection for your livelihood',
     }
   },
 }
 </script>
 <style lang="sass" scope>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 
-.uku-invest
+.uku-insurance
   min-height: 500px
   .uku-border-box
     background: $beige
@@ -39,7 +39,7 @@ export default {
     border: solid 2px $secondary
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
     padding: 30px 20px
-    .uku-invest-title
+    .uku-insurance-title
       width: 100%
       color: $black
       font-size: 32px
@@ -49,7 +49,7 @@ export default {
       word-spacing 1px
       margin: 0 0 15px 0
       text-align: center
-    .uku-invest-subtitle
+    .uku-insurance-subtitle
       width: 100%
       color: $black
       font-size: 20px
@@ -58,7 +58,7 @@ export default {
       letter-spacing 0.6px
       margin: 0 0 15px 0
       text-align: center
-    .uku-invest-text
+    .uku-insurance-text
       color: $black
       font-size: 16px
       line-height: 24px

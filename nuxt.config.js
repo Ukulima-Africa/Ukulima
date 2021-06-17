@@ -8,7 +8,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   telemetry: false,
-
+  dev: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Ukulima Africa',
@@ -58,7 +58,7 @@ export default {
     [
       '@nuxtjs/dotenv',
       {
-        filename: `.env.${process.env.NODE_ENV || 'dev'}`,
+        filename: `.env.${process.env.NODE_ENV || 'development'}`,
       },
     ],
   ],
@@ -134,7 +134,8 @@ export default {
     },
     vue: {
       config: {
-        devtools: process.env.NODE_ENV === 'development',
+        productionTip: process.env.NODE_ENV === 'development' ? false : true,
+        devtools: process.env.NODE_ENV === 'development' ? true : false,
       },
     },
 }

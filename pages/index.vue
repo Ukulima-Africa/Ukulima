@@ -78,21 +78,21 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import Intro from '../components/Intro.vue'
+import Intro from '../components/home/Intro.vue'
 import Signin from '../components/forms/Signin.vue'
-import Banner from '../components/Banner.vue'
-import About from '../components/About.vue'
-import Blockchain from '../components/Blockchain.vue'
-import BlockchainPower from '../components/BlockchainPower.vue'
-import Defi from '../components/Defi.vue'
-import Binance from '../components/Binance.vue'
-import Insurance from '../components/Insurance.vue'
-import Invest from '../components/Invest.vue'
-import Contact from '../components/Contact.vue'
-import News from '../components/News.vue'
+import Banner from '../components/home/Banner.vue'
+import About from '../components/home/About.vue'
+import Blockchain from '../components/home/Blockchain.vue'
+import BlockchainPower from '../components/home/BlockchainPower.vue'
+import Defi from '../components/home/Defi.vue'
+import Binance from '../components/home/Binance.vue'
+import Insurance from '../components/home/Insurance.vue'
+import Invest from '../components/home/Invest.vue'
+import Contact from '../components/home/Contact.vue'
+import News from '../components/home/News.vue'
 /* LFG */
 export default {
-  name: 'Dashboard',
+  name: 'Home',
   components: {
     Header,
     SidebarLeft,
@@ -125,62 +125,13 @@ export default {
   computed: {
     ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
-      getUser: 'getUser',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
-      getChainIdHEX: 'getChainIdHEX',
-      getLeftDrawerState: 'getLeftDrawerState',
+      getWeb3: 'web3',
+      getAccount: 'account',
+      getUser: 'user',
+      getProfile: 'profile',
+      getCompany: 'company',
+      getLeftDrawerState: 'leftDrawerOpen',
     }),
-    web3: {
-      get() {
-        return this.$store.state.web3
-      },
-      set(value) {
-        this.$store.commit('SET_WEB3', value)
-      },
-    },
-    account: {
-      get() {
-        return this.$store.state.account
-      },
-      set(value) {
-        this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
-    leftDrawerOpen: {
-      get() {
-        return this.$store.state.leftDrawerOpen
-      },
-      set(value) {
-        this.$store.commit('SET_LEFTDRAWER', value)
-      },
-    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */

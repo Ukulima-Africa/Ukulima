@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <style lang="sass" scope>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 
 .uku-defi
   min-height: 500px
