@@ -183,6 +183,11 @@ const actions = {
   }, payload) {
     commit('SET_ACCOUNT', payload)
   },
+  toggleSidebar({
+    commit
+  }, payload) {
+    commit('TOGGLE_LEFTDRAWER', payload)
+  },
 }
 
 const mutations = {
@@ -393,6 +398,9 @@ const mutations = {
   /* Website */
   SET_SEARCH(state, payload) {
     state.searchText = payload
+  },
+  SET_LEFTDRAWER(state, payload) {
+    state.leftDrawerOpen = payload
   },
   TOGGLE_LEFTDRAWER(state) {
     state.leftDrawerOpen = !state.leftDrawerOpen

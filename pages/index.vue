@@ -123,13 +123,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
+      getCompany: 'getCompany',
       getChainIdHEX: 'getChainIdHEX',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
     web3: {
       get() {
@@ -161,6 +163,22 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_PROFILE', value)
+      },
+    },
+    company: {
+      get() {
+        return this.$store.state.company
+      },
+      set(value) {
+        this.$store.commit('SET_COMPANY', value)
+      },
+    },
+    leftDrawerOpen: {
+      get() {
+        return this.$store.state.leftDrawerOpen
+      },
+      set(value) {
+        this.$store.commit('SET_LEFTDRAWER', value)
       },
     },
   },

@@ -12,7 +12,7 @@
           <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="uku-form-body">
               <div class="uku-form-name">Please tell us what you require assistance with?</div>
-              <QForm ref="ukuForm" class="q-gutter-md" method="POST" @submit="onSubmit" @reset="onReset">
+              <q-form ref="ukuForm" class="q-gutter-md" method="POST" @submit="onSubmit" @reset="onReset">
                 <QOptionGroup v-model="formData.group" name="group" :options="formData.options" type="radio" class="no-margin no-padding" />
                 <QInput
                   v-model.trim="formData.textarea"
@@ -45,10 +45,10 @@
                   "
                 />
                 <div align="right">
-                  <QBtn flat label="Cancel" type="reset" color="black" class="cancel-button" />
-                  <QBtn flat label="Send" type="submit" class="submit-button q-ml-md" />
+                  <q-btn flat label="Cancel" type="reset" color="black" class="cancel-button" />
+                  <q-btn flat label="Send" type="submit" class="submit-button q-ml-md" />
                 </div>
-              </QForm>
+              </q-form>
             </div>
           </div>
         </div>

@@ -19,6 +19,42 @@ const company = {
       })
     return organisationId
   },
+  /* Set Company or Organisations ID */
+  async setOrganisationId(organisationId) {
+    await $nuxt.$fire.firestore
+      .collection('users')
+      .doc($nuxt.$fire.auth.currentUser.uid)
+      .set({
+        organisationId
+      })
+      .then((docRef) => {
+        console.log("User/'s Organisation Id being updated with Id: ", organisationId)
+        $nuxt.$store.commit('SET_ORGANISATION', organisationId)
+        return true
+      })
+      .catch(error => {
+        try {
+          this.$log.error(error.message ? error.message : error)
+          this.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error saving current user's Organisation Id: ${
+              error.message ? error.message : error
+            }`
+          })
+        } catch (err) {
+          this.$log.error(err)
+          this.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error saving current user's Organisation Id: ${err}`
+          })
+        }
+      })
+      return false
+  },
   /* Get Company Data */
   async getCompany() {
     const organisationId = await this.getOrganisationId()
@@ -56,9 +92,8 @@ const company = {
       })
     return companyData
   },
-  /* Save Company Data */
-  async saveCompany(data) {
-    const organisationId = await this.getOrganisationId()
+  /* Create Company Data */
+  async createCompany(data) {
     const docData = {
       name: data.name,
       legalName: data.legalName,
@@ -71,19 +106,13 @@ const company = {
     }
     await $nuxt.$fire.firestore
       .collection('organisations')
-      .doc(organisationId)
-      .set(docData, { merge: true })
-      .then((docRef) => {
+      .add(docData)
+      .then(async (docRef) => {
         console.log("Company has been updated successfully!", docRef.id)
-        console.log("organisation Id:", organisationId)
         $nuxt.$store.commit('SET_COMPANY', docData)
-        this.$q.notify({
-          color: 'green-13',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message:
-            'Congratulations, your Company data has been updated successfully!'
-        })
+        const success = await this.setOrganisationId(docRef.id)
+        console.log("Organisation Added:", success)
+        return true
       })
       .catch(error => {
         try {
@@ -106,6 +135,53 @@ const company = {
           })
         }
       })
+      return false
+  },
+  /* Save Company Data */
+  async saveCompany(data) {
+    const organisationId = await this.getOrganisationId()
+    const docData = {
+      name: data.name,
+      legalName: data.legalName,
+      taxNumber: data.taxNumber,
+      companyType: data.companyType,
+      countryCode: data.countryCode,
+      timezone: data.timezone,
+      baseCurrency: data.baseCurrency,
+      lastEdit: new Date()
+    }
+    await $nuxt.$fire.firestore
+      .collection('organisations')
+      .doc(organisationId)
+      .set(docData, { merge: true })
+      .then((docRef) => {
+        console.log("Company has been updated successfully!", docRef.id)
+        console.log("organisation Id:", organisationId)
+        $nuxt.$store.commit('SET_COMPANY', docData)
+        return true
+      })
+      .catch(error => {
+        try {
+          this.$log.error(error.message ? error.message : error)
+          this.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error saving Company data: ${
+              error.message ? error.message : error
+            }`
+          })
+        } catch (err) {
+          this.$log.error(err)
+          this.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error saving Company data: ${err}`
+          })
+        }
+      })
+      return false
   },
   /* Get Company Type */
   async getCompanyType() {

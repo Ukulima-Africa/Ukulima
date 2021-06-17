@@ -28,13 +28,15 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
       getUser: 'getUser',
       getProfile: 'getProfile',
+      getCompany: 'getCompany',
       getChainIdHEX: 'getChainIdHEX',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
     web3: {
       get() {
@@ -68,6 +70,22 @@ export default {
         this.$store.commit('SET_PROFILE', value)
       },
     },
+    company: {
+      get() {
+        return this.$store.state.company
+      },
+      set(value) {
+        this.$store.commit('SET_COMPANY', value)
+      },
+    },
+    leftDrawerOpen: {
+      get() {
+        return this.$store.state.leftDrawerOpen
+      },
+      set(value) {
+        this.$store.commit('SET_LEFTDRAWER', value)
+      },
+    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */
@@ -86,6 +104,10 @@ export default {
         console.log('%c Please connect MetaMask!', 'background: red; color: white')
       }
     }
+  },
+  mounted() {
+    /* Open the sidebar for this screen */
+    this.$store.commit('SET_LEFTDRAWER', true)
   },
   methods: {
     async loadAccount() {

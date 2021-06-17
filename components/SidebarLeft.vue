@@ -1,5 +1,5 @@
 <template>
-  <q-drawer v-model="leftDrawerOpen" bordered content-class="uku-sidebar-left" :width="240">
+  <q-drawer v-model="leftDrawerOpen" content-class="uku-sidebar-left" :width="240">
     <q-scroll-area class="fit">
       <q-list dark padding>
         <q-item v-if="user.uid" v-ripple clickable>

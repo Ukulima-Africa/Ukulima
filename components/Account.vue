@@ -1,54 +1,90 @@
 <template>
-  <q-card flat bordered class="uku-card uku-account-card">
-    <q-card-section>
-      <div class="text-h6">
-        {{ title }}
+  <div class="row uku-marketplace items-start justify-center">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="row items-start uku-marketplace-card">
+        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-title">{{ title }}</div>
+          <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
+        </div>
+        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-buttons full-width" align="right">
+            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+          </div>
+        </div>
       </div>
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <p v-if="account.account">Account: {{ account.account[0] }}</p>
-      <p>Balance: {{ account.balance }}</p>
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <p>Web3 Instance: {{ account.web3Instance }}</p>
-      <p>Is MetaMask: {{ account.isMetaMask }}</p>
-      <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
-      <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
-      <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <p>Arkane userId: {{ profile.userId }}</p>
-      <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
-      <p>Arkane username: {{ profile.username }}</p>
-      <p>Arkane email: {{ profile.email }}</p>
-      <p>Arkane firstName: {{ profile.firstName }}</p>
-      <p>Arkane lastName: {{ profile.lastName }}</p>
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <p>User userId: {{ profile.userId }}</p>
-      <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
-      <p>Arkane username: {{ profile.username }}</p>
-      <p>Arkane email: {{ profile.email }}</p>
-      <p>Arkane firstName: {{ profile.firstName }}</p>
-      <p>Arkane lastName: {{ profile.lastName }}</p>
-    </q-card-section>
-    <q-card-section>
-      <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
-      <q-btn
-        outline
-        color="grey-8"
-        class="full-width q-mb-sm"
-        label="Test Transaction"
-        @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
-      />
-      <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" />
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <pre>MetaMask Account: {{ account }}</pre>
-      <pre>User: {{ user }}</pre>
-      <pre>Profile: {{ profile }}</pre>
-    </q-card-section>
-  </q-card>
+      <div class="row items-start justify-center">
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-card flat bordered class="uku-card uku-account-card">
+            <q-card-section>
+              <div class="text-h6">
+                {{ title }}
+              </div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <p>Web3 Instance: {{ account.web3Instance }}</p>
+              <p>Is MetaMask: {{ account.isMetaMask }}</p>
+              <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
+              <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
+              <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <p>Arkane userId: {{ profile.userId }}</p>
+              <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
+              <p>Arkane username: {{ profile.username }}</p>
+              <p>Arkane email: {{ profile.email }}</p>
+              <p>Arkane firstName: {{ profile.firstName }}</p>
+              <p>Arkane lastName: {{ profile.lastName }}</p>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <p>User userId: {{ profile.userId }}</p>
+              <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
+              <p>Arkane username: {{ profile.username }}</p>
+              <p>Arkane email: {{ profile.email }}</p>
+              <p>Arkane firstName: {{ profile.firstName }}</p>
+              <p>Arkane lastName: {{ profile.lastName }}</p>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <q-card flat bordered class="uku-card uku-account-card">
+            <q-card-section>
+              <div class="text-h6">
+                {{ title }}
+              </div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <p v-if="account.account">Account: {{ account.account[0] }}</p>
+              <p>Balance: {{ account.balance }}</p>
+            </q-card-section>
+            <q-card-section>
+              <q-btn
+                v-if="!profile.userId"
+                flat
+                color="white"
+                class="bg-primary full-width q-mb-sm"
+                label="Connect Arkane"
+                @click="connectArkane()"
+              />
+              <q-btn
+                outline
+                color="grey-8"
+                class="full-width q-mb-sm"
+                label="Test Transaction"
+                @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
+              />
+              <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" />
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <pre>MetaMask Account: {{ account }}</pre>
+              <pre>User: {{ user }}</pre>
+              <pre>Profile: {{ profile }}</pre>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 /* Import Vuex State, Getters and Mutations */
@@ -62,7 +98,8 @@ export default {
   name: 'Account',
   data() {
     return {
-      title: 'Account',
+      title: 'Dashboard',
+      subtitle: 'View details about your Organisation and inventory',
     }
   },
   computed: {

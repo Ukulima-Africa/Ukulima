@@ -1,134 +1,150 @@
 <template>
-  <div class="row">
-    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-      <q-form ref="profileForm" class="uku-form" @submit="onSubmit" @reset="resetForm">
-        <!-- Row -->
-        <div class="row">
-          <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
-            <div class="row items-center no-wrap">
-              <h2 class="profile-username">
-                {{ profile.name }}
-              </h2>
+  <div class="row uku-marketplace items-start justify-center">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="row items-start uku-marketplace-card">
+        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-title">{{ title }}</div>
+          <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
+        </div>
+        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-buttons full-width" align="right">
+            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+          </div>
+        </div>
+      </div>
+      <div class="row items-start justify-center q-pa-lg">
+        <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+          <q-form ref="profileForm" class="uku-form" @submit="onSubmit">
+            <!-- Row -->
+            <div class="row">
+              <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
+                <div class="row items-center no-wrap">
+                  <h2 class="profile-username">
+                    {{ profile.name }}
+                  </h2>
+                </div>
+              </div>
+              <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
+                <div class="row items-center justify-end no-wrap">
+                  Profile Details
+                  <q-icon
+                    :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
+                    size="xs"
+                    class="q-ml-sm"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
-            <div class="row items-center no-wrap">
-              Profile Details
-              <q-icon
-                :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
-                size="xs"
-                class="q-ml-sm"
-              />
+            <!-- Row -->
+            <div class="row">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+                <h2 class="profile-item">Full Name</h2>
+                <q-input v-model="profile.name" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="1">
+                      {{ profile.name }}
+                    </div>
+                  </template>
+                </q-input>
+                <h2 class="profile-item">Email</h2>
+                <q-input v-model="profile.email" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="2">
+                      {{ profile.email }}
+                    </div>
+                  </template>
+                </q-input>
+                <h2 class="profile-item">Phone Number</h2>
+                <q-input v-model="profile.phoneNumber" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="3">
+                      {{ profile.phoneNumber }}
+                    </div>
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
+                <h2 class="profile-item">Binance Account ID</h2>
+                <q-input v-model="profile.binanceId" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="4">
+                      {{ profile.binanceId }}
+                    </div>
+                  </template>
+                </q-input>
+                <h2 class="profile-item">Binance Wallet Address</h2>
+                <q-input v-model="profile.binanceAccount" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="5">
+                      {{ profile.binanceAccount }}
+                    </div>
+                  </template>
+                </q-input>
+                <h2 class="profile-item">MetaMask Wallet Address</h2>
+                <q-input v-model="profile.metaMaskAccount" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="6">
+                      {{ profile.metaMaskAccount }}
+                    </div>
+                  </template>
+                </q-input>
+              </div>
             </div>
-          </div>
-        </div>
-        <!-- Row -->
-        <div class="row">
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-            <h2 class="profile-item">Full Name</h2>
-            <q-input v-model="profile.name" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="1">
-                  {{ profile.name }}
-                </div>
-              </template>
-            </q-input>
-            <h2 class="profile-item">Email</h2>
-            <q-input v-model="profile.email" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="2">
-                  {{ profile.email }}
-                </div>
-              </template>
-            </q-input>
-            <h2 class="profile-item">Phone Number</h2>
-            <q-input v-model="profile.phoneNumber" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="3">
-                  {{ profile.phoneNumber }}
-                </div>
-              </template>
-            </q-input>
-          </div>
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-            <h2 class="profile-item">Binance Account ID</h2>
-            <q-input v-model="profile.binanceId" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="4">
-                  {{ profile.binanceId }}
-                </div>
-              </template>
-            </q-input>
-            <h2 class="profile-item">Binance Wallet Address</h2>
-            <q-input v-model="profile.binanceAccount" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="5">
-                  {{ profile.binanceAccount }}
-                </div>
-              </template>
-            </q-input>
-            <h2 class="profile-item">MetaMask Wallet Address</h2>
-            <q-input v-model="profile.metaMaskAccount" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="6">
-                  {{ profile.metaMaskAccount }}
-                </div>
-              </template>
-            </q-input>
-          </div>
-        </div>
-        <!-- Row -->
-        <div class="row">
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-            <h2 class="profile-item">Profile Type</h2>
-            <q-select v-model="profile.profileType" color="black" outlined tabindex="7" :options="profileTypes">
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-          </div>
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-            <h2 class="profile-item">Integration Type</h2>
-            <q-select v-model="profile.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-          </div>
-        </div>
-        <!-- Form Footer -->
-        <div class="uku-form-footer row justify-end q-mt-xl">
-          <div class="col-4 col-md-4" align="left">
-            <div align="left">
-              <q-btn outline label="Go Back" to="/dashboard" />
-              <q-btn v-if="!profile.uid" outline label="Cancel" type="reset" color="secondary" class="q-ml-sm" />
+            <!-- Row -->
+            <div class="row">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+                <h2 class="profile-item">Profile Type</h2>
+                <q-select v-model="profile.profileType" color="black" outlined tabindex="7" :options="profileTypes">
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
+                <h2 class="profile-item">Integration Type</h2>
+                <q-select v-model="profile.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
             </div>
-          </div>
-          <div class="col-8 col-md-8" align="right">
-            <q-btn flat class="uku-signup-button" label="Reset Password" @click="sendPasswordResetLink" />
-            <q-btn outline :label="!profile.uid ? 'Create' : 'Update'" color="primary" type="submit" class="q-ml-sm" />
-          </div>
+            <!-- Form Footer -->
+            <div class="uku-form-footer row justify-end q-mt-xl">
+              <div class="col-4 col-md-4" align="left">
+                <div align="left">
+                  <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                  <q-btn outline color="secondary" label="Reset Password" @click="sendPasswordResetLink" />
+                </div>
+              </div>
+              <div class="col-8 col-md-8" align="right">
+                <!-- DEV NOTE: We only need to update the Users Profile -->
+                <q-btn unelevated label="Update" color="primary" type="submit" class="q-ml-sm" />
+              </div>
+            </div>
+            <!-- END Form Footer -->
+          </q-form>
         </div>
-        <!-- END Form Footer -->
-      </q-form>
+      </div>
     </div>
   </div>
 </template>
@@ -140,6 +156,8 @@ export default {
   name: 'ProfileForm',
   data() {
     return {
+      title: 'Profile Details',
+      subtitle: 'Update your Profile details and user information',
       isValid: false,
       profile: {
         uid: null,
@@ -175,7 +193,7 @@ export default {
     console.log('Profile Data:', this.profile)
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       this.$refs.profileForm
         .validate()
         .then((success) => {
@@ -184,22 +202,18 @@ export default {
             /* We need to set our notify Defaults */
             this.$q.notify.setDefaults({
               position: 'bottom',
-              timeout: 5000,
+              timeout: 4000,
               textColor: 'white',
               actions: [{ icon: 'close', color: 'white' }],
             })
-
             /* Saving to Firesatore */
             try {
-              console.log('this.profile', this.profile)
-              const success = profile.saveProfile(this.profile)
-              console.log('success', success)
-
+              profile.saveProfile(this.profile)
               this.$q.notify({
-                color: 'grey-13',
+                color: 'grey',
                 textColor: 'white',
                 icon: 'cloud_done',
-                message: 'Congratulations, your Profile details have been updated!',
+                message: 'Congratulations, your Profile details have been updated successfully!',
               })
               return true
             } catch (error) {
@@ -207,9 +221,8 @@ export default {
                 color: 'red-6',
                 textColor: 'white',
                 icon: 'warning',
-                message: `Error saving Profile details : ${error}`,
+                message: `Error saving user Profile details : ${error}`,
               })
-              this.resetForm()
               return false
             }
           }
@@ -222,22 +235,9 @@ export default {
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Profile details form: ${error}`,
+            message: `Error saving user Profile details : ${error}`,
           })
         })
-    },
-    resetForm() {
-      this.isValid = false
-      this.profile.name = null
-      this.profile.email = null
-      this.profile.phoneNumber = null
-      this.profile.photoURL = null
-      this.profile.integrationType = null
-      this.profile.onboardingState = null
-      this.profile.profileType = null
-      this.profile.organisationId = null
-      this.profile.role = null
-      this.$refs.profileForm.resetValidation()
     },
     sendPasswordResetLink() {
       this.loading = true
@@ -283,10 +283,10 @@ export default {
   max-width: 1000px
   background: $white
   border-radius: 5px
-  border: solid 2px $secondary
+  border: solid 1px $secondary
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
   padding: 40px
-  margin: 40px auto 30px
+  margin: 40px auto
   .q-input
     max-width: 600px
   .q-field__label
@@ -345,6 +345,18 @@ export default {
       opacity: 1 !important
     &:after
       opacity: 1 !important
+  /* Links & Buttons */
+  a,
+  .nuxt-link
+    text-decoration: none
+    cursor: pointer
+    &:hover,
+    &:active,
+    &:focus,
+    .nuxt-link-exact-active
+      text-decoration: none
+      cursor: pointer
+
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
   .uku-form

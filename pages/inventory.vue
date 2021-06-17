@@ -18,7 +18,7 @@ import SidebarLeft from '../components/SidebarLeft.vue'
 import InventoryList from '../components/InventoryList.vue'
 /* LFG */
 export default {
-  name: 'Company',
+  name: 'Inventory',
   components: {
     Header,
     SidebarLeft,
@@ -28,7 +28,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
@@ -36,6 +36,7 @@ export default {
       getProfile: 'getProfile',
       getCompany: 'getCompany',
       getChainIdHEX: 'getChainIdHEX',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
     web3: {
       get() {
@@ -77,25 +78,37 @@ export default {
         this.$store.commit('SET_COMPANY', value)
       },
     },
+    leftDrawerOpen: {
+      get() {
+        return this.$store.state.leftDrawerOpen
+      },
+      set(value) {
+        this.$store.commit('SET_LEFTDRAWER', value)
+      },
+    },
   },
-  // async beforeCreate() {
-  //   /* Check Web3 Instance */
-  //   const web3 = await this.$web3()
-  //   if (web3) {
-  //     this.$store.commit('SET_WEB3', web3)
-  //     this.$store.commit('SET_WEB3_INSTANCE', true)
-  //     if (web3 && web3.isMetaMask === true) {
-  //       this.$store.commit('SET_IS_METAMASK', true)
-  //     }
-  //     /* Load User Account Info into the store */
-  //     const accountLoaded = await this.loadAccount()
-  //     if (accountLoaded) {
-  //       console.log('%c MetaMask loaded successfully!', 'background: green; color: white')
-  //     } else {
-  //       console.log('%c Please connect MetaMask!', 'background: red; color: white')
-  //     }
-  //   }
-  // },
+  async beforeCreate() {
+    /* Check Web3 Instance */
+    const web3 = await this.$web3()
+    if (web3) {
+      this.$store.commit('SET_WEB3', web3)
+      this.$store.commit('SET_WEB3_INSTANCE', true)
+      if (web3 && web3.isMetaMask === true) {
+        this.$store.commit('SET_IS_METAMASK', true)
+      }
+      /* Load User Account Info into the store */
+      const accountLoaded = await this.loadAccount()
+      if (accountLoaded) {
+        console.log('%c MetaMask loaded successfully!', 'background: green; color: white')
+      } else {
+        console.log('%c Please connect MetaMask!', 'background: red; color: white')
+      }
+    }
+  },
+  mounted() {
+    /* Open the sidebar for this screen */
+    this.$store.commit('SET_LEFTDRAWER', true)
+  },
   methods: {
     async loadAccount() {
       /* Load Account, Chain Info and Balance/s */

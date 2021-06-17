@@ -1,167 +1,188 @@
 <template>
-  <div class="row">
-    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-      <q-form ref="companyForm" class="uku-form" @submit="onSubmit" @reset="resetForm">
-        <!-- Row -->
-        <div class="row">
-          <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
-            <div class="row items-center no-wrap">
-              <h2 class="company-username">
-                {{ company.name }}
-              </h2>
+  <div class="row uku-marketplace items-start justify-center">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="row items-start uku-marketplace-card">
+        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-title">{{ title }}</div>
+          <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
+        </div>
+        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="uku-marketplace-buttons full-width" align="right">
+            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
+            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+          </div>
+        </div>
+      </div>
+      <div class="row items-start justify-center q-pa-lg">
+        <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+          <q-form ref="companyForm" class="uku-form" @submit="onSubmit">
+            <!-- Row -->
+            <div class="row">
+              <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
+                <div class="row items-center no-wrap">
+                  <h2 class="company-username">
+                    {{ company.name }}
+                  </h2>
+                </div>
+              </div>
+              <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
+                <div class="row items-center justify-end no-wrap">
+                  Organisation Details
+                  <q-icon
+                    :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
+                    size="xs"
+                    class="q-ml-sm"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
-            <div class="row items-center no-wrap">
-              Organisation Details
-              <q-icon
-                :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
-                size="xs"
-                class="q-ml-sm"
-              />
+            <!-- Row -->
+            <div class="row">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+                <h2 class="company-item">Organisation Name</h2>
+                <q-input v-model="company.name" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="1">
+                      {{ company.name }}
+                    </div>
+                  </template>
+                </q-input>
+
+                <h2 class="company-item">Trading Company</h2>
+                <q-input v-model="company.legalName" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="2">
+                      {{ company.legalName }}
+                    </div>
+                  </template>
+                </q-input>
+
+                <h2 class="company-item">Tax Number</h2>
+                <q-input v-model="company.taxNumber" color="black" outlined>
+                  <template #control>
+                    <div class="self-center full-width no-outline" tabindex="3">
+                      {{ company.taxNumber }}
+                    </div>
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
+                <h2 class="company-item">Country</h2>
+                <q-select
+                  v-model="company.countryCode"
+                  color="black"
+                  outlined
+                  tabindex="4"
+                  :options="countryList"
+                  option-value="iso2"
+                  option-label="name"
+                  map-options
+                >
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt.name }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+
+                <h2 class="company-item">Timezone</h2>
+                <q-select
+                  v-model="company.timezone"
+                  color="black"
+                  outlined
+                  tabindex="5"
+                  :options="timezoneList"
+                  option-value="value"
+                  option-label="name"
+                  map-options
+                >
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt.name }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+
+                <h2 class="company-item">Currency</h2>
+                <q-select
+                  v-model="company.baseCurrency"
+                  color="black"
+                  outlined
+                  tabindex="6"
+                  :options="currencyList"
+                  option-value="code"
+                  option-label="name"
+                  map-options
+                >
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt.name }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
             </div>
-          </div>
+            <!-- Row -->
+            <div class="row">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+                <h2 class="company-item">Organisation Type</h2>
+                <q-select v-model="company.companyType" color="black" outlined tabindex="7" :options="companyTypes">
+                  <template #option="scope">
+                    <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
+                      <q-item-section>
+                        <q-item-label>{{ scope.opt }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                  <template #no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">Select</q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start"></div>
+            </div>
+            <!-- Form Footer -->
+            <div class="uku-form-footer row justify-end q-mt-xl">
+              <div class="col-4 col-md-4" align="left">
+                <q-btn flat color="black" label="Go Back" to="/dashboard" />
+              </div>
+              <div class="col-8 col-md-8" align="right">
+                <q-btn
+                  unelevated
+                  :label="!user.organisationId ? 'Create' : 'Update'"
+                  :color="!user.organisationId ? 'secondary' : 'primary'"
+                  type="submit"
+                  class="q-ml-sm"
+                />
+              </div>
+            </div>
+            <!-- END Form Footer -->
+          </q-form>
         </div>
-        <!-- Row -->
-        <div class="row">
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-            <h2 class="company-item">Organisation Name</h2>
-            <q-input v-model="company.name" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="1">
-                  {{ company.name }}
-                </div>
-              </template>
-            </q-input>
-
-            <h2 class="company-item">Trading Company</h2>
-            <q-input v-model="company.legalName" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="2">
-                  {{ company.legalName }}
-                </div>
-              </template>
-            </q-input>
-
-            <h2 class="company-item">Tax Number</h2>
-            <q-input v-model="company.taxNumber" color="black" outlined>
-              <template #control>
-                <div class="self-center full-width no-outline" tabindex="3">
-                  {{ company.taxNumber }}
-                </div>
-              </template>
-            </q-input>
-          </div>
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-            <h2 class="company-item">Country</h2>
-            <q-select
-              v-model="company.countryCode"
-              color="black"
-              outlined
-              tabindex="4"
-              :options="countryList"
-              option-value="iso2"
-              option-label="name"
-              map-options
-            >
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt.name }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-
-            <h2 class="company-item">Timezone</h2>
-            <q-select
-              v-model="company.timezone"
-              color="black"
-              outlined
-              tabindex="5"
-              :options="timezoneList"
-              option-value="value"
-              option-label="name"
-              map-options
-            >
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt.name }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-
-            <h2 class="company-item">Currency</h2>
-            <q-select
-              v-model="company.baseCurrency"
-              color="black"
-              outlined
-              tabindex="6"
-              :options="currencyList"
-              option-value="code"
-              option-label="name"
-              map-options
-            >
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt.name }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-          </div>
-        </div>
-        <!-- Row -->
-        <div class="row">
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-            <h2 class="company-item">Organisation Type</h2>
-            <q-select v-model="company.companyType" color="black" outlined tabindex="7" :options="companyTypes">
-              <template #option="scope">
-                <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
-                  <q-item-section>
-                    <q-item-label>{{ scope.opt }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </template>
-              <template #no-option>
-                <q-item>
-                  <q-item-section class="text-grey">Select</q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-          </div>
-          <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start"></div>
-        </div>
-        <!-- Form Footer -->
-        <div class="uku-form-footer row justify-end q-mt-xl">
-          <div class="col-4 col-md-4" align="left">
-            <q-btn outline label="Go Back" to="/dashboard" />
-            <q-btn v-if="!company.name" outline label="Cancel" type="reset" color="secondary" class="q-ml-sm" />
-          </div>
-          <div class="col-8 col-md-8" align="right">
-            <q-btn outline :label="!company.name ? 'Create' : 'Update'" color="primary" type="submit" class="q-ml-sm" />
-          </div>
-        </div>
-        <!-- END Form Footer -->
-      </q-form>
+      </div>
     </div>
   </div>
 </template>
@@ -175,8 +196,16 @@ import timezones from '../../assets/data/timezones'
 /* LFG */
 export default {
   name: 'CompanyForm',
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
+      title: 'Organisation Details',
+      subtitle: 'Update your Organisation details and contact information',
       isValid: false,
       company: {
         name: null,
@@ -207,21 +236,22 @@ export default {
             /* We need to set our notify Defaults */
             this.$q.notify.setDefaults({
               position: 'bottom',
-              timeout: 5000,
+              timeout: 4000,
               textColor: 'white',
               actions: [{ icon: 'close', color: 'white' }],
             })
-
             /* Saving to Firesatore */
             try {
-              const success = company.saveCompany(this.company)
-              console.log('Sucess', success)
-
+              if (this.user.organisationId && this.company) {
+                company.saveCompany(this.company)
+              } else {
+                company.createCompany(this.company)
+              }
               this.$q.notify({
-                color: 'grey-13',
+                color: 'grey',
                 textColor: 'white',
                 icon: 'cloud_done',
-                message: 'Congratulations, your company details have been updated!',
+                message: 'Congratulations, your company details have been updated successfully!',
               })
               return true
             } catch (error) {
@@ -231,7 +261,6 @@ export default {
                 icon: 'warning',
                 message: `Error saving Company details : ${error}`,
               })
-              this.resetForm()
               return false
             }
           }
@@ -248,16 +277,6 @@ export default {
           })
         })
     },
-    resetForm() {
-      this.isValid = false
-      this.company.name = null
-      this.company.legalName = null
-      this.company.taxNumber = null
-      this.company.countryCode = null
-      this.company.timezone = null
-      this.company.baseCurrency = null
-      this.$refs.companyForm.resetValidation()
-    },
   },
 }
 </script>
@@ -266,10 +285,10 @@ export default {
   max-width: 1000px
   background: $white
   border-radius: 5px
-  border: solid 2px $secondary
+  border: solid 1px $secondary
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
   padding: 40px
-  margin: 40px auto 30px
+  margin: 40px auto
   .q-input
     max-width: 600px
     .q-field__label
@@ -328,6 +347,18 @@ export default {
       opacity: 1 !important
     &:after
       opacity: 1 !important
+  /* Links & Buttons */
+  a,
+  .nuxt-link
+    text-decoration: none
+    cursor: pointer
+    &:hover,
+    &:active,
+    &:focus,
+    .nuxt-link-exact-active
+      text-decoration: none
+      cursor: pointer
+
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
   .uku-form

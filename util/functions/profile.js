@@ -79,13 +79,6 @@ const profile = {
         console.log("User's Profile has been updated successfully!", docRef.id)
         console.log("User Id:", $nuxt.$fire.auth.currentUser.uid)
         $nuxt.$store.commit('SET_USER', docData)
-        this.$q.notify({
-          color: 'green-13',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message:
-            'Congratulations, your Profile data has been updated successfully!'
-        })
       })
       .catch(error => {
         try {
