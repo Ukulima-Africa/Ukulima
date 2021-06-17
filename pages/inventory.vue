@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <Inventory />
+      <InventoryList />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,14 +15,14 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import Inventory from '../components/Inventory.vue'
+import InventoryList from '../components/InventoryList.vue'
 /* LFG */
 export default {
   name: 'Company',
   components: {
     Header,
     SidebarLeft,
-    Inventory,
+    InventoryList,
   },
   data() {
     return {}

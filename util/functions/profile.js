@@ -68,13 +68,13 @@ const profile = {
       binanceId: data.binanceId,
       binanceAccount: data.binanceAccount,
       metaMaskAccount: data.metaMaskAccount,
-      lastEdit: $nuxt.$fire.firestore.FieldValue.serverTimestamp(),
+      lastEdit: new Date()
     }
 
     await $nuxt.$fire.firestore
       .collection('users')
       .doc($nuxt.$fire.auth.currentUser.uid)
-      .set(docData)
+      .set(docData, { merge: true })
       .then((docRef) => {
         console.log("User's Profile has been updated successfully!", docRef.id)
         console.log("User Id:", $nuxt.$fire.auth.currentUser.uid)
@@ -136,13 +136,13 @@ const profile = {
               error.message ? error.message : error
             }`
           })
-        } catch (error) {
-          this.$log.error(error)
+        } catch (err) {
+          this.$log.error(err)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting profile type: ${error}`
+            message: `Error getting profile type: ${err}`
           })
         }
       })

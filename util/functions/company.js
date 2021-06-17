@@ -67,13 +67,12 @@ const company = {
       countryCode: data.countryCode,
       timezone: data.timezone,
       baseCurrency: data.baseCurrency,
-      lastEdit: $nuxt.$fire.firestore.FieldValue.serverTimestamp(),
+      lastEdit: new Date()
     }
-
     await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
-      .set(docData)
+      .set(docData, { merge: true })
       .then((docRef) => {
         console.log("Company has been updated successfully!", docRef.id)
         console.log("organisation Id:", organisationId)

@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import PrivacyPolicy from '../components/Privacy.vue'
+import PrivacyPolicy from '../components/PrivacyPolicy.vue'
 /* LFG */
 export default {
   name: 'Privacy',

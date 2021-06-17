@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import SponsorsList from '../components/Sponsors.vue'
+import SponsorsList from '../components/SponsorsList.vue'
 /* LFG */
 export default {
   name: 'Sponsors',

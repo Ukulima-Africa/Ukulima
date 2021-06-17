@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import NftsList from '../components/Nfts.vue'
+import NftsList from '../components/NftsList.vue'
 /* LFG */
 export default {
   name: 'Nfts',

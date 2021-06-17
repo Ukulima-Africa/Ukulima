@@ -15,7 +15,7 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import TermsConditions from '../components/Terms.vue'
+import TermsConditions from '../components/TermsConditions.vue'
 /* LFG */
 export default {
   name: 'Terms',
