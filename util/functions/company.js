@@ -27,9 +27,9 @@ const company = {
       .set({
         organisationId
       })
-      .then((docRef) => {
+      .then(async (docRef) => {
         console.log("User/'s Organisation Id being updated with Id: ", organisationId)
-        $nuxt.$store.commit('SET_ORGANISATION', organisationId)
+        await $nuxt.$store.commit('SET_ORGANISATION', organisationId)
         return true
       })
       .catch(error => {
@@ -108,7 +108,7 @@ const company = {
       .collection('organisations')
       .add(docData)
       .then(async (docRef) => {
-        console.log("Company has been updated successfully!", docRef.id)
+        console.log("Company has been created successfully!", docRef.id)
         $nuxt.$store.commit('SET_COMPANY', docData)
         const success = await this.setOrganisationId(docRef.id)
         console.log("Organisation Added:", success)
@@ -154,10 +154,10 @@ const company = {
       .collection('organisations')
       .doc(organisationId)
       .set(docData, { merge: true })
-      .then((docRef) => {
+      .then(async (docRef) => {
         console.log("Company has been updated successfully!", docRef.id)
         console.log("organisation Id:", organisationId)
-        $nuxt.$store.commit('SET_COMPANY', docData)
+        await $nuxt.$store.commit('SET_COMPANY', docData)
         return true
       })
       .catch(error => {

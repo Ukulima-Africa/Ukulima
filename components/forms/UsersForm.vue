@@ -153,7 +153,7 @@
 import profile from '../../util/functions/profile'
 /* LFG */
 export default {
-  name: 'UserForm',
+  name: 'UsersForm',
   data() {
     return {
       title: 'Organisation User Details',

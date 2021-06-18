@@ -38,15 +38,36 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
       getUser: 'getUser',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
-      getLeftDrawerState: 'getLeftDrawerState',
     }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */
