@@ -1,9 +1,9 @@
 <template>
-  <div class="row uku-power q-py-xl">
+  <div class="row uku-power">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center" align="center">
       <div class="uku-power-title">{{ title }}</div>
     </div>
-    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 uku-power-col">
       <div class="uku-power-box">
         <div class="uku-power-img full-width" align="center">
           <img src="~/assets/images/Decentralised.png" alt="Decentralised" style="width: 70%" :ratio="1" />
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 uku-power-col">
       <div class="uku-power-box">
         <div class="uku-power-img full-width" align="center">
           <img src="~/assets/images/Consensus.png" alt="Consensus" style="width: 70%" :ratio="1" />
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 uku-power-col">
       <div class="uku-power-box">
         <div class="uku-power-img full-width" align="center">
           <img src="~/assets/images/Provenance.png" alt="Provenance" style="width: 70%" :ratio="1" />
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pl-xl q-pr-xl">
+    <div class="col-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 uku-power-col">
       <div class="uku-power-box">
         <div class="uku-power-img full-width" align="center">
           <img src="~/assets/images/Immutability.png" alt="Immutability" style="width: 70%" :ratio="1" />
@@ -81,29 +81,31 @@ export default {
     font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 0 0 30px 0
-  .uku-power-box
-    background: $secondary
-    border-radius: 5px
-    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
-    padding: 30px 20px
-    margin: 0 0 30px 0
-    .uku-power-subtitle
-      color: $white
-      font-size: 20px
-      line-height: 22px
-      font-weight: 500
-      letter-spacing 0.6px
-      margin: 0
-      text-align: center
-    .uku-power-text
-      color: $white
-      font-size: 16px
-      line-height: 24px
-      font-weight: 400
-      margin: 0 0 10px 0
-    .uku-power-img
-      margin: 0 0 10px 0
+    margin: 40px 0 0 0
+  .uku-power-col
+    padding: 40px
+    .uku-power-box
+      background: $secondary
+      border-radius: 5px
+      box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
+      padding: 30px 20px
+      margin: 0 0 30px 0
+      .uku-power-subtitle
+        color: $white
+        font-size: 20px
+        line-height: 26px
+        font-weight: 500
+        letter-spacing 0.6px
+        margin: 0
+        text-align: center
+      .uku-power-text
+        color: $white
+        font-size: 16px
+        line-height: 24px
+        font-weight: 400
+        margin: 0 0 10px 0
+      .uku-power-img
+        margin: 0 0 10px 0
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
@@ -120,19 +122,115 @@ export default {
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
+  .uku-power-title
+    font-size: 30px
+    line-height: 30px
+    font-weight: 500
+    letter-spacing 0.10px
+    word-spacing 1px
+    margin: 20px 0 0 0
+  .uku-power-col
+    padding: 30px
+    .uku-power-box
+      padding: 30px 20px
+      .uku-power-subtitle
+        font-size: 18px
+        line-height: 24px
+        font-weight: 500
+        letter-spacing 0.6px
+        margin: 0
+      .uku-power-text
+        font-size: 14px
+        line-height: 24px
+        font-weight: 400
+        margin: 0 0 10px 0
+      .uku-power-img
+        margin: 0 0 10px 0
 
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
+  .uku-power-title
+    font-size: 30px
+    line-height: 30px
+    font-weight: 500
+    letter-spacing 0.10px
+    word-spacing 1px
+    margin: 20px 0 0 0
+  .uku-power-col
+    padding: 20px 20px 0 20px
+    .uku-power-box
+      padding: 30px 20px
+      .uku-power-subtitle
+        font-size: 18px
+        line-height: 24px
+        font-weight: 500
+        letter-spacing 0.6px
+        margin: 0
+      .uku-power-text
+        font-size: 14px
+        line-height: 24px
+        font-weight: 400
+        margin: 0 0 10px 0
+      .uku-power-img
+        margin: 0 0 10px 0
 
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
+  .uku-power-title
+    font-size: 28px
+    line-height: 30px
+    font-weight: 500
+    letter-spacing 0.10px
+    word-spacing 1px
+    margin: 20px 0 0 0
+  .uku-power-col
+    padding: 10px 10px 0 10px
+    .uku-power-box
+      padding: 30px 20px
+      .uku-power-subtitle
+        font-size: 18px
+        line-height: 24px
+        font-weight: 500
+        letter-spacing 0.6px
+        margin: 0
+      .uku-power-text
+        font-size: 14px
+        line-height: 24px
+        font-weight: 400
+        margin: 0 0 10px 0
+      .uku-power-img
+        margin: 0 0 10px 0
 
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-power-title
+    font-size: 28px
+    line-height: 30px
+    font-weight: 500
+    letter-spacing 0.10px
+    word-spacing 1px
+    margin: 20px 0 0 0
+  .uku-power-col
+    padding: 10px 10px 0 10px
+    .uku-power-box
+      padding: 30px 20px
+      .uku-power-subtitle
+        font-size: 18px
+        line-height: 24px
+        font-weight: 500
+        letter-spacing 0.6px
+        margin: 0
+      .uku-power-text
+        font-size: 14px
+        line-height: 24px
+        font-weight: 400
+        margin: 0 0 10px 0
+      .uku-power-img
+        margin: 0 0 10px 0
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="row uku-signin items-center content-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm self-center" align="center">
+  <div class="row uku-signin items-center justify-center content-center">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center self-center uku-signin-col" align="center">
       <div class="uku-signin-form">
         <div class="row no-wrap">
           <div class="uku-signin-title">{{ title }}</div>
@@ -258,97 +258,99 @@ export default {
   max-height: 600px
   min-height: inherit
   margin: 0 auto
-  padding: 60px 20px 30px 20px
+  padding: 0
   overflow: hidden
-  .uku-signin-form
-    max-width: 479px
-    border-radius: 4px
-    border: solid 1px #ffffff
-    padding: 30px 20px
-    .uku-signin-title
-      width: 100%
-      color: $white
-      font-size: 28px
-      line-height: 30px
-      font-weight: 400
-      letter-spacing 0.10px
-      word-spacing 1px
-      text-decoration: underline
-      margin: 0 auto 10px
-    .uku-signin-subtitle
-      width: 100%
-      color: $white
-      font-size: 16px
-      line-height: 20px
-      font-weight: 400
-      letter-spacing 0.8px
-      margin: 0 auto 20px
-    .uku-form
-      max-width: 340px
-      .q-field__native, .q-field__input
-        color: #ffffff !important
+  .uku-signin-col
+    padding: 60px 20px 30px 20px
+    .uku-signin-form
+      max-width: 479px
+      border-radius: 4px
+      border: solid 1px #ffffff
+      padding: 30px 20px
+      .uku-signin-title
         width: 100%
-      .q-field--outlined
-        .q-field__control
-          &:before
-            border: 1px solid #ffffff !important
-          &:hover:before
-            border-color: #fff
-          &:after
-            height: inherit
-            border-radius: inherit
-            border: 2px solid transparent
-      .password-update
-        color: #ffffff
-        font-size: 12px
-        line-height: 1.25
-        letter-spacing: 0.6px
-        font-weight: bold
-        font-stretch: normal
-        font-style: normal
-        cursor: pointer
-        &:hover, &:focus
+        color: $white
+        font-size: 28px
+        line-height: 30px
+        font-weight: 400
+        letter-spacing 0.10px
+        word-spacing 1px
+        text-decoration: underline
+        margin: 0 auto 10px
+      .uku-signin-subtitle
+        width: 100%
+        color: $white
+        font-size: 16px
+        line-height: 20px
+        font-weight: 400
+        letter-spacing 0.8px
+        margin: 0 auto 20px
+      .uku-form
+        max-width: 340px
+        .q-field__native, .q-field__input
+          color: #ffffff !important
+          width: 100%
+        .q-field--outlined
+          .q-field__control
+            &:before
+              border: 1px solid #ffffff !important
+            &:hover:before
+              border-color: #fff
+            &:after
+              height: inherit
+              border-radius: inherit
+              border: 2px solid transparent
+        .password-update
           color: #ffffff
-      .uku-signin-button
-        width: 340px
-        text-transform: capitalize
-        color: #ffffff
-        font-size: 18px
-        font-weight: 500
-        font-stretch: normal
-        font-style: normal
-        line-height: 1.17
-        letter-spacing: normal
-        text-align: center
-        border-radius: 5px
-        background-color: $primary
-        cursor: pointer
-      .uku-forgot-text
+          font-size: 12px
+          line-height: 1.25
+          letter-spacing: 0.6px
+          font-weight: bold
+          font-stretch: normal
+          font-style: normal
+          cursor: pointer
+          &:hover, &:focus
+            color: #ffffff
+        .uku-signin-button
+          width: 340px
+          text-transform: capitalize
+          color: #ffffff
+          font-size: 18px
+          font-weight: 500
+          font-stretch: normal
+          font-style: normal
+          line-height: 1.17
+          letter-spacing: normal
+          text-align: center
+          border-radius: 5px
+          background-color: $primary
+          cursor: pointer
+        .uku-forgot-text
+          width: 100%
+          color: #ffffff
+          font-size: 14px
+          line-height: 1.21
+          font-weight: normal
+          font-stretch: normal
+          font-style: normal
+          letter-spacing: normal
+          text-align: left
+          margin: 25px 0 0 0
+      .uku-welcome-text
         width: 100%
         color: #ffffff
         font-size: 14px
-        line-height: 1.21
+        line-height: 1.57
         font-weight: normal
         font-stretch: normal
         font-style: normal
         letter-spacing: normal
-        text-align: left
-        margin: 25px 0 0 0
-    .uku-welcome-text
-      width: 100%
-      color: #ffffff
-      font-size: 14px
-      line-height: 1.57
-      font-weight: normal
-      font-stretch: normal
-      font-style: normal
-      letter-spacing: normal
-      text-align: center
-      margin: 20px 0 0 0
-      .uku-welcome-link
-        color: $white
-        font-weight: bold
-        text-decoration: none
+        text-align: center
+        margin: 20px 0 0 0
+        .uku-welcome-link
+          color: $white
+          font-weight: bold
+          text-decoration: none
 
 
   /* CSS Media Queries */
@@ -366,19 +368,37 @@ export default {
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
+  .uku-signin-col
+    padding: 30px 20px
 
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
+  .uku-signin-col
+    padding: 30px 20px
 
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
+  .uku-signin-col
+    padding: 0
+    .uku-signin-form
+      max-width: 100%
+      border-radius: 0
+      border: none
+      padding: 30px 20px
 
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-signin-col
+    padding: 0
+    .uku-signin-form
+      max-width: 100%
+      border-radius: 0
+      border: none
+      padding: 30px 20px
 </style>

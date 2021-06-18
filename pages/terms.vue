@@ -38,13 +38,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user', 'leftDrawerOpen']),
     ...mapGetters({
       getWeb3: 'web3',
       getAccount: 'account',
       getUser: 'user',
-      getProfile: 'profile',
-      getCompany: 'company',
       getLeftDrawerState: 'leftDrawerOpen',
     }),
   },

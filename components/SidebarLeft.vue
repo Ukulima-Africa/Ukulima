@@ -2,14 +2,14 @@
   <q-drawer v-model="leftDrawerOpen" content-class="uku-sidebar-left" :width="240">
     <q-scroll-area class="fit">
       <q-list dark padding>
-        <!-- <q-item v-if="user.uid" v-ripple clickable>
+        <q-item v-if="user.uid" v-ripple clickable>
           <q-item-section avatar>
             <q-avatar>
               <img :src="user.photoUrl ? user.photoUrl : 'https://cdn.quasar.dev/img/boy-avatar.png'" />
             </q-avatar>
           </q-item-section>
           <q-item-section>{{ user.name }}</q-item-section>
-        </q-item> -->
+        </q-item>
         <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Account Details </q-item-label>
         <q-item v-if="user.uid" v-ripple to="/dashboard" clickable>
           <q-item-section avatar>
@@ -119,22 +119,6 @@ export default {
       getUser: 'user',
       getLeftDrawerState: 'leftDrawerOpen',
     }),
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    leftDrawerOpen: {
-      get() {
-        return this.$store.state.leftDrawerOpen
-      },
-      set(value) {
-        this.$store.commit('SET_LEFTDRAWER', value)
-      },
-    },
   },
   methods: {
     toggleLeftDrawer(value) {

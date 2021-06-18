@@ -1,6 +1,6 @@
 <template>
   <div class="row uku-about">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-xl">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-about-col">
       <div class="uku-about-title">{{ title }}</div>
       <div class="uku-about-text">
         Ukulima Africa's core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve
@@ -37,28 +37,29 @@ export default {
 
 .uku-about
   min-height: 400px
-  .uku-about-title
-    color: $white
-    font-size: 32px
-    line-height: 32px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 30px 0
-  .uku-about-subtitle
-    color: $white
-    font-size: 20px
-    line-height: 26px
-    font-weight: 500
-    letter-spacing 0.6px
-    margin: 0 0 25px 0
-  .uku-about-text
-    color: $white
-    font-size: 16px
-    line-height: 24px
-    font-weight: 400
-    margin: 0 0 10px 0
-  .uku-about-image
+  .uku-about-col
+    padding: 40px
+    .uku-about-title
+      color: $white
+      font-size: 32px
+      line-height: 32px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 30px 0
+    .uku-about-subtitle
+      color: $white
+      font-size: 20px
+      line-height: 26px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 25px 0
+    .uku-about-text
+      color: $white
+      font-size: 16px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
@@ -75,19 +76,99 @@ export default {
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
+  .uku-about-col
+    padding: 30px
+    .uku-about-title
+      font-size: 30px
+      line-height: 30px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 25px 0
+    .uku-about-subtitle
+      font-size: 18px
+      line-height: 24px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 20px 0
+    .uku-about-text
+      font-size: 14px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
+  .uku-about-col
+    padding: 0 20px 0 20px
+    .uku-about-title
+      font-size: 30px
+      line-height: 30px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 25px 0
+    .uku-about-subtitle
+      font-size: 18px
+      line-height: 24px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 20px 0
+    .uku-about-text
+      font-size: 14px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
+  .uku-about-col
+    padding: 0 10px 0 10px
+    .uku-about-title
+      font-size: 28px
+      line-height: 30px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 25px 0
+    .uku-about-subtitle
+      font-size: 18px
+      line-height: 24px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 20px 0
+    .uku-about-text
+      font-size: 14px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-about-col
+    padding: 0 10px 0 10px
+    .uku-about-title
+      font-size: 28px
+      line-height: 30px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 25px 0
+    .uku-about-subtitle
+      font-size: 18px
+      line-height: 24px
+      font-weight: 500
+      letter-spacing 0.6px
+      margin: 0 0 20px 0
+    .uku-about-text
+      font-size: 14px
+      line-height: 24px
+      font-weight: 400
+      margin: 0 0 10px 0
 </style>

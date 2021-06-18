@@ -382,33 +382,6 @@ export default {
       font-size: 13px
       line-height: 26px
       font-weight: 400
-.uku-mobile-menu
-  height: 100%
-  color: $black
-  font-size: 16px
-  line-height: 1.19
-  font-weight: 500
-  font-stretch: normal
-  font-style: normal
-  .mobile-menu-item
-    min-width: 200px
-    color: $black !important
-    margin: 0 20px
-    text-transform: capitalize
-    border: none
-    box-shadow: none
-    margin: 0 20px
-    &:hover,
-    &:active
-      color: #343434
-      text-decoration: none
-    .menu-item-separator
-      width: 1px
-      height: 30px
-      color: #343434
-      margin: 0 10px
-      border: none
-      box-shadow: none
 
 .account-button
   color: $black
