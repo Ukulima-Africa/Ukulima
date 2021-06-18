@@ -21,7 +21,7 @@ const profile = {
   },
   /* Get Current User's Profile Data */
   async getProfile() {
-    const profileRef = $nuxt.$fire.firestore
+    const profileRef = await $nuxt.$fire.firestore
       .collection('users')
       .doc($nuxt.$fire.auth.currentUser.uid)
     let profileData = ''
@@ -104,7 +104,7 @@ const profile = {
   },
   /* Get Profile Type */
   async getProfileType() {
-    const profileRef = $nuxt.$fire.firestore
+    const profileRef = await $nuxt.$fire.firestore
       .collection('users')
       .doc($nuxt.$fire.auth.currentUser.uid)
 

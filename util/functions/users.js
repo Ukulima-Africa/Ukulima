@@ -97,7 +97,7 @@ const users = {
   async getUser(id) {
     const organisationId = await this.getOrgId()
 
-    const userRef = $nuxt.$fire.firestore
+    const userRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('users')

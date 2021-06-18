@@ -9,6 +9,9 @@ import Quasar from 'quasar/dist/quasar.umd.min';
 
 Vue.use(Quasar, {
   config: {
-    loading: false,
+    loading: {
+      color: 'secondary',
+      height: '4px'
+    }
   },
 });

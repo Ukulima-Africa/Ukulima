@@ -151,14 +151,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'searchText', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'search', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'web3',
-      getAccount: 'account',
-      getUser: 'user',
-      getProfile: 'profile',
-      getSearchText: 'searchText',
-      getLeftDrawerState: 'leftDrawerOpen',
+      getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
+      getUser: 'getUser',
+      getProfile: 'getProfile',
+      getCompany: 'getCompany',
+      getSearch: 'getSearch',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
     networkColor() {
       return networkColor(this.$store.state.account.chainIdHEX, 'color')
@@ -188,10 +189,10 @@ export default {
     },
     async connectMetaMask() {
       /* Check Web3 Instance */
-      const web3 = await this.$web3()
-      this.$store.commit('SET_WEB3', web3)
+      const newWeb3 = await this.$web3()
+      this.$store.commit('SET_WEB3', newWeb3)
       /* Enable MetaMask and Sign in */
-      if (web3 && web3.isMetaMask === true) {
+      if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
       }
       /* Load User Account Info into the store */
@@ -204,16 +205,16 @@ export default {
     },
     async loadAccount() {
       /* Load Network, Account and Balance/s */
-      const account = await this.$web3.connectMetaMask()
-      if (account[0] && account[0] !== '') {
-        this.$store.commit('SET_ACCOUNT_ADDRESS', account)
-        const chainIdHEX = await this.$web3.getChainId(account)
+      const newAccount = await this.$web3.connectMetaMask()
+      if (newAccount[0] && newAccount[0] !== '') {
+        this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
+        const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
         const chainId = networkFilter(chainIdHEX, 'id')
         this.$store.commit('SET_CHAIN_ID', chainId)
         const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
-        const balance = await this.$web3.getBalance(account)
+        const balance = await this.$web3.getBalance(newAccount)
         this.$store.commit('SET_BALANCE', balance)
         return true
       }

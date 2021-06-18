@@ -1,14 +1,13 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
-
+/* LFG */
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   telemetry: false,
-  dev: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Ukulima Africa',
@@ -134,8 +133,7 @@ export default {
     },
     vue: {
       config: {
-        productionTip: process.env.NODE_ENV === 'development' ? false : true,
-        devtools: process.env.NODE_ENV === 'development' ? true : false,
+        devtools: false,
       },
     },
 }

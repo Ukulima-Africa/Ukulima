@@ -69,7 +69,6 @@ export default {
 </script>
 <style lang="sass" scope>
 @import "../../assets/sass/theme-variables"
-
 .uku-power
   min-height: 400px
   border-bottom: solid 2px $white
@@ -106,18 +105,15 @@ export default {
         margin: 0 0 10px 0
       .uku-power-img
         margin: 0 0 10px 0
-
-  /* CSS Media Queries */
+/* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
@@ -146,7 +142,6 @@ export default {
         margin: 0 0 10px 0
       .uku-power-img
         margin: 0 0 10px 0
-
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
@@ -175,7 +170,6 @@ export default {
         margin: 0 0 10px 0
       .uku-power-img
         margin: 0 0 10px 0
-
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
@@ -204,7 +198,6 @@ export default {
         margin: 0 0 10px 0
       .uku-power-img
         margin: 0 0 10px 0
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile

@@ -44,6 +44,14 @@
           </q-item-section>
         </q-item>
         <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Community </q-item-label>
+        <q-item v-ripple to="/" clickable>
+          <q-item-section avatar>
+            <q-icon color="white" name="home" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Home</q-item-label>
+          </q-item-section>
+        </q-item>
         <q-item v-ripple to="/marketplace" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="shopping_cart" />
@@ -114,10 +122,14 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['user', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'leftDrawerOpen']),
     ...mapGetters({
-      getUser: 'user',
-      getLeftDrawerState: 'leftDrawerOpen',
+      getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
+      getUser: 'getUser',
+      getProfile: 'getProfile',
+      getCompany: 'getCompany',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
   },
   methods: {

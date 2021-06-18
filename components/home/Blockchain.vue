@@ -47,7 +47,6 @@ export default {
 </script>
 <style lang="sass" scope>
 @import "../../assets/sass/theme-variables"
-
 .uku-blockchain
   min-height: 200px
   .uku-blockchain-col
@@ -76,18 +75,15 @@ export default {
     .uku-blockchain-image
       margin-top: 40px
       overflow: hidden !important
-
-  /* CSS Media Queries */
+/* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
@@ -116,7 +112,6 @@ export default {
     .uku-blockchain-image
       margin-top: 20px
       overflow: hidden !important
-
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
@@ -144,7 +139,6 @@ export default {
       margin: 0 0 10px 0
     .uku-blockchain-image
       margin-top: 20px
-
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
@@ -171,7 +165,6 @@ export default {
       margin: 0 0 10px 0
     .uku-blockchain-image
       margin: 0
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile

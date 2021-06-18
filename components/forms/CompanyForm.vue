@@ -229,7 +229,7 @@ export default {
     Object.assign(this.company, companyData)
   },
   methods: {
-    async onSubmit(evt) {
+    onSubmit(evt) {
       this.$refs.companyForm
         .validate()
         .then((success) => {

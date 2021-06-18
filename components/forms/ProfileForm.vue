@@ -184,7 +184,7 @@ export default {
     }
   },
   async mounted() {
-    const userId = await $nuxt.$fire.auth.currentUser.uid
+    const userId = $nuxt.$fire.auth.currentUser.uid
     if (userId) {
       this.profile.uid = userId
     }

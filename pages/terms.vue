@@ -65,8 +65,12 @@ export default {
     }
   },
   mounted() {
-    /* Open the sidebar for this screen */
-    this.$store.commit('SET_LEFTDRAWER', true)
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      /* Open the sidebar for this screen */
+      this.$store.commit('SET_LEFTDRAWER', true)
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
   },
   methods: {
     async loadAccount() {

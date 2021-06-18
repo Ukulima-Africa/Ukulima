@@ -224,7 +224,7 @@ const company = {
   async saveCompanyType(type) {
     const organisationId = await this.getOrganisationId()
 
-    $nuxt.$fireStore
+    await $nuxt.$fireStore
       .collection('organisations')
       .doc(organisationId)
       .update({
@@ -258,7 +258,7 @@ const company = {
   async getCompanyCSLBranch() {
     const organisationId = await this.getOrganisationId()
 
-    const outletRef = $nuxt.$fire.firestore
+    const outletRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('stock-locations')
