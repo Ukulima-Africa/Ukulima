@@ -18,7 +18,7 @@
             <q-icon v-if="searchText === ''" name="search" />
           </template>
           <template #append>
-            <q-icon v-if="searchText !== ''" name="clear" class="cursor-pointer" @click="search('')" />
+            <q-icon v-if="searchText !== ''" name="clear" class="cursor-pointer" @click="seachBar('')" />
           </template>
         </q-input>
       </div> -->
@@ -178,7 +178,7 @@ export default {
   //   }
   // },
   methods: {
-    search(value) {
+    seachBar(value) {
       this.$store.commit('SEARCH', value)
     },
     toggleLeftDrawer(value) {

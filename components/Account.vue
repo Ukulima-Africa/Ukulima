@@ -73,7 +73,7 @@
                 label="Test Transaction"
                 @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
               />
-              <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" />
+              <!-- <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" /> -->
             </q-card-section>
             <q-card-section class="q-pt-none">
               <pre>MetaMask Account: {{ account }}</pre>
@@ -110,38 +110,6 @@ export default {
       getAccount: 'getAccount',
       getProfile: 'getProfile',
     }),
-    web3: {
-      get() {
-        return this.$store.state.web3
-      },
-      set(value) {
-        this.$store.commit('SET_WEB3', value)
-      },
-    },
-    account: {
-      get() {
-        return this.$store.state.account
-      },
-      set(value) {
-        this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
-      },
-    },
   },
   async beforeCreate() {
     /* Check ArkaneProvider Instance */
@@ -246,27 +214,27 @@ export default {
         console.error(error)
       }
     },
-    async requestPermissions() {
-      await window.ethereum
-        .request({
-          method: 'eth_requestAccounts',
-          params: [{ eth_accounts: {} }],
-        })
-        .then((permissions) => {
-          const accountsPermission = permissions.find((permission) => permission.parentCapability === 'eth_accounts')
-          if (accountsPermission) {
-            console.log('eth_accounts permission successfully requested!')
-          }
-        })
-        .catch((error) => {
-          if (error.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            console.log('Permissions needed to continue.')
-          } else {
-            console.error(error)
-          }
-        })
-    },
+    // async requestPermissions() {
+    //   await window.ethereum
+    //     .request({
+    //       method: 'eth_requestAccounts',
+    //       params: [{ eth_accounts: {} }],
+    //     })
+    //     .then((permissions) => {
+    //       const accountsPermission = permissions.find((permission) => permission.parentCapability === 'eth_accounts')
+    //       if (accountsPermission) {
+    //         console.log('eth_accounts permission successfully requested!')
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       if (error.code === 4001) {
+    //         // EIP-1193 userRejectedRequest error
+    //         console.log('Permissions needed to continue.')
+    //       } else {
+    //         console.error(error)
+    //       }
+    //     })
+    // },
   },
 }
 </script>

@@ -8,6 +8,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   telemetry: false,
+  devtools: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Ukulima Africa',
@@ -96,7 +97,7 @@ export default {
           },
           firestore: true,
           storage: true,
-          performance: true,
+          performance: false,
           analytics: false
         },
       },
@@ -133,7 +134,7 @@ export default {
     },
     vue: {
       config: {
-        devtools: false,
+        devtools: true,
       },
     },
 }

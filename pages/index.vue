@@ -9,7 +9,7 @@
           <Intro />
         </div>
         <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12">
-          <Signin />
+          <SigninForm />
         </div>
       </div>
       <!-- END First Row -->
@@ -79,7 +79,7 @@ import { networkFilter } from '../util/networkFilter'
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import Intro from '../components/home/Intro.vue'
-import Signin from '../components/forms/Signin.vue'
+import SigninForm from '../components/forms/SigninForm.vue'
 import Banner from '../components/home/Banner.vue'
 import About from '../components/home/About.vue'
 import Blockchain from '../components/home/Blockchain.vue'
@@ -97,7 +97,7 @@ export default {
     Header,
     SidebarLeft,
     Intro,
-    Signin,
+    SigninForm,
     Banner,
     About,
     Blockchain,
@@ -217,22 +217,18 @@ export default {
   background-position: center right
   overflow: hidden
   padding: 0
-
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
   .hide-on-tablet
     display: none
-
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
   .hide-on-tablet
     display: none
-
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile

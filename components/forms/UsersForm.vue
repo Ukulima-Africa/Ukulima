@@ -238,42 +238,6 @@ export default {
           })
         })
     },
-    sendPasswordResetLink() {
-      this.loading = true
-      if (this.profile.email != null) {
-        /* Send a password reset link request via the firebase SDK */
-        $nuxt.$fire.auth
-          .sendPasswordResetEmail(this.profile.email)
-          .then(() => {
-            this.$q.notify({
-              color: 'green-4',
-              textColor: 'white',
-              icon: 'cloud_done',
-              message: `An email with your password reset link has been sent to ${this.profile.email}`,
-            })
-            $nuxt.$router.push(`/logout`)
-          })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            this.$q.notify({
-              color: 'red-6',
-              textColor: 'white',
-              icon: 'warning',
-              message: `Error Reseting Password: ${errorCode}: ${errorMessage}`,
-            })
-            this.$log.error(error)
-          })
-      } else {
-        this.$q.notify({
-          color: 'red-6',
-          textColor: 'white',
-          icon: 'warning',
-          message: `Please enter a valid email address to continue`,
-        })
-      }
-      this.loading = false
-    },
   },
 }
 </script>

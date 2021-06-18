@@ -91,7 +91,7 @@
 <script>
 /* LFG */
 export default {
-  name: 'Signin',
+  name: 'SigninForm',
   data() {
     return {
       page: 'login',

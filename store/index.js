@@ -101,8 +101,7 @@ const actions = {
 
       await userRef
         .get()
-        // eslint-disable-next-line func-names
-        .then(function (doc) {
+        .then((doc) => {
           if (doc.exists) {
             const user = doc.data()
             user.uid = uid
@@ -210,7 +209,7 @@ const mutations = {
   },
   /* Web3 & Providers */
   SET_WEB3(state, payload) {
-    Object.assign(state.web3, payload)
+    state.web3 = payload
     pollWeb3()
   },
   POLL_WEB3(state, payload) {
@@ -300,10 +299,10 @@ const mutations = {
     }
   },
   SET_PROFILE_TYPE(state, profileType) {
-    state.profileType = profileType
+    state.user.profileType = profileType
   },
   RESET_PROFILE_TYPE(state, profileType) {
-    state.profileType = profileType
+    state.user.profileType = profileType
   },
   SET_ORGANISATION(state, orgid) {
     state.user.organisationId = orgid
@@ -324,17 +323,16 @@ const mutations = {
   SET_BRANCHES(state, branches) {
     state.branches = branches
   },
-  async SET_BRANCH(state, branch) {
+  SET_BRANCH(state, branch) {
     state.branch = branch
     // we also update the users doc in the database
     // so that it will remember the branch they last viewed
     // if they change devices etc.
     // try {
-    //   const userID = this.$fire.auth.currentUser.uid
+    //   const userID = await this.$fire.auth.currentUser.uid
     //   console.log("userID", userID)
-    //   if (this.$fire.auth.currentUser.uid) {
+    //   if (userID) {
     //     const userRef = this.$fire.firestore.collection('users').doc(userID)
-
     //     await userRef.get().then(async (doc) => {
     //       if (doc.exists) {
     //         await doc.ref.update({
@@ -344,7 +342,7 @@ const mutations = {
     //     })
     //   }
     // } catch (error) {
-    //   console.log(error)
+    //   console.error(error)
     // }
   },
   /* Other Totals */
@@ -471,7 +469,7 @@ const getters = {
   },
   /* Profile Info */
   getProfileType(state) {
-    return state.profileType
+    return state.user.profileType
   },
   getOnboardingState(state) {
     return state.user.onboardingState

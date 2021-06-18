@@ -43,15 +43,7 @@
             <q-item-label>Inventory</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Community </q-item-label>
-        <q-item v-ripple to="/" clickable>
-          <q-item-section avatar>
-            <q-icon color="white" name="home" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Home</q-item-label>
-          </q-item-section>
-        </q-item>
+        <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Community Menu</q-item-label>
         <q-item v-ripple to="/marketplace" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="shopping_cart" />
@@ -92,7 +84,7 @@
             <q-item-label>Learn &amp; Grow</q-item-label>
           </q-item-section>
         </q-item>
-        <q-separator v-if="user.uid" class="q-mt-md q-mb-xs" />
+        <q-separator v-if="user.uid" color="white" />
         <q-item v-if="user.uid" v-ripple clickable @click="signOut()">
           <q-item-section avatar>
             <q-icon color="white" name="logout" />
@@ -101,7 +93,7 @@
             <q-item-label>Sign Out</q-item-label>
           </q-item-section>
         </q-item>
-        <q-separator class="q-mt-md q-mb-lg" />
+        <q-separator color="white" class="q-mb-lg" />
         <div class="q-px-md">
           <div class="row items-center q-gutter-x-sm q-gutter-y-xs">
             <nuxt-link to="/terms" class="footer-link"> Terms &amp; Conditions </nuxt-link>
@@ -133,9 +125,6 @@ export default {
     }),
   },
   methods: {
-    toggleLeftDrawer(value) {
-      this.$store.commit('TOGGLE_LEFTDRAWER', value)
-    },
     signOut() {
       this.$fire.auth.signOut()
       this.$store.commit('RESET_USER')
@@ -148,7 +137,6 @@ export default {
 </script>
 <style lang="sass">
 @import "../assets/sass/theme-variables"
-
 .uku-sidebar-left
   background-color: $secondary
   .uku-logo
@@ -158,52 +146,43 @@ export default {
     color: #ffffff
     text-decoration: none
     cursor: pointer
-
     &:hover,
     &:active,
     &:focus,
     .nuxt-link-exact-active
       text-decoration: none
       cursor: pointer
-
   .q-item.q-router-link--active,
   .q-item--active
     color: #ffffff !important
     background-color: $primary
     padding: 4px 8px !important
     border-radius: 0 !important
-
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-tablet
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
-
 /* $breakpoint-md: 959px */
 @media only screen and (max-width: 959px)
   .hide-on-mobile
     display: none
-
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
-
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
