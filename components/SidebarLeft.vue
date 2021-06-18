@@ -123,6 +123,54 @@ export default {
       getCompany: 'getCompany',
       getLeftDrawerState: 'getLeftDrawerState',
     }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
+    profile: {
+      get() {
+        return this.$store.state.profile
+      },
+      set(value) {
+        this.$store.commit('SET_PROFILE', value)
+      },
+    },
+    company: {
+      get() {
+        return this.$store.state.company
+      },
+      set(value) {
+        this.$store.commit('SET_COMPANY', value)
+      },
+    },
+    leftDrawerOpen: {
+      get() {
+        return this.$store.state.leftDrawerOpen
+      },
+      set(value) {
+        this.$store.commit('SET_LEFTDRAWER', value)
+      },
+    },
   },
   methods: {
     signOut() {

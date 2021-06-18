@@ -58,20 +58,21 @@ const grants = {
   },
   /* Create Grant Data */
   async createGrant(data) {
-    const organisationId = await this.getOrganisationId()
     const docData = {
-      userId: $nuxt.$fire.auth.currentUser.uid,
-      organisationId,
+      userId: data.userId,
+      organisationId: data.organisationId,
       name: data.name,
       email: data.email,
+      phoneCode: null,
       contactNumber: data.contactNumber,
+      imageURL: data.imageURL,
       twitter: data.twitter,
       facebook: data.facebook,
       amount: data.amount,
       grantType: data.grantType,
       link: data.link,
       description: data.description,
-      imageURL: data.imageURL,
+      dateCreated: new Date(),
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
@@ -108,18 +109,19 @@ const grants = {
   async saveGrant(data) {
     const organisationId = await this.getOrganisationId()
     const docData = {
-      userId: $nuxt.$fire.auth.currentUser.uid,
-      organisationId,
+      userId: data.userId,
+      organisationId: data.organisationId,
       name: data.name,
       email: data.email,
+      phoneCode: null,
       contactNumber: data.contactNumber,
+      imageURL: data.imageURL,
       twitter: data.twitter,
       facebook: data.facebook,
       amount: data.amount,
       grantType: data.grantType,
       link: data.link,
       description: data.description,
-      imageURL: data.imageURL,
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore

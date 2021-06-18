@@ -66,7 +66,7 @@
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="grant-item">Twiiter Profile</h2>
-                <q-input v-model="grant.twitter" type="url" color="black" outlined>
+                <q-input v-model="grant.twitter" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="4">
                       {{ grant.twitter }}
@@ -74,7 +74,7 @@
                   </template>
                 </q-input>
                 <h2 class="grant-item">Facebook Profile</h2>
-                <q-input v-model="grant.facebook" type="url" color="black" outlined>
+                <q-input v-model="grant.facebook" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="5">
                       {{ grant.facebook }}
@@ -82,7 +82,7 @@
                   </template>
                 </q-input>
                 <h2 class="grant-item">Amount</h2>
-                <q-input v-model="grant.amount" type="number" color="black" outlined>
+                <q-input v-model="grant.amount" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="6">
                       {{ grant.amount }}
@@ -95,7 +95,7 @@
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
                 <h2 class="grant-item">Link</h2>
-                <q-input v-model="grant.link" color="black" outlined>
+                <q-input v-model="grant.link" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="8">
                       {{ grant.link }}
@@ -179,10 +179,10 @@ export default {
         phoneCode: null,
         contactNumber: null,
         imageURL: null,
-        grantType: null,
         twitter: null,
         facebook: null,
         amount: null,
+        grantType: null,
         description: null,
         dateCreated: null,
         lastEdit: null,
@@ -206,6 +206,10 @@ export default {
     const userId = $nuxt.$fire.auth.currentUser.uid
     if (userId) {
       this.grant.userId = userId
+    }
+    const organisationId = await grants.getOrganisationId()
+    if (organisationId) {
+      this.grant.organisationId = organisationId
     }
     const grantData = await grants.getGrant()
     Object.assign(this.grant, grantData)

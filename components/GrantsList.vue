@@ -8,22 +8,32 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <!-- <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" /> -->
-            <!-- <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" /> -->
+            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" @click="hideCreateGrantForm()" />
+            <q-btn
+              v-if="user.organisationId && user.profileType === 'Sponsor'"
+              rounded
+              color="primary"
+              class="q-ml-sm q-mb-sm"
+              label="+ Add New"
+              @click="showCreateGrantForm()"
+            />
           </div>
         </div>
       </div>
       <div class="row items-start justify-center q-pa-lg">
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="uku-grants-title">{{ title }}</div>
           <div class="uku-grants-subtitle">{{ subtitle }}</div>
-          <div class="uku-grants-text">
+          <div vv-if="!showCreateForm" class="uku-grants-text">
             Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
             Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
             chain inefficiencies and agriculture associated risks.
           </div>
         </div>
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div
+          v-if="user.organisationId && user.profileType === 'Sponsor' && showCreateForm === true"
+          class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"
+        >
           <div class="uku-grants-title">Create a Grant</div>
           <div class="uku-grants-text">
             <GrantsForm />
@@ -46,8 +56,9 @@ export default {
   },
   data() {
     return {
-      title: 'Grants',
+      title: 'Grants & Subsidies',
       subtitle: 'Support local farmers and sustainable agriculture',
+      showCreateForm: false,
     }
   },
   computed: {
@@ -71,6 +82,14 @@ export default {
       set(value) {
         this.$store.commit('SET_COMPANY', value)
       },
+    },
+  },
+  methods: {
+    showCreateGrantForm() {
+      this.showCreateForm = true
+    },
+    hideCreateGrantForm() {
+      this.showCreateForm = false
     },
   },
 }
