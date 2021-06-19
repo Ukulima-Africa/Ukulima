@@ -43,6 +43,14 @@
             <q-item-label>Inventory</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item v-ripple to="/mygrants/" clickable>
+          <q-item-section avatar>
+            <q-icon color="white" name="ballot" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>My Grants</q-item-label>
+          </q-item-section>
+        </q-item>
         <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Community Menu</q-item-label>
         <q-item v-ripple to="/marketplace" clickable>
           <q-item-section avatar>
@@ -65,7 +73,7 @@
             <q-icon color="white" name="ballot" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Grants</q-item-label>
+            <q-item-label>Grants &amp; Subsidies</q-item-label>
           </q-item-section>
         </q-item>
         <q-item v-ripple to="/nfts" clickable>

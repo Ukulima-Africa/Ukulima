@@ -7,14 +7,17 @@
           <div class="uku-hero-subtitle">{{ subtitle }}</div>
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="uku-hero-buttons full-width" align="right"></div>
+          <div class="uku-hero-buttons full-width" align="right">
+            <q-btn v-if="user.organisationId" rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" @click="showCreateGrantForm()" />
+            <q-btn v-if="user.organisationId" outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" @click="hideCreateGrantForm()" />
+          </div>
         </div>
       </div>
       <!-- Row of My Grants -->
       <div class="row items-start justify-center">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-lg">
-          <div class="row items-start q-gutter-lg">
-            <template v-for="grant in activeGrants">
+          <div v-if="!showCreateForm" class="row items-start q-gutter-lg">
+            <template v-for="grant in myGrants">
               <q-card :key="grant.uid" class="uku-grant-card" flat bordered>
                 <q-img :src="grant.imageURL ? grant.imageURL : 'https://cdn.quasar.dev/img/parallax2.jpg'" />
                 <q-card-section>
@@ -44,6 +47,13 @@
           </div>
         </div>
       </div>
+      <!-- Row of My Grants -->
+      <div class="row items-start justify-center">
+        <!-- Create Grants Form -->
+        <div v-if="showCreateForm === true" class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <GrantsForm />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -52,9 +62,14 @@
 import { mapState, mapGetters } from 'vuex'
 /* Import Utils */
 import grants from '../util/functions/grants'
+/* Components */
+import GrantsForm from './forms/GrantsForm.vue'
 /* LFG */
 export default {
-  name: 'GrantsList',
+  name: 'MyGrantsList',
+  components: {
+    GrantsForm,
+  },
   filters: {
     truncate(text, length, suffix) {
       if (text.length > length) {
@@ -65,10 +80,10 @@ export default {
   },
   data() {
     return {
-      title: 'Grants & Subsidies',
+      title: 'My Grants & Subsidies',
       subtitle: 'Supporting local farmers and sustainable agriculture in Africa and abroad',
       showCreateForm: false,
-      activeGrants: [],
+      myGrants: [],
       expanded: false,
     }
   },
@@ -96,8 +111,8 @@ export default {
     },
   },
   async mounted() {
-    const grantsData = await grants.getActiveGrants()
-    this.activeGrants = grantsData
+    const grantsData = await grants.getMyGrants()
+    this.myGrants = grantsData
   },
   methods: {
     showCreateGrantForm() {
@@ -134,7 +149,7 @@ export default {
   margin: 0 0 10px 0
 .uku-grant-card
   width: 100%
-  max-width: 400px
+  max-width: 440px
   .uku-grant-description
     min-height: 80px
 

@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <GrantsList />
+      <MyGrantsList />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,18 +15,18 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import GrantsList from '../components/GrantsList.vue'
+import MyGrantsList from '../components/MyGrantsList.vue'
 /* LFG */
 export default {
   name: 'Grants',
   components: {
     Header,
     SidebarLeft,
-    GrantsList,
+    MyGrantsList,
   },
   data() {
     return {
-      title: 'Grants & Subsidies - Ukulima Africa',
+      title: 'My Grants Overview - Ukulima Africa',
       description:
         'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
     }

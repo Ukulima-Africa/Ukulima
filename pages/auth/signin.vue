@@ -325,7 +325,7 @@ export default {
         .uku-signup-button
           width: 100%
   .uku-signin-bg-image
-    background-image: url('~assets/images/signup-graphic.png')
+    background-image: url('~assets/images/Agriculture-Supply-Chain.png')
     background-size: cover
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width : 359px)

@@ -53,8 +53,40 @@ const grants = {
       })
     return grantData
   },
-  /* Get Grant Data for Organisation */
-  async getGrants() {
+  /* Get all Active Grants */
+  async getActiveGrants() {
+    const grantRef = await $nuxt.$fire.firestore
+      .collection('grants')
+    const grantsData = []
+    await grantRef
+      .where('active', '==', true)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          grantsData.push(doc.data())
+        })
+      })
+      .catch(error => {
+        try {
+          $nuxt.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error getting Grants data for Organisation: ${error.message ? error.message : error}`
+          })
+        } catch (err) {
+          $nuxt.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error getting Grants data for Organisation: ${err}`
+          })
+        }
+      })
+    return grantsData
+  },
+  /* Get Grant Data for Organisation and User */
+  async getMyGrants() {
     const organisationId = await this.getOrganisationId()
     const grantRef = await $nuxt.$fire.firestore
       .collection('grants')

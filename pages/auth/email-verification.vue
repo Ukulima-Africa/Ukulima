@@ -212,7 +212,7 @@ export default {
     min-height: 500px
     overflow: hidden
   .uku-welcome-bg-image
-    background-image: url('~assets/images/signup-graphic.png')
+    background-image: url('~assets/images/Agriculture-Supply-Chain.png')
     background-size: cover
     .uku-welcome
       width: 90%
@@ -222,7 +222,6 @@ export default {
         margin-right: auto
       .uku-signup-button
         width: 100%
-
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width : 359px)
   .q-page-container
