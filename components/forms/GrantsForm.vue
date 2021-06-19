@@ -15,7 +15,7 @@
       </div> -->
       <div class="row items-start justify-center q-pa-lg">
         <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-          <q-form ref="grantsForm" class="uku-form" @submit="onSubmit">
+          <q-form ref="grantsForm" class="uku-form" @submit="onSubmit" @reset="resetForm">
             <!-- Row -->
             <div class="row">
               <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
@@ -133,11 +133,22 @@
                 </q-input>
               </div>
             </div>
+            <div class="row">
+              <div class="col-12 col-md-12 col-sm-12 col-xs-12 self-center q-pt-md">
+                <q-toggle
+                  v-model="grant.active"
+                  :label="grant.active === true ? 'De-activate grant' : 'Activate grant'"
+                  checked-icon="check"
+                  :color="grant.active === true ? 'green' : 'red'"
+                  unchecked-icon="clear"
+                />
+              </div>
+            </div>
             <!-- Form Footer -->
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
                 <div align="left">
-                  <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                  <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
                 </div>
               </div>
               <div class="col-8 col-md-8" align="right">
@@ -184,6 +195,7 @@ export default {
         amount: null,
         grantType: null,
         description: null,
+        active: false,
         dateCreated: null,
         lastEdit: null,
       },
@@ -230,7 +242,7 @@ export default {
             })
             /* Saving to Firesatore */
             try {
-              if (this.grant.organisationId && this.grant) {
+              if (this.grant && this.grant.organisationId && this.grant.userId) {
                 grants.saveGrant(this.grant)
               } else {
                 grants.createGrant(this.grant)
@@ -241,7 +253,7 @@ export default {
                 icon: 'cloud_done',
                 message: 'Congratulations, your Grant have been updated successfully!',
               })
-              return true
+              this.resetForm()
             } catch (error) {
               this.$q.notify({
                 color: 'red-6',
@@ -249,14 +261,11 @@ export default {
                 icon: 'warning',
                 message: `Error saving your Grant details : ${error}`,
               })
-              return false
             }
           }
-          return false
         })
         .catch((error) => {
           this.isValid = false
-          this.$log.error(error)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
@@ -264,6 +273,26 @@ export default {
             message: `Error saving your Grant details : ${error}`,
           })
         })
+    },
+    resetForm() {
+      this.isValid = false
+      this.grant.userId = null
+      this.grant.organisationId = null
+      this.grant.name = null
+      this.grant.email = null
+      this.grant.phoneCode = null
+      this.grant.contactNumber = null
+      this.grant.imageURL = null
+      this.grant.twitter = null
+      this.grant.facebook = null
+      this.grant.amount = null
+      this.grant.grantType = null
+      this.grant.description = null
+      this.grant.link = false
+      this.grant.active = false
+      this.grant.dateCreated = null
+      this.grant.lastEdit = null
+      this.$refs.grantsForm.resetValidation()
     },
   },
 }

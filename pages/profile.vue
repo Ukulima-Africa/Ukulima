@@ -28,7 +28,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
+    ...mapState(['web3', 'account', 'user']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getAccount: 'getAccount',
@@ -58,22 +58,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_USER', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
       },
     },
   },
@@ -107,7 +91,7 @@ export default {
     async loadAccount() {
       /* Load Account, Chain Info and Balance/s */
       const newAccount = await this.$web3.getAccount()
-      if (newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount[0] && newAccount[0] !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)

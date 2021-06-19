@@ -36,16 +36,14 @@ const profile = {
       })
       .catch((error) => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
             message: `Error getting Profile data: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -66,24 +64,22 @@ const profile = {
       profileType: data.profileType,
       integrationType: data.integrationType,
       binanceId: data.binanceId,
-      binanceAccount: data.binanceAccount,
+      busdWalletAddress: data.busdWalletAddress,
       metaMaskAccount: data.metaMaskAccount,
       lastEdit: new Date()
     }
-
     await $nuxt.$fire.firestore
       .collection('users')
       .doc($nuxt.$fire.auth.currentUser.uid)
       .set(docData, { merge: true })
-      .then((docRef) => {
-        console.log("User's Profile has been updated successfully!", docRef.id)
-        console.log("User Id:", $nuxt.$fire.auth.currentUser.uid)
+      .then(() => {
+        /* Also update our local state, because it does not
+          immediately update until the next auth state change or page refresh */
         $nuxt.$store.commit('SET_USER', docData)
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -92,8 +88,7 @@ const profile = {
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -107,7 +102,6 @@ const profile = {
     const profileRef = await $nuxt.$fire.firestore
       .collection('users')
       .doc($nuxt.$fire.auth.currentUser.uid)
-
     let profileType = ''
     await profileRef
       .get()
@@ -120,8 +114,7 @@ const profile = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -130,8 +123,7 @@ const profile = {
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -143,9 +135,9 @@ const profile = {
   },
   /* Save User Type */
   async saveProfileType(type) {
-    await $nuxt.$fire.firestore
-      .collection('organisations')
-      .doc($nuxt.$store.state.user.organisationId)
+    const isSuccess = await $nuxt.$fire.firestore
+      .collection('users')
+      .doc($nuxt.$fire.auth.currentUser.uid)
       .update({
         profileType: type
       })
@@ -154,25 +146,24 @@ const profile = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user profile type: ${
+            message: `Error saving user Profile Type: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user profile type: ${err}`
+            message: `Error saving user Profile Type: ${err}`
           })
         }
       })
+    return isSuccess
   },
 }
 

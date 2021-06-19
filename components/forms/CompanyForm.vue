@@ -8,8 +8,21 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            <q-btn
+              v-if="(user && user.role === 'admin') || user.role === 'manager'"
+              outline
+              rounded
+              color="white"
+              class="q-ml-sm q-mb-sm"
+              label="+ Add Branch"
+            />
+            <q-btn
+              v-if="(user && user.role === 'admin') || user.role === 'manager'"
+              rounded
+              color="primary"
+              class="q-ml-sm q-mb-sm"
+              label="+ Add Users"
+            />
           </div>
         </div>
       </div>
@@ -167,7 +180,7 @@
             <!-- Form Footer -->
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
-                <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
               </div>
               <div class="col-8 col-md-8" align="right">
                 <q-btn
@@ -206,7 +219,7 @@ export default {
   data() {
     return {
       title: 'Organisation Details',
-      subtitle: 'Update your Organisation details and contact information',
+      subtitle: 'Update your company information and details',
       isValid: false,
       company: {
         name: null,
@@ -250,10 +263,10 @@ export default {
                 company.createCompany(this.company)
               }
               this.$q.notify({
-                color: 'grey',
+                color: 'secondary',
                 textColor: 'white',
                 icon: 'cloud_done',
-                message: 'Congratulations, your company details have been updated successfully!',
+                message: 'Congratulations, your Organisation has been updated successfully!',
               })
               return true
             } catch (error) {
@@ -261,7 +274,7 @@ export default {
                 color: 'red-6',
                 textColor: 'white',
                 icon: 'warning',
-                message: `Error saving Company details : ${error}`,
+                message: `Error saving Organisation details : ${error}`,
               })
               return false
             }
@@ -270,12 +283,11 @@ export default {
         })
         .catch((error) => {
           this.isValid = false
-          this.$log.error(error)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company details: ${error}`,
+            message: `Error saving Organisation details: ${error}`,
           })
         })
     },

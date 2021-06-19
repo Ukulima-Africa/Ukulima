@@ -19,12 +19,11 @@ const grants = {
       })
     return organisationId
   },
-  /* Get Grant Data by Organisations Id */
-  async getGrant() {
-    const organisationId = await this.getOrganisationId()
-    const grantRef = $nuxt.$fire.firestore
+  /* Get Grant Data by Grant Id */
+  async getGrant(grantId) {
+      const grantRef = await $nuxt.$fire.firestore
       .collection('grants')
-      .doc(organisationId)
+      .doc(grantId)
     let grantData = ''
     await grantRef
       .get()
@@ -37,16 +36,14 @@ const grants = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
             message: `Error getting Grant data: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -55,6 +52,39 @@ const grants = {
         }
       })
     return grantData
+  },
+  /* Get Grant Data for Organisation */
+  async getGrants() {
+    const organisationId = await this.getOrganisationId()
+    const grantRef = await $nuxt.$fire.firestore
+      .collection('grants')
+    const grantsData = []
+    await grantRef
+      .where('organisationId', '==', organisationId)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          grantsData.push(doc.data())
+        })
+      })
+      .catch(error => {
+        try {
+          $nuxt.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error getting Grants data for Organisation: ${error.message ? error.message : error}`
+          })
+        } catch (err) {
+          $nuxt.$q.notify({
+            color: 'red-6',
+            textColor: 'white',
+            icon: 'warning',
+            message: `Error getting Grants data for Organisation: ${err}`
+          })
+        }
+      })
+    return grantsData
   },
   /* Create Grant Data */
   async createGrant(data) {
@@ -70,36 +100,35 @@ const grants = {
       facebook: data.facebook,
       amount: data.amount,
       grantType: data.grantType,
-      link: data.link,
       description: data.description,
+      link: data.link,
+      active: data.active,
       dateCreated: new Date(),
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
       .collection('grants')
       .add(docData)
-      .then(async (docRef) => {
-        console.log("Grant has been created successfully!", docRef.id)
-        return true
+      .then((doc) => {
+        console.log("Grant has been created successfully!", doc)
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Grant data: ${
+            message: `Error creating Grant data: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$log.error(err)
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Grant data: ${err}`
+            message: `Error creating Grant data: ${err}`
           })
         }
       })
@@ -107,7 +136,7 @@ const grants = {
   },
   /* Save Grant Data */
   async saveGrant(data) {
-    const organisationId = await this.getOrganisationId()
+    const grantId = data.uid
     const docData = {
       userId: data.userId,
       organisationId: data.organisationId,
@@ -120,25 +149,25 @@ const grants = {
       facebook: data.facebook,
       amount: data.amount,
       grantType: data.grantType,
-      link: data.link,
       description: data.description,
+      link: data.link,
+      active: data.active,
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
       .collection('grants')
-      .doc(organisationId)
+      .doc(grantId)
       .set(docData, {
         merge: true
       })
-      .then((docRef) => {
-        console.log("Grant has been updated successfully!", docRef.id)
-        console.log("organisation Id:", organisationId)
+      .then((doc) => {
+            console.log("Grant has been updated successfully!", doc)
+            console.log("organisation Id:", grantId)
         return true
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -147,8 +176,7 @@ const grants = {
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
@@ -158,77 +186,72 @@ const grants = {
       })
     return false
   },
-  // /* Get Grant Type */
-  // async getGrantType() {
-  //   const organisationId = await this.getOrganisationId()
-  //   const grantRef = $nuxt.$fire.firestore
-  //     .collection('grants')
-  //     .doc(organisationId)
-  //   let grantType = ''
-  //   await grantRef
-  //     .get()
-  //     .then((doc) => {
-  //       if (doc.exists) {
-  //         try {
-  //           grantType = doc.data().grantType
-  //         } catch (err) {}
-  //       }
-  //     })
-  //     .catch(error => {
-  //       try {
-  //         this.$log.error(error.message ? error.message : error)
-  //         this.$q.notify({
-  //           color: 'red-6',
-  //           textColor: 'white',
-  //           icon: 'warning',
-  //           message: `Error getting Grant type: ${error.message ? error.message : error}`
-  //         })
-  //       } catch (err) {
-  //         this.$log.error(err)
-  //         this.$q.notify({
-  //           color: 'red-6',
-  //           textColor: 'white',
-  //           icon: 'warning',
-  //           message: `Error getting Grant type: ${err}`
-  //         })
-  //       }
-  //     })
-  //   return grantType
-  // },
-  // /* Save Grant Type */
-  // async saveGrantType(type) {
-  //   const organisationId = await this.getOrganisationId()
-
-  //   await $nuxt.$fireStore
-  //     .collection('organisations')
-  //     .doc(organisationId)
-  //     .update({
-  //       grantType: type
-  //     })
-  //     .then(() => {
-  //       console.log("Grant type been updated successfully!", type)
-  //       console.log("organisation Id:", organisationId)
-  //     })
-  //     .catch(error => {
-  //       try {
-  //         this.$log.error(error.message ? error.message : error)
-  //         this.$q.notify({
-  //           color: 'red-6',
-  //           textColor: 'white',
-  //           icon: 'warning',
-  //           message: `Error saving user grant type: ${error.message ? error.message : error}`
-  //         })
-  //       } catch (err) {
-  //         this.$log.error(err)
-  //         this.$q.notify({
-  //           color: 'red-6',
-  //           textColor: 'white',
-  //           icon: 'warning',
-  //           message: `Error saving user grant type: ${err}`
-  //         })
-  //       }
-  //     })
-  // },
+  /* Get Grant Type */
+  async getGrantType(grantId) {
+      const grantRef = $nuxt.$fire.firestore
+        .collection('grants')
+        .doc(grantId)
+      let grantType = ''
+      await grantRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            try {
+              grantType = doc.data().grantType
+            } catch (err) {}
+          }
+        })
+        .catch(error => {
+          try {
+            $nuxt.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error getting Grant type: ${error.message ? error.message : error}`
+            })
+          } catch (err) {
+            $nuxt.$log.error(err)
+            $nuxt.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error getting Grant type: ${err}`
+            })
+          }
+        })
+      return grantType
+    },
+    /* Save Grant Type */
+    async saveGrantType(grantId, type) {
+      const isSuccess = await $nuxt.$fireStore
+        .collection('organisations')
+        .doc(grantId)
+        .update({
+          grantType: type
+        })
+        .then(() => {
+          console.log("Grant Id:", grantId)
+          console.log("Grant Type:", type)
+        })
+        .catch(error => {
+          try {
+            $nuxt.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error saving user Grant type: ${error.message ? error.message : error}`
+            })
+          } catch (err) {
+            $nuxt.$q.notify({
+              color: 'red-6',
+              textColor: 'white',
+              icon: 'warning',
+              message: `Error saving Grant type: ${err}`
+            })
+          }
+        })
+      return isSuccess
+    },
 }
 
 export default grants

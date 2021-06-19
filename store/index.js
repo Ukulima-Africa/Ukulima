@@ -66,6 +66,7 @@ const state = () => ({
   progressCalculations: 0,
   inventory: [],
   grants: [],
+  myGrants: [],
   sponsors: [],
   nfts: [],
   nftCats: [],
@@ -320,6 +321,9 @@ const mutations = {
   SET_COMPANY(state, company) {
     state.company = company
   },
+  SET_COMPANY_TYPE(state, company) {
+    state.company.companyType = company
+  },
   SET_BRANCHES(state, branches) {
     state.branches = branches
   },
@@ -371,6 +375,9 @@ const mutations = {
   /* Grants */
   SET_GRANTS(state, payload) {
     state.grants.push(payload)
+  },
+  SET_MY_GRANTS(state, payload) {
+    state.myGrants.push(payload)
   },
   /* Sponsors */
   SET_SPONSORS(state, payload) {
@@ -498,6 +505,9 @@ const getters = {
   /* GRANTS */
   getGrants(state) {
     return state.grants
+  },
+  getMyGrants(state) {
+    return state.myGrants
   },
   /* Sponsors */
   getSponsors(state) {

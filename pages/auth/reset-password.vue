@@ -95,7 +95,6 @@ export default {
             icon: 'warning',
             message: `Error Creating Account: ${errorMessage}`,
           })
-          this.$log.error(error)
         })
 
       this.$refs.sendPasswordResetForm.resetValidation()

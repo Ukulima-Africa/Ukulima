@@ -39,7 +39,7 @@
           </div>
         </q-btn>
         <q-btn
-          v-if="!account.account"
+          v-if="web3 && !account.account"
           rounded
           outlined
           no-wrap
@@ -50,7 +50,7 @@
           @click="connectMetaMask()"
         />
         <q-btn
-          v-if="!user.uid"
+          v-if="!user && user.uid === null"
           rounded
           outlined
           no-wrap
@@ -60,7 +60,7 @@
           label="SIGN IN"
         />
         <q-btn
-          v-if="user.uid"
+          v-if="user && user.uid !== null"
           rounded
           outlined
           no-wrap
@@ -73,7 +73,7 @@
       <!-- END Right Menu -->
       <div class="q-gutter-sm row items-center no-wrap">
         <!-- User Account Dropdown Button -->
-        <q-btn v-if="user.uid" flat round icon="account_circle" size="18px" class="account-button">
+        <q-btn v-if="user && user.uid !== null" flat round icon="account_circle" size="18px" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
               <q-item v-if="user.name" v-ripple clickable>
@@ -92,19 +92,29 @@
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
               <q-separator />
+              <nuxt-link to="/dashboard">
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
+                  <q-item-section>Dashboard</q-item-section>
+                </q-item>
+              </nuxt-link>
               <nuxt-link to="/profile">
                 <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Profile</q-item-section>
+                  <q-item-section>My Profile</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/company">
                 <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Organisation</q-item-section>
+                  <q-item-section>My Organisation</q-item-section>
                 </q-item>
               </nuxt-link>
               <nuxt-link to="/inventory">
                 <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Inventory</q-item-section>
+                  <q-item-section>My Inventory</q-item-section>
+                </q-item>
+              </nuxt-link>
+              <nuxt-link to="/inventory">
+                <q-item v-ripple clickable color="black" class="q-mr-xs">
+                  <q-item-section>My NFTs</q-item-section>
                 </q-item>
               </nuxt-link>
               <!-- END Hide for MVP -->
@@ -214,7 +224,7 @@ export default {
         return this.$store.state.leftDrawerOpen
       },
       set(value) {
-        this.$store.commit('TOGGLE_LEFTDRAWER', value)
+        this.$store.commit('SET_LEFTDRAWER', value)
       },
     },
     networkColor() {
@@ -235,7 +245,7 @@ export default {
   // },
   methods: {
     seachBar(value) {
-      this.$store.commit('SEARCH', value)
+      this.$store.commit('SET_SEARCH', value)
     },
     toggleLeftDrawer(value) {
       this.$store.commit('TOGGLE_LEFTDRAWER', value)
@@ -262,7 +272,7 @@ export default {
     async loadAccount() {
       /* Load Network, Account and Balance/s */
       const newAccount = await this.$web3.connectMetaMask()
-      if (newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount[0] && newAccount[0] !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)

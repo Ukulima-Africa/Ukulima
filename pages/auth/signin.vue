@@ -159,7 +159,6 @@ export default {
               icon: 'warning',
               message: `Error signing in ${errorCode}: ${errorMessage}`,
             })
-            this.$log.error(error)
           })
       }
       /* Reset form & Validation */

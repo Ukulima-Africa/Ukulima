@@ -232,9 +232,8 @@ export default {
                 color: 'red-6',
                 textColor: 'white',
                 icon: 'warning',
-                message: `Error Creating Account: ${errorMessage}`,
+                message: `Error creating new user account: ${errorMessage}`,
               })
-              this.$log.error(error)
             })
         }
         this.loading = false

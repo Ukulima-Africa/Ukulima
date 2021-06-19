@@ -19,7 +19,7 @@ const company = {
       })
     return organisationId
   },
-  /* Set Company or Organisations ID */
+  /* Set Current User's Company or Organisations ID */
   async setOrganisationId(organisationId) {
     await $nuxt.$fire.firestore
       .collection('users')
@@ -27,33 +27,28 @@ const company = {
       .set({
         organisationId
       })
-      .then(async (docRef) => {
-        console.log("User/'s Organisation Id being updated with Id: ", organisationId)
-        await $nuxt.$store.commit('SET_ORGANISATION', organisationId)
-        return true
+      .then(() => {
+        $nuxt.$store.commit('SET_ORGANISATION', organisationId)
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving current user's Organisation Id: ${
+            message: `Error saving current User's Organisation Id: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving current user's Organisation Id: ${err}`
+            message: `Error saving current User's Organisation Id: ${err}`
           })
         }
       })
-      return false
   },
   /* Get Company Data */
   async getCompany() {
@@ -73,20 +68,18 @@ const company = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting Company data: ${error.message ? error.message : error}`
+            message: `Error getting Organisation data: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company data: ${err}`
+            message: `Error getting Organisation data: ${err}`
           })
         }
       })
@@ -98,40 +91,38 @@ const company = {
       name: data.name,
       legalName: data.legalName,
       taxNumber: data.taxNumber,
-      companyType: data.companyType,
       countryCode: data.countryCode,
       timezone: data.timezone,
       baseCurrency: data.baseCurrency,
+      companyType: data.companyType,
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
       .collection('organisations')
       .add(docData)
-      .then(async (docRef) => {
-        console.log("Company has been created successfully!", docRef.id)
+      .then((doc) => {
+        console.log("Organisation has been created successfully!", doc.id)
         $nuxt.$store.commit('SET_COMPANY', docData)
-        const success = await this.setOrganisationId(docRef.id)
+        const success = this.setOrganisationId(doc.id)
         console.log("Organisation Added:", success)
         return true
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company data: ${
+            message: `Error saving Organisation data: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company data: ${err}`
+            message: `Error saving Organisation data: ${err}`
           })
         }
       })
@@ -144,44 +135,38 @@ const company = {
       name: data.name,
       legalName: data.legalName,
       taxNumber: data.taxNumber,
-      companyType: data.companyType,
       countryCode: data.countryCode,
       timezone: data.timezone,
       baseCurrency: data.baseCurrency,
+      companyType: data.companyType,
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .set(docData, { merge: true })
-      .then(async (docRef) => {
-        console.log("Company has been updated successfully!", docRef.id)
-        console.log("organisation Id:", organisationId)
-        await $nuxt.$store.commit('SET_COMPANY', docData)
-        return true
+      .then(() => {
+        $nuxt.$store.commit('SET_COMPANY', docData)
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company data: ${
+            message: `Error saving Organisation data: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving Company data: ${err}`
+            message: `Error saving Organisation data: ${err}`
           })
         }
       })
-      return false
   },
   /* Get Company Type */
   async getCompanyType() {
@@ -201,20 +186,18 @@ const company = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting Company type: ${error.message ? error.message : error}`
+            message: `Error getting Organisation type: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting Company type: ${err}`
+            message: `Error getting Organisation type: ${err}`
           })
         }
       })
@@ -223,46 +206,41 @@ const company = {
   /* Save Company Type */
   async saveCompanyType(type) {
     const organisationId = await this.getOrganisationId()
-
-    await $nuxt.$fireStore
+    const isSuccess = await $nuxt.$fireStore
       .collection('organisations')
       .doc(organisationId)
       .update({
         companyType: type
       })
       .then(() => {
-        console.log("Company type been updated successfully!", type)
-        console.log("organisation Id:", organisationId)
+        $nuxt.$store.commit('SET_COMPANY_TYPE', type)
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user company type: ${error.message ? error.message : error}`
+            message: `Error saving Organisation type: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user company type: ${err}`
+            message: `Error saving Organisation type: ${err}`
           })
         }
       })
+    return isSuccess
   },
   /* Get Company Central Stock Location Branch */
   async getCompanyCSLBranch() {
     const organisationId = await this.getOrganisationId()
-
     const outletRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('stock-locations')
-
     let cslData = ''
     await outletRef
       .get()
@@ -274,20 +252,18 @@ const company = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company CSL branch: ${error.message ? error.message : error}`
+            message: `Error getting Organisation CSL branch: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company CSL branch: ${err}`
+            message: `Error getting Organisation CSL branch: ${err}`
           })
         }
       })
@@ -296,12 +272,10 @@ const company = {
   /* Get Company Branches or Stock Locations */
   async getCompanyBranches() {
     const organisationId = await this.getOrganisationId()
-
-    const outletRef = $nuxt.$fire.firestore
+    const outletRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('stock-locations')
-
     let outletData = ''
     await outletRef
       .get()
@@ -312,20 +286,18 @@ const company = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company branches: ${error.message ? error.message : error}`
+            message: `Error getting Organisation Branches: ${error.message ? error.message : error}`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting company branches: ${err}`
+            message: `Error getting Organisation Branches: ${err}`
           })
         }
       })

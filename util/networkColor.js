@@ -1,5 +1,5 @@
-import { networks } from './networks'
 /* Filter the network Color or icon by the HEX chainId received from MetaMask */
+import { networks } from './networks'
 /* filterType returns the Pretty icon or the Color */
 export function networkColor(chainHEX, filterType) {
   let network = ''

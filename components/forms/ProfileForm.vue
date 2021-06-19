@@ -8,8 +8,8 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            <!-- <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" /> -->
+            <!-- <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" /> -->
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
                 <h2 class="profile-item">Full Name</h2>
-                <q-input v-model="profile.name" color="black" outlined>
+                <q-input v-model="profile.name" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="1">
                       {{ profile.name }}
@@ -48,7 +48,7 @@
                   </template>
                 </q-input>
                 <h2 class="profile-item">Email</h2>
-                <q-input v-model="profile.email" color="black" outlined>
+                <q-input v-model="profile.email" type="email" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="2">
                       {{ profile.email }}
@@ -56,7 +56,7 @@
                   </template>
                 </q-input>
                 <h2 class="profile-item">Phone Number</h2>
-                <q-input v-model="profile.phoneNumber" color="black" outlined>
+                <q-input v-model="profile.phoneNumber" type="tel" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="3">
                       {{ profile.phoneNumber }}
@@ -66,23 +66,23 @@
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="profile-item">Binance Account ID</h2>
-                <q-input v-model="profile.binanceId" color="black" outlined>
+                <q-input v-model="profile.binanceId" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="4">
                       {{ profile.binanceId }}
                     </div>
                   </template>
                 </q-input>
-                <h2 class="profile-item">Binance Wallet Address</h2>
-                <q-input v-model="profile.binanceAccount" color="black" outlined>
+                <h2 class="profile-item">BUSD Wallet Address</h2>
+                <q-input v-model="profile.busdWalletAddress" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="5">
-                      {{ profile.binanceAccount }}
+                      {{ profile.busdWalletAddress }}
                     </div>
                   </template>
                 </q-input>
                 <h2 class="profile-item">MetaMask Wallet Address</h2>
-                <q-input v-model="profile.metaMaskAccount" color="black" outlined>
+                <q-input v-model="profile.metaMaskAccount" type="text" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="6">
                       {{ profile.metaMaskAccount }}
@@ -132,7 +132,7 @@
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
                 <div align="left">
-                  <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                  <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
                   <q-btn outline color="secondary" label="Reset Password" @click="sendPasswordResetLink" />
                 </div>
               </div>
@@ -157,12 +157,11 @@ export default {
   data() {
     return {
       title: 'Profile Details',
-      subtitle: 'Update your Profile details and user information',
+      subtitle: 'Update your profile details and user information',
       isValid: false,
       profile: {
         uid: null,
         organisationId: null,
-        role: null,
         name: null,
         email: null,
         emailVerified: null,
@@ -172,7 +171,7 @@ export default {
         profileType: null,
         integrationType: null,
         binanceId: null,
-        binanceAccount: null,
+        busdWalletAddress: null,
         metaMaskAccount: null,
         onboardingState: null,
         dateCreated: null,
@@ -209,7 +208,7 @@ export default {
             try {
               profile.saveProfile(this.profile)
               this.$q.notify({
-                color: 'grey',
+                color: 'secondary',
                 textColor: 'white',
                 icon: 'cloud_done',
                 message: 'Congratulations, your Profile details have been updated successfully!',
@@ -229,7 +228,6 @@ export default {
         })
         .catch((error) => {
           this.isValid = false
-          this.$log.error(error)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',
@@ -246,7 +244,7 @@ export default {
           .sendPasswordResetEmail(this.profile.email)
           .then(() => {
             this.$q.notify({
-              color: 'green-4',
+              color: 'secondary',
               textColor: 'white',
               icon: 'cloud_done',
               message: `An email with your password reset link has been sent to ${this.profile.email}`,
@@ -260,9 +258,8 @@ export default {
               color: 'red-6',
               textColor: 'white',
               icon: 'warning',
-              message: `Error Reseting Password: ${errorCode}: ${errorMessage}`,
+              message: `Error reseting your Password, please refresh and try again: ${errorCode}: ${errorMessage}`,
             })
-            this.$log.error(error)
           })
       } else {
         this.$q.notify({

@@ -132,7 +132,7 @@
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
                 <div align="left">
-                  <q-btn flat color="black" label="Go Back" to="/dashboard" />
+                  <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
                   <q-btn outline color="secondary" label="Reset Password" @click="sendPasswordResetLink" />
                 </div>
               </div>
@@ -229,7 +229,6 @@ export default {
         })
         .catch((error) => {
           this.isValid = false
-          this.$log.error(error)
           this.$q.notify({
             color: 'red-6',
             textColor: 'white',

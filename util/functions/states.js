@@ -1,4 +1,5 @@
 const states = {
+  /* Save User's Onboarding State */
   async saveState(state) {
     const isSuccess = await $nuxt.$fire.firestore
       .collection('users')
@@ -34,18 +35,18 @@ const states = {
       })
       .catch(error => {
         try {
-          this.$log.error(error.message ? error.message : error)
-          this.$q.notify({
+          $nuxt.$log.error(error.message ? error.message : error)
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error getting a User's Onboarding State: ${
+            message: `Error getting User's Onboarding State: ${
               error.message ? error.message : error
             }`
           })
         } catch (err) {
-          this.$log.error(err)
-          this.$q.notify({
+          $nuxt.$log.error(err)
+          $nuxt.$q.notify({
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
