@@ -13,7 +13,7 @@ import { mapState, mapGetters } from 'vuex'
 /* Enums and Network Helper */
 import { networkFilter } from '../util/networkFilter'
 /* Components */
-import Header from '../components/Header.vue'
+import Header from '../components/general/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import CompanyForm from '../components/forms/CompanyForm.vue'
 /* LFG */

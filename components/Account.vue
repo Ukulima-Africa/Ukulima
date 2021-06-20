@@ -1,88 +1,65 @@
 <template>
-  <div class="row uku-hero items-start justify-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="row items-start uku-hero-card">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <div class="uku-hero-title">{{ title }}</div>
-          <div class="uku-hero-subtitle">{{ subtitle }}</div>
-        </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+  <div class="row items-start justify-center">
+    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <q-card flat bordered class="uku-card uku-account-card">
+        <q-card-section>
+          <div class="text-h6">
+            {{ title }}
           </div>
-        </div>
-      </div>
-      <div class="row items-start justify-center">
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <q-card flat bordered class="uku-card uku-account-card">
-            <q-card-section>
-              <div class="text-h6">
-                {{ title }}
-              </div>
-            </q-card-section>
-            <q-card-section class="q-pt-none">
-              <p>Web3 Instance: {{ account.web3Instance }}</p>
-              <p>Is MetaMask: {{ account.isMetaMask }}</p>
-              <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
-              <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
-              <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
-            </q-card-section>
-            <q-card-section class="q-pt-none">
-              <p>Arkane userId: {{ profile.userId }}</p>
-              <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
-              <p>Arkane username: {{ profile.username }}</p>
-              <p>Arkane email: {{ profile.email }}</p>
-              <p>Arkane firstName: {{ profile.firstName }}</p>
-              <p>Arkane lastName: {{ profile.lastName }}</p>
-            </q-card-section>
-            <q-card-section class="q-pt-none">
-              <p>User userId: {{ profile.userId }}</p>
-              <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
-              <p>Arkane username: {{ profile.username }}</p>
-              <p>Arkane email: {{ profile.email }}</p>
-              <p>Arkane firstName: {{ profile.firstName }}</p>
-              <p>Arkane lastName: {{ profile.lastName }}</p>
-            </q-card-section>
-          </q-card>
-        </div>
-        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <q-card flat bordered class="uku-card uku-account-card">
-            <q-card-section>
-              <div class="text-h6">
-                {{ title }}
-              </div>
-            </q-card-section>
-            <q-card-section class="q-pt-none">
-              <p v-if="account.account">Account: {{ account.account[0] }}</p>
-              <p>Balance: {{ account.balance }}</p>
-            </q-card-section>
-            <q-card-section>
-              <q-btn
-                v-if="!profile.userId"
-                flat
-                color="white"
-                class="bg-primary full-width q-mb-sm"
-                label="Connect Arkane"
-                @click="connectArkane()"
-              />
-              <q-btn
-                outline
-                color="grey-8"
-                class="full-width q-mb-sm"
-                label="Test Transaction"
-                @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
-              />
-              <!-- <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" /> -->
-            </q-card-section>
-            <q-card-section class="q-pt-none">
-              <pre>MetaMask Account: {{ account }}</pre>
-              <pre>User: {{ user }}</pre>
-              <pre>Profile: {{ profile }}</pre>
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <p>Web3 Instance: {{ account.web3Instance }}</p>
+          <p>Is MetaMask: {{ account.isMetaMask }}</p>
+          <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
+          <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
+          <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <p>Arkane userId: {{ profile.userId }}</p>
+          <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
+          <p>Arkane username: {{ profile.username }}</p>
+          <p>Arkane email: {{ profile.email }}</p>
+          <p>Arkane firstName: {{ profile.firstName }}</p>
+          <p>Arkane lastName: {{ profile.lastName }}</p>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <p>User userId: {{ profile.userId }}</p>
+          <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
+          <p>Arkane username: {{ profile.username }}</p>
+          <p>Arkane email: {{ profile.email }}</p>
+          <p>Arkane firstName: {{ profile.firstName }}</p>
+          <p>Arkane lastName: {{ profile.lastName }}</p>
+        </q-card-section>
+      </q-card>
+    </div>
+    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <q-card flat bordered class="uku-card uku-account-card">
+        <q-card-section>
+          <div class="text-h6">
+            {{ title }}
+          </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <p v-if="account.account">Account: {{ account.account[0] }}</p>
+          <p>Balance: {{ account.balance }}</p>
+        </q-card-section>
+        <q-card-section>
+          <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
+          <!-- <q-btn
+            outline
+            color="grey-8"
+            class="full-width q-mb-sm"
+            label="Test Transaction"
+            @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
+          /> -->
+          <!-- <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" /> -->
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <pre>MetaMask Account: {{ account }}</pre>
+          <!-- <pre>User: {{ user }}</pre> -->
+          <pre>Profile: {{ profile }}</pre>
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
@@ -92,34 +69,75 @@ import { mapState, mapGetters } from 'vuex'
 /* Arkane Connect for Wallet */
 import { ArkaneConnect } from '../node_modules/@arkane-network/arkane-connect'
 /* Network helper */
+// import { networks } from './networks'
 import { networkFilter } from '../util/networkFilter'
+import { networkColor } from '../util/networkColor'
 /* LFG */
 export default {
   name: 'Account',
   data() {
     return {
-      title: 'Dashboard',
-      subtitle: 'View details about your Organisation and inventory',
+      title: 'My Account',
+      subtitle: 'View details about your Wallet Account',
+      network: null,
     }
   },
   computed: {
     ...mapState(['web3', 'account', 'user', 'profile']),
     ...mapGetters({
       getWeb3: 'getWeb3',
-      getUser: 'getUser',
       getAccount: 'getAccount',
+      getUser: 'getUser',
       getProfile: 'getProfile',
     }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    account: {
+      get() {
+        return this.$store.state.account
+      },
+      set(value) {
+        this.$store.commit('SET_ACCOUNT', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
+    profile: {
+      get() {
+        return this.$store.state.profile
+      },
+      set(value) {
+        this.$store.commit('SET_PROFILE', value)
+      },
+    },
+    networkColor() {
+      return networkColor(this.$store.state.account.chainIdHEX, 'color')
+    },
+    networkIcon() {
+      return networkColor(this.$store.state.account.chainIdHEX, 'icon')
+    },
   },
-  async beforeCreate() {
-    /* Check ArkaneProvider Instance */
-    const arkaneProvider = await this.$web3.connectArkaneProvider()
-    if (arkaneProvider) {
-      console.log('%c ArkaneProvider loaded successfully!', 'background: blue; color: white')
-    } else {
-      console.log('%c Please connect arkaneProvider!', 'background: red; color: white')
-    }
-  },
+  // async beforeCreate() {
+  //   /* Check ArkaneProvider Instance */
+  //   const arkaneProvider = await this.$web3.connectArkaneProvider()
+  //   if (arkaneProvider) {
+  //     console.log('%c ArkaneProvider loaded successfully!', 'background: blue; color: white')
+  //   } else {
+  //     console.log('%c Please connect arkaneProvider!', 'background: red; color: white')
+  //   }
+  // },
   methods: {
     networkFilter(chainId, filterType) {
       return networkFilter(chainId, filterType)
@@ -202,6 +220,18 @@ export default {
       //   "firstName": "Karel",
       //   "lastName": "Striegel"
       // }
+      const arkaneAccount = await arkaneConnect.flows.getAccount('ETHEREUM').then((account) => {
+        console.log('User name:', account.auth.tokenParsed.name)
+        console.log('User email:', account.auth.tokenParsed.email)
+        console.log(`%c Account Wallets : ${JSON.stringify(account.wallets, null, 4)}`, 'background: #222; color: #bada55')
+        console.log('First wallet address:', account.wallets[0].address)
+        console.log('First wallet balance:', account.wallets[0].balance.balance)
+        console.log('2nd wallet address:', account.wallets[1].address)
+        console.log('2nd wallet balance:', account.wallets[1].balance.balance)
+        console.log('3rd wallet address:', account.wallets[2].address)
+        console.log('3rd wallet balance:', account.wallets[2].balance.balance)
+      })
+      console.log(`%c Console.log like a Boss : ${JSON.stringify(arkaneAccount, null, 4)}`, 'background: #222; color: #bada55')
       return arkaneProfile
     },
     async sendTransaction(from, to, value, gas, gasPrice) {

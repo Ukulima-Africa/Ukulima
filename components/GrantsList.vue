@@ -11,8 +11,8 @@
         </div>
       </div>
       <!-- Row of My Grants -->
-      <div class="row items-start justify-center">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-lg">
+      <div v-if="activeGrants.length > 0" class="uku-grants-list row items-start justify-center">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-grants-list-col">
           <div class="row items-start q-gutter-lg">
             <template v-for="grant in activeGrants">
               <q-card :key="grant.uid" class="uku-grant-card" flat bordered>
@@ -44,6 +44,15 @@
           </div>
         </div>
       </div>
+      <div v-else class="row items-start justify-center">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-grants-list-col">
+          <div class="uku-grants-text">
+            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
+            Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
+            chain inefficiencies and agriculture associated risks.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -67,7 +76,6 @@ export default {
     return {
       title: 'Grants & Subsidies',
       subtitle: 'Supporting local farmers and sustainable agriculture in Africa and abroad',
-      showCreateForm: false,
       activeGrants: [],
       expanded: false,
     }
@@ -99,18 +107,12 @@ export default {
     const grantsData = await grants.getActiveGrants()
     this.activeGrants = grantsData
   },
-  methods: {
-    showCreateGrantForm() {
-      this.showCreateForm = true
-    },
-    hideCreateGrantForm() {
-      this.showCreateForm = false
-    },
-  },
 }
 </script>
 <style lang="sass" scope>
 @import "../assets/sass/theme-variables"
+.uku-grants-list-col
+  padding: 40px
 .uku-grants-title
   color: $black
   font-size: 32px
@@ -153,19 +155,27 @@ export default {
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
+  .uku-grants-list-col
+    padding: 30px
 
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
+  .uku-grants-list-col
+    padding: 10px 10px 0 10px
 
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
+  .uku-grants-list-col
+    padding: 10px 10px 0 10px
 
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-grants-list-col
+    padding: 10px 10px 0 10px
 </style>

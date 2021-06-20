@@ -105,18 +105,18 @@ export default {
   .hide-on-mobile
     display: none
   .uku-intro-col
-    padding: 20px 20px 0 20px
+    padding: 10px 10px 0 10px
     .uku-intro-card
       padding: 30px 20px
       .uku-intro-title
-        font-size: 30px
+        font-size: 28px
         line-height: 30px
         font-weight: 500
         letter-spacing 0.10px
         word-spacing 1px
         margin: 0 0 25px 0
       .uku-intro-subtitle
-        font-size: 20px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px
@@ -142,7 +142,7 @@ export default {
         word-spacing 1px
         margin: 0 0 25px 0
       .uku-intro-subtitle
-        font-size: 18px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px
@@ -168,7 +168,7 @@ export default {
         word-spacing 1px
         margin: 0 0 25px 0
       .uku-intro-subtitle
-        font-size: 18px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px

@@ -8,26 +8,32 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            <q-btn
+              v-if="(user && user.role === 'admin') || user.role === 'manager'"
+              outline
+              rounded
+              color="white"
+              class="q-ml-sm q-mb-sm"
+              label="+ Add Branch"
+            />
           </div>
         </div>
       </div>
-      <div class="row items-start justify-center q-pa-lg">
+      <div class="row items-start justify-center uku-company-col">
         <div class="col-12 col-md-12 col-sm-12 col-xs-12">
-          <q-form ref="userForm" class="uku-form" @submit="onSubmit">
+          <q-form ref="usersForm" class="uku-form" @submit="onSubmit" @reset="resetForm">
             <!-- Row -->
             <div class="row">
               <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
                 <div class="row items-center no-wrap">
-                  <h2 class="profile-username">
-                    {{ profile.name }}
+                  <h2 class="user-username">
+                    {{ user.name }}
                   </h2>
                 </div>
               </div>
               <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
                 <div class="row items-center justify-end no-wrap">
-                  Profile Details
+                  User Details
                   <q-icon
                     :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
                     size="xs"
@@ -39,53 +45,53 @@
             <!-- Row -->
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-                <h2 class="profile-item">Full Name</h2>
-                <q-input v-model="profile.name" color="black" outlined>
+                <h2 class="user-item">Full Name</h2>
+                <q-input v-model="user.name" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="1">
-                      {{ profile.name }}
+                      {{ user.name }}
                     </div>
                   </template>
                 </q-input>
-                <h2 class="profile-item">Email</h2>
-                <q-input v-model="profile.email" color="black" outlined>
+                <h2 class="user-item">Email</h2>
+                <q-input v-model="user.email" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="2">
-                      {{ profile.email }}
+                      {{ user.email }}
                     </div>
                   </template>
                 </q-input>
-                <h2 class="profile-item">Phone Number</h2>
-                <q-input v-model="profile.phoneNumber" color="black" outlined>
+                <h2 class="user-item">Phone Number</h2>
+                <q-input v-model="user.phoneNumber" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="3">
-                      {{ profile.phoneNumber }}
+                      {{ user.phoneNumber }}
                     </div>
                   </template>
                 </q-input>
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-                <h2 class="profile-item">Binance Account ID</h2>
-                <q-input v-model="profile.binanceId" color="black" outlined>
+                <h2 class="user-item">Binance Account ID</h2>
+                <q-input v-model="user.binanceId" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="4">
-                      {{ profile.binanceId }}
+                      {{ user.binanceId }}
                     </div>
                   </template>
                 </q-input>
-                <h2 class="profile-item">Binance Wallet Address</h2>
-                <q-input v-model="profile.binanceAccount" color="black" outlined>
+                <h2 class="user-item">Binance Wallet Address</h2>
+                <q-input v-model="user.busdWalletAddress" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="5">
-                      {{ profile.binanceAccount }}
+                      {{ user.busdWalletAddress }}
                     </div>
                   </template>
                 </q-input>
-                <h2 class="profile-item">MetaMask Wallet Address</h2>
-                <q-input v-model="profile.metaMaskAccount" color="black" outlined>
+                <h2 class="user-item">MetaMask Wallet Address</h2>
+                <q-input v-model="user.metaMaskAccount" color="black" outlined>
                   <template #control>
                     <div class="self-center full-width no-outline" tabindex="6">
-                      {{ profile.metaMaskAccount }}
+                      {{ user.metaMaskAccount }}
                     </div>
                   </template>
                 </q-input>
@@ -94,8 +100,8 @@
             <!-- Row -->
             <div class="row">
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
-                <h2 class="profile-item">Profile Type</h2>
-                <q-select v-model="profile.profileType" color="black" outlined tabindex="7" :options="profileTypes">
+                <h2 class="user-item">User Type</h2>
+                <q-select v-model="user.profileType" color="black" outlined tabindex="7" :options="profileTypes">
                   <template #option="scope">
                     <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                       <q-item-section>
@@ -111,8 +117,8 @@
                 </q-select>
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
-                <h2 class="profile-item">Integration Type</h2>
-                <q-select v-model="profile.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
+                <h2 class="user-item">Integration Type</h2>
+                <q-select v-model="user.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
                   <template #option="scope">
                     <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                       <q-item-section>
@@ -131,14 +137,16 @@
             <!-- Form Footer -->
             <div class="uku-form-footer row justify-end q-mt-xl">
               <div class="col-4 col-md-4" align="left">
-                <div align="left">
-                  <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
-                  <q-btn outline color="secondary" label="Reset Password" @click="sendPasswordResetLink" />
-                </div>
+                <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
               </div>
               <div class="col-8 col-md-8" align="right">
-                <!-- DEV NOTE: We only need to update the Users Profile -->
-                <q-btn unelevated label="Update" color="primary" type="submit" class="q-ml-sm" />
+                <q-btn
+                  unelevated
+                  :label="!user.organisationId ? 'Create' : 'Update'"
+                  :color="!user.organisationId ? 'secondary' : 'primary'"
+                  type="submit"
+                  class="q-ml-sm"
+                />
               </div>
             </div>
             <!-- END Form Footer -->
@@ -150,16 +158,16 @@
 </template>
 <script>
 /* Import Utils */
-import profile from '../../util/functions/profile'
+import users from '../../util/functions/users'
 /* LFG */
 export default {
   name: 'UsersForm',
   data() {
     return {
-      title: 'Organisation User Details',
-      subtitle: 'Update your Organisation User details and information',
+      title: 'Create a User',
+      subtitle: 'Create a new User for your Organisation',
       isValid: false,
-      profile: {
+      user: {
         uid: null,
         organisationId: null,
         role: null,
@@ -172,7 +180,7 @@ export default {
         profileType: null,
         integrationType: null,
         binanceId: null,
-        binanceAccount: null,
+        busdWalletAddress: null,
         metaMaskAccount: null,
         onboardingState: null,
         dateCreated: null,
@@ -183,17 +191,9 @@ export default {
       loading: false,
     }
   },
-  async mounted() {
-    const userId = await $nuxt.$fire.auth.currentUser.uid
-    if (userId) {
-      this.profile.uid = userId
-    }
-    const profileData = await profile.getProfile()
-    Object.assign(this.profile, profileData)
-  },
   methods: {
     onSubmit(evt) {
-      this.$refs.userForm
+      this.$refs.usersForm
         .validate()
         .then((success) => {
           if (success) {
@@ -207,25 +207,27 @@ export default {
             })
             /* Saving to Firesatore */
             try {
-              profile.saveProfile(this.profile)
+              if (this.user && this.user.organisationId && this.user.userId) {
+                users.saveUser(this.user)
+              } else {
+                users.createUser(this.user)
+              }
               this.$q.notify({
                 color: 'grey',
                 textColor: 'white',
                 icon: 'cloud_done',
-                message: 'Congratulations, your Profile details have been updated successfully!',
+                message: 'Congratulations, your User details have been updated successfully!',
               })
-              return true
+              this.resetForm()
             } catch (error) {
               this.$q.notify({
                 color: 'red-6',
                 textColor: 'white',
                 icon: 'warning',
-                message: `Error saving user Profile details : ${error}`,
+                message: `Error saving User details : ${error}`,
               })
-              return false
             }
           }
-          return false
         })
         .catch((error) => {
           this.isValid = false
@@ -233,9 +235,30 @@ export default {
             color: 'red-6',
             textColor: 'white',
             icon: 'warning',
-            message: `Error saving user Profile details : ${error}`,
+            message: `Error saving User details : ${error}`,
           })
         })
+    },
+    resetForm() {
+      this.isValid = false
+      this.user.uid = null
+      this.user.organisationId = null
+      this.user.role = null
+      this.user.name = null
+      this.user.email = null
+      this.user.emailVerified = null
+      this.user.phoneCode = null
+      this.user.phoneNumber = null
+      this.user.photoURL = null
+      this.user.profileType = null
+      this.user.integrationType = null
+      this.user.binanceId = null
+      this.user.busdWalletAddress = null
+      this.user.metaMaskAccount = null
+      this.user.onboardingState = null
+      this.user.dateCreated = null
+      this.user.lastEdit = null
+      this.$refs.usersForm.resetValidation()
     },
   },
 }
@@ -256,26 +279,26 @@ export default {
     line-height: 20px
     font-weight: 400
     letter-spacing: .00937em
-  .profile-username
+  .user-username
     font-size: 20px
     font-weight: bold
     line-height: 1.2
     color: #2e3133
     margin-bottom: 12px
-  .profile-active-status-dot
+  .user-active-status-dot
     height: 8px
     width: 8px
     background-color: #45d597
     border-radius: 50%
     display: inline-block
-  .profile-active-status
+  .user-active-status
     font-size: 14px
     font-weight: bold
     font-style: normal
     line-height: 1.14
     color: #45d597
     margin-bottom: 30px
-  .profile-item
+  .user-item
     font-size: 14px
     font-weight: 500
     line-height: 1
@@ -307,17 +330,17 @@ export default {
       opacity: 1 !important
     &:after
       opacity: 1 !important
-  /* Links & Buttons */
-  a,
-  .nuxt-link
+/* Links & Buttons */
+a,
+.nuxt-link
+  text-decoration: none
+  cursor: pointer
+  &:hover,
+  &:active,
+  &:focus,
+  .nuxt-link-exact-active
     text-decoration: none
     cursor: pointer
-    &:hover,
-    &:active,
-    &:focus,
-    .nuxt-link-exact-active
-      text-decoration: none
-      cursor: pointer
 
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)

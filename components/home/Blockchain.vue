@@ -117,7 +117,7 @@ export default {
   .hide-on-mobile
     display: none
   .uku-blockchain-col
-    padding: 20px
+    padding: 10px
     .uku-blockchain-title
       font-size: 30px
       line-height: 30px
@@ -127,7 +127,7 @@ export default {
       margin: 0 0 25px 0
     .uku-blockchain-subtitle
       color: $white
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px
@@ -153,7 +153,7 @@ export default {
       word-spacing 1px
       margin: 0 0 25px 0
     .uku-blockchain-subtitle
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px
@@ -179,7 +179,7 @@ export default {
       word-spacing 1px
       margin: 0 0 25px 0
     .uku-blockchain-subtitle
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px

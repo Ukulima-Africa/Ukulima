@@ -1,5 +1,5 @@
 <template>
-  <q-header class="uku-header" height-hint="80">
+  <q-header class="uku-header" height-hint="100">
     <q-toolbar>
       <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
       <q-avatar class="q-ml-xs">
@@ -11,19 +11,6 @@
         </nuxt-link>
       </q-toolbar-title>
       <q-space />
-      <!-- Search -->
-      <!-- <div class="YL__toolbar-input-container row no-wrap">
-        <q-input v-model="searchText" dense square color="black" standout="bg-white" bg-color="white" class="GPL__toolbar-input" placeholder="Search">
-          <template #prepend>
-            <q-icon v-if="searchText === ''" name="search" />
-          </template>
-          <template #append>
-            <q-icon v-if="searchText !== ''" name="clear" class="cursor-pointer" @click="seachBar('')" />
-          </template>
-        </q-input>
-      </div> -->
-      <!-- <q-space /> -->
-      <!-- END Search -->
       <!-- Right Menu -->
       <div class="uku-menu row no-wrap items-center">
         <q-btn v-if="account.balance" color="black" class="q-mr-sm account-balance-button" push>
@@ -50,7 +37,7 @@
           @click="connectMetaMask()"
         />
         <q-btn
-          v-if="!user && user.uid === null"
+          v-if="!user || user.uid === null"
           rounded
           outlined
           no-wrap
@@ -138,12 +125,9 @@
 <script>
 /* Import Vuex State, Getters and Mutations */
 import { mapState, mapGetters } from 'vuex'
-/* Arkane Connect for Wallet */
-import { ArkaneConnect } from '../node_modules/@arkane-network/arkane-connect'
 /* Enums and Helper */
-// import { networks } from './networks'
-import { networkFilter } from '../util/networkFilter'
-import { networkColor } from '../util/networkColor'
+import { networkFilter } from '../../util/networkFilter'
+import { networkColor } from '../../util/networkColor'
 /* LFG */
 export default {
   name: 'Header',
@@ -161,15 +145,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company', 'searchText', 'leftDrawerOpen']),
+    ...mapState(['web3', 'account', 'user', 'profile', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'web3',
-      getAccount: 'account',
-      getUser: 'user',
-      getProfile: 'profile',
-      getCompany: 'company',
-      getSearchText: 'searchText',
-      getLeftDrawerState: 'leftDrawerOpen',
+      getWeb3: 'getWeb3',
+      getAccount: 'getAccount',
+      getUser: 'getUser',
+      getProfile: 'getProfile',
+      getLeftDrawerState: 'getLeftDrawerState',
     }),
     web3: {
       get() {
@@ -203,22 +185,6 @@ export default {
         this.$store.commit('SET_PROFILE', value)
       },
     },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
-    searchText: {
-      get() {
-        return this.$store.state.searchText
-      },
-      set(value) {
-        this.$store.commit('SET_SEARCH', value)
-      },
-    },
     leftDrawerOpen: {
       get() {
         return this.$store.state.leftDrawerOpen
@@ -234,19 +200,7 @@ export default {
       return networkColor(this.$store.state.account.chainIdHEX, 'icon')
     },
   },
-  // async beforeCreate() {
-  //   /* Check ArkaneProvider Instance */
-  //   const arkaneProvider = await this.$web3.connectArkaneProvider()
-  //   if (arkaneProvider) {
-  //     console.log('%c ArkaneProvider loaded successfully!', 'background: blue; color: white')
-  //   } else {
-  //     console.log('%c Please connect arkaneProvider!', 'background: red; color: white')
-  //   }
-  // },
   methods: {
-    seachBar(value) {
-      this.$store.commit('SET_SEARCH', value)
-    },
     toggleLeftDrawer(value) {
       this.$store.commit('TOGGLE_LEFTDRAWER', value)
     },
@@ -286,98 +240,6 @@ export default {
       }
       return false
     },
-    async connectArkane() {
-      try {
-        if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging') {
-          /* Use staging environment on ArkaneConnect */
-          const arkaneConnect = new ArkaneConnect(process.env.APP_NAME, {
-            environment: 'staging',
-          })
-          const authArkaneAccount = await this.authArkaneAccount(arkaneConnect)
-          console.log('authArkaneAccount:', authArkaneAccount)
-          if (authArkaneAccount.isAuthenticated) {
-            this.$store.commit('SET_PROFILE_ISAUTHENTICATED', true)
-            const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
-            console.log('arkaneProfile:', arkaneProfile)
-            this.$store.commit('SET_PROFILE', arkaneProfile)
-          }
-        } else {
-          /* Use Mainnet environment on ArkaneConnect */
-          const arkaneConnect = new ArkaneConnect(process.env.APP_NAME)
-          const authArkaneAccount = await this.authArkaneAccount(arkaneConnect)
-          console.log('authArkaneAccount:', authArkaneAccount)
-          if (authArkaneAccount.isAuthenticated) {
-            this.$store.commit('SET_PROFILE_ISAUTHENTICATED', true)
-            const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
-            console.log('arkaneProfile:', arkaneProfile)
-            this.$store.commit('SET_PROFILE', arkaneProfile)
-          }
-        }
-      } catch (error) {
-        // Handle the error
-        console.error(error)
-      }
-    },
-    async authArkaneAccount(arkaneConnect) {
-      /* Check if a user is authenticated with Arkane */
-      const authenticationInstance = await arkaneConnect.checkAuthenticated().then((result) =>
-        result
-          .authenticated((auth) => {
-            console.log(`The user is authenticated: ${auth.subject}`)
-          })
-          .notAuthenticated((auth) => {
-            console.log(`The user is NOT authenticated: ${auth}`)
-          }),
-      )
-      // AuthenticationInstance - see https://docs.arkane.network/widget/widget-advanced/object-type-reference/authenticationinstance
-      // {
-      //   authenticated?: boolean;
-      //   subject?: string;
-      //   realmAccess?: { roles: string[] };
-      //   resourceAccess?: string[];
-      //   token?: string;
-      //   tokenParsed?: {
-      //     exp?: number;
-      //     email?: string,
-      //     name?: string,
-      //     iat?: number;
-      //     nonce?: string;
-      //     sub?: string;
-      //     session_state?: string;
-      //     realm_access?: { roles: string[] };
-      //     resource_access?: string[];
-      //   };
-      //   refreshToken?: string;
-      //   refreshTokenParsed?: { nonce?: string };
-      //   idToken?: string;
-      //   idTokenParsed?: { nonce?: string };
-      //   timeSkew?: number;
-      // }
-      return authenticationInstance
-    },
-    async getArkaneProfile(arkaneConnect) {
-      const arkaneProfile = await arkaneConnect.api.getProfile()
-      //   "userId": "46c87fcb-77ed-4433-a425-814569ca1672",
-      //   "hasMasterPin": true,
-      //   "username": "karel.striegel@arkane.network",
-      //   "email": "karel.striegel@arkane.network",
-      //   "firstName": "Karel",
-      //   "lastName": "Striegel"
-      // }
-      const arkaneAccount = await arkaneConnect.flows.getAccount('ETHEREUM').then((account) => {
-        console.log('User name:', account.auth.tokenParsed.name)
-        console.log('User email:', account.auth.tokenParsed.email)
-        console.log(`%c Account Wallets : ${JSON.stringify(account.wallets, null, 4)}`, 'background: #222; color: #bada55')
-        console.log('First wallet address:', account.wallets[0].address)
-        console.log('First wallet balance:', account.wallets[0].balance.balance)
-        console.log('2nd wallet address:', account.wallets[1].address)
-        console.log('2nd wallet balance:', account.wallets[1].balance.balance)
-        console.log('3rd wallet address:', account.wallets[2].address)
-        console.log('3rd wallet balance:', account.wallets[2].balance.balance)
-      })
-      console.log(`%c Console.log like a Boss : ${JSON.stringify(arkaneAccount, null, 4)}`, 'background: #222; color: #bada55')
-      return arkaneProfile
-    },
     signOut() {
       this.$fire.auth.signOut()
       this.$store.commit('RESET_USER')
@@ -389,12 +251,10 @@ export default {
 }
 </script>
 <style lang="sass" scope>
-@import "../assets/sass/theme-variables"
-
+@import "../../assets/sass/theme-variables"
 .uku-header
   color: $secondary
   background-color: $primary
-  /* top | right | bottom | left */
   border-style: none none solid none
   box-shadow: none !important
   margin: 0
@@ -449,7 +309,6 @@ export default {
       font-size: 13px
       line-height: 26px
       font-weight: 400
-
 .account-button
   color: $black
 .account-menu
@@ -465,10 +324,6 @@ export default {
   &:hover,
   &:active
     text-decoration: none !important
-
-  .GPL__toolbar-input
-    color: $primary
-
 /* CSS Media Queries */
 @media only screen and (max-width: 5000px)
   .uku-mobile-menu

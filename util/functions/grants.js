@@ -193,9 +193,8 @@ const grants = {
         merge: true
       })
       .then((doc) => {
-            console.log("Grant has been updated successfully!", doc)
-            console.log("organisation Id:", grantId)
-        return true
+        console.log("Grant has been updated successfully!", doc)
+        console.log("Grant Id:", grantId)
       })
       .catch(error => {
         try {

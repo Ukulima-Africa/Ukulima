@@ -2,23 +2,17 @@
   <div class="row uku-hero items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="row items-start uku-hero-card">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="uku-hero-title">{{ title }}</div>
         </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
-          </div>
-        </div>
       </div>
-      <div class="row uku-terms items-start justify-center q-pa-lg">
+      <div class="row uku-terms items-start justify-center uku-terms-col">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="uku-terms-title">Interpretation &amp; Definitions</div>
           <div class="uku-terms-text">
             <p>
               These terms and conditions (&quot;Agreement&quot;) set forth the general terms and conditions of your use of the
-              <a target="_blank" rel="nofollow" href="http://www.ukulima.africa">ukulima.africa</a> website (&quot;Website&quot; or
+              <a target="_blank" rel="nofollow" href="https://www.ukulima.africa">ukulima.africa</a> website (&quot;Website&quot; or
               &quot;Service&quot;) and any of its related products and services (collectively, &quot;Services&quot;). This Agreement is legally
               binding between you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;) and this Website operator (&quot;Operator&quot;,
               &quot;we&quot;, &quot;us&quot; or &quot;our&quot;). By accessing and using the Website and Services, you acknowledge that you have read,
@@ -156,7 +150,7 @@
               <li>
                 <p>
                   By visiting this page on our website:
-                  <a href="http://ukulima.africa" rel="external nofollow noopener" target="_blank">http://www.ukulima.africa</a>
+                  <a href="https://www.ukulima.africa" rel="external nofollow noopener" target="_blank">http://www.ukulima.africa</a>
                 </p>
               </li>
             </ul>
@@ -177,9 +171,11 @@ export default {
 }
 </script>
 <style lang="sass" scope>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 .uku-terms
   min-height: 660px
+  .uku-terms-col
+    padding: 40px
   .uku-terms-title
     color: $black
     font-size: 32px
@@ -226,55 +222,54 @@ export default {
     line-height: 20px
     font-weight: 400
     margin: 0 0 10px 0
-  /* Links & Buttons */
   a,
   .nuxt-link
     color: $black
     text-decoration: none
     cursor: pointer
-
     &:hover,
     &:active,
     &:focus,
     .nuxt-link-exact-active
       text-decoration: underline
       cursor: pointer
-
   .q-item.q-router-link--active,
   .q-item--active
     color: $black !important
     background-color: $primary
     padding: 4px 8px !important
     border-radius: 4px !important
-
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
-
+  .uku-terms-col
+    padding: 30px
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
-
+  .uku-terms-col
+    padding: 10px
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
-
+  .uku-terms-col
+    padding: 10px
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-terms-col
+    padding: 10px
 </style>

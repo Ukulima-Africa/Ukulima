@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 .uku-logo-header
   color: $secondary
   background: none !important

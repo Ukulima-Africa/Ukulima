@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="row items-start justify-center q-pa-lg">
+      <div class="row items-start justify-center uku-profile-col">
         <div class="col-12 col-md-12 col-sm-12 col-xs-12">
           <q-form ref="profileForm" class="uku-form" @submit="onSubmit">
             <!-- Row -->
@@ -275,114 +275,124 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-.uku-form
-  max-width: 1100px
-  background: $white
-  border-radius: 5px
-  border: solid 1px $secondary
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
+.uku-profile-col
   padding: 40px
-  margin: 40px auto
-  .q-input
-    max-width: 600px
-  .q-field__label
-    font-size: 14px
-    line-height: 20px
-    font-weight: 400
-    letter-spacing: .00937em
-  .profile-username
-    font-size: 20px
-    font-weight: bold
-    line-height: 1.2
-    color: #2e3133
-    margin-bottom: 12px
-  .profile-active-status-dot
-    height: 8px
-    width: 8px
-    background-color: #45d597
-    border-radius: 50%
-    display: inline-block
-  .profile-active-status
-    font-size: 14px
-    font-weight: bold
-    font-style: normal
-    line-height: 1.14
-    color: #45d597
-    margin-bottom: 30px
-  .profile-item
-    font-size: 14px
-    font-weight: 500
-    line-height: 1
-    text-align: left
-    color: black
-    margin-top: 24px
-    margin-bottom: 10px
-  .select-menu-item
-    max-width: 600px
-    height: 24px !important
-    margin: 5px
-    padding: 10px 14px
-    color: #333333
-    font-size: 12px
-    line-height: 1.83
-    font-weight: 500
-    font-stretch: normal
-    font-style: normal
-    letter-spacing: normal
-    text-align: left
-    &:hover,
-    &:focus
+  .uku-form
+    max-width: 1100px
+    background: $white
+    border-radius: 5px
+    border: solid 1px $secondary
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
+    padding: 40px
+    margin: 40px auto
+    .q-input
+      max-width: 600px
+    .q-field__label
+      font-size: 14px
+      line-height: 20px
+      font-weight: 400
+      letter-spacing: .00937em
+    .profile-username
+      font-size: 20px
+      font-weight: bold
+      line-height: 1.2
+      color: #2e3133
+      margin-bottom: 12px
+    .profile-active-status-dot
+      height: 8px
+      width: 8px
+      background-color: #45d597
+      border-radius: 50%
+      display: inline-block
+    .profile-active-status
+      font-size: 14px
+      font-weight: bold
+      font-style: normal
+      line-height: 1.14
+      color: #45d597
+      margin-bottom: 30px
+    .profile-item
+      font-size: 14px
+      font-weight: 500
+      line-height: 1
+      text-align: left
+      color: black
+      margin-top: 24px
+      margin-bottom: 10px
+    .select-menu-item
+      max-width: 600px
       height: 24px !important
-      line-height: 1.83 !important
-      border-radius: 5px
-      background: #f4f6f7 !important
-      opacity: 1 !important
-    &:before
-      opacity: 1 !important
-    &:after
-      opacity: 1 !important
-  /* Links & Buttons */
-  a,
-  .nuxt-link
-    text-decoration: none
-    cursor: pointer
-    &:hover,
-    &:active,
-    &:focus,
-    .nuxt-link-exact-active
+      margin: 5px
+      padding: 10px 14px
+      color: #333333
+      font-size: 12px
+      line-height: 1.83
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      letter-spacing: normal
+      text-align: left
+      &:hover,
+      &:focus
+        height: 24px !important
+        line-height: 1.83 !important
+        border-radius: 5px
+        background: #f4f6f7 !important
+        opacity: 1 !important
+      &:before
+        opacity: 1 !important
+      &:after
+        opacity: 1 !important
+    /* Links & Buttons */
+    a,
+    .nuxt-link
       text-decoration: none
       cursor: pointer
+      &:hover,
+      &:active,
+      &:focus,
+      .nuxt-link-exact-active
+        text-decoration: none
+        cursor: pointer
 
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
-  .uku-form
-    max-width: 800px
-    margin-left: 0
-    padding: 0
-    .q-input
-      max-width: 600px
+  .uku-profile-col
+    padding: 30px
+    .uku-form
+      max-width: 800px
+      margin-left: 0
+      padding: 0
+      .q-input
+        max-width: 600px
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
-  .uku-form
-    max-width: 800px
-    margin: 0
-    padding: 0
-    .q-input
-      max-width: 600px
+  .uku-profile-col
+    padding: 10px
+    .uku-form
+      max-width: 800px
+      margin: 0
+      padding: 0
+      .q-input
+        max-width: 600px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
-  .uku-form
-    max-width: 100%
-    margin: 0
-    padding: 0
-    .q-input
-      max-width: 90%
+  .uku-profile-col
+    padding: 10px
+    .uku-form
+      max-width: 100%
+      margin: 0
+      padding: 0
+      .q-input
+        max-width: 90%
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
-  .uku-form
-    max-width: 100%
-    margin: 0
-    padding: 0
-    .q-input
-      max-width: 90%
+  .uku-profile-col
+    padding: 10px
+    .uku-form
+      max-width: 100%
+      margin: 0
+      padding: 0
+      .q-input
+        max-width: 90%
 </style>

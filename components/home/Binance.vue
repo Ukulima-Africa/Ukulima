@@ -121,11 +121,11 @@ export default {
     word-spacing 1px
     margin: 20px 0 0 0
   .uku-binance-col
-    padding: 20px 20px 0 20px
+    padding: 10px 10px 0 10px
     .uku-binance-box
       padding: 30px 20px
       .uku-binance-subtitle
-        font-size: 18px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px
@@ -151,7 +151,7 @@ export default {
     .uku-binance-box
       padding: 30px 20px
       .uku-binance-subtitle
-        font-size: 18px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px
@@ -177,7 +177,7 @@ export default {
     .uku-binance-box
       padding: 30px 20px
       .uku-binance-subtitle
-        font-size: 18px
+        font-size: 16px
         line-height: 24px
         font-weight: 500
         letter-spacing 0.6px

@@ -95,6 +95,7 @@ const company = {
       timezone: data.timezone,
       baseCurrency: data.baseCurrency,
       companyType: data.companyType,
+      dateCreated: new Date(),
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore

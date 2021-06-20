@@ -95,7 +95,7 @@ export default {
   .hide-on-mobile
     display: none
   .uku-news-col
-    padding: 20px 20px 0 20px
+    padding: 10px 10px 0 10px
     .uku-news-title
       font-size: 30px
       line-height: 30px

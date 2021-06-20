@@ -78,8 +78,8 @@
 </template>
 <script>
 /* Components */
-import HeaderLogo from '../../components/HeaderLogo.vue'
-import Footer from '../../components/Footer.vue'
+import HeaderLogo from '../../components/general/HeaderLogo.vue'
+import Footer from '../../components/general/Footer.vue'
 /* LFG */
 export default {
   name: 'Signin',

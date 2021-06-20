@@ -37,7 +37,13 @@ export default function ({
     route.path !== '/marketplace/' &&
     route.path !== '/marketplace' &&
     route.path !== '/nfts/' &&
-    route.path !== '/nfts'
+    route.path !== '/nfts' &&
+    route.path !== '/buy/bnb/' &&
+    route.path !== '/buy/bnb' &&
+    route.path !== '/buy/busd/' &&
+    route.path !== '/buy/busd' &&
+    route.path !== '/buy/agri/' &&
+    route.path !== '/buy/agri'
   ) {
     /* We are on a protected route, check if we have a token */
     // const UserIdToken = store.getters.getUser
@@ -91,7 +97,13 @@ export default function ({
       route.path === '/marketplace' ||
       route.path === '/marketplace/' ||
       route.path === '/nfts' ||
-      route.path === '/nfts/'
+      route.path === '/nfts/' ||
+      route.path === '/buy/bnb/' ||
+      route.path === '/buy/bnb' ||
+      route.path === '/buy/busd/' ||
+      route.path === '/buy/busd' ||
+      route.path === '/buy/agri/' ||
+      route.path === '/buy/agri'
     ) {
       /* Do nothing */
 
@@ -101,14 +113,18 @@ export default function ({
       switch (store.getters.getUser.onboardingState) {
         case onboardingStates.GUEST: {
           if (
-            route.path === '/dashboard' ||
             route.path === '/dashboard/' ||
-            route.path === '/inventory' ||
-            route.path === '/inventory/' ||
-            route.path === '/company' ||
-            route.path === '/company/' ||
+            route.path === '/dashboard' ||
+            route.path === '/profile/' ||
             route.path === '/profile' ||
-            route.path === '/profile/'
+            route.path === '/company/' ||
+            route.path === '/company' ||
+            route.path === '/users/' ||
+            route.path === '/users' ||
+            route.path === '/inventory/' ||
+            route.path === '/inventory' ||
+            route.path === '/mygrants/' ||
+            route.path === '/mygrants'
           ) {
             // return redirect('/auth/signin')
           }

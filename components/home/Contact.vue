@@ -152,7 +152,7 @@ export default {
   .hide-on-mobile
     display: none
   .uku-contact-col
-    padding: 20px 20px 0 20px
+    padding: 0 10px 0 10px
     .uku-contact-title
       font-size: 30px
       line-height: 30px
@@ -161,7 +161,7 @@ export default {
       word-spacing 1px
       margin: 0 0 25px 0
     .uku-contact-subtitle
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px
@@ -185,7 +185,7 @@ export default {
       word-spacing 1px
       margin: 0 0 25px 0
     .uku-contact-subtitle
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px
@@ -209,7 +209,7 @@ export default {
       word-spacing 1px
       margin: 0 0 25px 0
     .uku-contact-subtitle
-      font-size: 18px
+      font-size: 16px
       line-height: 24px
       font-weight: 500
       letter-spacing 0.6px

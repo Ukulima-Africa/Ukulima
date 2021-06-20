@@ -35,6 +35,14 @@
             <q-item-label>Organisation</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item v-if="user.uid" v-ripple to="/users" clickable>
+          <q-item-section avatar>
+            <q-icon color="white" name="group" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Users</q-item-label>
+          </q-item-section>
+        </q-item>
         <q-item v-if="user.uid" v-ripple to="/inventory" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="inventory" />
@@ -43,7 +51,7 @@
             <q-item-label>Inventory</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-ripple to="/mygrants/" clickable>
+        <q-item v-if="user.uid" v-ripple to="/mygrants/" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="ballot" />
           </q-item-section>

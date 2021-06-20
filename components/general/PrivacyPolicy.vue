@@ -2,17 +2,11 @@
   <div class="row uku-hero items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="row items-start uku-hero-card">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="uku-hero-title">{{ title }}</div>
         </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="uku-hero-buttons full-width" align="right">
-            <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" />
-            <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
-          </div>
-        </div>
       </div>
-      <div class="row uku-privacy items-start justify-center q-pa-lg">
+      <div class="row uku-privacy items-start justify-center uku-privacy-col">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="uku-privacy-title">Interpretation &amp; Definitions</div>
           <div class="uku-privacy-text">
@@ -22,8 +16,7 @@
             </p>
             <p>
               We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information
-              in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the
-              <a href="https://www.privacypolicies.com/privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.
+              in accordance with this Privacy Policy.
             </p>
             <h2>Interpretation</h2>
             <p>
@@ -336,7 +329,7 @@
               <li>
                 <p>
                   By visiting this page on our website:
-                  <a href="http://ukulima.africa" rel="external nofollow noopener" target="_blank">http://www.ukulima.africa</a>
+                  <a href="https://www.ukulima.africa" rel="external nofollow noopener" target="_blank">https://www.ukulima.africa</a>
                 </p>
               </li>
             </ul>
@@ -357,9 +350,11 @@ export default {
 }
 </script>
 <style lang="sass" scope>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 .uku-privacy
   min-height: 660px
+  .uku-privacy-col
+    padding: 40px
   .uku-privacy-title
     color: $black
     font-size: 32px
@@ -406,55 +401,54 @@ export default {
     line-height: 20px
     font-weight: 400
     margin: 0 0 10px 0
-  /* Links & Buttons */
   a,
   .nuxt-link
     color: $black
     text-decoration: none
     cursor: pointer
-
     &:hover,
     &:active,
     &:focus,
     .nuxt-link-exact-active
       text-decoration: underline
       cursor: pointer
-
   .q-item.q-router-link--active,
   .q-item--active
     color: $black !important
     background-color: $primary
     padding: 4px 8px !important
     border-radius: 4px !important
-
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
-
+  .uku-privacy-col
+    padding: 30px
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
-
+  .uku-privacy-col
+    padding: 10px
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
-
+  .uku-privacy-col
+    padding: 10px
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
+  .uku-privacy-col
+    padding: 10px
 </style>

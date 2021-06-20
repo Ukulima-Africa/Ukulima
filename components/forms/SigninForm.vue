@@ -261,7 +261,7 @@ export default {
   .uku-signin-col
     padding: 60px 20px 30px 20px
     .uku-signin-form
-      max-width: 479px
+      max-width: 469px
       border-radius: 4px
       border: solid 1px #ffffff
       padding: 30px 20px
@@ -349,54 +349,61 @@ export default {
           color: $white
           font-weight: bold
           text-decoration: none
-
-
   /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-lg:  1199px */
 @media only screen and (max-width: 1199px)
   .hide-on-bigscreen
     display: none
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
     display: none
   .uku-signin-col
+    margin: 0 auto
     padding: 30px 20px
-
+    .uku-signin-form
+      max-width: 100%
+      border-radius: 0
+      border: none
+      padding: 25px 15px
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
   .uku-signin-col
-    padding: 30px 20px
-
+    margin: 0 auto
+    padding: 0
+    .uku-signin-form
+      max-width: 100%
+      border-radius: 0
+      border: none
+      padding: 25px 15px
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
   .uku-signin-col
+    margin: 0 auto
     padding: 0
     .uku-signin-form
       max-width: 100%
       border-radius: 0
       border: none
-      padding: 30px 20px
-
+      padding: 25px 15px
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-signin-col
+    margin: 0 auto
     padding: 0
     .uku-signin-form
       max-width: 100%
       border-radius: 0
       border: none
-      padding: 30px 20px
+      padding: 25px 15px
 </style>

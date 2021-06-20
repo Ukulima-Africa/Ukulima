@@ -3,7 +3,7 @@
     <q-toolbar align="center">
       <q-toolbar-title class="copyright">
         <span><strong>Ukulima Africa</strong> &copy; {{ year }}. All Rights Reserved</span>
-        <a href="https://ukulima.africa/privacy" alt="Privacy &amp; Data Policy" target="_blank" class="black footer-link">Legal Notices ›</a>
+        <a href="https://www.ukulima.africa/privacy" alt="Privacy &amp; Data Policy" target="_blank" class="black footer-link">Legal Notices ›</a>
         <span class="footer-text">Got a question?</span>
         <a href="mailto:info@ukulima.africa" target="_blank" rel="external nofollow" title="Contact us" class="black footer-link">Contact us ›</a>
       </q-toolbar-title>
@@ -26,7 +26,7 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-@import "../assets/sass/theme-variables"
+@import "../../assets/sass/theme-variables"
 .uku-footer-centered
   background-color: inherit
   position: absolute

@@ -32,7 +32,7 @@ export default {
   .hide-on-tablet
     display: none
   .uku-banner-col
-    padding: 20px 20px 20px 20px
+    padding: 10px 10px 0 10px
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile

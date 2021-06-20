@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <SponsorsList />
+      <UsersForm />
     </q-page-container>
   </q-layout>
 </template>
@@ -15,18 +15,18 @@ import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/general/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
-import SponsorsList from '../components/SponsorsList.vue'
+import UsersForm from '../components/forms/UsersForm.vue'
 /* LFG */
 export default {
-  name: 'Sponsors',
+  name: 'Users',
   components: {
     Header,
     SidebarLeft,
-    SponsorsList,
+    UsersForm,
   },
   data() {
     return {
-      title: 'Sponsors - Ukulima Africa',
+      title: 'Add Users - Ukulima Africa',
       description:
         'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
     }
