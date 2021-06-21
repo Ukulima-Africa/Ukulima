@@ -83,7 +83,7 @@ export default function ({
   }
 
   function doOnboardingCheck(store, route) {
-    if (route.path === '/' || route.path === '/') {
+    if (route.path === '/') {
       /* Do nothing */
     } else if (
       route.path === '/terms' ||
@@ -149,7 +149,7 @@ export default function ({
               return redirect('/')
             }
           } else if (route.path !== '/dashboard') {
-            // return redirect('/dashboard')
+            return redirect('/dashboard')
           }
           break
         }

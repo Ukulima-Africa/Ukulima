@@ -31,7 +31,6 @@ a,
   color: #ffffff
   text-decoration: none
   cursor: pointer
-
   &:hover,
   &:active,
   &:focus,
@@ -45,7 +44,6 @@ a,
   background-color: $primary
   padding: 4px 8px !important
   border-radius: 4px !important
-
 
 /* Colours */
 .background-beige
@@ -62,33 +60,154 @@ a,
 .binance-black-bg
   color: $binance-orange
   background-color: $binance-black
-
 .uku-green-border
   border-top: solid 1px $primary
+.uku-blue-border
+  border-top: solid 1px $secondary
 .uku-white-border
   border-top: solid 1px $white
 .uku-black-bg
   color: $white
   background-color: #000000
 
-
+/* Page Headers */
 .uku-hero
-  min-height: 200px
+  min-height: 160px
   .uku-hero-card
     background: $secondary
     padding: 30px 30px
     .uku-hero-title
       color: $white
-      font-size: 32px
-      line-height: 32px
+      font-size: 30px
+      line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
-      margin: 0 0 20px 0
+      margin: 0 0 15px 0
     .uku-hero-subtitle
       color: $white
-      font-size: 20px
+      font-size: 18px
       line-height: 24px
       font-weight: 400
       letter-spacing 0.6px
-      margin: 0 0 15px 0
+      margin: 0
+
+/* CSS Media Queries */
+/* $breakpoint-xl: 2400px */
+@media only screen and (max-width: 2400px)
+  .hide-on-bigscreen
+    display: none
+/* $breakpoint-lg:  1199px */
+@media only screen and (max-width: 1199px)
+  .hide-on-tablet
+    display: none
+/* $breakpoint-md: 1023px */
+@media only screen and (max-width: 1023px)
+  .hide-on-tablet
+    display: none
+  .uku-hero
+    min-height: auto
+    .uku-hero-card
+      padding: 30px
+      .uku-hero-title
+        font-size: 30px
+        line-height: 30px
+        font-weight: 500
+        letter-spacing 0.10px
+        word-spacing 1px
+        margin: 0 0 15px 0
+      .uku-hero-subtitle
+        color: $white
+        font-size: 18px
+        line-height: 24px
+        font-weight: 400
+        letter-spacing 0.6px
+        margin: 0
+/* $breakpoint-md: 959px */
+@media only screen and (max-width: 959px)
+  .hide-on-mobile
+    display: none
+  .uku-hero
+    min-height: auto
+    .uku-hero-card
+      padding: 30px
+      .uku-hero-title
+        font-size: 30px
+        line-height: 30px
+        font-weight: 500
+        letter-spacing 0.10px
+        word-spacing 1px
+        margin: 0 0 15px 0
+      .uku-hero-subtitle
+        color: $white
+        font-size: 18px
+        line-height: 24px
+        font-weight: 400
+        letter-spacing 0.6px
+        margin: 0
+/* $breakpoint-sm: 839px */
+@media only screen and (max-width: 839px)
+  .hide-on-mobile
+    display: none
+  .uku-hero
+    min-height: auto
+    .uku-hero-card
+      padding: 10px
+      .uku-hero-title
+        font-size: 28px
+        line-height: 30px
+        font-weight: 500
+        letter-spacing 0.10px
+        word-spacing 1px
+        margin: 0 0 15px 0
+      .uku-hero-subtitle
+        color: $white
+        font-size: 18px
+        line-height: 24px
+        font-weight: 400
+        letter-spacing 0.6px
+        margin: 0
+/* $breakpoint-xs: 479px */
+@media only screen and (max-width: 479px)
+  .hide-on-mobile
+    display: none
+  .uku-hero
+    min-height: auto
+    .uku-hero-card
+      padding: 10px
+      .uku-hero-title
+        font-size: 28px
+        line-height: 30px
+        font-weight: 500
+        letter-spacing 0.10px
+        word-spacing 1px
+        margin: 0 0 15px 0
+      .uku-hero-subtitle
+        color: $white
+        font-size: 18px
+        line-height: 24px
+        font-weight: 400
+        letter-spacing 0.6px
+        margin: 0
+// This is for old phone screen sizes 360px and smaller
+@media only screen and (max-width: 359px)
+  .hide-on-mobile
+    display: none
+  .uku-hero
+    min-height: auto
+    .uku-hero-card
+      padding: 10px
+      .uku-hero-title
+        font-size: 28px
+        line-height: 30px
+        font-weight: 500
+        letter-spacing 0.10px
+        word-spacing 1px
+        margin: 0 0 15px 0
+      .uku-hero-subtitle
+        color: $white
+        font-size: 18px
+        line-height: 24px
+        font-weight: 400
+        letter-spacing 0.6px
+        margin: 0

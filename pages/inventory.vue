@@ -28,20 +28,19 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'company']),
+    ...mapState(['user', 'account', 'profile', 'company']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
       getUser: 'getUser',
+      getAccount: 'getAccount',
       getProfile: 'getProfile',
       getCompany: 'getCompany',
     }),
-    web3: {
+    user: {
       get() {
-        return this.$store.state.web3
+        return this.$store.state.user
       },
       set(value) {
-        this.$store.commit('SET_WEB3', value)
+        this.$store.commit('SET_USER', value)
       },
     },
     account: {
@@ -50,14 +49,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
       },
     },
     profile: {
@@ -81,7 +72,6 @@ export default {
     /* Check Web3 Instance */
     const newWeb3 = await this.$web3()
     if (newWeb3) {
-      this.$store.commit('SET_WEB3', newWeb3)
       this.$store.commit('SET_WEB3_INSTANCE', true)
       if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
@@ -100,14 +90,14 @@ export default {
       this.$nuxt.$loading.start()
       /* Open the sidebar for this screen */
       this.$store.commit('SET_LEFTDRAWER', true)
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+      setTimeout(() => this.$nuxt.$loading.finish(), 2000)
     })
   },
   methods: {
     async loadAccount() {
       /* Load Account, Chain Info and Balance/s */
       const newAccount = await this.$web3.getAccount()
-      if (newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)

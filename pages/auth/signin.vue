@@ -121,16 +121,14 @@ export default {
                 // and redirect them to the dashboard
                 $nuxt.$nextTick(() => {
                   setTimeout(() => {
-                    // We do this to give our auth action changed method time to kick in
+                    /* We do this to give our auth action changed method time to kick in */
                     $nuxt.$router.push('/dashboard')
                   }, 2000)
                 })
               } else {
                 /* Make sure we are signed out */
                 $nuxt.$fire.auth.signOut()
-                // display email verification ribbon thing with link
                 that.showEmailNotice = true
-
                 that.$q.notify({
                   color: 'red-5',
                   textColor: 'white',
@@ -179,7 +177,6 @@ export default {
 </script>
 <style lang="sass" scoped>
 @import "../../assets/sass/theme-variables"
-
 .uku-signin-bg-image
   background-image: url('~assets/images/Agriculture-Supply-Chain.png')
   background-size: contain
@@ -311,7 +308,7 @@ export default {
       font-weight: bold
       line-height: 1.57
       margin-left: 5px
-// $breakpoint-xs: 479px !default
+/* $breakpoint-xs: 479px !default */
 @media only screen and (max-width : 479px)
   .uku-signin-page
     min-height: 500px
@@ -327,7 +324,7 @@ export default {
   .uku-signin-bg-image
     background-image: url('~assets/images/Agriculture-Supply-Chain.png')
     background-size: cover
-// This is for old phone screen sizes 360px and smaller
+/* This is for old phone screen sizes 360px and smaller */
 @media only screen and (max-width : 359px)
   .q-page-container
     padding-top: 100px !important

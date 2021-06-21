@@ -224,9 +224,8 @@ async saveSponsor(data) {
       merge: true
     })
     .then((doc) => {
-          console.log("Sponsor has been updated successfully!", doc)
-          console.log("organisation Id:", sponsorId)
-      return true
+      console.log("Sponsor has been updated successfully!", doc)
+      console.log("organisation Id:", sponsorId)
     })
     .catch(error => {
       try {

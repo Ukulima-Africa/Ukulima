@@ -47,21 +47,10 @@
           </div>
         </div>
       </div>
-      <!-- <div else class="row items-start justify-center">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-sponsors-list-col">
-          <div class="uku-sponsors-text">
-            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-            Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-            chain inefficiencies and agriculture associated risks.
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
 <script>
-/* Import Vuex State, Getters and Mutations */
-import { mapState, mapGetters } from 'vuex'
 /* Import Utils */
 import sponsors from '../util/functions/sponsors'
 /* LFG */
@@ -84,30 +73,7 @@ export default {
       expanded: false,
     }
   },
-  computed: {
-    ...mapState(['user', 'company']),
-    ...mapGetters({
-      getUser: 'getUser',
-      getCompany: 'getCompany',
-    }),
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
-  },
-  async mounted() {
+  async created() {
     const sponsorsData = await sponsors.getActiveSponsors()
     this.activeSponsors = sponsorsData
   },

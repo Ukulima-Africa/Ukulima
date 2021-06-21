@@ -50,7 +50,7 @@
                       no-error-icon
                     />
                   </div>
-                  <div class="self-center full-width no-outline q-py-xs" tabindex="3">
+                  <div class="self-center full-width no-outline q-py-xs">
                     <q-checkbox
                       v-model="accept"
                       size="sm"
@@ -59,6 +59,7 @@
                       :true-value="true"
                       :false-value="false"
                       :toggle-indeterminate="false"
+                      tabindex="3"
                     >
                       <template #default>
                         I accept Ukulima’s
@@ -153,19 +154,18 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile']),
+    ...mapState(['user', 'account', 'profile']),
     ...mapGetters({
-      getWeb3: 'web3',
-      getAccount: 'account',
       getUser: 'getUser',
-      getProfile: 'profile',
+      getAccount: 'getAccount',
+      getProfile: 'getProfile',
     }),
-    web3: {
+    user: {
       get() {
-        return this.$store.state.web3
+        return this.$store.state.user
       },
       set(value) {
-        this.$store.commit('SET_WEB3', value)
+        this.$store.commit('SET_USER', value)
       },
     },
     account: {
@@ -174,14 +174,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
       },
     },
     profile: {
@@ -281,7 +273,6 @@ export default {
     async connectMetaMask() {
       /* Check Web3 Instance */
       const newWeb3 = await this.$web3()
-      this.$store.commit('SET_WEB3', newWeb3)
       /* Enable MetaMask and Sign in */
       if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
@@ -297,7 +288,7 @@ export default {
     async loadAccount() {
       /* Load Network, Account and Balance/s */
       const newAccount = await this.$web3.connectMetaMask()
-      if (newAccount && newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
@@ -384,17 +375,6 @@ export default {
     line-height: 24px
     padding-top: 10px !important
     padding-bottom: 8px
-  .password-update
-    color: $secondary
-    font-size: 12px
-    line-height: 1.25
-    letter-spacing: 0.6px
-    font-weight: bold
-    font-stretch: normal
-    font-style: normal
-    cursor: pointer
-    &:hover, &:focus
-      color: $secondary
   .uku-buy-button
     width: 442px
     text-transform: capitalize

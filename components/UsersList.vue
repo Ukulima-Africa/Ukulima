@@ -8,15 +8,7 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn
-              v-if="(user && user.role === 'admin') || user.role === 'manager'"
-              type="a"
-              href="/users-add"
-              rounded
-              color="primary"
-              class="q-ml-sm q-mb-sm"
-              label="+ Add Users"
-            />
+            <q-btn type="a" href="/users-add" rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add Users" />
           </div>
         </div>
       </div>
@@ -47,7 +39,6 @@
                 <q-icon slot="append" name="search" />
               </q-input>
             </template>
-
             <!-- Template Slot Status -->
             <template #body="props">
               <q-tr :props="props">
@@ -58,7 +49,6 @@
                 <q-td key="email" :props="props">{{ props.row.email }}</q-td>
                 <q-td key="phoneNumber" :props="props">{{ props.row.phoneNumber }}</q-td>
                 <q-td key="profileType" :props="props">{{ props.row.profileType }}</q-td>
-                <q-td key="role" :props="props">{{ props.row.role }}</q-td>
                 <q-td key="actions" :props="props">
                   <q-btn flat label="Edit" color="primary" @click="editUser(props.row.uid)" />
                   <q-btn flat label="Delete" color="black" @click="deleteUser(props.row.uid)" />
@@ -79,8 +69,6 @@
   </div>
 </template>
 <script>
-/* Import Vuex State, Getters and Mutations */
-import { mapState, mapGetters } from 'vuex'
 /* Import Utils */
 import users from '../util/functions/users'
 /* LFG */
@@ -89,7 +77,7 @@ export default {
   data() {
     return {
       title: 'Organisation Users',
-      subtitle: 'Create Users for your Organisation',
+      subtitle: 'Create additional Users for your Organisation',
       selected: [],
       filter: '',
       lastIndex: null,
@@ -136,15 +124,6 @@ export default {
           sortable: true,
         },
         {
-          name: 'role',
-          required: true,
-          label: 'Role',
-          align: 'left',
-          field: (row) => row.role,
-          format: (val) => `${val}`,
-          sortable: true,
-        },
-        {
           name: 'actions',
           label: 'Actions',
           align: 'center',
@@ -154,29 +133,6 @@ export default {
         },
       ],
     }
-  },
-  computed: {
-    ...mapState(['user', 'company']),
-    ...mapGetters({
-      getUser: 'getUser',
-      getCompany: 'getCompany',
-    }),
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
   },
   async created() {
     const usersData = await users.getUsers()

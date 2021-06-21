@@ -4,7 +4,15 @@
     <SidebarLeft />
     <q-page-container>
       <!-- First Row - Intro & Connect -->
-      <div class="row items-start justify-evenly uku-blue-bg">
+      <div v-if="user && user.uid !== null" class="row items-start justify-evenly uku-green-bg">
+        <div class="col-8 col-lg-7 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
+          <Intro />
+        </div>
+        <div class="col-4 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+          <BuyTokensForm />
+        </div>
+      </div>
+      <div v-else class="row items-start justify-evenly uku-blue-bg">
         <div class="col-8 col-lg-7 col-md-12 col-sm-12 col-xs-12 intro-bg-image">
           <Intro />
         </div>
@@ -80,6 +88,7 @@ import Header from '../components/general/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import Intro from '../components/home/Intro.vue'
 import SigninForm from '../components/forms/SigninForm.vue'
+import BuyTokensForm from '../components/forms/BuyTokensForm.vue'
 import Banner from '../components/home/Banner.vue'
 import About from '../components/home/About.vue'
 import Blockchain from '../components/home/Blockchain.vue'
@@ -98,6 +107,7 @@ export default {
     SidebarLeft,
     Intro,
     SigninForm,
+    BuyTokensForm,
     Banner,
     About,
     Blockchain,
@@ -113,7 +123,7 @@ export default {
     return {
       title: 'Ukulima Africa',
       description:
-        'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
+        'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farms throughout Africa',
     }
   },
   head() {
@@ -123,18 +133,17 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user']),
+    ...mapState(['user', 'account']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
       getUser: 'getUser',
+      getAccount: 'getAccount',
     }),
-    web3: {
+    user: {
       get() {
-        return this.$store.state.web3
+        return this.$store.state.user
       },
       set(value) {
-        this.$store.commit('SET_WEB3', value)
+        this.$store.commit('SET_USER', value)
       },
     },
     account: {
@@ -145,20 +154,11 @@ export default {
         this.$store.commit('SET_ACCOUNT', value)
       },
     },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
   },
-  async beforeCreate() {
+  async created() {
     /* Check Web3 Instance */
     const newWeb3 = await this.$web3()
     if (newWeb3) {
-      this.$store.commit('SET_WEB3', newWeb3)
       this.$store.commit('SET_WEB3_INSTANCE', true)
       if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
@@ -177,14 +177,14 @@ export default {
       this.$nuxt.$loading.start()
       /* Close the sidebar by default for this screen */
       this.$store.commit('SET_LEFTDRAWER', false)
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+      setTimeout(() => this.$nuxt.$loading.finish(), 2000)
     })
   },
   methods: {
     async loadAccount() {
       /* Load Account, Chain Info and Balance/s */
       const newAccount = await this.$web3.getAccount()
-      if (newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
@@ -201,15 +201,6 @@ export default {
         textColor: 'white',
         icon: 'warning',
         message: 'Your account was not loaded correctly, please refresh your browser and try again!',
-        actions: [
-          {
-            label: 'Try again!',
-            color: 'white',
-            handler: () => {
-              this.loadAccount()
-            },
-          },
-        ],
       })
       return false
     },

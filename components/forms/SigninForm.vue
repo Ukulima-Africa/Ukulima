@@ -28,24 +28,6 @@
                 tabindex="1"
               />
             </div>
-            <!-- <div class="self-center full-width no-outline">
-              <q-input
-                v-model="signin.phone"
-                outlined
-                name="phone"
-                type="tel"
-                label="Phone"
-                color="white"
-                label-color="white"
-                bg-color="secondary"
-                placeholder="Phone"
-                lazy-rules
-                :rules="[(val) => (val && val.length > 0) || 'Please enter your phone number to continue!']"
-                no-error-icon
-                autocomplete="tel"
-                tabindex="2"
-              />
-            </div> -->
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="signin.password"
@@ -61,7 +43,7 @@
                 :rules="[(val) => (val && val.length > 0) || 'Please enter a password to continue!']"
                 no-error-icon
                 autocomplete="current-password"
-                tabindex="3"
+                tabindex="2"
               >
                 <template #append>
                   <span class="password-update" :name="isPwd ? 'visibility_off' : 'visibility'" @click="togglePasswordVisibility">
@@ -94,7 +76,6 @@ export default {
   name: 'SigninForm',
   data() {
     return {
-      page: 'login',
       title: 'Sign In',
       subtitle: 'Use your email & password to continue',
       loading: false,
@@ -122,7 +103,6 @@ export default {
         $nuxt.$fire.auth
           .signInWithEmailAndPassword(that.signin.email, that.signin.password)
           .then(async (user) => {
-            console.log('user', user)
             if (user) {
               if (user.user.emailVerified) {
                 /* Send user to the Dashboard page */
@@ -130,12 +110,11 @@ export default {
                   setTimeout(() => {
                     // We do this to give our auth action changed method time to kick in
                     $nuxt.$router.push('/dashboard')
-                  }, 2000)
+                  }, 500)
                 })
               } else {
                 /* Display email verification ribbon with link */
                 that.showEmailNotice = true
-
                 that.$q.notify({
                   color: 'red-5',
                   textColor: 'white',
@@ -151,71 +130,6 @@ export default {
                     },
                   ],
                 })
-
-                /* Make sure we are signed out */
-                $nuxt.$fire.auth.signOut()
-              }
-            }
-          })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            /* Show notification that something went wrong */
-            this.$q.notify({
-              color: 'red-6',
-              textColor: 'white',
-              icon: 'warning',
-              message: `Error signing in ${errorCode}: ${errorMessage}`,
-            })
-          })
-      }
-      /* Reset form & Validation */
-      that.$refs.signInForm.resetValidation()
-      that.$refs.signInForm.reset()
-      that.loading = false
-    },
-    async createUser() {
-      const that = this
-      that.loading = true
-      that.showEmailNotice = false
-      /* Check if form is valid */
-      const formValidation = await that.$refs.signInForm.validate().then((outcome) => {
-        return outcome
-      })
-      if (formValidation === true) {
-        /* Sign in user using firebase auth */
-        $nuxt.$fire.auth
-          .createUserWithEmailAndPassword(that.signin.email, that.signin.password)
-          .then(async (user) => {
-            if (user) {
-              if (user.user.emailVerified) {
-                // Send user to the Dashboard page
-                $nuxt.$nextTick(() => {
-                  setTimeout(() => {
-                    // We do this to give our auth action changed method time to kick in
-                    $nuxt.$router.push('/dashboard')
-                  }, 2000)
-                })
-              } else {
-                /* Display email verification ribbon with link */
-                that.showEmailNotice = true
-
-                that.$q.notify({
-                  color: 'red-5',
-                  textColor: 'white',
-                  icon: 'warning',
-                  message: 'You have not verified your email yet.',
-                  actions: [
-                    {
-                      label: 'Resend Link',
-                      color: 'white',
-                      handler: () => {
-                        $nuxt.$router.push('/auth/email-verification')
-                      },
-                    },
-                  ],
-                })
-
                 /* Make sure we are signed out */
                 $nuxt.$fire.auth.signOut()
               }
@@ -251,7 +165,6 @@ export default {
 </script>
 <style lang="sass" scope>
 @import "../../assets/sass/theme-variables"
-
 .uku-signin
   max-height: 600px
   min-height: inherit

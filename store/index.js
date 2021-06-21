@@ -1,20 +1,14 @@
 import pollWeb3 from '../util/pollWeb3'
 
 const state = () => ({
-  web3: {},
-  contracts: {
-    contractInstance: null,
-    UKUContract: null,
-    INSContract: null,
-  },
   account: {
-    web3Instance: false,
-    isMetaMask: false,
+    web3Instance: null,
+    isMetaMask: null,
     chainIdHEX: null,
     chainId: null,
     chainName: null,
     account: null,
-    balance: 0,
+    balance: 0.0,
     step: 0,
   },
   user: {
@@ -37,7 +31,7 @@ const state = () => ({
     lastEdit: null
   },
   profile: {
-    isAuthenticated: false,
+    isAuthenticated: null,
     userId: null,
     hasMasterPin: null,
     username: null,
@@ -178,6 +172,11 @@ const actions = {
   }, payload) {
     commit('SET_STEP', payload)
   },
+  setLeftDrawer({
+    commit
+  }, payload) {
+    commit('SET_LEFTDRAWER', payload)
+  },
 }
 
 const mutations = {
@@ -209,16 +208,13 @@ const mutations = {
     }
   },
   /* Web3 & Providers */
-  SET_WEB3(state, payload) {
-    state.web3 = payload
-    pollWeb3()
-  },
   POLL_WEB3(state, payload) {
     state.account.account = payload.account
     state.account.chainId = payload.chainId
     state.account.chainIdHEX = payload.chainIdHEX
     state.account.chainName = payload.chainName
     state.account.balance = payload.balance
+    pollWeb3()
   },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
@@ -362,16 +358,6 @@ const mutations = {
   SET_PROGRESS_CALCS(state, progressCalculations) {
     state.progressCalculations = progressCalculations
   },
-  /* Solidity Contracts */
-  SET_CONTRACT_INSTANCE(state, payload) {
-    state.contracts.contractInstance = payload
-  },
-  SET_CONTRACT_UKU(state, payload) {
-    state.contracts.UKUContract = payload
-  },
-  SET_CONTRACT_INSURANCE(state, payload) {
-    state.contracts.INSContract = payload
-  },
   /* Grants */
   SET_GRANTS(state, payload) {
     state.grants.push(payload)
@@ -403,23 +389,9 @@ const mutations = {
 }
 
 const getters = {
-  /* Contracts */
-  getContractInstance(state) {
-    return state.contracts.contractInstance
-  },
-  getContractUKU(state) {
-    return state.contracts.UKUContract
-  },
-  getContractINS(state) {
-    return state.contracts.INSContract
-  },
-  /* Web3 */
-  getWeb3(state) {
-    return state.web3
-  },
   /* Metamask Account */
   getAccount(state) {
-      return state.account
+    return state.account
   },
   getWeb3Instance(state) {
     return state.account.web3Instance
@@ -437,7 +409,7 @@ const getters = {
     return state.account.chainName
   },
   getAccountAddress(state) {
-      return state.account.account
+    return state.account.account
   },
   getBalance(state) {
     return state.account.balance

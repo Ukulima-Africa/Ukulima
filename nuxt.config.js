@@ -12,7 +12,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Ukulima Africa',
-    titleTemplate: '%s - Empowering African Farmers through Blockchain Technology',
+    titleTemplate: '%s - Empowering African farmers through Blockchain Technology',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -41,8 +41,13 @@ export default {
   },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/quasar' },
-    { src: '@/plugins/web3' },
+    {
+      src: '@/plugins/quasar.js',
+      mode: 'client'
+    }, {
+      src: '@/plugins/web3',
+      mode: 'client'
+    },
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -65,6 +70,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
     [
       '@nuxtjs/firebase',
       {
@@ -130,7 +136,7 @@ export default {
     },
     vue: {
       config: {
-        devtools: true,
+        devtools: process.env.NODE_ENV === 'development' ? true : false
       },
     },
 }

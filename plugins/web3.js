@@ -60,11 +60,20 @@ const getArkaneProvider = async () => {
 const getWeb3 = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
+    console.log('Ethereum successfully detected!')
+    // From now on, this should always be true:
+    // provider === window.ethereum
+    // Access the decentralized web!
+    // Legacy providers may only have ethereum.sendAsync
+    const chainId = await provider.request({
+      method: 'eth_chainId'
+    })
+    console.log('chainId:', chainId)
     return provider
   }
-  if (window.web3) {
-    return new Web3(window.web3)
-  }
+  // if (window.ethereum) {
+  //   return new Web3(window.ethereum)
+  // }
   // If the provider is not detected, detectEthereumProvider resolves to null
   console.error('Please install MetaMask to continue!')
   return null
@@ -103,7 +112,7 @@ web3.connectMetaMask = async () => {
     console.log("connectMetaMask:", accounts)
     // We currently only ever provide a single account,
     // but the array gives us some room to grow.
-    const [...account] = accounts
+    const account = accounts[0]
     return account
   }
   return false
@@ -117,10 +126,10 @@ web3.getAccount = async () => {
     const accounts = await provider.request({
       method: 'eth_accounts',
     })
-    console.log("getAccount:", accounts)
+    console.log("getAccount : ", accounts)
     // We currently only ever provide a single account,
     // but the array gives us some room to grow.
-    const [...account] = accounts
+    const account = accounts[0]
     return account
   }
   return ''
@@ -130,11 +139,10 @@ web3.getAccount = async () => {
 web3.getAccounts = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    /* Will Start the metamask extension */
     const accounts = await provider.request({
       method: 'eth_accounts',
     })
-    console.log("getAccount:", accounts)
+    console.log("getAccounts :", accounts)
     return accounts
   }
   return false
@@ -144,7 +152,6 @@ web3.getAccounts = async () => {
 web3.getChainId = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    /* Will Start the metamask extension */
     const chainId = await provider.request({
       method: 'eth_chainId',
     })
@@ -158,10 +165,12 @@ web3.getBalance = async (account) => {
   const provider = await detectEthereumProvider()
   if (provider) {
     const newWeb3 = new Web3(window.ethereum)
+    const displayBalance = 0.0
     await newWeb3.eth.getBalance(String(account), 'latest', (err, result) => {
       if (err) {
         console.log(err)
       } else {
+        console.log("displayBalance", displayBalance)
         return newWeb3.utils.fromWei(result, 'ether')
       }
       return 0
@@ -169,6 +178,73 @@ web3.getBalance = async (account) => {
   }
   return 0
 }
+/* Add Token */
+web3.addTokenToMetaMask = async () => {
+  const provider = await detectEthereumProvider()
+  if (provider) {
+    const tokenAddress = process.env.UKU_CONTRACT_ADDRESS
+    const tokenSymbol = process.env.UKU_TOKEN_SYMBOL
+    const tokenDecimals = process.env.UKU_TOKEN_DECIMALS
+    const tokenImage = process.env.UKU_TOKEN_IMAGE
+
+    try {
+      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+      const wasAdded = await provider.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'BEP-20', // Initially only supports ERC20, but eventually more!
+          options: {
+            address: tokenAddress, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            image: tokenImage, // A string url of the token logo
+          },
+        },
+      })
+      if (wasAdded) {
+        console.log('Token added to MetaMask');
+      } else {
+        console.log('Error adding token to MetaMask!');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return 0
+}
+
+web3.requestPermissions = async () => {
+  const provider = await detectEthereumProvider()
+  if (provider) {
+    provider.request({
+        method: 'wallet_requestPermissions',
+        params: [{
+          eth_accounts: {}
+        }],
+      })
+      .then((permissions) => {
+        const accountsPermission = permissions.find(
+          (permission) => permission.parentCapability === 'eth_accounts'
+        )
+        if (accountsPermission) {
+          console.log('eth_accounts permission successfully requested!', accountsPermission)
+          return true
+        }
+        return false
+      })
+      .catch((error) => {
+        if (error.code === 4001) {
+          // EIP-1193 userRejectedRequest error
+          console.log('MetaMask Permissions needed to continue');
+        } else {
+          console.error(error);
+        }
+      })
+    return false
+  }
+  return null
+}
+
 /* Buy UKU Token */
 web3.buyTokens = async (to, value) => {
   const provider = await detectEthereumProvider()

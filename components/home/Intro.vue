@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       title: 'Ukulima Africa',
-      subtitle: 'Empowering African Farmers through Blockchain Technology',
+      subtitle: 'Empowering African farmers through Blockchain Technology',
     }
   },
 }
@@ -42,7 +42,7 @@ export default {
   .uku-intro-col
     padding: 40px
     .uku-intro-card
-      background: rgba(0, 0, 0, 0.6)
+      background: rgba(0, 0, 0, 0.8)
       padding: 40px 30px
       .uku-intro-title
         color: $white

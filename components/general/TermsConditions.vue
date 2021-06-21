@@ -6,8 +6,8 @@
           <div class="uku-hero-title">{{ title }}</div>
         </div>
       </div>
-      <div class="row uku-terms items-start justify-center uku-terms-col">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="row uku-terms items-start justify-center">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-terms-col">
           <div class="uku-terms-title">Interpretation &amp; Definitions</div>
           <div class="uku-terms-text">
             <p>
@@ -176,69 +176,69 @@ export default {
   min-height: 660px
   .uku-terms-col
     padding: 40px
-  .uku-terms-title
-    color: $black
-    font-size: 32px
-    line-height: 32px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 20px 0
-  h1
-    color: $black
-    font-size: 32px
-    line-height: 32px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 20px 0
-  h2
-    color: $black
-    font-size: 26px
-    line-height: 28px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 20px 0
-  h3
-    color: $black
-    font-size: 22px
-    line-height: 26px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 20px 0
-  h4
-    color: $black
-    font-size: 18px
-    line-height: 22px
-    font-weight: 500
-    letter-spacing 0.10px
-    word-spacing 1px
-    margin: 0 0 20px 0
-  .uku-terms-text
-    color: $black
-    font-size: 14px
-    line-height: 20px
-    font-weight: 400
-    margin: 0 0 10px 0
-  a,
-  .nuxt-link
-    color: $black
-    text-decoration: none
-    cursor: pointer
-    &:hover,
-    &:active,
-    &:focus,
-    .nuxt-link-exact-active
-      text-decoration: underline
+    .uku-terms-title
+      color: $black
+      font-size: 32px
+      line-height: 32px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 20px 0
+    h1
+      color: $black
+      font-size: 32px
+      line-height: 32px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 20px 0
+    h2
+      color: $black
+      font-size: 26px
+      line-height: 28px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 20px 0
+    h3
+      color: $black
+      font-size: 22px
+      line-height: 26px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 20px 0
+    h4
+      color: $black
+      font-size: 18px
+      line-height: 22px
+      font-weight: 500
+      letter-spacing 0.10px
+      word-spacing 1px
+      margin: 0 0 20px 0
+    .uku-terms-text
+      color: $black
+      font-size: 14px
+      line-height: 20px
+      font-weight: 400
+      margin: 0 0 10px 0
+    a,
+    .nuxt-link
+      color: $black
+      text-decoration: none
       cursor: pointer
-  .q-item.q-router-link--active,
-  .q-item--active
-    color: $black !important
-    background-color: $primary
-    padding: 4px 8px !important
-    border-radius: 4px !important
+      &:hover,
+      &:active,
+      &:focus,
+      .nuxt-link-exact-active
+        text-decoration: underline
+        cursor: pointer
+    .q-item.q-router-link--active,
+    .q-item--active
+      color: $black !important
+      background-color: $primary
+      padding: 4px 8px !important
+      border-radius: 4px !important
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)

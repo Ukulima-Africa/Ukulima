@@ -1,6 +1,6 @@
 <template>
   <div class="row items-start justify-center">
-    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <q-card flat bordered class="uku-card uku-account-card">
         <q-card-section>
           <div class="text-h6">
@@ -13,6 +13,8 @@
           <p>Network: {{ networkFilter(account.chainIdHEX, 'name') }}</p>
           <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
           <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
+          <p>Account: {{ account.account }}</p>
+          <p>Balance: {{ account.balance }}</p>
         </q-card-section>
         <q-card-section class="q-pt-none">
           <p>Arkane userId: {{ profile.userId }}</p>
@@ -21,27 +23,6 @@
           <p>Arkane email: {{ profile.email }}</p>
           <p>Arkane firstName: {{ profile.firstName }}</p>
           <p>Arkane lastName: {{ profile.lastName }}</p>
-        </q-card-section>
-        <q-card-section class="q-pt-none">
-          <p>User userId: {{ profile.userId }}</p>
-          <p>Arkane hasMasterPin: {{ profile.hasMasterPin }}</p>
-          <p>Arkane username: {{ profile.username }}</p>
-          <p>Arkane email: {{ profile.email }}</p>
-          <p>Arkane firstName: {{ profile.firstName }}</p>
-          <p>Arkane lastName: {{ profile.lastName }}</p>
-        </q-card-section>
-      </q-card>
-    </div>
-    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <q-card flat bordered class="uku-card uku-account-card">
-        <q-card-section>
-          <div class="text-h6">
-            {{ title }}
-          </div>
-        </q-card-section>
-        <q-card-section class="q-pt-none">
-          <p v-if="account.account">Account: {{ account.account[0] }}</p>
-          <p>Balance: {{ account.balance }}</p>
         </q-card-section>
         <q-card-section>
           <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
@@ -54,9 +35,13 @@
           /> -->
           <!-- <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" /> -->
         </q-card-section>
+      </q-card>
+    </div>
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <q-card flat bordered class="uku-card uku-account-card">
         <q-card-section class="q-pt-none">
           <pre>MetaMask Account: {{ account }}</pre>
-          <!-- <pre>User: {{ user }}</pre> -->
+          <pre>User: {{ user }}</pre>
           <pre>Profile: {{ profile }}</pre>
         </q-card-section>
       </q-card>
@@ -83,19 +68,18 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile']),
+    ...mapState(['user', 'account', 'profile']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
+      getUser: 'user',
       getAccount: 'getAccount',
-      getUser: 'getUser',
       getProfile: 'getProfile',
     }),
-    web3: {
+    user: {
       get() {
-        return this.$store.state.web3
+        return this.$store.state.user
       },
       set(value) {
-        this.$store.commit('SET_WEB3', value)
+        this.$store.commit('SET_USER', value)
       },
     },
     account: {
@@ -104,14 +88,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
       },
     },
     profile: {

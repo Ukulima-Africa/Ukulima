@@ -13,20 +13,20 @@
       <q-space />
       <!-- Right Menu -->
       <div class="uku-menu row no-wrap items-center">
-        <q-btn v-if="account.balance" color="black" class="q-mr-sm account-balance-button" push>
+        <q-btn v-if="account && account.balance" color="black" class="q-mr-sm account-balance-button" push>
           <div class="row items-center no-wrap">
             <q-icon left size="1em" name="money" />
             <div class="text-center">{{ parseFloat(account.balance).toFixed(4) }}</div>
           </div>
         </q-btn>
-        <q-btn v-if="account.account" color="black" class="q-mr-sm account-address-button" push>
+        <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button" push>
           <div class="row items-center no-wrap">
             <q-icon left size="1em" name="style" />
-            <div class="text-center">{{ account.account[0] | truncate(6, '...') }}</div>
+            <div class="text-center">{{ account.account | truncate(6, '...') }}</div>
           </div>
         </q-btn>
         <q-btn
-          v-if="web3 && !account.account"
+          v-if="!account.account"
           rounded
           outlined
           no-wrap
@@ -63,7 +63,7 @@
         <q-btn v-if="user && user.uid !== null" flat round icon="account_circle" size="18px" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
-              <q-item v-if="user.name" v-ripple clickable>
+              <q-item v-if="user.name" v-ripple to="/profile" clickable>
                 <q-item-section avatar>
                   <q-avatar>
                     <img :src="user.photoUrl ? user.photoUrl : 'https://cdn.quasar.dev/img/boy-avatar.png'" />
@@ -71,6 +71,7 @@
                 </q-item-section>
                 <q-item-section>{{ user.name }}</q-item-section>
               </q-item>
+              <q-item-label v-if="profile.username" header class="text-weight-bold text-uppercase">Arkane Account</q-item-label>
               <q-item v-if="profile.username" v-ripple clickable class="black q-mr-xs">
                 <q-item-section> {{ profile.username }}</q-item-section>
               </q-item>
@@ -79,34 +80,48 @@
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
               <q-separator />
-              <nuxt-link to="/dashboard">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>Dashboard</q-item-section>
-                </q-item>
-              </nuxt-link>
-              <nuxt-link to="/profile">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>My Profile</q-item-section>
-                </q-item>
-              </nuxt-link>
-              <nuxt-link to="/company">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>My Organisation</q-item-section>
-                </q-item>
-              </nuxt-link>
-              <nuxt-link to="/inventory">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>My Inventory</q-item-section>
-                </q-item>
-              </nuxt-link>
-              <nuxt-link to="/inventory">
-                <q-item v-ripple clickable color="black" class="q-mr-xs">
-                  <q-item-section>My NFTs</q-item-section>
-                </q-item>
-              </nuxt-link>
+              <q-item v-ripple to="/profile" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="account_box" />
+                </q-item-section>
+                <q-item-section>Profile</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/dashboard" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="dashboard" />
+                </q-item-section>
+                <q-item-section>Dashboard</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/company" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="store" />
+                </q-item-section>
+                <q-item-section>Organisation</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/users" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="group" />
+                </q-item-section>
+                <q-item-section>Users</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/inventory" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="inventory" />
+                </q-item-section>
+                <q-item-section>Inventory</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/mygrants" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="ballot" />
+                </q-item-section>
+                <q-item-section>Grants</q-item-section>
+              </q-item>
               <!-- END Hide for MVP -->
               <q-separator />
               <q-item v-ripple clickable color="black" class="q-mr-xs" @click="signOut()">
+                <q-item-section avatar>
+                  <q-icon color="black" name="logout" />
+                </q-item-section>
                 <q-item-section>Sign Out</q-item-section>
               </q-item>
             </q-list>
@@ -145,20 +160,19 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'account', 'user', 'profile', 'leftDrawerOpen']),
+    ...mapState(['user', 'account', 'profile', 'leftDrawerOpen']),
     ...mapGetters({
-      getWeb3: 'getWeb3',
-      getAccount: 'getAccount',
       getUser: 'getUser',
+      getAccount: 'getAccount',
       getProfile: 'getProfile',
-      getLeftDrawerState: 'getLeftDrawerState',
+      getLeftDrawerState: 'leftDrawerOpen',
     }),
-    web3: {
+    user: {
       get() {
-        return this.$store.state.web3
+        return this.$store.state.user
       },
       set(value) {
-        this.$store.commit('SET_WEB3', value)
+        this.$store.commit('SET_USER', value)
       },
     },
     account: {
@@ -167,14 +181,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
       },
     },
     profile: {
@@ -210,7 +216,6 @@ export default {
     async connectMetaMask() {
       /* Check Web3 Instance */
       const newWeb3 = await this.$web3()
-      this.$store.commit('SET_WEB3', newWeb3)
       /* Enable MetaMask and Sign in */
       if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
@@ -226,7 +231,7 @@ export default {
     async loadAccount() {
       /* Load Network, Account and Balance/s */
       const newAccount = await this.$web3.connectMetaMask()
-      if (newAccount && newAccount[0] && newAccount[0] !== '') {
+      if (newAccount && newAccount !== '') {
         this.$store.commit('SET_ACCOUNT_ADDRESS', newAccount)
         const chainIdHEX = await this.$web3.getChainId(newAccount)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
@@ -314,9 +319,9 @@ export default {
 .account-menu
   min-width: 200px
   a
-    color: $secondary !important
+    color: $black !important
     &:hover, &:focus
-      color: $secondary !important
+      color: $black !important
       text-decoration: none
 .signout-button
   color: $white

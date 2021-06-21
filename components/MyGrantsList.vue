@@ -58,8 +58,6 @@
   </div>
 </template>
 <script>
-/* Import Vuex State, Getters and Mutations */
-import { mapState, mapGetters } from 'vuex'
 /* Import Utils */
 import grants from '../util/functions/grants'
 /* Components */
@@ -87,30 +85,7 @@ export default {
       expanded: false,
     }
   },
-  computed: {
-    ...mapState(['user', 'company']),
-    ...mapGetters({
-      getUser: 'getUser',
-      getCompany: 'getCompany',
-    }),
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
-  },
-  async mounted() {
+  async created() {
     const grantsData = await grants.getMyGrants()
     this.myGrants = grantsData
   },
