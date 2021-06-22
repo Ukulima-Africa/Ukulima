@@ -249,12 +249,12 @@ export default {
   padding: 0
   overflow: hidden
   .uku-buyin-col
-    padding: 60px 20px 30px 20px
+    padding: 60px 15px 30px
     .uku-buyin-form
       max-width: 469px
       border-radius: 4px
       border: solid 2px $secondary
-      padding: 30px 20px
+      padding: 30px auto
       .uku-buyin-title
         width: 100%
         color: #000000
@@ -274,7 +274,7 @@ export default {
         letter-spacing 0.8px
         margin: 0 auto 20px
       .uku-form
-        max-width: 340px
+        max-width: 360px
         .q-field__native, .q-field__input
           color: #000000 !important
           width: 100%
@@ -364,6 +364,12 @@ export default {
       border-radius: 0
       border: none
       padding: 25px 15px
+      .uku-form
+        padding: 25px 10px
+        .uku-buy-button
+          width: 340px
+        .uku-connect-button
+          width: 340px
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
@@ -375,7 +381,13 @@ export default {
       max-width: 100%
       border-radius: 0
       border: none
-      padding: 25px 15px
+      padding: 0
+      .uku-form
+        padding: 25px 10px
+        .uku-buy-button
+          width: 100%
+        .uku-connect-button
+          width: 100%
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
@@ -387,5 +399,11 @@ export default {
       max-width: 100%
       border-radius: 0
       border: none
-      padding: 25px 15px
+      padding: 0
+      .uku-form
+        padding: 25px 10px
+        .uku-buy-button
+          width: 100%
+        .uku-connect-button
+          width: 100%
 </style>

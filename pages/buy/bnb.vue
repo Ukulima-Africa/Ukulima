@@ -497,22 +497,24 @@ a
       overflow: hidden
     .uku-buy-bg-image
       background-image: none
-      .uku-buy
-        width: 90%
-        border-radius: 4px
-        box-shadow: none !important
-        padding: 15px
-        margin-top: 100px
-        .uku-form
-          width: 100%
-          margin-left: auto
-          margin-right: auto
-        .uku-buy-button
-          width: 100%
-        .uku-buy-title
-          font-size: 34px
-          line-height: 1.21
-          margin: 0px auto 15px
+    .uku-buy
+      width: 90%
+      border-radius: 4px
+      box-shadow: none !important
+      padding: 15px
+      margin-top: 100px
+      .uku-form
+        width: 100%
+        margin-left: auto
+        margin-right: auto
+      .uku-buy-title
+        font-size: 34px
+        line-height: 1.21
+        margin: 0px auto 15px
+      .uku-buy-button
+        width: 100%
+      .uku-connect-button
+        width: 100%
     .uku-next-steps
       .uku-steps
         margin-left: 15px
@@ -539,4 +541,8 @@ a
       font-size: 34px
       line-height: 1.21
       margin: 40px auto 34px
+    .uku-buy-button
+      width: 100%
+    .uku-connect-button
+      width: 100%
 </style>

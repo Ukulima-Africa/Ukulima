@@ -79,7 +79,7 @@ export default {
   .hide-on-tablet
     display: none
   .uku-intro-col
-    padding: 30px
+    padding: 10px 10px 0 10px
     .uku-intro-card
       padding: 30px 20px
       .uku-intro-title

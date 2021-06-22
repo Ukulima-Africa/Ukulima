@@ -73,7 +73,7 @@ export default {
   .hide-on-tablet
     display: none
   .uku-about-col
-    padding: 30px
+    padding: 10px 10px 0 10px
     .uku-about-title
       font-size: 30px
       line-height: 30px

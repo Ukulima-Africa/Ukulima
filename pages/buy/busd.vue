@@ -489,7 +489,7 @@ a
     color: $secondary !important
     text-decoration: none
 
-// $breakpoint-xs: 479px !default
+/* $breakpoint-xs: 479px !default */
 @media only screen and (max-width : 479px)
   .q-page-container
     padding-top: 0 !important
@@ -504,40 +504,45 @@ a
         box-shadow: none !important
         padding: 15px
         margin-top: 100px
-        .uku-form
-          width: 100%
-          margin-left: auto
-          margin-right: auto
-        .uku-buy-button
-          width: 100%
-        .uku-buy-title
-          font-size: 34px
-          line-height: 1.21
-          margin: 0px auto 15px
+      .uku-form
+        width: 100%
+        margin-left: auto
+        margin-right: auto
+      .uku-buy-title
+        font-size: 34px
+        line-height: 1.21
+        margin: 0px auto 15px
+      .uku-buy-button
+        width: 100%
+      .uku-connect-button
+        width: 100%
     .uku-next-steps
       .uku-steps
         margin-left: 15px
-
-// This is for old phone screen sizes 360px and smaller
+/* This is for old phone screen sizes 360px and smaller */
 @media only screen and (max-width : 359px)
   .q-page-container
     padding-top: 0 !important
     padding-bottom: 0 !important
-  .uku-buy-page
-    overflow: hidden
-  .uku-buy-bg-image
-    background-image: none
-  .uku-buy
-    width: 90%
-    border-radius: 4px
-    box-shadow: none !important
-    padding: 15px
-    .uku-form
-      width: 100%
-      margin-left: auto
-      margin-right: auto
-    .uku-buy-title
-      font-size: 34px
-      line-height: 1.21
-      margin: 40px auto 34px
+    .uku-buy-page
+      overflow: hidden
+    .uku-buy-bg-image
+      background-image: none
+    .uku-buy
+      width: 90%
+      border-radius: 4px
+      box-shadow: none !important
+      padding: 15px
+      .uku-form
+        width: 100%
+        margin-left: auto
+        margin-right: auto
+      .uku-buy-title
+        font-size: 34px
+        line-height: 1.21
+        margin: 40px auto 34px
+      .uku-buy-button
+        width: 100%
+      .uku-connect-button
+        width: 100%
 </style>

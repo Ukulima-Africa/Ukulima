@@ -80,12 +80,6 @@
                 <q-item-section> {{ profile.email }}</q-item-section>
               </q-item>
               <q-separator />
-              <q-item v-ripple to="/profile" clickable color="black" class="q-mr-xs">
-                <q-item-section avatar>
-                  <q-icon color="black" name="account_box" />
-                </q-item-section>
-                <q-item-section>Profile</q-item-section>
-              </q-item>
               <q-item v-ripple to="/dashboard" clickable color="black" class="q-mr-xs">
                 <q-item-section avatar>
                   <q-icon color="black" name="dashboard" />
@@ -115,6 +109,12 @@
                   <q-icon color="black" name="ballot" />
                 </q-item-section>
                 <q-item-section>Grants</q-item-section>
+              </q-item>
+              <q-item v-ripple to="/profile" clickable color="black" class="q-mr-xs">
+                <q-item-section avatar>
+                  <q-icon color="black" name="account_box" />
+                </q-item-section>
+                <q-item-section>Profile</q-item-section>
               </q-item>
               <!-- END Hide for MVP -->
               <q-separator />

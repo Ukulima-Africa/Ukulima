@@ -3,14 +3,6 @@
     <q-scroll-area class="fit">
       <q-list dark padding>
         <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Account Details </q-item-label>
-        <q-item v-if="user.uid" v-ripple to="/profile" clickable>
-          <q-item-section avatar>
-            <q-icon color="white" name="account_box" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Profile</q-item-label>
-          </q-item-section>
-        </q-item>
         <q-item v-if="user.uid" v-ripple to="/dashboard" clickable>
           <q-item-section avatar>
             <q-icon color="white" name="dashboard" />
@@ -49,6 +41,14 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>My Grants</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item v-if="user.uid" v-ripple to="/profile" clickable>
+          <q-item-section avatar>
+            <q-icon color="white" name="account_box" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Profile</q-item-label>
           </q-item-section>
         </q-item>
         <q-item-label v-if="user.uid" header class="text-weight-bold text-uppercase"> Community Menu</q-item-label>
