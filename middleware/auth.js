@@ -98,6 +98,8 @@ export default function ({
       route.path === '/marketplace/' ||
       route.path === '/nfts' ||
       route.path === '/nfts/' ||
+      route.path === '/learn' ||
+      route.path === '/learn/' ||
       route.path === '/buy/bnb/' ||
       route.path === '/buy/bnb' ||
       route.path === '/buy/busd/' ||

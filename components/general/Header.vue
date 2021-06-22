@@ -13,7 +13,7 @@
       <q-space />
       <!-- Right Menu -->
       <div class="uku-menu row no-wrap items-center">
-        <q-btn v-if="account && account.balance" color="black" class="q-mr-sm account-balance-button" push>
+        <q-btn v-if="account.balance" color="black" class="q-mr-sm account-balance-button" push>
           <div class="row items-center no-wrap">
             <q-icon left size="1em" name="money" />
             <div class="text-center">{{ parseFloat(account.balance).toFixed(4) }}</div>
