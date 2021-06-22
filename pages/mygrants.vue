@@ -40,8 +40,8 @@ export default {
   computed: {
     ...mapState(['user', 'account']),
     ...mapGetters({
-      getUser: 'getUser',
-      getAccount: 'getAccount',
+      getUser: 'user',
+      getAccount: 'account',
     }),
     user: {
       get() {

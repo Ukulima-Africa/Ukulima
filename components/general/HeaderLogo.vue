@@ -44,8 +44,8 @@ export default {
       text-decoration: none
   .uku-logo-text
     color: $secondary
-    font-size: 32px
-    line-height: 26px
+    font-size: 28px
+    line-height: 30px
     font-weight: 500
     &:hover, &:focus
       text-decoration: none !important

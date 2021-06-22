@@ -30,10 +30,10 @@ export default {
   computed: {
     ...mapState(['user', 'account', 'profile', 'company']),
     ...mapGetters({
-      getUser: 'getUser',
-      getAccount: 'getAccount',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
+      getUser: 'user',
+      getAccount: 'account',
+      getProfile: 'profile',
+      getCompany: 'company',
     }),
     user: {
       get() {

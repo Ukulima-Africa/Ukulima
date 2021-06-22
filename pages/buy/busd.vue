@@ -519,6 +519,8 @@ a
     .uku-next-steps
       .uku-steps
         margin-left: 15px
+        .uku-steps-title
+          margin-top: 20px
 /* This is for old phone screen sizes 360px and smaller */
 @media only screen and (max-width : 359px)
   .q-page-container
@@ -545,4 +547,6 @@ a
         width: 100%
       .uku-connect-button
         width: 100%
+      .uku-steps-title
+        margin-top: 20px
 </style>

@@ -9,7 +9,7 @@
           <div class="uku-buyin-subtitle">Connect your MetaMask to continue</div>
         </div>
         <div class="row no-wrap items-center justify-center" align="center">
-          <q-form ref="signInForm" class="q-gutter-md uku-form" autocomplete="off" @submit="signIn">
+          <q-form ref="buyForm" class="q-gutter-md uku-form" autocomplete="off" @submit="signIn">
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="token.amount"
@@ -47,8 +47,11 @@
             <div class="self-center full-width no-outline">
               <q-btn outline rounded class="uku-buy-button" label="Buy AGRI Tokens" type="submit" tabindex="4" @click="buyNow()" />
             </div>
-            <div class="self-center full-width no-outline">
-              <q-btn outline rounded class="uku-connect-button" label="Connect Metamask" tabindex="4" @click="connectMetaMask()" />
+            <div v-if="!account.account" class="self-center full-width no-outline">
+              <q-btn rounded class="uku-connect-button" label="Connect Metamask" tabindex="5" @click="connectMetaMask()" />
+            </div>
+            <div v-else class="self-center full-width no-outline">
+              <q-btn rounded class="uku-stake-button" label="Stake AGRI" tabindex="5" />
             </div>
           </q-form>
         </div>
@@ -65,7 +68,6 @@
 <script>
 /* Import Vuex State, Getters and Mutations */
 import { mapState, mapGetters } from 'vuex'
-/* Arkane Connect for Wallet */
 /* Enums and Helper */
 // import { networks } from './networks'
 import { networkFilter } from '../../util/networkFilter'
@@ -243,7 +245,7 @@ export default {
 <style lang="sass" scope>
 @import "../../assets/sass/theme-variables"
 .uku-buyin
-  max-height: 700px
+  max-height: 600px
   min-height: inherit
   margin: 0 auto
   padding: 0
@@ -253,11 +255,11 @@ export default {
     .uku-buyin-form
       max-width: 469px
       border-radius: 4px
-      border: solid 2px $secondary
-      padding: 30px auto
+      border: solid 2px $black
+      padding: 40px 30px
       .uku-buyin-title
         width: 100%
-        color: #000000
+        color: $black
         font-size: 28px
         line-height: 30px
         font-weight: 400
@@ -267,7 +269,7 @@ export default {
         margin: 0 auto 10px
       .uku-buyin-subtitle
         width: 100%
-        color: #000000
+        color: $black
         font-size: 16px
         line-height: 20px
         font-weight: 400
@@ -276,14 +278,14 @@ export default {
       .uku-form
         max-width: 360px
         .q-field__native, .q-field__input
-          color: #000000 !important
+          color: $black !important
           width: 100%
         .q-field--outlined
           .q-field__control
             &:before
-              border: 1px solid #000000 !important
+              border: 1px solid $black !important
             &:hover:before
-              border-color: #fff
+              border-color: $black
             &:after
               height: inherit
               border-radius: inherit
@@ -305,7 +307,23 @@ export default {
         .uku-connect-button
           width: 340px
           text-transform: capitalize
-          color: #ffffff
+          color: $white
+          font-size: 18px
+          font-weight: 500
+          font-stretch: normal
+          font-style: normal
+          line-height: 1.17
+          letter-spacing: normal
+          text-align: center
+          border-radius: 5px
+          border-color: $black
+          background-color: $secondary !important
+          cursor: pointer
+          margin: 10px 0 0 0
+        .uku-stake-button
+          width: 340px
+          text-transform: capitalize
+          color: $white
           font-size: 18px
           font-weight: 500
           font-stretch: normal
@@ -316,6 +334,7 @@ export default {
           border-radius: 5px
           background-color: $secondary !important
           cursor: pointer
+          margin: 10px 0 0 0
       .uku-footer-text
         width: 100%
         color: #000000

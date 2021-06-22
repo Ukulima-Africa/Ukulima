@@ -3,9 +3,9 @@
     <q-toolbar align="center">
       <q-toolbar-title class="copyright">
         <span><strong>Ukulima Africa</strong> &copy; {{ year }}. All Rights Reserved</span>
-        <a href="https://www.ukulima.africa/privacy" alt="Privacy &amp; Data Policy" target="_blank" class="black footer-link">Legal Notices ›</a>
+        <a href="https://www.ukulima.africa/privacy" alt="Privacy &amp; Data Policy" target="_blank" class="footer-link">Legal Notices ›</a>
         <span class="footer-text">Got a question?</span>
-        <a href="mailto:info@ukulima.africa" target="_blank" rel="external nofollow" title="Contact us" class="black footer-link">Contact us ›</a>
+        <a href="mailto:info@ukulima.africa" target="_blank" rel="external nofollow" title="Contact us" class="footer-link">Contact us ›</a>
       </q-toolbar-title>
     </q-toolbar>
   </q-footer>
@@ -27,28 +27,29 @@ export default {
 </script>
 <style lang="sass" scoped>
 @import "../../assets/sass/theme-variables"
+.hide-on-bigscreen
+  display: none
 .uku-footer-centered
   background-color: inherit
   position: absolute
   .q-toolbar
     padding: 0 12px 30px
-    min-height: 80px
   .q-layout__section--marginal
     background-color: inherit
   .copyright
-    color: $black
+    color: #000000
     font-size: 14px
     font-weight: normal
     font-stretch: normal
     font-style: normal
-    line-height: 1.57
+    line-height: 14px
     letter-spacing: normal
     text-align: center
     margin: 0 auto
   .footer-text
     margin-left: 5px
   .footer-link
-    color: $black
+    color: #000000
     font-size: 14px
     font-weight: bold
     line-height: 1.57
@@ -75,22 +76,10 @@ export default {
     line-height: 26px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width : 479px)
-  .copyright
-    font-size: 11px
-    line-height: 26px
-  .footer-text
-    margin-left: 4px
-  .footer-link
-    font-size: 11px
-    line-height: 26px
+  .q-footer
+    display: none
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width : 359px)
-  .copyright
-    font-size: 11px
-    line-height: 26px
-  .footer-text
-    margin-left: 4px
-  .footer-link
-    font-size: 11px
-    line-height: 26px
+  .q-footer
+    display: none
 </style>

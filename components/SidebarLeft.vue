@@ -40,7 +40,7 @@
             <q-icon color="white" name="ballot" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>My Grants</q-item-label>
+            <q-item-label>Grants</q-item-label>
           </q-item-section>
         </q-item>
         <q-item v-if="user.uid" v-ripple to="/profile" clickable>

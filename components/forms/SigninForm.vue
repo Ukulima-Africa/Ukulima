@@ -177,7 +177,7 @@ export default {
       max-width: 469px
       border-radius: 4px
       border: solid 1px #ffffff
-      padding: 30px auto
+      padding: 40px 30px
       .uku-signin-title
         width: 100%
         color: $white
@@ -199,20 +199,20 @@ export default {
       .uku-form
         max-width: 360px
         .q-field__native, .q-field__input
-          color: #ffffff !important
+          color: $white !important
           width: 100%
         .q-field--outlined
           .q-field__control
             &:before
-              border: 1px solid #ffffff !important
+              border: 1px solid $white !important
             &:hover:before
-              border-color: #fff
+              border-color: $white
             &:after
               height: inherit
               border-radius: inherit
               border: 2px solid transparent
         .password-update
-          color: #ffffff
+          color: $white
           font-size: 12px
           line-height: 1.25
           letter-spacing: 0.6px
@@ -221,11 +221,11 @@ export default {
           font-style: normal
           cursor: pointer
           &:hover, &:focus
-            color: #ffffff
+            color: $white
         .uku-signin-button
           width: 340px
           text-transform: capitalize
-          color: #ffffff
+          color: $white
           font-size: 18px
           font-weight: 500
           font-stretch: normal
@@ -238,7 +238,7 @@ export default {
           cursor: pointer
         .uku-forgot-text
           width: 100%
-          color: #ffffff
+          color: $white
           font-size: 14px
           line-height: 1.21
           font-weight: normal
@@ -249,7 +249,7 @@ export default {
           margin: 25px 0 0 0
       .uku-welcome-text
         width: 100%
-        color: #ffffff
+        color: $white
         font-size: 14px
         line-height: 1.57
         font-weight: normal

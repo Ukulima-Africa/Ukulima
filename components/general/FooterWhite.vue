@@ -32,7 +32,6 @@ export default {
   position: absolute
   .q-toolbar
     padding: 0 12px 30px
-    min-height: 80px
   .q-layout__section--marginal
     background-color: inherit
   .copyright
@@ -75,22 +74,10 @@ export default {
     line-height: 26px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width : 479px)
-  .copyright
-    font-size: 11px
-    line-height: 26px
-  .footer-text
-    margin-left: 4px
-  .footer-link
-    font-size: 11px
-    line-height: 26px
+  .q-footer
+    display: none
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width : 359px)
-  .copyright
-    font-size: 11px
-    line-height: 26px
-  .footer-text
-    margin-left: 4px
-  .footer-link
-    font-size: 11px
-    line-height: 26px
+  .q-footer
+    display: none
 </style>

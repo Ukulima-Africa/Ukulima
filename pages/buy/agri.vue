@@ -6,6 +6,9 @@
         <div class="row uku-row uku-buy-page uku-buy-bg-image">
           <div class="col-12 col-lg-12 col-md-12 col-sm-12 self-center" align="center">
             <div class="uku-buy">
+              <div class="row items-center justify-center no-wrap">
+                <img src="~/assets/images/logo.png" alt="Ukulima Africa" width="80px" /><span class="uku-logo-text">Ukulima</span>
+              </div>
               <div class="row items-center no-wrap">
                 <div class="uku-buy-title">Purchase AGRI Tokens</div>
               </div>
@@ -324,6 +327,13 @@ export default {
   background-color: #ffffff
   margin: 0
   padding: 30px 20px 10px 20px
+  .uku-logo-text
+    color: $secondary
+    font-size: 28px
+    line-height: 30px
+    font-weight: 500
+    &:hover, &:focus
+      text-decoration: none !important
   .uku-buy-title
     color: #000000
     font-size: 32px
@@ -483,7 +493,6 @@ a
   &:hover, &:focus
     color: $secondary !important
     text-decoration: none
-
 /* $breakpoint-xs: 479px !default */
 @media only screen and (max-width : 479px)
   .q-page-container
@@ -514,6 +523,8 @@ a
     .uku-next-steps
       .uku-steps
         margin-left: 15px
+        .uku-steps-title
+          margin-top: 20px
 /* This is for old phone screen sizes 360px and smaller */
 @media only screen and (max-width : 359px)
   .q-page-container
@@ -540,4 +551,6 @@ a
         width: 100%
       .uku-connect-button
         width: 100%
+    .uku-steps-title
+      margin-top: 20px
 </style>

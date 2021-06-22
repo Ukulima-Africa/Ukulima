@@ -1,5 +1,11 @@
 <template>
   <q-header class="uku-header" height-hint="100">
+    <q-banner v-if="notice" dense inline-actions class="q-pl-lg">
+      We are currently still in development, please don't use real money on our contracts!
+      <template #action>
+        <q-btn flat icon="close" color="white" label="Close" @click="closeNotice" />
+      </template>
+    </q-banner>
     <q-toolbar>
       <q-btn flat dense round aria-label="Menu" icon="menu" @click="toggleLeftDrawer(leftDrawerOpen)" />
       <q-avatar class="q-ml-xs">
@@ -157,6 +163,7 @@ export default {
   data() {
     return {
       network: null,
+      notice: true,
     }
   },
   computed: {
@@ -209,6 +216,9 @@ export default {
   methods: {
     toggleLeftDrawer(value) {
       this.$store.commit('TOGGLE_LEFTDRAWER', value)
+    },
+    closeNotice() {
+      this.notice = false
     },
     networkFilter(chainId, filterType) {
       return networkFilter(chainId, filterType)
@@ -263,6 +273,13 @@ export default {
   border-style: none none solid none
   box-shadow: none !important
   margin: 0
+  .q-banner
+    font-size: 18px !important
+    line-height: 20px
+    font-weight: 400
+    color: $white
+    background-color: $secondary
+    text-align: center
   .uku-logo-link
     &:hover, &:focus
       text-decoration: none
