@@ -8,7 +8,7 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn type="a" href="/users-add" rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add Users" />
+            <q-btn type="a" href="/users-add" rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add User" />
           </div>
         </div>
       </div>
@@ -248,6 +248,12 @@ a,
     display: none
   .uku-users-list-col
     padding: 30px
+/* $breakpoint-md: 959px */
+@media only screen and (max-width: 959px)
+  .hide-on-tablet
+    display: none
+  .uku-users-list-col
+    padding: 20px
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
@@ -259,11 +265,11 @@ a,
   .hide-on-mobile
     display: none
   .uku-users-list-col
-    padding: 10px 10px 0 10px
+    padding: 0
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-users-list-col
-    padding: 10px 10px 0 10px
+    padding: 0
 </style>

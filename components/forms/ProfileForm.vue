@@ -2,11 +2,11 @@
   <div class="row uku-hero items-start justify-center">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="row items-start uku-hero-card">
-        <div class="col-8 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
           <div class="uku-hero-title">{{ title }}</div>
           <div class="uku-hero-subtitle">{{ subtitle }}</div>
         </div>
-        <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
           <div class="uku-hero-buttons full-width" align="right">
             <!-- <q-btn outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" /> -->
             <!-- <q-btn rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" /> -->
@@ -18,14 +18,14 @@
           <q-form ref="profileForm" class="uku-form" @submit="onSubmit">
             <!-- Row -->
             <div class="row">
-              <div class="col-10 col-md-9 col-sm-8 col-xs-6 self-start">
+              <div class="col-10 col-md-9 col-sm-8 col-xs-8 self-start">
                 <div class="row items-center no-wrap">
                   <h2 class="profile-username">
                     {{ profile.name }}
                   </h2>
                 </div>
               </div>
-              <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
+              <div class="col-2 col-md-3 col-sm-4 col-xs-4 self-start">
                 <div class="row items-center justify-end no-wrap">
                   Profile Details
                   <q-icon
@@ -38,7 +38,7 @@
             </div>
             <!-- Row -->
             <div class="row">
-              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="profile-item">Full Name</h2>
                 <q-input v-model="profile.name" type="text" color="black" outlined>
                   <template #control>
@@ -93,7 +93,7 @@
             </div>
             <!-- Row -->
             <div class="row">
-              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start q-pr-lg">
+              <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="profile-item">Profile Type</h2>
                 <q-select v-model="profile.profileType" color="black" outlined tabindex="7" :options="profileTypes">
                   <template #option="scope">
@@ -355,44 +355,61 @@ export default {
         text-decoration: none
         cursor: pointer
 
+/* $breakpoint-md: 1023px */
+@media only screen and (max-width: 1023px)
+  .hide-on-tablet
+    display: none
+  .uku-profile-col
+    padding: 40px
+    .uku-form
+      max-width: 800px
+      margin: 0 auto
+      padding: 30px
+      .q-input
+        max-width: 600px
+
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 959px)
   .uku-profile-col
-    padding: 30px
+    padding: 40px
     .uku-form
       max-width: 800px
-      margin-left: 0
-      padding: 0
-      .q-input
-        max-width: 600px
+      margin: 0 auto
+      padding: 30px
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
   .uku-profile-col
-    padding: 10px
+    padding: 40px
     .uku-form
       max-width: 800px
-      margin: 0
-      padding: 0
-      .q-input
-        max-width: 600px
+      margin: 0 auto
+      padding: 20px
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
   .uku-profile-col
-    padding: 10px
+    padding: 0
     .uku-form
       max-width: 100%
-      margin: 0
-      padding: 0
+      border: none
+      box-shadow: none
+      margin: 0 auto
+      padding: 20px
       .q-input
-        max-width: 90%
+        max-width: 440px !important
+      .select-menu-item
+        max-width: 440px !important
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .uku-profile-col
-    padding: 10px
+    padding: 0
     .uku-form
       max-width: 100%
-      margin: 0
-      padding: 0
+      border: none
+      box-shadow: none
+      margin: 0 auto
+      padding: 20px
       .q-input
-        max-width: 90%
+        max-width: 340px !important
+      .select-menu-item
+        max-width: 340px !important
 </style>
