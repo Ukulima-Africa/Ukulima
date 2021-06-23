@@ -14,7 +14,7 @@
           <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
           <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
           <p>Account: {{ account.account }}</p>
-          <p>Symbol: {{ networkSymbol(account.chainIdHEX, 'id') }}</p>
+          <p>Symbol: {{ networkSymbol(account.chainIdHEX, 'symbol') }}</p>
           <p>Balance: {{ account.balance }}</p>
         </q-card-section>
         <q-card-section class="q-pt-none">
@@ -106,9 +106,6 @@ export default {
     networkIcon() {
       return networkColor(this.$store.state.account.chainIdHEX, 'icon')
     },
-    networkSymbol() {
-      return networkSymbol(this.$store.state.account.chainIdHEX, 'symbol')
-    },
   },
   // async beforeCreate() {
   //   /* Check ArkaneProvider Instance */
@@ -122,6 +119,9 @@ export default {
   methods: {
     networkFilter(chainId, filterType) {
       return networkFilter(chainId, filterType)
+    },
+    networkSymbol() {
+      return networkSymbol(this.$store.state.account.chainIdHEX, 'symbol')
     },
     async connectArkane() {
       try {

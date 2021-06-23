@@ -37,9 +37,9 @@
               v-else-if="account.symbol === 'MATIC'"
               left
               :name="`img:${require('@/assets/icons/MATIC.svg') ? require('@/assets/icons/MATIC.svg') : ''}`"
-              size="sm"
+              size="xs"
             />
-            <div class="text-center">{{ parseFloat(account.balance).toFixed(4) }}</div>
+            <div class="text-center">{{ account.balance ? parseFloat(account.balance).toFixed(4) : parseFloat('0.0000').toFixed(4) }}</div>
           </div>
         </q-btn>
         <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button" push>
@@ -51,7 +51,7 @@
           </div>
         </q-btn>
         <q-btn
-          v-if="!account || !account.account"
+          v-if="!account.account"
           rounded
           outlined
           no-wrap

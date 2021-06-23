@@ -142,9 +142,9 @@ a,
   .hide-on-mobile
     display: none
   .uku-intro-col
-    padding: 10px 10px 0 10px
+    padding: 0 !important
     .uku-intro-card
-      padding: 30px 20px
+      padding: 20px 10px
       .uku-intro-title
         font-size: 28px
         line-height: 30px
@@ -168,9 +168,9 @@ a,
   .hide-on-mobile
     display: none
   .uku-intro-col
-    padding: 10px 10px 0 10px
+    padding: 0 !important
     .uku-intro-card
-      padding: 30px 20px
+      padding: 20px 10px
       .uku-intro-title
         font-size: 28px
         line-height: 30px

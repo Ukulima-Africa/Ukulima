@@ -13,7 +13,7 @@
           type="a"
           href="http://www.ukulima.africa/"
           target="_blank"
-          class="q-mr-md q-mb-sm float-left"
+          class="q-mr-sm q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Web3dotjs.svg') ? require('@/assets/icons/Web3dotjs.svg') : ''}`"
           size="14px"
           label="Website"
@@ -23,7 +23,7 @@
           type="a"
           href="https://github.com/Ukulima-Africa"
           target="_blank"
-          class="q-mr-md q-mb-sm float-left"
+          class="q-mr-sm q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Github.svg') ? require('@/assets/icons/Github.svg') : ''}`"
           size="14px"
           label="Github"
@@ -33,7 +33,7 @@
           type="a"
           href="https://web.facebook.com/UkulimaAfrica"
           target="_blank"
-          class="q-mr-md q-mb-sm float-left"
+          class="q-mr-sm q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Facebook.svg') ? require('@/assets/icons/Facebook.svg') : ''}`"
           size="14px"
           label="Facebook"
@@ -43,7 +43,7 @@
           type="a"
           href="https://twitter.com/UkulimaAfrica"
           target="_blank"
-          class="q-mr-md q-mb-sm float-left"
+          class="q-mr-sm q-mb-sm float-left"
           :icon="`img:${require('@/assets/icons/Twitter.svg') ? require('@/assets/icons/Twitter.svg') : ''}`"
           size="14px"
           label="Twitter"
@@ -176,9 +176,9 @@ export default {
   .hide-on-mobile
     display: none
   .uku-contact-col
-    padding: 0 10px 0 10px
+    padding: 15px 15px 15px 15px !important
     .uku-contact-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
@@ -200,9 +200,9 @@ export default {
   .hide-on-mobile
     display: none
   .uku-contact-col
-    padding: 0 10px 0 10px
+    padding: 15px 15px 15px 15px !important
     .uku-contact-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px

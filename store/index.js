@@ -10,9 +10,10 @@ const state = () => ({
     chainName: null,
     account: null,
     symbol: null,
-    balance: 0,
+    balance: 0.0,
     step: 0,
   },
+  tokens: [],
   user: {
     uid: null,
     organisationId: null,
@@ -218,6 +219,10 @@ const mutations = {
     state.account.symbol = payload.symbol
     state.account.balance = payload.balance
   },
+  /* Tokens */
+  SET_TOKENS(state, payload) {
+    state.tokens.push(payload)
+  },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
     Object.assign(state.account = payload)
@@ -407,6 +412,9 @@ const getters = {
   getAccount(state) {
     return state.account
   },
+  getTokens(state) {
+    return state.tokens
+  },
   getWeb3Instance(state) {
     return state.account.web3Instance
   },
@@ -463,7 +471,7 @@ const getters = {
   getUser(state) {
     return state.user
   },
-    getProfileType(state) {
+  getProfileType(state) {
     return state.user.profileType
   },
   getOnboardingState(state) {

@@ -15,7 +15,6 @@ export default {
 <style lang="sass" scope>
 @import "../../assets/sass/theme-variables"
 .uku-banner
-  min-height: 400px
   .uku-banner-col
     padding: 40px 40px 40px 40px
 /* CSS Media Queries */
@@ -32,23 +31,23 @@ export default {
   .hide-on-tablet
     display: none
   .uku-banner-col
-    padding: 10px 10px 0 10px
+    padding: 20px 20px 0 20px !important
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
   .uku-banner-col
-    padding: 10px 10px 0 10px
+    padding: 15px 15px 0 15px !important
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
   .uku-banner-col
-    padding: 10px 10px 0 10px
+    padding: 20px 15px 0 15px !important
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-banner-col
-    padding: 10px 10px 0 10px
+    padding: 20px 15px 0 15px !important
 </style>

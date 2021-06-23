@@ -305,7 +305,7 @@ export default {
     display: none
   .uku-signin-col
     margin: 0 auto
-    padding: 0
+    padding: 20px 15px !important
     .uku-signin-form
       max-width: 100%
       border-radius: 0
@@ -321,7 +321,7 @@ export default {
     display: none
   .uku-signin-col
     margin: 0 auto
-    padding: 0
+    padding: 20px 15px !important
     .uku-signin-form
       max-width: 100%
       border-radius: 0

@@ -128,11 +128,11 @@ export default {
   .hide-on-mobile
     display: none
   .uku-defi-col
-    padding: 10px 10px 0 10px
+    padding: 15px 15px 0 15px !important
     .uku-border-box
       padding: 30px 20px
       .uku-defi-title
-        font-size: 28px
+        font-size: 26px
         line-height: 30px
         font-weight: 500
         letter-spacing 0.10px
@@ -154,11 +154,11 @@ export default {
   .hide-on-mobile
     display: none
   .uku-defi-col
-    padding: 10px 10px 0 10px
+    padding: 15px 15px 0 15px !important
     .uku-border-box
       padding: 30px 20px
       .uku-defi-title
-        font-size: 28px
+        font-size: 26px
         line-height: 30px
         font-weight: 500
         letter-spacing 0.10px

@@ -175,16 +175,17 @@ export default {
   .hide-on-mobile
     display: none
   .uku-power-title
-    font-size: 28px
+    font-size: 26px
     line-height: 30px
     font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 20px 0 0 0
+    margin: 30px 0 10px 0 !important
   .uku-power-col
-    padding: 10px 10px 0 10px
+    padding: 10px 15px 10px 15px !important
     .uku-power-box
       padding: 30px 20px
+      margin: 0 !important
       .uku-power-subtitle
         font-size: 16px
         line-height: 24px
@@ -197,22 +198,23 @@ export default {
         font-weight: 400
         margin: 0 0 10px 0
       .uku-power-img
-        margin: 0 0 10px 0
+        margin: 0
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-power-title
-    font-size: 28px
+    font-size: 26px
     line-height: 30px
     font-weight: 500
     letter-spacing 0.10px
     word-spacing 1px
-    margin: 20px 0 0 0
+    margin: 30px 0 10px 0 !important
   .uku-power-col
-    padding: 10px 10px 0 10px
+    padding: 10px 15px 10px 15px !important
     .uku-power-box
       padding: 30px 20px
+      margin: 0 !important
       .uku-power-subtitle
         font-size: 16px
         line-height: 24px
@@ -225,5 +227,5 @@ export default {
         font-weight: 400
         margin: 0 0 10px 0
       .uku-power-img
-        margin: 0 0 10px 0
+        margin: 0
 </style>

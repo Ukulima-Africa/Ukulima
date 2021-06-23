@@ -122,9 +122,9 @@ export default {
   .hide-on-mobile
     display: none
   .uku-news-col
-    padding: 10px 10px 0 10px
+    padding: 15px 15px 0 15px !important
     .uku-news-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
@@ -140,18 +140,18 @@ export default {
       font-size: 14px
       line-height: 24px
       font-weight: 300
-      margin: 0 0 20px 0
+      margin: 0
     .uku-news-image
-      width: 60%
-      margin: 0 auto
+      width: 70%
+      margin: 20px auto 0
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-news-col
-    padding: 10px 10px 0 10px
+    padding: 15px 15px 0 15px !important
     .uku-news-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
@@ -167,8 +167,8 @@ export default {
       font-size: 14px
       line-height: 24px
       font-weight: 300
-      margin: 0 0 20px 0
+      margin: 0
     .uku-news-image
-      width: 60%
-      margin: 0 auto
+      width: 70%
+      margin: 20px auto 0
 </style>

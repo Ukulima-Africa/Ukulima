@@ -121,14 +121,14 @@ export default {
   .hide-on-mobile
     display: none
   .uku-about-col
-    padding: 0 10px 0 10px
+    padding: 15px !important
     .uku-about-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
-      margin: 0 0 25px 0
+      margin: 0 0 15px 0 !important
     .uku-about-subtitle
       font-size: 16px
       line-height: 24px
@@ -145,14 +145,14 @@ export default {
   .hide-on-mobile
     display: none
   .uku-about-col
-    padding: 0 10px 0 10px
+    padding: 15px !important
     .uku-about-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
-      margin: 0 0 25px 0
+      margin: 0 0 15px 0 !important
     .uku-about-subtitle
       font-size: 16px
       line-height: 24px

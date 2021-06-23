@@ -21,7 +21,7 @@ const pollWeb3 = async () => {
         // We currently only ever provide a single account,
         const newAccount = accounts[0]
         const web3 = new Web3(window.ethereum)
-        let displayBalance = 0
+        let displayBalance = 0.0
         await web3.eth.getBalance(
           String(newAccount),
           'latest',

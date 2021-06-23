@@ -144,14 +144,14 @@ export default {
   .hide-on-mobile
     display: none
   .uku-blockchain-col
-    padding: 10px
+    padding: 15px !important
     .uku-blockchain-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
-      margin: 0 0 25px 0
+      margin: 0 0 15px 0 !important
     .uku-blockchain-subtitle
       font-size: 16px
       line-height: 24px
@@ -164,20 +164,20 @@ export default {
       font-weight: 400
       margin: 0 0 10px 0
     .uku-blockchain-image
-      margin: 0
+      margin: 10px
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-blockchain-col
-    padding: 10px
+    padding: 15px !important
     .uku-blockchain-title
-      font-size: 28px
+      font-size: 26px
       line-height: 30px
       font-weight: 500
       letter-spacing 0.10px
       word-spacing 1px
-      margin: 0 0 25px 0
+      margin: 0 0 15px 0 !important
     .uku-blockchain-subtitle
       font-size: 16px
       line-height: 24px
@@ -190,5 +190,5 @@ export default {
       font-weight: 400
       margin: 0 0 10px 0
     .uku-blockchain-image
-      margin: 0
+      margin: 10px
 </style>

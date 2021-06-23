@@ -417,7 +417,7 @@ export default {
     display: none
   .uku-buyin-col
     margin: 0 auto
-    padding: 0
+    padding: 20px 15px !important
     .uku-buyin-form
       max-width: 100%
       border-radius: 0
