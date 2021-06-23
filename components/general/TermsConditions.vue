@@ -253,23 +253,23 @@ export default {
   .hide-on-tablet
     display: none
   .uku-terms-col
-    padding: 30px
+    padding: 30px !important
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
     display: none
   .uku-terms-col
-    padding: 10px
+    padding: 30px !important
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
     display: none
   .uku-terms-col
-    padding: 10px
+    padding: 10px !important
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
     display: none
   .uku-terms-col
-    padding: 10px
+    padding: 10px !important
 </style>

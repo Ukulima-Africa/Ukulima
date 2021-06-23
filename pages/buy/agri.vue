@@ -131,6 +131,7 @@ import { mapState, mapGetters } from 'vuex'
 // import { networks } from './networks'
 import { networkFilter } from '../../util/networkFilter'
 import { networkColor } from '../../util/networkColor'
+import { networkSymbol } from '../../util/networkSymbol'
 /* Components */
 import HeaderLogo from '../../components/general/HeaderLogo.vue'
 import Footer from '../../components/general/Footer.vue'
@@ -274,6 +275,8 @@ export default {
       const newWeb3 = await this.$web3()
       /* Enable MetaMask and Sign in */
       if (newWeb3 && newWeb3.isMetaMask === true) {
+        /* This also fires off the pollweb function to check Balances */
+        this.$store.commit('SET_WEB3_INSTANCE', true)
         this.$store.commit('SET_IS_METAMASK', true)
       }
       /* Load User Account Info into the store */
@@ -295,6 +298,8 @@ export default {
         this.$store.commit('SET_CHAIN_ID', chainId)
         const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
+        const chainSymbol = networkSymbol(chainIdHEX, 'symbol')
+        this.$store.commit('SET_SYMBOL', chainSymbol)
         const balance = await this.$web3.getBalance(newAccount)
         this.$store.commit('SET_BALANCE', balance)
         return true

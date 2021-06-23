@@ -3,7 +3,7 @@
     <q-banner v-if="notice" dense inline-actions class="q-pl-lg">
       We are currently still in development, please don't use real money on our contracts!
       <template #action>
-        <q-btn flat icon="close" color="white" label="Close" @click="closeNotice" />
+        <q-btn flat icon="close" color="white" label="Close" @click="closeNotice(notice)" />
       </template>
     </q-banner>
     <q-toolbar>
@@ -19,26 +19,45 @@
       <q-space />
       <!-- Right Menu -->
       <div class="uku-menu row no-wrap items-center">
-        <q-btn v-if="account.balance" color="black" class="q-mr-sm account-balance-button" push>
+        <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-balance-button" push>
           <div class="row items-center no-wrap">
-            <q-icon left size="1em" name="money" />
+            <q-icon
+              v-if="account.symbol === 'BNB'"
+              left
+              :name="`img:${require('@/assets/icons/BNB.svg') ? require('@/assets/icons/BNB.svg') : ''}`"
+              size="sm"
+            />
+            <q-icon
+              v-else-if="account.symbol === 'ETH'"
+              left
+              :name="`img:${require('@/assets/icons/ETH.svg') ? require('@/assets/icons/ETH.svg') : ''}`"
+              size="sm"
+            />
+            <q-icon
+              v-else-if="account.symbol === 'MATIC'"
+              left
+              :name="`img:${require('@/assets/icons/MATIC.svg') ? require('@/assets/icons/MATIC.svg') : ''}`"
+              size="sm"
+            />
             <div class="text-center">{{ parseFloat(account.balance).toFixed(4) }}</div>
           </div>
         </q-btn>
         <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button" push>
           <div class="row items-center no-wrap">
-            <q-icon left size="1em" name="style" />
-            <div class="text-center">{{ account.account | truncate(6, '...') }}</div>
+            <!-- DEV NOTE: Must add QR code Scanner func here for Wallet address or Import -->
+            <q-icon left size="1.1em" name="style" />
+            <!-- END DEV NOTE: -->
+            <div class="text-center">{{ account.account | truncate(5, '...') }}</div>
           </div>
         </q-btn>
         <q-btn
-          v-if="!account.account"
+          v-if="!account || !account.account"
           rounded
           outlined
           no-wrap
           icon-right="play_arrow"
           color="secondary"
-          class="q-mr-sm"
+          class="q-mr-xs"
           label="Connect"
           @click="connectMetaMask()"
         />
@@ -66,7 +85,7 @@
       <!-- END Right Menu -->
       <div class="q-gutter-sm row items-center no-wrap">
         <!-- User Account Dropdown Button -->
-        <q-btn v-if="user && user.uid !== null" flat round icon="account_circle" size="18px" class="account-button">
+        <q-btn v-if="user && user.uid !== null" flat round icon="account_circle" size="1em" class="account-button">
           <q-menu anchor="top end" self="bottom left">
             <q-list class="account-menu">
               <q-item v-if="user.name" v-ripple to="/profile" clickable>
@@ -149,6 +168,7 @@ import { mapState, mapGetters } from 'vuex'
 /* Enums and Helper */
 import { networkFilter } from '../../util/networkFilter'
 import { networkColor } from '../../util/networkColor'
+import { networkSymbol } from '../../util/networkSymbol'
 /* LFG */
 export default {
   name: 'Header',
@@ -163,17 +183,25 @@ export default {
   data() {
     return {
       network: null,
-      notice: true,
     }
   },
   computed: {
-    ...mapState(['user', 'account', 'profile', 'leftDrawerOpen']),
+    ...mapState(['notice', 'user', 'account', 'profile', 'leftDrawerOpen']),
     ...mapGetters({
-      getUser: 'getUser',
-      getAccount: 'getAccount',
-      getProfile: 'getProfile',
+      getNotice: 'notice',
+      getUser: 'user',
+      getAccount: 'account',
+      getProfile: 'profile',
       getLeftDrawerState: 'leftDrawerOpen',
     }),
+    notice: {
+      get() {
+        return this.$store.state.notice
+      },
+      set(value) {
+        this.$store.commit('SET_NOTICE', value)
+      },
+    },
     user: {
       get() {
         return this.$store.state.user
@@ -217,8 +245,11 @@ export default {
     toggleLeftDrawer(value) {
       this.$store.commit('TOGGLE_LEFTDRAWER', value)
     },
-    closeNotice() {
-      this.notice = false
+    toggleNotice(value) {
+      this.$store.commit('TOGGLE_NOTICE', value)
+    },
+    closeNotice(value) {
+      this.$store.commit('TOGGLE_NOTICE', value)
     },
     networkFilter(chainId, filterType) {
       return networkFilter(chainId, filterType)
@@ -249,6 +280,8 @@ export default {
         this.$store.commit('SET_CHAIN_ID', chainId)
         const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
+        const chainSymbol = networkSymbol(chainIdHEX, 'symbol')
+        this.$store.commit('SET_SYMBOL', chainSymbol)
         const balance = await this.$web3.getBalance(newAccount)
         this.$store.commit('SET_BALANCE', balance)
         return true
@@ -326,11 +359,17 @@ export default {
       font-size: 13px
       line-height: 26px
       font-weight: 400
+      .q-icon
+        margin-left: -8px !important
+        margin-right: 5px !important
     .account-balance-button
       background-color: $black !important
       font-size: 13px
       line-height: 26px
       font-weight: 400
+      .q-icon
+        margin-left: -10px !important
+        margin-right: 2px !important
 .account-button
   color: $black
 .account-menu

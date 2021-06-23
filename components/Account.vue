@@ -14,6 +14,7 @@
           <p>Chain Id HEX: {{ account.chainIdHEX }}</p>
           <p>Network ID: {{ networkFilter(account.chainIdHEX, 'id') }}</p>
           <p>Account: {{ account.account }}</p>
+          <p>Symbol: {{ networkSymbol(account.chainIdHEX, 'id') }}</p>
           <p>Balance: {{ account.balance }}</p>
         </q-card-section>
         <q-card-section class="q-pt-none">
@@ -57,6 +58,7 @@ import { ArkaneConnect } from '../node_modules/@arkane-network/arkane-connect'
 // import { networks } from './networks'
 import { networkFilter } from '../util/networkFilter'
 import { networkColor } from '../util/networkColor'
+import { networkSymbol } from '../util/networkSymbol'
 /* LFG */
 export default {
   name: 'Account',
@@ -71,8 +73,8 @@ export default {
     ...mapState(['user', 'account', 'profile']),
     ...mapGetters({
       getUser: 'user',
-      getAccount: 'getAccount',
-      getProfile: 'getProfile',
+      getAccount: 'account',
+      getProfile: 'profile',
     }),
     user: {
       get() {
@@ -103,6 +105,9 @@ export default {
     },
     networkIcon() {
       return networkColor(this.$store.state.account.chainIdHEX, 'icon')
+    },
+    networkSymbol() {
+      return networkSymbol(this.$store.state.account.chainIdHEX, 'symbol')
     },
   },
   // async beforeCreate() {

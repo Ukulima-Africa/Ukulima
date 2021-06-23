@@ -124,8 +124,8 @@ export default {
   computed: {
     ...mapState(['user', 'leftDrawerOpen']),
     ...mapGetters({
-      getUser: 'getUser',
-      getLeftDrawerState: 'getLeftDrawerState',
+      getUser: 'user',
+      getLeftDrawerState: 'leftDrawerOpen',
     }),
     user: {
       get() {

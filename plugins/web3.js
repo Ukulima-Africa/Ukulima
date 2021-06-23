@@ -71,10 +71,10 @@ const getWeb3 = async () => {
     console.log('chainId:', chainId)
     return provider
   }
-  // if (window.ethereum) {
-  //   return new Web3(window.ethereum)
-  // }
-  // If the provider is not detected, detectEthereumProvider resolves to null
+  if (window.web3) {
+    return new Web3(window.web3)
+  }
+  /* If the provider is not detected, detectEthereumProvider resolves to null */
   console.error('Please install MetaMask to continue!')
   return null
 }
@@ -165,18 +165,18 @@ web3.getBalance = async (account) => {
   const provider = await detectEthereumProvider()
   if (provider) {
     const newWeb3 = new Web3(window.ethereum)
-    const displayBalance = 0.0
+    let displayBalance = 0
     await newWeb3.eth.getBalance(String(account), 'latest', (err, result) => {
       if (err) {
         console.log(err)
       } else {
-        console.log("displayBalance", displayBalance)
-        return newWeb3.utils.fromWei(result, 'ether')
+        displayBalance = newWeb3.utils.fromWei(result, 'ether')
+        console.log("web3js displayBalance : ", displayBalance)
       }
-      return 0
+      return displayBalance
     })
   }
-  return 0
+  return false
 }
 /* Add Token */
 web3.addTokenToMetaMask = async () => {

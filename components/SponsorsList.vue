@@ -64,6 +64,10 @@ export default {
       return text
     },
   },
+  async asyncData() {
+    const sponsorsData = await sponsors.getActiveSponsors()
+    return { activeSponsors: sponsorsData }
+  },
   data() {
     return {
       title: 'Sponsors & Funding',
@@ -72,10 +76,6 @@ export default {
       activeSponsors: [],
       expanded: false,
     }
-  },
-  async created() {
-    const sponsorsData = await sponsors.getActiveSponsors()
-    this.activeSponsors = sponsorsData
   },
 }
 </script>

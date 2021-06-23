@@ -78,6 +78,10 @@ export default {
       return text
     },
   },
+  async asyncData() {
+    const grantsData = await grants.getMyGrants()
+    return { myGrants: grantsData }
+  },
   data() {
     return {
       title: 'My Grants & Subsidies',
@@ -100,10 +104,6 @@ export default {
         this.$store.commit('SET_USER', value)
       },
     },
-  },
-  async created() {
-    const grantsData = await grants.getMyGrants()
-    this.myGrants = grantsData
   },
   methods: {
     showCreateGrantForm() {

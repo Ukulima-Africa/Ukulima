@@ -68,7 +68,10 @@ const users = {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          usersData.push(doc.data())
+          usersData.push({
+            ...doc.data(),
+            id: doc.id
+          })
         })
       })
       .catch(error => {

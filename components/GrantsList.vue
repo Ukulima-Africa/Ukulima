@@ -70,6 +70,10 @@ export default {
       return text
     },
   },
+  async asyncData() {
+    const grantsData = await grants.getActiveGrants()
+    return { activeGrants: grantsData }
+  },
   data() {
     return {
       title: 'Grants & Subsidies',
@@ -77,10 +81,6 @@ export default {
       activeGrants: [],
       expanded: false,
     }
-  },
-  async mounted() {
-    const grantsData = await grants.getActiveGrants()
-    this.activeGrants = grantsData
   },
 }
 </script>

@@ -94,7 +94,10 @@ async getActiveSponsors() {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        sponsorsData.push(doc.data())
+        sponsorsData.push({
+          ...doc.data(),
+          id: doc.id
+        })
       })
     })
     .catch(error => {
@@ -127,7 +130,10 @@ async getMySponsors() {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        sponsorsData.push(doc.data())
+        sponsorsData.push({
+          ...doc.data(),
+          id: doc.id
+        })
       })
     })
     .catch(error => {

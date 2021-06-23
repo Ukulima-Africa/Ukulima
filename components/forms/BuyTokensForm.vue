@@ -9,7 +9,7 @@
           <div class="uku-buyin-subtitle">Connect your MetaMask to continue</div>
         </div>
         <div class="row no-wrap items-center justify-center" align="center">
-          <q-form ref="buyForm" class="q-gutter-md uku-form" autocomplete="off" @submit="signIn">
+          <q-form ref="buyTokenForm" class="q-gutter-md uku-form" autocomplete="off" @submit="buyNow" @reset="resetForm">
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="token.amount"
@@ -45,7 +45,7 @@
               />
             </div>
             <div class="self-center full-width no-outline">
-              <q-btn outline rounded class="uku-buy-button" label="Buy AGRI Tokens" type="submit" tabindex="4" @click="buyNow()" />
+              <q-btn outline rounded class="uku-buy-button" label="Buy AGRI Tokens" type="submit" tabindex="4" />
             </div>
             <div v-if="!account.account" class="self-center full-width no-outline">
               <q-btn rounded class="uku-connect-button" label="Connect Metamask" tabindex="5" @click="connectMetaMask()" />
@@ -72,6 +72,7 @@ import { mapState, mapGetters } from 'vuex'
 // import { networks } from './networks'
 import { networkFilter } from '../../util/networkFilter'
 import { networkColor } from '../../util/networkColor'
+import { networkSymbol } from '../../util/networkSymbol'
 /* LFG */
 export default {
   name: 'BuyTokensForm',
@@ -124,13 +125,16 @@ export default {
     networkIcon() {
       return networkColor(this.$store.state.account.chainIdHEX, 'icon')
     },
+    networkSymbol() {
+      return networkSymbol(this.$store.state.account.chainIdHEX, 'symbol')
+    },
   },
   methods: {
     async buyNow() {
       const that = this
       this.loading = true
       /* Ensure form is valid */
-      const formValidation = await that.$refs.buyForm.validate().then((outcome) => {
+      const formValidation = await that.$refs.buyTokenForm.validate().then((outcome) => {
         return outcome
       })
       if (formValidation === true) {

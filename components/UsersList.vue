@@ -50,8 +50,8 @@
                 <q-td key="phoneNumber" :props="props">{{ props.row.phoneNumber }}</q-td>
                 <q-td key="profileType" :props="props">{{ props.row.profileType }}</q-td>
                 <q-td key="actions" :props="props">
-                  <q-btn flat label="Edit" color="primary" @click="editUser(props.row.uid)" />
-                  <q-btn flat label="Delete" color="black" @click="deleteUser(props.row.uid)" />
+                  <q-btn flat label="Edit" color="primary" @click="editUser(props.row.id)" />
+                  <q-btn flat label="Delete" color="black" @click="deleteUser(props.row.id)" />
                 </q-td>
               </q-tr>
             </template>

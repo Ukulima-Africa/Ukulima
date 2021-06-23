@@ -65,6 +65,17 @@ export default {
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+/* Links & Buttons */
+a,
+.nuxt-link
+  text-decoration: none
+  cursor: pointer
+  &:hover,
+  &:active,
+  &:focus,
+  .nuxt-link-exact-active
+    text-decoration: none
+    cursor: pointer
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */
 @media only screen and (max-width: 2400px)

@@ -1,6 +1,7 @@
 import pollWeb3 from '../util/pollWeb3'
 
 const state = () => ({
+  notice: true,
   account: {
     web3Instance: null,
     isMetaMask: null,
@@ -8,7 +9,8 @@ const state = () => ({
     chainId: null,
     chainName: null,
     account: null,
-    balance: 0.0,
+    symbol: null,
+    balance: 0,
     step: 0,
   },
   user: {
@@ -213,8 +215,8 @@ const mutations = {
     state.account.chainId = payload.chainId
     state.account.chainIdHEX = payload.chainIdHEX
     state.account.chainName = payload.chainName
+    state.account.symbol = payload.symbol
     state.account.balance = payload.balance
-    pollWeb3()
   },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
@@ -222,6 +224,9 @@ const mutations = {
   },
   SET_WEB3_INSTANCE(state, payload) {
     state.account.web3Instance = payload
+    if (payload === true) {
+      pollWeb3()
+    }
   },
   SET_IS_METAMASK(state, payload) {
     state.account.isMetaMask = payload
@@ -236,7 +241,10 @@ const mutations = {
     state.account.chainName = payload
   },
   SET_ACCOUNT_ADDRESS(state, payload) {
-      state.account.account = payload
+    state.account.account = payload
+  },
+  SET_SYMBOL(state, payload) {
+    state.account.symbol = payload
   },
   SET_BALANCE(state, payload) {
     state.account.balance = payload
@@ -386,6 +394,12 @@ const mutations = {
   TOGGLE_LEFTDRAWER(state) {
     state.leftDrawerOpen = !state.leftDrawerOpen
   },
+  SET_NOTICE(state, payload) {
+    state.notice = payload
+  },
+  TOGGLE_NOTICE(state) {
+    state.notice = !state.notice
+  },
 }
 
 const getters = {
@@ -410,6 +424,9 @@ const getters = {
   },
   getAccountAddress(state) {
     return state.account.account
+  },
+  getSymbol(state) {
+    return state.account.symbol
   },
   getBalance(state) {
     return state.account.balance
@@ -446,8 +463,7 @@ const getters = {
   getUser(state) {
     return state.user
   },
-  /* Profile Info */
-  getProfileType(state) {
+    getProfileType(state) {
     return state.user.profileType
   },
   getOnboardingState(state) {
@@ -498,6 +514,9 @@ const getters = {
   },
   getLeftDrawerState(state) {
     return state.leftDrawerOpen
+  },
+  getNotice(state) {
+    return state.notice
   },
 }
 

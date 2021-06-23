@@ -12,6 +12,7 @@
 import { mapState, mapGetters } from 'vuex'
 /* Enums and Network Helper */
 import { networkFilter } from '../util/networkFilter'
+import { networkSymbol } from '../util/networkSymbol'
 /* Components */
 import Header from '../components/general/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
@@ -64,6 +65,7 @@ export default {
     /* Check Web3 Instance */
     const newWeb3 = await this.$web3()
     if (newWeb3) {
+      /* This also fires off the pollweb function to check Balances */
       this.$store.commit('SET_WEB3_INSTANCE', true)
       if (newWeb3 && newWeb3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
@@ -97,6 +99,8 @@ export default {
         this.$store.commit('SET_CHAIN_ID', chainId)
         const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
+        const chainSymbol = networkSymbol(chainIdHEX, 'symbol')
+        this.$store.commit('SET_SYMBOL', chainSymbol)
         const balance = await this.$web3.getBalance(account)
         this.$store.commit('SET_BALANCE', balance)
         return true

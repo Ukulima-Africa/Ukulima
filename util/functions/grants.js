@@ -63,7 +63,10 @@ const grants = {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          grantsData.push(doc.data())
+          grantsData.push({
+            ...doc.data(),
+            id: doc.id
+          })
         })
       })
       .catch(error => {
@@ -96,7 +99,10 @@ const grants = {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          grantsData.push(doc.data())
+          grantsData.push({
+            ...doc.data(),
+            id: doc.id
+          })
         })
       })
       .catch(error => {
