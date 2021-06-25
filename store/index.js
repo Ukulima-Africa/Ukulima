@@ -13,7 +13,17 @@ const state = () => ({
     balance: 0.0,
     step: 0,
   },
+  profile: {
+    isAuthenticated: null,
+    userId: null,
+    name: null,
+    preferred_username: null,
+    email: null,
+    firstName: null,
+    lastName: null,
+  },
   tokens: [],
+  wallets: [],
   user: {
     uid: null,
     organisationId: null,
@@ -30,17 +40,6 @@ const state = () => ({
     binanceAccount: null,
     metaMaskAccount: null,
     onboardingState: null,
-    dateCreated: null,
-    lastEdit: null
-  },
-  profile: {
-    isAuthenticated: null,
-    userId: null,
-    hasMasterPin: null,
-    username: null,
-    email: null,
-    firstName: null,
-    lastName: null,
     dateCreated: null,
     lastEdit: null
   },
@@ -223,6 +222,10 @@ const mutations = {
   SET_TOKENS(state, payload) {
     state.tokens.push(payload)
   },
+  /* Wallets */
+  SET_WALLETS(state, payload) {
+    state.wallets.push(payload)
+  },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
     Object.assign(state.account = payload)
@@ -265,8 +268,8 @@ const mutations = {
     state.profile = {
       isAuthenticated: false,
       userId: null,
-      hasMasterPin: null,
-      username: null,
+      name: null,
+      preferred_username: null,
       email: null,
       firstName: null,
       lastName: null,
@@ -278,11 +281,11 @@ const mutations = {
   SET_PROFILE_USERID(state, payload) {
     state.profile.userId = payload
   },
-  SET_PROFILE_HASMASTERPIN(state, payload) {
-    state.profile.hasMasterPin = payload
-  },
   SET_PROFILE_USERNAME(state, payload) {
-    state.profile.username = payload
+    state.profile.preferred_username = payload
+  },
+  SET_PROFILE_NAME(state, payload) {
+    state.profile.name = payload
   },
   SET_PROFILE_EMAIL(state, payload) {
     state.profile.email = payload
@@ -412,9 +415,6 @@ const getters = {
   getAccount(state) {
     return state.account
   },
-  getTokens(state) {
-    return state.tokens
-  },
   getWeb3Instance(state) {
     return state.account.web3Instance
   },
@@ -442,7 +442,7 @@ const getters = {
   getStep(state) {
     return state.account.step
   },
-  /* Profile */
+  /* Arkane Profile */
   getProfile(state) {
     return state.profile
   },
@@ -452,11 +452,11 @@ const getters = {
   getUserId(state) {
     return state.profile.userId
   },
-  getHasMasterPin(state) {
-    return state.profile.hasMasterPin
-  },
   getUsername(state) {
-    return state.profile.username
+    return state.profile.preferred_username
+  },
+  getName(state) {
+    return state.profile.name
   },
   getEmail(state) {
     return state.profile.email
@@ -466,6 +466,14 @@ const getters = {
   },
   getLastName(state) {
     return state.profile.lastName
+  },
+  /* Wallets */
+  getWallets(state) {
+    return state.wallets
+  },
+  /* Tokens */
+  getTokens(state) {
+    return state.tokens
   },
   /* User */
   getUser(state) {

@@ -29,11 +29,10 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['user', 'account', 'profile', 'company']),
+    ...mapState(['user', 'account', 'company']),
     ...mapGetters({
       getUser: 'getUser',
       getAccount: 'getAccount',
-      getProfile: 'getProfile',
       getCompany: 'getCompany',
     }),
     user: {
@@ -50,14 +49,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
       },
     },
     company: {

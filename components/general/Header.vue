@@ -96,9 +96,9 @@
                 </q-item-section>
                 <q-item-section>{{ user.name }}</q-item-section>
               </q-item>
-              <q-item-label v-if="profile.username" header class="text-weight-bold text-uppercase">Arkane Account</q-item-label>
-              <q-item v-if="profile.username" v-ripple clickable class="black q-mr-xs">
-                <q-item-section> {{ profile.username }}</q-item-section>
+              <q-item-label v-if="profile.name" header class="text-weight-bold text-uppercase">Arkane Account</q-item-label>
+              <q-item v-if="profile.name" v-ripple clickable class="black q-mr-xs">
+                <q-item-section> {{ profile.name }}</q-item-section>
               </q-item>
               <q-separator />
               <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">

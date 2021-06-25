@@ -8,8 +8,6 @@
   </q-layout>
 </template>
 <script>
-/* Import Vuex State, Getters and Mutations */
-import { mapState, mapGetters } from 'vuex'
 /* Enums and Network Helper */
 import { networkFilter } from '../util/networkFilter'
 import { networkSymbol } from '../util/networkSymbol'
@@ -27,47 +25,6 @@ export default {
   },
   data() {
     return {}
-  },
-  computed: {
-    ...mapState(['user', 'account', 'profile', 'company']),
-    ...mapGetters({
-      getUser: 'getUser',
-      getAccount: 'getAccount',
-      getProfile: 'getProfile',
-      getCompany: 'getCompany',
-    }),
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
-    account: {
-      get() {
-        return this.$store.state.account
-      },
-      set(value) {
-        this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
-      },
-    },
-    company: {
-      get() {
-        return this.$store.state.company
-      },
-      set(value) {
-        this.$store.commit('SET_COMPANY', value)
-      },
-    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */

@@ -46,11 +46,12 @@ const getArkaneProvider = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
     Arkane.createArkaneProviderEngine(arkaneOptions).then((provider) => {
-      return provider
+      const arkaneWeb3 = new Web3(provider)
+      return arkaneWeb3
     })
   } else {
     // If the provider is not detected, detectEthereumProvider resolves to null
-    console.error('Please install MetaMask to continue!')
+    console.error('Error initialising the Arkane Web3 Provider!')
     return null
   }
   return null

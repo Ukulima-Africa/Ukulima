@@ -89,11 +89,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user', 'account', 'profile']),
+    ...mapState(['user', 'account']),
     ...mapGetters({
       getUser: 'getUser',
       getAccount: 'getAccount',
-      getProfile: 'getProfile',
     }),
     user: {
       get() {
@@ -109,14 +108,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
       },
     },
     networkColor() {

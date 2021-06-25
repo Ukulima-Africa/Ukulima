@@ -16,7 +16,7 @@ const pollWeb3 = async () => {
       const accounts = await provider.request({
         method: 'eth_accounts',
       })
-      console.log("accounts", accounts)
+      // console.log("accounts", accounts)
       if (accounts && accounts[0]) {
         // We currently only ever provide a single account,
         const newAccount = accounts[0]
@@ -30,7 +30,7 @@ const pollWeb3 = async () => {
               console.log("web3.eth.getBalance Fetch Error", err)
             } else {
               displayBalance = web3.utils.fromWei(result, 'ether')
-              console.log("pollWeb3js displayBalance : ", displayBalance)
+              // console.log("pollWeb3js displayBalance : ", displayBalance)
             }
             return displayBalance
           }
@@ -45,7 +45,7 @@ const pollWeb3 = async () => {
         })
       }
     }
-    }, 5000)
+    }, 10000)
 }
 
 export default pollWeb3
