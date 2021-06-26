@@ -41,7 +41,7 @@
                 </div>
               </div>
               <div class="col-2 col-md-3 col-sm-4 col-xs-6 self-start">
-                <div class="row items-center justify-end no-wrap">
+                <div class="row items-center justify-end no-wrap organisation-details">
                   Organisation Details
                   <q-icon
                     :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
@@ -178,19 +178,15 @@
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start"></div>
             </div>
             <!-- Form Footer -->
-            <div class="uku-form-footer row justify-end q-mt-xl">
-              <div class="col-4 col-md-4" align="left">
-                <q-btn flat icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
-              </div>
-              <div class="col-8 col-md-8" align="right">
-                <q-btn
-                  unelevated
-                  :label="!user.organisationId ? 'Create' : 'Update'"
-                  :color="!user.organisationId ? 'secondary' : 'primary'"
-                  type="submit"
-                  class="q-ml-sm"
-                />
-              </div>
+            <div class="uku-form-footer row justify-between q-mt-xl">
+              <q-btn outline icon="chevron_left" color="black" label="Go Back" to="/dashboard" />
+              <q-btn
+                unelevated
+                :label="!user.organisationId ? 'Create' : 'Update'"
+                :color="!user.organisationId ? 'secondary' : 'primary'"
+                icon-right="chevron_right"
+                type="submit"
+              />
             </div>
             <!-- END Form Footer -->
           </q-form>
@@ -304,9 +300,9 @@ export default {
     border: solid 1px $secondary
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.08)
     padding: 40px
-    margin: 40px auto
-    .q-input
-      max-width: 600px
+    margin: 0 auto
+    .q-input, .q-select
+      max-width: 460px !important
       .q-field__label
       font-size: 14px
       line-height: 20px
@@ -339,8 +335,8 @@ export default {
       color: #000000
       margin-top: 24px
       margin-bottom: 10px
-    .select-menu-item
-      max-width: 600px
+    .select-menu-item, .q-field__native, .q-field__input
+      max-width: 460px !important
       height: 24px !important
       margin: 5px
       padding: 10px 14px
@@ -374,7 +370,6 @@ a,
   .nuxt-link-exact-active
     text-decoration: none
     cursor: pointer
-
 /* $breakpoint-md: 1023px */
 @media only screen and (max-width: 1023px)
   .hide-on-tablet
@@ -385,9 +380,8 @@ a,
       max-width: 800px
       margin: 0 auto
       padding: 30px
-      .q-input
-        max-width: 600px
-
+      .q-input, .q-select
+        max-width: 460px !important
 // $breakpoint-md: 959px !default
 @media only screen and (max-width: 1023px)
   .uku-company-col
@@ -396,6 +390,8 @@ a,
       max-width: 800px
       margin: 0 auto
       padding: 30px
+      .q-input, .q-select
+        max-width: 460px !important
 // $breakpoint-sm: 839px !default
 @media only screen and (max-width: 839px)
   .uku-company-col
@@ -404,6 +400,8 @@ a,
       max-width: 800px
       margin: 0 auto
       padding: 20px
+      .q-input, .q-select
+        max-width: 460px !important
 // $breakpoint-xs: 479px !default
 @media only screen and (max-width: 479px)
   .uku-company-col
@@ -414,9 +412,10 @@ a,
       box-shadow: none
       margin: 0 auto
       padding: 20px
-      .q-input
-        max-width: 440px !important
-      .select-menu-item
+      .organisation-details
+        text-align: left
+        justify-content: flex-start
+      .q-input, .q-select
         max-width: 440px !important
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
@@ -428,8 +427,9 @@ a,
       box-shadow: none
       margin: 0 auto
       padding: 20px
-      .q-input
-        max-width: 340px !important
-      .select-menu-item
+      .organisation-details
+        text-align: left
+        justify-content: flex-start
+      .q-input, .q-select
         max-width: 340px !important
 </style>

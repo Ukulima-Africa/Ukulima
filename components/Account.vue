@@ -14,17 +14,60 @@
           <p>Arkane name: {{ profile.name }}</p>
           <p>Arkane firstName: {{ profile.firstName }}</p>
           <p>Arkane lastName: {{ profile.lastName }}</p>
+          <p>Arkane Wallet: {{ wallet ? wallet.address : '' }}</p>
+          <p>Wallet Balance: {{ wallet ? wallet.balance : 0 }}</p>
+          <p>Wallet Network: {{ wallet ? wallet.balance : 0 }}</p>
         </q-card-section>
         <q-card-section>
           <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
-          <!-- <q-btn
-            outline
+          <q-btn
             color="grey-8"
-            class="full-width q-mb-sm"
-            label="Test Transaction"
+            class="bg-secondary full-width q-mb-sm"
+            label="Send Transaction"
             @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
-          /> -->
-          <!-- <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" /> -->
+          />
+
+          <!-- async signTransaction(from, to, value) -->
+          <q-btn
+            outline
+            color="primary"
+            class="full-width q-mb-sm"
+            label="Sign Transaction"
+            @click="signTransaction((from = 'test'), (to = 'test'), (value = 'test'))"
+          />
+
+          <!-- signData(signatureRequest) -->
+          <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Data" @click="signData()" />
+
+          <!-- signMessage(walletId, data) -->
+          <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Message" @click="signMessage((from = 'test'), (data = 'test'))" />
+
+          <!-- executeTokenTransfer(from, to, value, tokenAddress) -->
+          <q-btn
+            outline
+            color="primary"
+            class="full-width q-mb-sm"
+            label="Execute Token Transfer"
+            @click="executeTokenTransfer((from = 'test'), (to = 'test'), (value = 'test'), (tokenAddress = 'test'))"
+          />
+          <!-- executeNftTransfer(from, to, tokenAddress, tokenId) -->
+          <q-btn
+            outline
+            color="primary"
+            class="full-width q-mb-sm"
+            label="Execute Nft Transfer"
+            @click="executeNftTransfer((from = 'test'), (to = 'test'), (tokenAddress = 'test'), (tokenId = 'test'))"
+          />
+          <!-- executeContract(from, to, functionName = 'transfer', address, value) -->
+          <q-btn
+            outline
+            color="primary"
+            class="full-width q-mb-sm"
+            label="Execute Contract"
+            @click="executeContract((from = 'test'), (to = 'test'), (functionName = 'transfer'), (address = 'test'), (value = 'test'))"
+          />
+
+          <q-btn outline color="primary" class="full-width q-mb-sm" label="Request Permissions" @click="requestPermissions()" />
         </q-card-section>
         <!-- <q-card-section class="q-pt-none">
           <p>Web3 Instance: {{ account.web3Instance }}</p>
@@ -42,7 +85,7 @@
       <q-card flat bordered class="uku-card uku-account-card">
         <q-card-section class="q-pt-none">
           <pre>Profile: {{ profile }}</pre>
-          <pre>Wallets: {{ wallets }}</pre>
+          <pre>Wallets: {{ wallet }}</pre>
           <!-- <pre>MetaMask Account: {{ account }}</pre> -->
           <!-- <pre>User: {{ user }}</pre>         -->
         </q-card-section>
@@ -73,12 +116,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(['user', 'account', 'profile', 'wallets']),
+    ...mapState(['user', 'account', 'profile', 'wallet']),
     ...mapGetters({
-      getUser: 'getUser',
-      getAccount: 'getAccount',
-      getProfile: 'getProfile',
-      getWallets: 'getWallets',
+      getUser: 'user',
+      getAccount: 'account',
+      getProfile: 'profile',
+      getWallet: 'wallet',
     }),
     user: {
       get() {
@@ -104,6 +147,14 @@ export default {
         this.$store.commit('SET_PROFILE', value)
       },
     },
+    wallet: {
+      get() {
+        return this.$store.state.wallet
+      },
+      set(value) {
+        this.$store.commit('SET_WALLET', value)
+      },
+    },
     networkColor() {
       return networkColor(this.$store.state.account.chainIdHEX, 'color')
     },
@@ -117,6 +168,16 @@ export default {
     },
     networkSymbol() {
       return networkSymbol(this.$store.state.account.chainIdHEX, 'symbol')
+    },
+    async sendTransaction(from, to, value, gas, gasPrice) {
+      try {
+        const sent = await this.$web3.sendTransaction(from, to, value, gas, gasPrice)
+        // Handle the result
+        console.log(sent)
+      } catch (error) {
+        // Handle the error
+        console.error(error)
+      }
     },
     async connectArkane() {
       let arkaneConnect = null
@@ -239,6 +300,7 @@ export default {
             console.log('First wallet address:', account.wallets[0].address)
             console.log('First wallet balance:', account.wallets[0].balance.balance)
             if (account.wallets.length > 0) {
+              this.$store.commit('SET_WALLET', account.wallets[0])
               this.$store.commit('SET_WALLETS', account.wallets)
             }
           }
@@ -709,37 +771,27 @@ export default {
         return false
       }
     },
-    async sendTransaction(from, to, value, gas, gasPrice) {
-      try {
-        const sent = await this.$web3.sendTransaction(from, to, value, gas, gasPrice)
-        // Handle the result
-        console.log(sent)
-      } catch (error) {
-        // Handle the error
-        console.error(error)
-      }
+    async requestPermissions() {
+      await window.ethereum
+        .request({
+          method: 'eth_requestAccounts',
+          params: [{ eth_accounts: {} }],
+        })
+        .then((permissions) => {
+          const accountsPermission = permissions.find((permission) => permission.parentCapability === 'eth_accounts')
+          if (accountsPermission) {
+            console.log('eth_accounts permission successfully requested!')
+          }
+        })
+        .catch((error) => {
+          if (error.code === 4001) {
+            // EIP-1193 userRejectedRequest error
+            console.log('Permissions needed to continue.')
+          } else {
+            console.error(error)
+          }
+        })
     },
-    // async requestPermissions() {
-    //   await window.ethereum
-    //     .request({
-    //       method: 'eth_requestAccounts',
-    //       params: [{ eth_accounts: {} }],
-    //     })
-    //     .then((permissions) => {
-    //       const accountsPermission = permissions.find((permission) => permission.parentCapability === 'eth_accounts')
-    //       if (accountsPermission) {
-    //         console.log('eth_accounts permission successfully requested!')
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       if (error.code === 4001) {
-    //         // EIP-1193 userRejectedRequest error
-    //         console.log('Permissions needed to continue.')
-    //       } else {
-    //         console.error(error)
-    //       }
-    //     })
-    // },
     // async connectArkaneProvider() {
     //   /* Check ArkaneProvider Instance */
     //   const arkaneProvider = await this.$web3.connectArkaneProvider()

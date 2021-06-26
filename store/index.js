@@ -23,6 +23,7 @@ const state = () => ({
     lastName: null,
   },
   tokens: [],
+  wallet: null,
   wallets: [],
   user: {
     uid: null,
@@ -223,6 +224,9 @@ const mutations = {
     state.tokens.push(payload)
   },
   /* Wallets */
+  SET_WALLET(state, payload) {
+    Object.assign(state.wallet = payload)
+  },
   SET_WALLETS(state, payload) {
     state.wallets.push(payload)
   },
@@ -468,6 +472,18 @@ const getters = {
     return state.profile.lastName
   },
   /* Wallets */
+  getWallet(state) {
+    return state.wallet
+  },
+  getWalletAddress(state) {
+    return state.wallet.address
+  },
+  getWalletBalance(state) {
+    return state.wallet.balance
+  },
+  getWalletNetwork(state) {
+    return state.wallet.balance
+  },
   getWallets(state) {
     return state.wallets
   },

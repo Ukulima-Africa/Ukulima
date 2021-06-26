@@ -8,15 +8,14 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn v-if="user.organisationId" rounded color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" @click="showCreateGrantForm()" />
-            <q-btn v-if="user.organisationId" outline rounded color="white" class="q-ml-sm q-mb-sm" label="Cancel" @click="hideCreateGrantForm()" />
+            <q-btn v-if="user.organisationId" rounded type="a" to="/grants-add" color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
           </div>
         </div>
       </div>
       <!-- Row of My Grants -->
       <div class="uku-mygrants-list row items-start justify-center">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-mygrants-list-col">
-          <div v-if="!showCreateForm" class="row items-start q-gutter-lg">
+          <div class="row items-start q-gutter-lg">
             <template v-for="grant in myGrants">
               <q-card :key="grant.uid" class="uku-grant-card" flat bordered>
                 <q-img :src="grant.imageURL ? grant.imageURL : 'https://cdn.quasar.dev/img/parallax2.jpg'" />
@@ -47,13 +46,7 @@
           </div>
         </div>
       </div>
-      <!-- Row of My Grants -->
-      <div class="row items-start justify-center">
-        <!-- Create Grants Form -->
-        <div v-if="showCreateForm === true" class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <GrantsForm />
-        </div>
-      </div>
+      <!-- END Row of My Grants -->
     </div>
   </div>
 </template>
@@ -62,14 +55,9 @@
 import { mapState, mapGetters } from 'vuex'
 /* Import Utils */
 import grants from '../util/functions/grants'
-/* Components */
-import GrantsForm from './forms/GrantsForm.vue'
 /* LFG */
 export default {
   name: 'MyGrantsList',
-  components: {
-    GrantsForm,
-  },
   filters: {
     truncate(text, length, suffix) {
       if (text.length > length) {
@@ -77,10 +65,6 @@ export default {
       }
       return text
     },
-  },
-  async asyncData() {
-    const grantsData = await grants.getMyGrants()
-    return { myGrants: grantsData }
   },
   data() {
     return {
@@ -105,13 +89,9 @@ export default {
       },
     },
   },
-  methods: {
-    showCreateGrantForm() {
-      this.showCreateForm = true
-    },
-    hideCreateGrantForm() {
-      this.showCreateForm = false
-    },
+  async created() {
+    const grantsData = await grants.getMyGrants()
+    this.myGrants = grantsData
   },
 }
 </script>

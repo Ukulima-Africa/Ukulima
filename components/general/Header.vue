@@ -42,7 +42,7 @@
             <div class="text-center">{{ account.balance ? parseFloat(account.balance).toFixed(4) : parseFloat('0.0000').toFixed(4) }}</div>
           </div>
         </q-btn>
-        <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button" push>
+        <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button hide-on-mobile" push>
           <div class="row items-center no-wrap">
             <!-- DEV NOTE: Must add QR code Scanner func here for Wallet address or Import -->
             <q-icon left size="1.1em" name="style" />
@@ -77,7 +77,7 @@
           outlined
           no-wrap
           icon-right="logout"
-          class="signout-button uku-desktop-menu"
+          class="signout-button uku-desktop-menu hide-on-mobile"
           label="SIGN OUT"
           @click="signOut()"
         />
@@ -96,46 +96,37 @@
                 </q-item-section>
                 <q-item-section>{{ user.name }}</q-item-section>
               </q-item>
-              <q-item-label v-if="profile.name" header class="text-weight-bold text-uppercase">Arkane Account</q-item-label>
-              <q-item v-if="profile.name" v-ripple clickable class="black q-mr-xs">
-                <q-item-section> {{ profile.name }}</q-item-section>
-              </q-item>
-              <q-separator />
-              <q-item v-if="profile.email" v-ripple clickable class="black q-mr-xs">
-                <q-item-section> {{ profile.email }}</q-item-section>
-              </q-item>
-              <q-separator />
-              <q-item v-ripple to="/dashboard" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/dashboard" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="dashboard" />
                 </q-item-section>
                 <q-item-section>Dashboard</q-item-section>
               </q-item>
-              <q-item v-ripple to="/company" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/company" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="store" />
                 </q-item-section>
                 <q-item-section>Organisation</q-item-section>
               </q-item>
-              <q-item v-ripple to="/users" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/users" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="group" />
                 </q-item-section>
                 <q-item-section>Users</q-item-section>
               </q-item>
-              <q-item v-ripple to="/inventory" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/inventory" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="inventory" />
                 </q-item-section>
                 <q-item-section>Inventory</q-item-section>
               </q-item>
-              <q-item v-ripple to="/mygrants" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/mygrants" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="ballot" />
                 </q-item-section>
                 <q-item-section>Grants</q-item-section>
               </q-item>
-              <q-item v-ripple to="/profile" clickable color="black" class="q-mr-xs">
+              <q-item v-ripple to="/profile" clickable color="black">
                 <q-item-section avatar>
                   <q-icon color="black" name="account_box" />
                 </q-item-section>
@@ -143,7 +134,7 @@
               </q-item>
               <!-- END Hide for MVP -->
               <q-separator />
-              <q-item v-ripple clickable color="black" class="q-mr-xs" @click="signOut()">
+              <q-item v-ripple clickable color="black" @click="signOut()">
                 <q-item-section avatar>
                   <q-icon color="black" name="logout" />
                 </q-item-section>
@@ -154,7 +145,7 @@
         </q-btn>
         <!-- END User Account Dropdown Button -->
         <!-- Network Button -->
-        <q-btn v-if="account.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon">
+        <q-btn v-if="account.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon" class="hide-on-mobile">
           <q-tooltip :content-class="`bg-${networkColor}`">{{ account.chainName }}</q-tooltip>
         </q-btn>
         <!-- END Network Button -->
@@ -186,12 +177,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['notice', 'user', 'account', 'profile', 'leftDrawerOpen']),
+    ...mapState(['notice', 'user', 'account', 'leftDrawerOpen']),
     ...mapGetters({
       getNotice: 'notice',
       getUser: 'user',
       getAccount: 'account',
-      getProfile: 'profile',
       getLeftDrawerState: 'leftDrawerOpen',
     }),
     notice: {
@@ -216,14 +206,6 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
-      },
-    },
-    profile: {
-      get() {
-        return this.$store.state.profile
-      },
-      set(value) {
-        this.$store.commit('SET_PROFILE', value)
       },
     },
     leftDrawerOpen: {
@@ -379,6 +361,12 @@ export default {
     &:hover, &:focus
       color: $black !important
       text-decoration: none
+  .q-item.q-router-link--active,
+  .q-item--active
+    color: $black !important
+    background-color: #eeeeee !important
+    padding: 4px 8px !important
+    border-radius: 0 !important
 .signout-button
   color: $white
   background-color: $black
