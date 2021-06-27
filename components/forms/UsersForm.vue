@@ -218,7 +218,9 @@ export default {
                 icon: 'cloud_done',
                 message: 'Congratulations, your User details have been updated successfully!',
               })
-              this.resetForm()
+              this.$refs.usersForm.resetValidation()
+              this.$refs.usersForm.reset()
+              $nuxt.$router.push('/dashboard')
             } catch (error) {
               this.$q.notify({
                 color: 'red-6',
@@ -241,24 +243,25 @@ export default {
     },
     resetForm() {
       this.isValid = false
-      this.user.uid = null
-      this.user.organisationId = null
-      this.user.role = null
-      this.user.name = null
-      this.user.email = null
-      this.user.emailVerified = null
-      this.user.phoneCode = null
-      this.user.phoneNumber = null
-      this.user.photoURL = null
-      this.user.profileType = null
-      this.user.integrationType = null
-      this.user.binanceId = null
-      this.user.busdWalletAddress = null
-      this.user.metaMaskAccount = null
-      this.user.onboardingState = null
-      this.user.dateCreated = null
-      this.user.lastEdit = null
+      // this.user.uid = null
+      // this.user.organisationId = null
+      // this.user.role = null
+      // this.user.name = null
+      // this.user.email = null
+      // this.user.emailVerified = null
+      // this.user.phoneCode = null
+      // this.user.phoneNumber = null
+      // this.user.photoURL = null
+      // this.user.profileType = null
+      // this.user.integrationType = null
+      // this.user.binanceId = null
+      // this.user.busdWalletAddress = null
+      // this.user.metaMaskAccount = null
+      // this.user.onboardingState = null
+      // this.user.dateCreated = null
+      // this.user.lastEdit = null
       this.$refs.usersForm.resetValidation()
+      this.$refs.usersForm.reset()
     },
   },
 }

@@ -97,7 +97,7 @@ const users = {
   async createUser(data) {
     const organisationId = await this.getOrganisationId()
     const docData = {
-      organisationId: data.organisationId,
+      organisationId,
       role: 'User',
       name: data.name,
       email: data.email,

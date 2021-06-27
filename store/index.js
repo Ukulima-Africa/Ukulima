@@ -23,7 +23,13 @@ const state = () => ({
     lastName: null,
   },
   tokens: [],
-  wallet: null,
+  wallet: {
+    address: null,
+    balance: 0.0,
+    symbol: null,
+    decimals: null,
+    secretType: null,
+  },
   wallets: [],
   user: {
     uid: null,
@@ -224,15 +230,27 @@ const mutations = {
     state.tokens.push(payload)
   },
   /* Wallets */
-  SET_WALLET(state, payload) {
-    Object.assign(state.wallet = payload)
+  SET_WALLET_ADDRESS(state, payload) {
+    state.wallet.address = payload
+  },
+  SET_WALLET_BALANCE(state, payload) {
+    state.wallet.balance = payload
+  },
+  SET_WALLET_BALANCE_SYMBOL(state, payload) {
+    state.wallet.symbol = payload
+  },
+  SET_WALLET_BALANCE_DECIMALS(state, payload) {
+    state.wallet.decimals = payload
+  },
+  SET_WALLET_NETWORK(state, payload) {
+    state.wallet.secretType = payload
   },
   SET_WALLETS(state, payload) {
     state.wallets.push(payload)
   },
   /* Metamask Account */
   SET_ACCOUNT(state, payload) {
-    Object.assign(state.account = payload)
+    Object.assign(state.account, payload)
   },
   SET_WEB3_INSTANCE(state, payload) {
     state.account.web3Instance = payload
@@ -481,8 +499,14 @@ const getters = {
   getWalletBalance(state) {
     return state.wallet.balance
   },
+  getWalletBalanceSymbol(state) {
+    return state.wallet.symbol
+  },
+  getWalletBalanceDecimals(state) {
+    return state.wallet.decimals
+  },
   getWalletNetwork(state) {
-    return state.wallet.balance
+    return state.wallet.secretType
   },
   getWallets(state) {
     return state.wallets

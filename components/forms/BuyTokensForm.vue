@@ -297,7 +297,7 @@ export default {
           letter-spacing: normal
           text-align: center
           border-radius: 5px
-          background-color: $white !important
+          background-color: $primary !important
           cursor: pointer
         .uku-connect-button
           width: 340px

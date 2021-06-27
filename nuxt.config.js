@@ -19,7 +19,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
+        content: 'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farms throughout Africa and abroad',
       },
       {
         hid: 'keywords',
@@ -38,6 +38,11 @@ export default {
    */
   styleResources: {
     sass: ['~/assets/sass/theme-variables.sass'],
+  },
+  loading: {
+    color: 'primary',
+    height: '5px',
+    throttle: '200',
   },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

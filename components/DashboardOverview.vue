@@ -14,16 +14,14 @@
         </div>
       </div>
       <div class="uku-dashboard row items-start justify-center">
-        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-dashboard-col">
-          <!-- <div class="uku-dashboard-title">Data Feeds</div>
-          <div class="uku-dashboard-subtitle">Weather widgets and more</div> -->
-          <div class="uku-dashboard-text">
-            <Account />
-          </div>
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 uku-dashboard-col">
+          <div class="uku-dashboard-title">Data Feeds</div>
+          <div class="uku-dashboard-subtitle">Weather widgets and more</div>
+          <div class="uku-dashboard-text">Coming Soon!</div>
         </div>
-        <!-- <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-dashboard-col">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-        </div> -->
+        <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 uku-dashboard-col">
+          <Account />
+        </div>
       </div>
     </div>
   </div>

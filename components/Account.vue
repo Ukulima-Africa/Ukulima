@@ -1,6 +1,6 @@
 <template>
   <div class="row items-start justify-center">
-    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <q-card flat bordered class="uku-card uku-account-card">
         <q-card-section>
           <div class="text-h6">
@@ -15,59 +15,66 @@
           <p>Arkane firstName: {{ profile.firstName }}</p>
           <p>Arkane lastName: {{ profile.lastName }}</p>
           <p>Arkane Wallet: {{ wallet ? wallet.address : '' }}</p>
-          <p>Wallet Balance: {{ wallet ? wallet.balance : 0 }}</p>
-          <p>Wallet Network: {{ wallet ? wallet.balance : 0 }}</p>
+          <p>Wallet Balance: {{ wallet ? wallet.symbol : '' }} {{ wallet ? wallet.balance : 0 }}</p>
+          <p>Wallet Network: {{ wallet ? wallet.secretType : '' }}</p>
         </q-card-section>
         <q-card-section>
-          <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
           <q-btn
+            v-if="!profile.userId"
+            flat
+            color="white"
+            class="bg-primary full-width q-mb-sm"
+            label="Connect Arkane Account"
+            @click="connectArkane()"
+          />
+          <!-- <q-btn
             color="grey-8"
             class="bg-secondary full-width q-mb-sm"
             label="Send Transaction"
             @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
-          />
+          /> -->
 
           <!-- async signTransaction(from, to, value) -->
-          <q-btn
+          <!-- <q-btn
             outline
             color="primary"
             class="full-width q-mb-sm"
             label="Sign Transaction"
             @click="signTransaction((from = 'test'), (to = 'test'), (value = 'test'))"
-          />
+          /> -->
 
           <!-- signData(signatureRequest) -->
-          <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Data" @click="signData()" />
+          <!-- <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Data" @click="signData()" /> -->
 
           <!-- signMessage(walletId, data) -->
-          <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Message" @click="signMessage((from = 'test'), (data = 'test'))" />
+          <!-- <q-btn outline color="primary" class="full-width q-mb-sm" label="Sign Message" @click="signMessage((from = 'test'), (data = 'test'))" /> -->
 
           <!-- executeTokenTransfer(from, to, value, tokenAddress) -->
-          <q-btn
+          <!-- <q-btn
             outline
             color="primary"
             class="full-width q-mb-sm"
             label="Execute Token Transfer"
             @click="executeTokenTransfer((from = 'test'), (to = 'test'), (value = 'test'), (tokenAddress = 'test'))"
-          />
+          /> -->
           <!-- executeNftTransfer(from, to, tokenAddress, tokenId) -->
-          <q-btn
+          <!-- <q-btn
             outline
             color="primary"
             class="full-width q-mb-sm"
             label="Execute Nft Transfer"
             @click="executeNftTransfer((from = 'test'), (to = 'test'), (tokenAddress = 'test'), (tokenId = 'test'))"
-          />
+          /> -->
           <!-- executeContract(from, to, functionName = 'transfer', address, value) -->
-          <q-btn
+          <!-- <q-btn
             outline
             color="primary"
             class="full-width q-mb-sm"
             label="Execute Contract"
             @click="executeContract((from = 'test'), (to = 'test'), (functionName = 'transfer'), (address = 'test'), (value = 'test'))"
-          />
+          /> -->
 
-          <q-btn outline color="primary" class="full-width q-mb-sm" label="Request Permissions" @click="requestPermissions()" />
+          <!-- <q-btn outline color="primary" class="full-width q-mb-sm" label="Request Permissions" @click="requestPermissions()" /> -->
         </q-card-section>
         <!-- <q-card-section class="q-pt-none">
           <p>Web3 Instance: {{ account.web3Instance }}</p>
@@ -79,16 +86,6 @@
           <p>Symbol: {{ networkSymbol(account.chainIdHEX, 'symbol') }}</p>
           <p>Balance: {{ account.balance }}</p>
         </q-card-section> -->
-      </q-card>
-    </div>
-    <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <q-card flat bordered class="uku-card uku-account-card">
-        <q-card-section class="q-pt-none">
-          <pre>Profile: {{ profile }}</pre>
-          <pre>Wallets: {{ wallet }}</pre>
-          <!-- <pre>MetaMask Account: {{ account }}</pre> -->
-          <!-- <pre>User: {{ user }}</pre>         -->
-        </q-card-section>
       </q-card>
     </div>
   </div>
@@ -300,7 +297,11 @@ export default {
             console.log('First wallet address:', account.wallets[0].address)
             console.log('First wallet balance:', account.wallets[0].balance.balance)
             if (account.wallets.length > 0) {
-              this.$store.commit('SET_WALLET', account.wallets[0])
+              this.$store.commit('SET_WALLET_ADDRESS', account.wallets[0].address)
+              this.$store.commit('SET_WALLET_BALANCE', account.wallets[0].balance.balance)
+              this.$store.commit('SET_WALLET_BALANCE_SYMBOL', account.wallets[0].balance.symbol)
+              this.$store.commit('SET_WALLET_BALANCE_DECIMALS', account.wallets[0].balance.decimals)
+              this.$store.commit('SET_WALLET_NETWORK', account.wallets[0].secretType)
               this.$store.commit('SET_WALLETS', account.wallets)
             }
           }
