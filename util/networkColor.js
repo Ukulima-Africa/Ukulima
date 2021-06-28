@@ -69,6 +69,12 @@ export function networkColor(chainHEX, filterType) {
           ? networks.GANACHE_DEV_NET.icon
           : networks.GANACHE_DEV_NET.color
       break
+    case networks.XDAI_NET.hex:
+      network =
+        filterType === 'icon'
+          ? networks.XDAI_NET.icon
+          : networks.XDAI_NET.color
+      break
     case networks.LOCALHOST.hex:
       network =
         filterType === 'icon' ? networks.LOCALHOST.icon : networks.LOCALHOST.color

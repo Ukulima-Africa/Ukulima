@@ -109,6 +109,16 @@ export const networks = Object.freeze({
     color: 'red',
     icon: 'layers_clear',
   },
+  XDAI_NET: {
+    id: 100,
+    hex: '0x64',
+    name: 'xDai Network',
+    symbol: 'xDai',
+    rpcUrl: 'https://rpc.xdaichain.com/',
+    explorerUrl: 'https://blockscout.com/xdai/mainnet',
+    color: 'blue',
+    icon: 'layers_clear',
+  },
   LOCALHOST: {
     id: 8545,
     hex: '8545',

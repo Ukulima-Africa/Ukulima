@@ -40,6 +40,9 @@ export function networkFilter(chainHEX, filterType) {
     case networks.GANACHE_DEV_NET.hex:
       network = filterType === 'name' ? networks.GANACHE_DEV_NET.name : networks.GANACHE_DEV_NET.id
       break
+    case networks.XDAI_NET.hex:
+      network = filterType === 'name' ? networks.XDAI_NET.name : networks.XDAI_NET.id
+      break
     case networks.LOCALHOST.hex:
       network = filterType === 'name' ? networks.LOCALHOST.name : networks.LOCALHOST.id
       break

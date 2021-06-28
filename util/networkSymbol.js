@@ -40,6 +40,9 @@ export function networkSymbol(chainHEX, filterType) {
     case networks.GANACHE_DEV_NET.hex:
       network = filterType === 'symbol' ? networks.GANACHE_DEV_NET.symbol : networks.GANACHE_DEV_NET.id
       break
+    case networks.XDAI_NET.hex:
+      network = filterType === 'symbol' ? networks.XDAI_NET.symbol : networks.XDAI_NET.id
+      break
     case networks.LOCALHOST.hex:
       network = filterType === 'symbol' ? networks.LOCALHOST.symbol : networks.LOCALHOST.id
       break
