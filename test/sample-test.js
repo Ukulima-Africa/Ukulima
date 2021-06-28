@@ -1,19 +1,15 @@
-const {
-  ethers
-} = require('ethers')
+const hre = require("hardhat");
 const {
   expect
-} = require('chai')
+} = require('chai');
 
-describe('Greeter', () => {
-  it('Should return the new greeting once it\'s changed', async () => {
-    const Greeter = await ethers.getContractFactory('Greeter')
-    const greeter = await Greeter.deploy('Hello world!')
-
-    await greeter.deployed()
-    expect(await greeter.greet()).to.equal('Hello world!')
-
-    await greeter.setGreeting('Hello N3RD!')
-    expect(await greeter.greet()).to.equal('Hello N3RD!')
-  })
-})
+describe("NFT", () => {
+  it("It should deploy the contract, mint a token, and resolve to the right URI", async () => {
+    const NFT = await hre.ethers.getContractFactory("UkuNFT");
+    const nft = await NFT.deploy();
+    const URI = "ipfs://QmWJBNeQAm9Rh4YaW8GFRnSgwa4dN889VKm9poc2DQPBkv";
+    await nft.deployed();
+    await nft.mint("0x09c0377BAdCa7349b20569f45f2D94398179Db0c", URI)
+    expect(await nft.tokenURI(1)).to.equal(URI)
+  });
+});

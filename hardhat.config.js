@@ -1,41 +1,25 @@
 /* global task ethers */
-require('@nomiclabs/hardhat-ethers')
-require("@nomiclabs/hardhat-waffle")
-require('./node_modules/hardhat-contract-sizer')
-require('./node_modules/solidity-coverage')
-require('./contracts/tasks/generateDiamondABI')
-require('dotenv').config()
+require('@nomiclabs/hardhat-ethers');
+require("@nomiclabs/hardhat-waffle");
+require('./node_modules/hardhat-contract-sizer');
+require('./node_modules/solidity-coverage');
+require('dotenv').config();
 
-const { mnemonic } = require('./secrets.json')
+const {
+  mnemonic
+} = require('./secrets.json');
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("Accounts", "Prints a list of Accounts", async () => {
   const accounts = await ethers.getSigners();
-
-  console.log('accounts', accounts)
+  console.log('accounts', accounts);
   // eslint-disable-next-line no-restricted-syntax
   for (const account of accounts) {
     // eslint-disable-next-line no-await-in-loop
-    console.log(await account.getAddress())
+    console.log(await account.getAddress());
   }
 })
-
-// https://github.com/withtally/Tutorial-Deploy-Governance/blob/main/hardhat.config.jshttps://github.com/withtally/Tutorial-Deploy-Governance/blob/main/hardhat.config.js
-// task("Deploy", "Deploys a COMPound style governance system")
-// .addParam("token", "The address to receive the initial supply")
-// .addParam("timelock", "The timelock administrator")
-// .addParam("guardian", "The governor guardian").setAction(async taskArgs => {
-
-//   const { deploy } = require("./scripts/Deploy");
-
-//     await deploy({
-//       tokenRecipient: taskArgs.token,
-//       timeLockAdmin: taskArgs.timelock,
-//       guardian: taskArgs.guardian
-//     });
-// })
-
 /**
  * @type import('hardhat/config').HardhatUserConfig
  * You have to export an object to set up your config
@@ -44,7 +28,7 @@ task("Accounts", "Prints a list of Accounts", async () => {
  * Go to https://buidler.dev/config/ to learn more
  */
 module.exports = {
-  defaultNetwork: "testnet",
+  defaultNetwork: "hardhat",
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545"
@@ -78,23 +62,23 @@ module.exports = {
       gasPrice: 1000000000
     },
     kovan: {
-      url: process.env.N3RD_INFURA_ENPOINT_KOVAN,
+      url: 'https://kovan.infura.io/',
       accounts: {mnemonic},
       gasPrice: 5000000000
     },
     rinkeby: {
-      url: process.env.N3RD_INFURA_ENPOINT_RINKEBY,
+      url: 'https://eth-mainnet.alchemyapi.io/v2/123abc123abc123abc123abc123abcde',
       accounts: {mnemonic},
     }
   },
   solidity: {
-  version: "0.7.6",
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 20000
-    }
-   }
+    version: "0.8.0",
+      settings: {
+        optimizer: {
+          enabled: true,
+        runs: 2000
+        }
+        }
   },
   paths: {
     sources: "./contracts",

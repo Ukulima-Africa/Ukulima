@@ -34,7 +34,7 @@ export const networks = Object.freeze({
     hex: '0x4',
     name: 'Rinkeby Test Network',
     symbol: 'ETH',
-    rpcUrl: '',
+    rpcUrl: 'https://eth-mainnet.alchemyapi.io/v2/123abc123abc123abc123abc123abcde',
     explorerUrl: '',
     color: 'yellow',
     icon: 'layers_clear',
