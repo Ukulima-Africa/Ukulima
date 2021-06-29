@@ -1,4 +1,5 @@
 # Ukulima
+
 Empowering African Farmers through Blockchain
 
 ## Build Setup
@@ -19,3 +20,33 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Binance Smart Chain
+
+Implement an upgradeable BEP-20 contract
+
+### Install dependency
+
+```shell script
+npm install
+```
+
+### Run unittests
+
+Start ganache:
+
+```shell script
+npm run testrpc
+```
+
+Run unittests:
+
+```shell script
+npm run truffle:test
+```
+
+### Flatten
+
+```shell script
+npm run flatten
+```
