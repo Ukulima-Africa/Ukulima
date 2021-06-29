@@ -11,7 +11,7 @@ import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { Arkane } from '@arkane-network/web3-arkane-provider/'
 /* Contracts ABI */
-import UKU_ABI from '../contracts/abi/abi.json'
+// import UKU_ABI from '../contracts/abi/abi.json'
 
 /* Network Enum */
 import { networks } from '../util/networks'
@@ -320,19 +320,19 @@ web3.sendTransaction = async (from, to, value, gas, gasPrice) => {
 }
 
 /* UKU_BEP20 Contract */
-web3.getUKUTokenContract = async () => {
-  const newWeb3 = getWeb3()
-  return new newWeb3.eth.Contract(UKU_ABI, UKU_BEP20_ADDR)
-}
-web3.getUKUTokenName = async () => {
-  const contractToken = this.getUKUTokenContract(UKU_BEP20_ADDR)
-  return contractToken.methods.name().call()
-}
-web3.getUKUTokenContractSymbol = async () => {
-  const newWeb3 = getWeb3()
-  const contractToken = new newWeb3.eth.Contract(UKU_ABI, UKU_BEP20_ADDR)
-  return contractToken.methods.symbol().call()
-}
+// web3.getUKUTokenContract = async () => {
+//   const newWeb3 = getWeb3()
+//   return new newWeb3.eth.Contract(UKU_ABI, UKU_BEP20_ADDR)
+// }
+// web3.getUKUTokenName = async () => {
+//   const contractToken = this.getUKUTokenContract(UKU_BEP20_ADDR)
+//   return contractToken.methods.name().call()
+// }
+// web3.getUKUTokenContractSymbol = async () => {
+//   const newWeb3 = getWeb3()
+//   const contractToken = new newWeb3.eth.Contract(UKU_ABI, UKU_BEP20_ADDR)
+//   return contractToken.methods.symbol().call()
+// }
 
 /* Error log -> USAGE: this.$web3.getExplorerURL(network)  */
 web3.getExplorerURL = (explorer) => {
