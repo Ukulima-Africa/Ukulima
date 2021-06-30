@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "./IBEP20.sol";
-import "./interface/ApproveAndCallFallBack.sol";
+import "../interface/ApproveAndCallFallBack.sol";
 import "openzeppelin-solidity/contracts/GSN/Context.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/proxy/Initializable.sol";

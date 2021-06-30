@@ -24,7 +24,11 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
+#Buidler files
+cache
+artifacts
 coverage
+coverage.json
 *.lcov
 
 # vscode client settings
