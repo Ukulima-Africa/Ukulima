@@ -29,7 +29,9 @@
                 <div class="row items-center justify-end no-wrap profile-details">
                   Profile Details
                   <q-icon
-                    :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
+                    :name="`img:${
+                      require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''
+                    }`"
                     size="xs"
                     class="q-ml-sm"
                   />
@@ -112,7 +114,13 @@
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="profile-item">Integration Type</h2>
-                <q-select v-model="profile.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
+                <q-select
+                  v-model="profile.integrationType"
+                  color="black"
+                  outlined
+                  tabindex="8"
+                  :options="integrationTypes"
+                >
                   <template #option="scope">
                     <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                       <q-item-section>

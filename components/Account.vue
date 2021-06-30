@@ -293,7 +293,10 @@ export default {
             if (account.auth.tokenParsed.family_name) {
               this.$store.commit('SET_PROFILE_LASTNAME', account.auth.tokenParsed.family_name)
             }
-            console.log(`%c Account Wallets : ${JSON.stringify(account.wallets, null, 4)}`, 'background: #222; color: #bada55')
+            console.log(
+              `%c Account Wallets : ${JSON.stringify(account.wallets, null, 4)}`,
+              'background: #222; color: #bada55',
+            )
             console.log('First wallet address:', account.wallets[0].address)
             console.log('First wallet balance:', account.wallets[0].balance.balance)
             if (account.wallets.length > 0) {

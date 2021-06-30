@@ -39,10 +39,17 @@
               :name="`img:${require('@/assets/icons/MATIC.svg') ? require('@/assets/icons/MATIC.svg') : ''}`"
               size="xs"
             />
-            <div class="text-center">{{ account.balance ? parseFloat(account.balance).toFixed(4) : parseFloat('0.0000').toFixed(4) }}</div>
+            <div class="text-center">
+              {{ account.balance ? parseFloat(account.balance).toFixed(4) : parseFloat('0.0000').toFixed(4) }}
+            </div>
           </div>
         </q-btn>
-        <q-btn v-if="account && account.account" color="black" class="q-mr-sm account-address-button hide-on-mobile" push>
+        <q-btn
+          v-if="account && account.account"
+          color="black"
+          class="q-mr-sm account-address-button hide-on-mobile"
+          push
+        >
           <div class="row items-center no-wrap">
             <!-- DEV NOTE: Must add QR code Scanner func here for Wallet address or Import -->
             <q-icon left size="1.1em" name="style" />
@@ -145,7 +152,15 @@
         </q-btn>
         <!-- END User Account Dropdown Button -->
         <!-- Network Button -->
-        <q-btn v-if="account.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon" class="hide-on-mobile">
+        <q-btn
+          v-if="account.chainIdHEX"
+          round
+          dense
+          flat
+          :color="networkColor"
+          :icon="networkIcon"
+          class="hide-on-mobile"
+        >
           <q-tooltip :content-class="`bg-${networkColor}`">{{ account.chainName }}</q-tooltip>
         </q-btn>
         <!-- END Network Button -->

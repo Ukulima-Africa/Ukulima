@@ -21,7 +21,9 @@
                 <div class="row items-center justify-end no-wrap grant-details">
                   Grant Details
                   <q-icon
-                    :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
+                    :name="`img:${
+                      require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''
+                    }`"
                     size="xs"
                     class="q-ml-sm"
                   />

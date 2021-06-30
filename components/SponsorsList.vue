@@ -32,7 +32,14 @@
                   <q-btn flat color="secondary" label="Share" />
                   <q-btn flat color="primary" label="Apply" />
                   <q-space />
-                  <q-btn color="grey" round flat dense :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" @click="expanded = !expanded" />
+                  <q-btn
+                    color="grey"
+                    round
+                    flat
+                    dense
+                    :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                    @click="expanded = !expanded"
+                  />
                 </q-card-actions>
                 <q-slide-transition>
                   <div v-show="expanded">

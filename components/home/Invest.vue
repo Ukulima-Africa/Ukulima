@@ -5,13 +5,14 @@
         <div class="uku-invest-title">{{ title }}</div>
         <div class="uku-invest-subtitle">{{ subtitle }}</div>
         <div class="uku-invest-text">
-          In developing countries, as many as 270 million smallholder farmers are underinsured. Only 20% have access to agricultural insurance
-          coverage, and in sub-Saharan Africa - despite the fivefold increase in agricultural microinsurance registered between 2011 and 2014
+          In developing countries, as many as 270 million smallholder farmers are underinsured. Only 20% have access to
+          agricultural insurance coverage, and in sub-Saharan Africa - despite the fivefold increase in agricultural
+          microinsurance registered between 2011 and 2014
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
         <div class="uku-invest-text">
-          Ukulima's Blockchain Crop Insurance aims to increase smallholder farmers’ resilience to climate change through offering a more accessible
-          index insurance product at scale.
+          Ukulima's Blockchain Crop Insurance aims to increase smallholder farmers’ resilience to climate change through
+          offering a more accessible index insurance product at scale.
         </div>
       </div>
     </div>

@@ -7,17 +7,20 @@
         don’t have access to a bank account or reliable insurance services
       </div>
       <div class="uku-blockchain-text">
-        Blockchain has sparked a massive transformation in cross-border payments with the ability to easily and safely transfer money using smart
-        contracts. The use of Blockchain technologies provides people the opportunity to be their own bank without needing to sign up for a bank
-        account and has led us to an era of decentralised finance (Defi) and decentralised insurance products.
+        Blockchain has sparked a massive transformation in cross-border payments with the ability to easily and safely
+        transfer money using smart contracts. The use of Blockchain technologies provides people the opportunity to be
+        their own bank without needing to sign up for a bank account and has led us to an era of decentralised finance
+        (Defi) and decentralised insurance products.
       </div>
       <div class="uku-blockchain-text">
-        With the help of Blockchain solutions and smart contracts, we are building trust and confidence in our agriculture and food supply chains
-        through a platform where everyone can have access to reliable and transparent information on the origin, journey and quality of their food.
+        With the help of Blockchain solutions and smart contracts, we are building trust and confidence in our
+        agriculture and food supply chains through a platform where everyone can have access to reliable and transparent
+        information on the origin, journey and quality of their food.
       </div>
       <div class="uku-blockchain-text">
-        We can aggregate real time data into one dashboard for predictive consumer analytics, and by leveraging Blockchain Technology, ioT, AI and
-        Machine Learning we can create a world in which access to data equals transparency, security and better food for all.
+        We can aggregate real time data into one dashboard for predictive consumer analytics, and by leveraging
+        Blockchain Technology, ioT, AI and Machine Learning we can create a world in which access to data equals
+        transparency, security and better food for all.
       </div>
       <div class="uku-intro-buttons full-width q-mt-lg" align="left">
         <q-btn rounded color="primary" text-color="secondary" class="q-mr-sm q-mb-md" label="Data Feeds" />

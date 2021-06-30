@@ -11,8 +11,8 @@
         <div class="uku-power-subtitle">Decentralised &amp; Distributed</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-power-text">
-          Blockchain ensures that no one person can "hack" or change the data. Information is only added to the spreadsheet if the network of
-          computers all agree that the new information is valid and correct.
+          Blockchain ensures that no one person can "hack" or change the data. Information is only added to the
+          spreadsheet if the network of computers all agree that the new information is valid and correct.
         </div>
       </div>
     </div>
@@ -24,8 +24,9 @@
         <div class="uku-power-subtitle">Consensus</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-power-text">
-          Consensus means everyone agrees that each transaction is valid. The blockchain system is a distributed network of computers, called “nodes”,
-          which validate each others’ data, ensuring that no single node can corrupt or falsify the information.
+          Consensus means everyone agrees that each transaction is valid. The blockchain system is a distributed network
+          of computers, called “nodes”, which validate each others’ data, ensuring that no single node can corrupt or
+          falsify the information.
         </div>
       </div>
     </div>
@@ -37,8 +38,9 @@
         <div class="uku-power-subtitle">Provenance</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-power-text">
-          Provenance means everyone knows where each asset came from, who owned it and at what time. This is because the blockchain system holds a
-          complete history of all transactions that can never be changed - right back to when transactions were first created.
+          Provenance means everyone knows where each asset came from, who owned it and at what time. This is because the
+          blockchain system holds a complete history of all transactions that can never be changed - right back to when
+          transactions were first created.
         </div>
       </div>
     </div>
@@ -50,8 +52,8 @@
         <div class="uku-power-subtitle">Immutability</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-power-text">
-          Immutability means no one can tamper with the data - absolutely never! No transaction can be erased or changed once stored on the blockchain
-          system.
+          Immutability means no one can tamper with the data - absolutely never! No transaction can be erased or changed
+          once stored on the blockchain system.
         </div>
       </div>
     </div>

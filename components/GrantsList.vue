@@ -29,7 +29,14 @@
                   <q-btn flat color="secondary" label="Share" />
                   <q-btn flat color="primary" label="Apply" />
                   <q-space />
-                  <q-btn color="grey" round flat dense :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" @click="expanded = !expanded" />
+                  <q-btn
+                    color="grey"
+                    round
+                    flat
+                    dense
+                    :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                    @click="expanded = !expanded"
+                  />
                 </q-card-actions>
                 <q-slide-transition>
                   <div v-show="expanded">
@@ -47,9 +54,10 @@
       <div v-else class="row items-start justify-center">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-grants-list-col">
           <div class="uku-grants-text">
-            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-            Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-            chain inefficiencies and agriculture associated risks.
+            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold
+            farmers throughout Africa. Together we bring in all stakeholders in the agricultural supply chain, allowing
+            them to make better-informed decisions, reducing supply chain inefficiencies and agriculture associated
+            risks.
           </div>
         </div>
       </div>

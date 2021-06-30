@@ -30,7 +30,10 @@ const grants = {
       .then((doc) => {
         if (doc.exists) {
           try {
-            grantData = doc.data()
+            grantData = {
+              ...doc.data(),
+              uid: doc.id
+            }
           } catch (err) {}
         }
       })

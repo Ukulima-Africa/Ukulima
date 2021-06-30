@@ -8,9 +8,10 @@
         <div class="uku-binance-subtitle">What is Binance Smart Chain?</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-binance-text">
-          Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on
-          a system of 21 validators with Proof of Staked Authority (PoSA) consensus that can support short block time and lower fees. The most bonded
-          validator candidates of staking will become validators and produce blocks.
+          Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain.
+          Binance Smart Chain relies on a system of 21 validators with Proof of Staked Authority (PoSA) consensus that
+          can support short block time and lower fees. The most bonded validator candidates of staking will become
+          validators and produce blocks.
         </div>
       </div>
     </div>
@@ -19,9 +20,10 @@
         <div class="uku-binance-subtitle">What can I do with Binance Smart Chain?</div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
         <div class="uku-binance-text">
-          Binance Smart Chain (BSC) boasts smart contract functionality and compatibility with the Ethereum Virtual Machine (EVM). The design goal was
-          to leave the high throughput of Binance Chain intact while introducing smart contracts into its ecosystem. Because BSC is EVM-compatible, it
-          launched with support for the rich universe of Ethereum tools and DApps.
+          Binance Smart Chain (BSC) boasts smart contract functionality and compatibility with the Ethereum Virtual
+          Machine (EVM). The design goal was to leave the high throughput of Binance Chain intact while introducing
+          smart contracts into its ecosystem. Because BSC is EVM-compatible, it launched with support for the rich
+          universe of Ethereum tools and DApps.
         </div>
       </div>
     </div>

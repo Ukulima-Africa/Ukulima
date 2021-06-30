@@ -5,13 +5,13 @@
         <div class="uku-insurance-title">{{ title }}</div>
         <div class="uku-insurance-subtitle">{{ subtitle }}</div>
         <div class="uku-insurance-text">
-          Ukulima understands your farm is very important to you, regardless its nature or size. As your partner in agriculture, our goal is to make
-          crop insurance even more accessible, affordable and easy to use.
+          Ukulima understands your farm is very important to you, regardless its nature or size. As your partner in
+          agriculture, our goal is to make crop insurance even more accessible, affordable and easy to use.
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
         <div class="uku-insurance-text">
-          When you are insured, you can enjoy peace of mind knowing that your crops and assets are fully covered by technical experts who understand
-          the demands of the agriculture industry.
+          When you are insured, you can enjoy peace of mind knowing that your crops and assets are fully covered by
+          technical experts who understand the demands of the agriculture industry.
         </div>
       </div>
     </div>

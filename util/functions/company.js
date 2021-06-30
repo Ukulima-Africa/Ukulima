@@ -53,7 +53,7 @@ const company = {
   /* Get Company Data */
   async getCompany() {
     const organisationId = await this.getOrganisationId()
-    const companyRef = $nuxt.$fire.firestore
+    const companyRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
     let companyData = ''
@@ -62,7 +62,10 @@ const company = {
       .then((doc) => {
         if (doc.exists) {
           try {
-            companyData = doc.data()
+            companyData = {
+              ...doc.data(),
+              uid: doc.id
+            }
           } catch (err) {}
         }
       })

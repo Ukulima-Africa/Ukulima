@@ -35,7 +35,9 @@
                 <div class="row items-center justify-end no-wrap">
                   User Details
                   <q-icon
-                    :name="`img:${require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''}`"
+                    :name="`img:${
+                      require('@/assets/icons/HelpIcon.svg') ? require('@/assets/icons/HelpIcon.svg') : ''
+                    }`"
                     size="xs"
                     class="q-ml-sm"
                   />
@@ -118,7 +120,13 @@
               </div>
               <div class="col-6 col-md-6 col-sm-12 col-xs-12 self-start">
                 <h2 class="user-item">Integration Type</h2>
-                <q-select v-model="user.integrationType" color="black" outlined tabindex="8" :options="integrationTypes">
+                <q-select
+                  v-model="user.integrationType"
+                  color="black"
+                  outlined
+                  tabindex="8"
+                  :options="integrationTypes"
+                >
                   <template #option="scope">
                     <q-item v-bind="scope.itemProps" class="select-menu-item" v-on="scope.itemEvents">
                       <q-item-section>
@@ -142,8 +150,8 @@
               <div class="col-8 col-md-8" align="right">
                 <q-btn
                   unelevated
-                  :label="!user.organisationId ? 'Create' : 'Update'"
-                  :color="!user.organisationId ? 'secondary' : 'primary'"
+                  :label="!userId ? 'Create' : 'Update'"
+                  :color="!userId ? 'secondary' : 'primary'"
                   type="submit"
                   class="q-ml-sm"
                 />
@@ -162,13 +170,19 @@ import users from '../../util/functions/users'
 /* LFG */
 export default {
   name: 'UsersForm',
+  props: {
+    userId: {
+      type: String,
+      default: '',
+      required: false,
+    },
+  },
   data() {
     return {
       title: 'Create a User',
       subtitle: 'Create a new User for your Organisation',
       isValid: false,
       user: {
-        uid: null,
         organisationId: null,
         role: null,
         name: null,
@@ -191,6 +205,13 @@ export default {
       loading: false,
     }
   },
+  async mounted() {
+    /* Check for a User by Id */
+    if (this.userId !== null) {
+      const userData = await users.getUser(this.userId)
+      this.user = userData
+    }
+  },
   methods: {
     onSubmit(evt) {
       this.$refs.usersForm
@@ -207,8 +228,8 @@ export default {
             })
             /* Saving to Firesatore */
             try {
-              if (this.user && this.user.organisationId && this.user.userId) {
-                users.saveUser(this.user)
+              if (this.userId && this.userId !== null) {
+                users.saveUser(this.user, this.userId)
               } else {
                 users.createUser(this.user)
               }
@@ -218,9 +239,7 @@ export default {
                 icon: 'cloud_done',
                 message: 'Congratulations, your User details have been updated successfully!',
               })
-              this.$refs.usersForm.resetValidation()
               this.$refs.usersForm.reset()
-              $nuxt.$router.push('/dashboard')
             } catch (error) {
               this.$q.notify({
                 color: 'red-6',
@@ -243,25 +262,8 @@ export default {
     },
     resetForm() {
       this.isValid = false
-      // this.user.uid = null
-      // this.user.organisationId = null
-      // this.user.role = null
-      // this.user.name = null
-      // this.user.email = null
-      // this.user.emailVerified = null
-      // this.user.phoneCode = null
-      // this.user.phoneNumber = null
-      // this.user.photoURL = null
-      // this.user.profileType = null
-      // this.user.integrationType = null
-      // this.user.binanceId = null
-      // this.user.busdWalletAddress = null
-      // this.user.metaMaskAccount = null
-      // this.user.onboardingState = null
-      // this.user.dateCreated = null
-      // this.user.lastEdit = null
       this.$refs.usersForm.resetValidation()
-      this.$refs.usersForm.reset()
+      $nuxt.$router.push('/users')
     },
   },
 }

@@ -140,7 +140,9 @@ export default {
   },
   methods: {
     getSelectedString() {
-      return this.selected.length === 0 ? '' : `${this.selected.length} record${this.selected.length > 1 ? 's' : ''} selected of ${this.data.length}`
+      return this.selected.length === 0
+        ? ''
+        : `${this.selected.length} record${this.selected.length > 1 ? 's' : ''} selected of ${this.data.length}`
     },
     onSelection({ rows, added, evt }) {
       if (rows.length === 0 || this.$refs.table === undefined) {
@@ -185,7 +187,8 @@ export default {
       }
     },
     editUser(userId) {
-      console.log('UID : ', userId)
+      console.log('Edit User Id : ', userId)
+      $nuxt.$router.push(`/users-edit?id=${userId}`)
     },
     deleteUser(userId) {
       console.log('UID : ', userId)

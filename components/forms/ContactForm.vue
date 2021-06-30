@@ -13,7 +13,13 @@
             <div class="uku-form-body">
               <div class="uku-form-name">Please tell us what you require assistance with?</div>
               <q-form ref="ukuForm" class="q-gutter-md" method="POST" @submit="onSubmit" @reset="onReset">
-                <QOptionGroup v-model="formData.group" name="group" :options="formData.options" type="radio" class="no-margin no-padding" />
+                <QOptionGroup
+                  v-model="formData.group"
+                  name="group"
+                  :options="formData.options"
+                  type="radio"
+                  class="no-margin no-padding"
+                />
                 <QInput
                   v-model.trim="formData.textarea"
                   square
@@ -24,7 +30,12 @@
                   color="black"
                   class="form-textarea"
                 />
-                <QCheckbox v-model="formData.accept" name="accept" color="black" label="Please notify me when Ukulima launches more products" />
+                <QCheckbox
+                  v-model="formData.accept"
+                  name="accept"
+                  color="black"
+                  label="Please notify me when Ukulima launches more products"
+                />
                 <QInput
                   v-model.trim="formData.email"
                   square

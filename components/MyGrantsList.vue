@@ -8,7 +8,15 @@
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="uku-hero-buttons full-width" align="right">
-            <q-btn v-if="user.organisationId" rounded type="a" to="/grants-add" color="primary" class="q-ml-sm q-mb-sm" label="+ Add New" />
+            <q-btn
+              v-if="user.organisationId"
+              rounded
+              type="a"
+              to="/grants-add"
+              color="primary"
+              class="q-ml-sm q-mb-sm"
+              label="+ Add New"
+            />
           </div>
         </div>
       </div>
@@ -31,7 +39,14 @@
                   <q-btn flat color="secondary" label="Share" />
                   <q-btn flat color="primary" label="Apply" />
                   <q-space />
-                  <q-btn color="grey" round flat dense :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" @click="expanded = !expanded" />
+                  <q-btn
+                    color="grey"
+                    round
+                    flat
+                    dense
+                    :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                    @click="expanded = !expanded"
+                  />
                 </q-card-actions>
                 <q-slide-transition>
                   <div v-show="expanded">

@@ -3,7 +3,8 @@
     <q-toolbar>
       <div class="row full-width items-center justify-center uku-logo-link" align="center">
         <nuxt-link to="/" class="items-center justify-center">
-          <img src="~/static/icon.png" alt="Ukulima Africa" width="90px" class="uku-logo" /> <span class="uku-logo-text">Ukulima</span>
+          <img src="~/static/icon.png" alt="Ukulima Africa" width="90px" class="uku-logo" />
+          <span class="uku-logo-text">Ukulima</span>
         </nuxt-link>
       </div>
     </q-toolbar>

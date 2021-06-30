@@ -30,7 +30,10 @@ const profile = {
       .then((doc) => {
         if (doc.exists) {
           try {
-            profileData = doc.data()
+            profileData = {
+              ...doc.data(),
+              uid: doc.id
+            }
           } catch (err) {}
         }
       })

@@ -30,7 +30,10 @@ const sponsors = {
     .then((doc) => {
       if (doc.exists) {
         try {
-          sponsorData = doc.data()
+          sponsorData = {
+            ...doc.data(),
+            uid: doc.id
+          }
         } catch (err) {}
       }
     })

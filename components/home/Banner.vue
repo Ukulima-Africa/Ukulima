@@ -2,7 +2,11 @@
   <div class="row uku-banner">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 uku-banner-col">
       <div class="uku-banner-image items-center justify-center">
-        <img src="~/assets/images/Insurance-Smart-Contracts.png" alt="Smart Contract Insurance - Ukulima Africa" width="100%" />
+        <img
+          src="~/assets/images/Insurance-Smart-Contracts.png"
+          alt="Smart Contract Insurance - Ukulima Africa"
+          width="100%"
+        />
       </div>
     </div>
   </div>

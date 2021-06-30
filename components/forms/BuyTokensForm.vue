@@ -1,6 +1,9 @@
 <template>
   <div class="row uku-buyin items-center justify-center content-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center self-center uku-buyin-col" align="center">
+    <div
+      class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center self-center uku-buyin-col"
+      align="center"
+    >
       <div class="uku-buyin-form">
         <div class="row no-wrap">
           <div class="uku-buyin-title">{{ title }}</div>
@@ -9,7 +12,13 @@
           <div class="uku-buyin-subtitle">Connect your MetaMask to continue</div>
         </div>
         <div class="row no-wrap items-center justify-center" align="center">
-          <q-form ref="buyTokenForm" class="q-gutter-md uku-form" autocomplete="off" @submit="buyNow" @reset="resetForm">
+          <q-form
+            ref="buyTokenForm"
+            class="q-gutter-md uku-form"
+            autocomplete="off"
+            @submit="buyNow"
+            @reset="resetForm"
+          >
             <div class="self-center full-width no-outline">
               <q-input
                 v-model="token.amount"
@@ -48,7 +57,13 @@
               <q-btn outline rounded class="uku-buy-button" label="Buy AGRI Tokens" type="submit" tabindex="4" />
             </div>
             <div v-if="!account.account" class="self-center full-width no-outline">
-              <q-btn rounded class="uku-connect-button" label="Connect Metamask" tabindex="5" @click="connectMetaMask()" />
+              <q-btn
+                rounded
+                class="uku-connect-button"
+                label="Connect Metamask"
+                tabindex="5"
+                @click="connectMetaMask()"
+              />
             </div>
             <div v-else class="self-center full-width no-outline">
               <q-btn rounded class="uku-stake-button" label="Stake AGRI" tabindex="5" />

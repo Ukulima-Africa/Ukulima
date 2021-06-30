@@ -22,7 +22,7 @@ const users = {
   /* Get User Data */
   async getUser(userId) {
     const organisationId = await this.getOrganisationId()
-    const userRef = $nuxt.$fire.firestore
+    const userRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('users')
@@ -33,7 +33,10 @@ const users = {
       .then((doc) => {
         if (doc.exists) {
           try {
-            userData = doc.data()
+            userData = {
+              ...doc.data(),
+              uid: doc.id
+            }
           } catch (err) {}
         }
       })
@@ -59,7 +62,7 @@ const users = {
   /* Get User Data */
   async getUsers() {
     const organisationId = await this.getOrganisationId()
-    const userRef = $nuxt.$fire.firestore
+    const userRef = await $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
       .collection('users')
@@ -144,19 +147,21 @@ const users = {
       return false
   },
   /* Save User Data */
-  async saveUser(data) {
+  async saveUser(data, userId) {
     const organisationId = await this.getOrganisationId()
-    const userId = data.uid
     const docData = {
       organisationId,
       role: 'User',
       name: data.name,
-      legalName: data.legalName,
-      taxNumber: data.taxNumber,
-      countryCode: data.countryCode,
-      timezone: data.timezone,
-      baseCurrency: data.baseCurrency,
-      userType: data.userType,
+      email: data.email,
+      phoneCode: data.phoneCode,
+      phoneNumber: data.phoneNumber,
+      photoURL: data.photoURL,
+      profileType: data.profileType,
+      integrationType: data.integrationType,
+      binanceId: data.binanceId,
+      busdWalletAddress: data.busdWalletAddress,
+      metaMaskAccount: data.metaMaskAccount,
       lastEdit: new Date()
     }
     await $nuxt.$fire.firestore
@@ -165,9 +170,6 @@ const users = {
       .collection('users')
       .doc(userId)
       .set(docData, { merge: true })
-      .then(() => {
-        // $nuxt.$store.commit('SET_COMPANY', docData)
-      })
       .catch(error => {
         try {
           $nuxt.$q.notify({
@@ -189,9 +191,8 @@ const users = {
       })
   },
   /* Get User Type */
-  async getUserType(user) {
+  async getUserType(userId) {
     const organisationId = await this.getOrganisationId()
-    const userId = user.uid
     const userRef = $nuxt.$fire.firestore
       .collection('organisations')
       .doc(organisationId)
@@ -227,9 +228,8 @@ const users = {
     return userType
   },
   /* Save User Type */
-  async saveUserType(user) {
+  async saveUserType(user, userId) {
     const organisationId = await this.getOrganisationId()
-    const userId = user.uid
     const isSuccess = await $nuxt.$fireStore
       .collection('organisations')
       .doc(organisationId)
@@ -258,9 +258,8 @@ const users = {
     return isSuccess
   },
   /* Save User Role */
-  async saveUserRole(user) {
+  async saveUserRole(user, userId) {
     const organisationId = await this.getOrganisationId()
-    const userId = user.uid
     const isSuccess = await $nuxt.$fireStore
       .collection('organisations')
       .doc(organisationId)

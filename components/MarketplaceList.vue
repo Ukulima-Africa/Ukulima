@@ -18,18 +18,20 @@
           <div class="uku-marketplace-title">{{ title }}</div>
           <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
           <div class="uku-marketplace-text">
-            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-            Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-            chain inefficiencies and agriculture associated risks.
+            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold
+            farmers throughout Africa. Together we bring in all stakeholders in the agricultural supply chain, allowing
+            them to make better-informed decisions, reducing supply chain inefficiencies and agriculture associated
+            risks.
           </div>
         </div>
         <div class="col-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 uku-marketplace-col">
           <div class="uku-marketplace-title">{{ title }}</div>
           <div class="uku-marketplace-subtitle">{{ subtitle }}</div>
           <div class="uku-marketplace-text">
-            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-            Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-            chain inefficiencies and agriculture associated risks.
+            Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold
+            farmers throughout Africa. Together we bring in all stakeholders in the agricultural supply chain, allowing
+            them to make better-informed decisions, reducing supply chain inefficiencies and agriculture associated
+            risks.
           </div>
         </div>
       </div>

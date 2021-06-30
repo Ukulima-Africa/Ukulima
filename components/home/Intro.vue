@@ -6,17 +6,17 @@
         <div class="uku-intro-title">{{ title }}</div>
         <div class="uku-intro-subtitle">{{ subtitle }}</div>
         <div class="uku-intro-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold farmers throughout Africa.
-          Together we bring in all stakeholders in the agricultural supply chain, allowing them to make better-informed decisions, reducing supply
-          chain inefficiencies and agriculture associated risks.
+          Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure small-hold
+          farmers throughout Africa. Together we bring in all stakeholders in the agricultural supply chain, allowing
+          them to make better-informed decisions, reducing supply chain inefficiencies and agriculture associated risks.
           <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
-          Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce poverty, improve food security
-          and build climate resilient economies.
+          Our core focus is enabling inclusive agriculture through organized value chains, which will radically reduce
+          poverty, improve food security and build climate resilient economies.
           <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="white" />
-          Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque and
-          out of reach of the farmer.
+          Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are
+          still inefficient, opaque and out of reach of the farmer.
         </div>
-        <div class="uku-intro-buttons full-width q-mt-xl" align="right">
+        <div class="uku-intro-buttons">
           <q-btn rounded type="a" href="#invest" color="primary" class="q-ml-sm q-mb-sm" label="Investing" />
           <q-btn rounded type="a" href="#insurance" color="secondary" class="q-ml-sm q-mb-sm" label="Insurance" />
           <q-btn outline rounded type="a" href="#latest-news" color="white" class="q-ml-sm q-mb-sm" label="Read More" />
@@ -65,6 +65,10 @@ export default {
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+      .uku-intro-buttons
+        width: 100%
+        margin: 30px 0 0 0
+        text-align: right
 /* Links & Buttons */
 a,
 .nuxt-link
@@ -111,6 +115,10 @@ a,
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+      .uku-intro-buttons
+        width: 100%
+        margin: 25px 0 0 0
+        text-align: right
 /* $breakpoint-sm: 839px */
 @media only screen and (max-width: 839px)
   .hide-on-mobile
@@ -137,6 +145,10 @@ a,
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+      .uku-intro-buttons
+        width: 100%
+        margin: 15px 0 0 0
+        text-align: center !important
 /* $breakpoint-xs: 479px */
 @media only screen and (max-width: 479px)
   .hide-on-mobile
@@ -163,6 +175,10 @@ a,
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+      .uku-intro-buttons
+        width: 100%
+        margin: 15px 0 0 0
+        text-align: center !important
 // This is for old phone screen sizes 360px and smaller
 @media only screen and (max-width: 359px)
   .hide-on-mobile
@@ -189,4 +205,8 @@ a,
         line-height: 24px
         font-weight: 400
         margin: 0 0 10px 0
+      .uku-intro-buttons
+        width: 100%
+        margin: 15px 0 0 0
+        text-align: center !important
 </style>

@@ -3,7 +3,7 @@
     <Header />
     <SidebarLeft />
     <q-page-container>
-      <UsersForm :userId="null" />
+      <UsersForm :userId="userId" />
     </q-page-container>
   </q-layout>
 </template>
@@ -19,7 +19,7 @@ import SidebarLeft from '../components/SidebarLeft.vue'
 import UsersForm from '../components/forms/UsersForm.vue'
 /* LFG */
 export default {
-  name: 'UsersAdd',
+  name: 'UsersEdit',
   components: {
     Header,
     SidebarLeft,
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      title: 'Add Users - Ukulima Africa',
+      title: 'Edit User - Ukulima Africa',
       description:
         'Ukulima empowers African farmers by utilising Blockchain Technology to manage, finance and insure smallhold farmers throughout Africa',
     }
@@ -59,6 +59,9 @@ export default {
       set(value) {
         this.$store.commit('SET_ACCOUNT', value)
       },
+    },
+    userId() {
+      return this.$route.query.id ? this.$route.query.id : null
     },
   },
   async beforeCreate() {

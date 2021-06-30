@@ -1,6 +1,9 @@
 <template>
   <div class="row uku-signin items-center justify-center content-center">
-    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center self-center uku-signin-col" align="center">
+    <div
+      class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 items-center justify-center self-center uku-signin-col"
+      align="center"
+    >
       <div class="uku-signin-form">
         <div class="row no-wrap">
           <div class="uku-signin-title">{{ title }}</div>
@@ -46,7 +49,11 @@
                 tabindex="2"
               >
                 <template #append>
-                  <span class="password-update" :name="isPwd ? 'visibility_off' : 'visibility'" @click="togglePasswordVisibility">
+                  <span
+                    class="password-update"
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    @click="togglePasswordVisibility"
+                  >
                     {{ passwordLabel }}
                   </span></template
                 >

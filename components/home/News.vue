@@ -6,9 +6,10 @@
         <div class="col-10 col-lg-10 col-md-9 col-sm-12 col-xs-12 q-pr-md">
           <div class="uku-news-subtitle">Ukulima launches AGRI Token on Binance Smart Chain</div>
           <div class="uku-news-text">
-            Africa is the breadbasket of the world, but much of its agricultural value chain management and financing are still inefficient, opaque
-            and out of reach of our local farmers. Ukulima Africa strives to empower local farmers and our agriculture industry by utilising
-            Blockchain Technology to manage, finance and insure smallhold farms throughout Africa and abroad.
+            Africa is the breadbasket of the world, but much of its agricultural value chain management and financing
+            are still inefficient, opaque and out of reach of our local farmers. Ukulima Africa strives to empower local
+            farmers and our agriculture industry by utilising Blockchain Technology to manage, finance and insure
+            smallhold farms throughout Africa and abroad.
           </div>
         </div>
         <div class="col-2 col-lg-2 col-md-3 col-sm-12 col-xs-12 no-margin no-padding">

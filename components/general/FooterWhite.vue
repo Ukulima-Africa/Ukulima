@@ -3,9 +3,22 @@
     <q-toolbar align="center">
       <q-toolbar-title class="copyright">
         <span><strong>Ukulima Africa</strong> &copy; {{ year }}. All Rights Reserved</span>
-        <a href="https://www.ukulima.africa/privacy" alt="Privacy &amp; Data Policy" target="_blank" class="white footer-link">Legal Notices ›</a>
+        <a
+          href="https://www.ukulima.africa/privacy"
+          alt="Privacy &amp; Data Policy"
+          target="_blank"
+          class="white footer-link"
+          >Legal Notices ›</a
+        >
         <span class="footer-text">Got a question?</span>
-        <a href="mailto:info@ukulima.africa" target="_blank" rel="external nofollow" title="Contact us" class="white footer-link">Contact us ›</a>
+        <a
+          href="mailto:info@ukulima.africa"
+          target="_blank"
+          rel="external nofollow"
+          title="Contact us"
+          class="white footer-link"
+          >Contact us ›</a
+        >
       </q-toolbar-title>
     </q-toolbar>
   </q-footer>

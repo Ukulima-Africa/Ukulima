@@ -5,11 +5,13 @@
         <div class="uku-defi-title">{{ title }}</div>
         <div class="uku-defi-subtitle">{{ subtitle }}</div>
         <div class="uku-defi-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers
+          throughout Africa.
         </div>
         <q-separator class="q-mt-lg q-mb-lg q-mr-md" color="black" />
         <div class="uku-defi-text">
-          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers throughout Africa.
+          Ukulima empowers African farmers by utilising Blockchain Technology to manage and finance smallhold farmers
+          throughout Africa.
         </div>
       </div>
     </div>

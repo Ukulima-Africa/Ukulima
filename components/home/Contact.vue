@@ -4,7 +4,9 @@
       <div class="uku-contact-title">{{ title }}</div>
       <div class="uku-contact-subtitle">We would love to hear from you...</div>
       <div class="uku-contact-text">
-        Our team are always keen to meet new people, so please feel free to get in touch with us!<br class="hide-on-mobile" />
+        Our team are always keen to meet new people, so please feel free to get in touch with us!<br
+          class="hide-on-mobile"
+        />
         We value your feedback or request to receive more information about our services and product offerings.
       </div>
       <div class="uku-social">
